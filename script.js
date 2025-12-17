@@ -3839,7 +3839,7 @@ const UIController = {
             
             // Badge 2: Praise-heavy
             if (thanksCount_90d >= 3 && thanksCount_90d >= warningCount_90d) {
-                badges.push('� 칭찬이알 많이 쌓인 번호판');
+                badges.push('⭐ 칭찬이 많이 쌓인 번호판');
             }
             
             // Badge 3: Frequent warning
@@ -4624,8 +4624,14 @@ const UIController = {
             // Create flying envelope animation
             this.createFlyingEnvelope(sendBtn);
             
-            // Increment counter in Firebase
-            const newValue = await FirebaseClient.incrementCounter(plateNumber, counterKey);
+            // Increment counter in Firebase using secure Cloud Function
+            let newValue;
+            if (typeof SecurityModule !== 'undefined' && SecurityModule.secureIncrementCounter) {
+                newValue = await SecurityModule.secureIncrementCounter(plateNumber, counterKey);
+            } else {
+                console.warn('UIController.handleMessageCardClick: SecurityModule not available, using fallback');
+                newValue = await FirebaseClient.incrementCounter(plateNumber, counterKey);
+            }
             console.log(`UIController.handleMessageCardClick: Counter incremented successfully, new value: ${newValue}`);
             
             // Record monthly increment
@@ -5400,9 +5406,14 @@ function initHeartButton() {
             // Create particle burst
             createParticles();
             
-            // Increment like in Firebase
+            // Increment like in Firebase using secure Cloud Function
             try {
-                await FirebaseClient.incrementCounter(plateNumber, 'likes');
+                if (typeof SecurityModule !== 'undefined' && SecurityModule.secureIncrementCounter) {
+                    await SecurityModule.secureIncrementCounter(plateNumber, 'likes');
+                } else {
+                    console.warn('UIController.handleLikeClick: SecurityModule not available, using fallback');
+                    await FirebaseClient.incrementCounter(plateNumber, 'likes');
+                }
                 
                 // Update the count display
                 const currentCount = parseInt(likeCountElement.textContent) || 0;
@@ -5813,9 +5824,9 @@ const SubscriptionManager = {
         }
         
         try {
-            // You need to generate a VAPID key in Firebase Console
-            // Go to: Project Settings > Cloud Messaging > Web Push certificates
-            const vapidKey = 'BBPwhFN3K4dlsDZXul31NlMdOYtyLDvSNCV_RJuyz_GIdsWd0YCd3pAM3n_M8qm9UX0ZNpSAaOPAgJZY0aTYt8c'; // Replace with your actual VAPID key
+            // VAPID key is injected during build from environment variable
+            // Generate in Firebase Console: Project Settings > Cloud Messaging > Web Push certificates
+            const vapidKey = '__VAPID_KEY__';
             
             const token = await this.messaging.getToken({ 
                 vapidKey: vapidKey,

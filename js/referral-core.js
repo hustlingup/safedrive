@@ -157,16 +157,14 @@ const ReferralCore = (function() {
             referrerId = await createUniqueReferrerId();
             localStorage.setItem(STORAGE_KEYS.REFERRER_ID, referrerId);
             
-            // RTDB에 사용자 등록
-            const database = ensureFirebase();
-            if (database) {
+            // Use Cloud Function to create referrer
+            if (typeof firebase !== 'undefined' && firebase.functions) {
                 try {
-                    await database.ref(`referrals/users/${referrerId}`).set({
-                        createdAt: firebase.database.ServerValue.TIMESTAMP,
-                        total: 0
-                    });
+                    const createReferrer = firebase.functions().httpsCallable('createReferrer');
+                    await createReferrer({ referrerId });
+                    console.log('✅ Referrer created via Cloud Function:', referrerId);
                 } catch (error) {
-                    console.error('Error registering referrer:', error);
+                    console.error('Error creating referrer:', error);
                 }
             }
         }
@@ -301,14 +299,32 @@ const ReferralCore = (function() {
     }
 
     /**
+     * Generate browser fingerprint for bot prevention
+     */
+    async function generateFingerprint() {
+        const components = [
+            navigator.userAgent,
+            navigator.language,
+            screen.width + 'x' + screen.height,
+            new Date().getTimezoneOffset(),
+            navigator.hardwareConcurrency || 'unknown',
+            navigator.platform
+        ];
+        
+        const data = components.join('|');
+        const encoder = new TextEncoder();
+        const dataBuffer = encoder.encode(data);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', dataBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+    
+    /**
      * plate.html 진입 시 referral 성공 처리
      * @param {string} plateNumber - 유효한 번호판 번호
      */
     async function onPlateView(plateNumber) {
         if (!plateNumber) return { success: false, reason: 'no_plate' };
-        
-        const database = ensureFirebase();
-        if (!database) return { success: false, reason: 'no_firebase' };
         
         const incomingRef = getIncomingRef();
         if (!incomingRef) return { success: false, reason: 'no_referral' };
@@ -330,53 +346,60 @@ const ReferralCore = (function() {
             return { success: false, reason: 'already_used_today' };
         }
         
-        // 3. 추천인 하루 상한 50 확인
-        const currentCount = await getReferrerDailyCount(incomingRef);
-        if (currentCount >= DAILY_LIMIT) {
-            console.log('❌ Referrer daily limit reached');
-            return { success: false, reason: 'daily_limit_reached' };
-        }
-        
-        // 4. 트랜잭션으로 카운트 증가
+        // 3. Use Cloud Function for secure increment with bot prevention
         try {
-            const userRef = database.ref(`referrals/users/${incomingRef}`);
-            const dailyRef = database.ref(`referrals/users/${incomingRef}/daily/${today}`);
-            const leaderboardRef = database.ref(`referrals/leaderboards/daily/${today}/${incomingRef}`);
-            
-            // total 증가
-            await userRef.child('total').transaction(current => (current || 0) + 1);
-            
-            // daily 증가 및 50 달성 체크
-            const newDailyCount = await dailyRef.transaction(current => {
-                return (current || 0) + 1;
-            });
-            
-            // leaderboard 증가
-            await leaderboardRef.transaction(current => (current || 0) + 1);
-            
-            // 50 달성 시 winners 등록 (선착순 3명만)
-            const finalCount = newDailyCount.snapshot.val();
-            if (finalCount === DAILY_LIMIT) {
-                const winnersRef = database.ref(`referrals/dailyWinners/${today}`);
-                const winnersSnapshot = await winnersRef.once('value');
-                const currentWinners = winnersSnapshot.val() || {};
-                
-                if (Object.keys(currentWinners).length < 3) {
-                    await winnersRef.child(incomingRef).set({
-                        achievedAt: firebase.database.ServerValue.TIMESTAMP
-                    });
-                    console.log('🏆 Winner registered!');
-                }
+            if (typeof firebase === 'undefined' || !firebase.functions) {
+                throw new Error('Firebase Functions not available');
             }
             
-            // 사용 기록 저장
-            localStorage.setItem(usedKey, '1');
+            // Generate fingerprint for bot prevention
+            const fingerprint = await generateFingerprint();
             
-            console.log('✅ Referral success! New count:', finalCount);
-            return { success: true, newCount: finalCount };
+            // Generate nonce for replay prevention
+            const nonce = Array.from(crypto.getRandomValues(new Uint8Array(16)))
+                .map(b => b.toString(16).padStart(2, '0'))
+                .join('');
+            
+            // Call Cloud Function
+            const secureReferralIncrement = firebase.functions().httpsCallable('secureReferralIncrement');
+            const result = await secureReferralIncrement({
+                referrerId: incomingRef,
+                visitorId: visitorId,
+                fingerprint: fingerprint,
+                timestamp: Date.now(),
+                nonce: nonce
+            });
+            
+            if (result.data.success) {
+                // Mark as used
+                localStorage.setItem(usedKey, '1');
+                
+                console.log('✅ Referral success! New count:', result.data.newDailyCount);
+                
+                if (result.data.isWinner) {
+                    console.log('🏆 Winner! Reached 50 referrals!');
+                }
+                
+                return {
+                    success: true,
+                    newCount: result.data.newDailyCount,
+                    totalCount: result.data.newTotalCount,
+                    isWinner: result.data.isWinner
+                };
+            }
+            
+            return { success: false, reason: 'cloud_function_failed' };
             
         } catch (error) {
             console.error('Error processing referral:', error);
+            
+            // Parse error message for better user feedback
+            if (error.code === 'resource-exhausted') {
+                return { success: false, reason: 'rate_limit_or_daily_limit' };
+            } else if (error.code === 'failed-precondition') {
+                return { success: false, reason: 'invalid_request' };
+            }
+            
             return { success: false, reason: 'transaction_error' };
         }
     }

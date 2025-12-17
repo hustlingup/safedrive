@@ -7,9 +7,17 @@ admin.initializeApp();
 // Import secure increment function
 const { secureIncrementCounter, cleanupSecurityData } = require("./secureIncrement");
 
+// Import secure referral functions
+const { secureReferralIncrement, createReferrer, cleanupReferralNonces } = require("./secureReferralIncrement");
+
 // Export secure increment functions
 exports.secureIncrementCounter = secureIncrementCounter;
 exports.cleanupSecurityData = cleanupSecurityData;
+
+// Export secure referral functions
+exports.secureReferralIncrement = secureReferralIncrement;
+exports.createReferrer = createReferrer;
+exports.cleanupReferralNonces = cleanupReferralNonces;
 
 // =============================
 // 📊 Google Analytics Real-time Active Users

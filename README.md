@@ -100,6 +100,25 @@ safedrive-webapp/
 
 ## 배포
 
+### 환경 변수 설정
+
+배포 전에 환경 변수를 설정해야 합니다:
+
+```bash
+# 1. .env 파일 생성
+copy .env.example .env
+
+# 2. .env 파일에 VAPID 키 추가
+# Firebase Console > Project Settings > Cloud Messaging > Web Push certificates에서 생성
+
+# 3. 빌드 실행 (환경 변수 주입)
+node build.js
+```
+
+**중요**: `node build.js`를 실행하지 않으면 푸시 알림이 작동하지 않습니다.
+
+자세한 내용은 [BUILD_PROCESS.md](BUILD_PROCESS.md) 또는 [QUICK_BUILD_GUIDE.md](QUICK_BUILD_GUIDE.md)를 참조하세요.
+
 ### 수동 배포
 
 Firebase Hosting을 사용하는 경우:
@@ -114,8 +133,23 @@ firebase login
 # 프로젝트 초기화
 firebase init hosting
 
-# 배포
+# 빌드 후 배포
+node build.js
 firebase deploy --only hosting
+```
+
+### CI/CD 배포
+
+GitHub Actions 예시:
+
+```yaml
+- name: Build
+  env:
+    VAPID_KEY: ${{ secrets.VAPID_KEY }}
+  run: node build.js
+
+- name: Deploy
+  run: firebase deploy --only hosting
 ```
 
 ## 사용 방법

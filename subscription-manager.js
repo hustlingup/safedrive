@@ -545,9 +545,9 @@ if (typeof SubscriptionManager === 'undefined') {
             }
             
             try {
-                // You need to generate a VAPID key in Firebase Console
-                // Go to: Project Settings > Cloud Messaging > Web Push certificates
-                const vapidKey = 'BBPwhFN3K4dlsDZXul31NlMdOYtyLDvSNCV_RJuyz_GIdsWd0YCd3pAM3n_M8qm9UX0ZNpSAaOPAgJZY0aTYt8c';
+                // VAPID key is injected during build from environment variable
+                // Generate in Firebase Console: Project Settings > Cloud Messaging > Web Push certificates
+                const vapidKey = '__VAPID_KEY__';
                 
                 const token = await this.messaging.getToken({ 
                     vapidKey: vapidKey,

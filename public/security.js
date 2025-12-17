@@ -9,10 +9,6 @@
  */
 
 const SecurityModule = {
-  // HMAC secret (must match server-side)
-  // In production, this should be loaded from a secure config
-  HMAC_SECRET: "e98a8c66dc73c08713c04bfd7b811b17239d11d4a610a4718cdab10da235c782",
-  
   /**
    * Generates a privacy-safe browser fingerprint
    * 
@@ -148,51 +144,6 @@ const SecurityModule = {
   },
   
   /**
-   * Generates HMAC-SHA256 signature
-   * @param {object} payload - Payload to sign
-   * @returns {Promise<string>} - HMAC signature (hex)
-   */
-  async generateHMAC(payload) {
-    try {
-      const data = JSON.stringify({
-        fingerprint: payload.fingerprint,
-        timestamp: payload.timestamp,
-        nonce: payload.nonce,
-      });
-      
-      // Use Web Crypto API if available
-      if (window.crypto && window.crypto.subtle) {
-        const encoder = new TextEncoder();
-        const keyData = encoder.encode(this.HMAC_SECRET);
-        const messageData = encoder.encode(data);
-        
-        const key = await window.crypto.subtle.importKey(
-          "raw",
-          keyData,
-          { name: "HMAC", hash: "SHA-256" },
-          false,
-          ["sign"]
-        );
-        
-        const signature = await window.crypto.subtle.sign("HMAC", key, messageData);
-        const signatureArray = Array.from(new Uint8Array(signature));
-        const signatureHex = signatureArray.map(b => b.toString(16).padStart(2, "0")).join("");
-        
-        return signatureHex;
-      }
-      
-      // Fallback: simple hash (not secure, but allows graceful degradation)
-      console.warn("Web Crypto API not available, using fallback HMAC");
-      const combined = this.HMAC_SECRET + data;
-      return await this.sha256(combined);
-    } catch (error) {
-      console.error("HMAC generation error:", error);
-      // Return a fallback signature
-      return await this.sha256(JSON.stringify(payload) + this.HMAC_SECRET);
-    }
-  },
-  
-  /**
    * Generates a random nonce
    * @returns {string} - Random nonce (32 hex chars)
    */
@@ -231,7 +182,7 @@ const SecurityModule = {
       const timestamp = Date.now();
       const nonce = this.generateNonce();
       
-      // Create payload
+      // Create payload (no HMAC signature - server will validate using its secret)
       const payload = {
         plateNumber,
         counterKey,
@@ -239,10 +190,6 @@ const SecurityModule = {
         timestamp,
         nonce,
       };
-      
-      // Generate HMAC signature
-      const signature = await this.generateHMAC(payload);
-      payload.signature = signature;
       
       console.log("SecurityModule: Calling Cloud Function...");
       

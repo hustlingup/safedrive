@@ -1,39 +1,128 @@
 {
   "rules": {
-    "subscriptions": {
-      ".read": true,
-      "$token": {
-        ".write": true
-      }
-    },
     "plates": {
-      ".read": true,
       "$plateNumber": {
-        ".write": true,
+        ".read": true,
+        ".write": false,
         "counters": {
-          ".read": true,
-          ".write": true,
           "$counterKey": {
+            ".write": false,
             ".validate": "newData.isNumber() && newData.val() >= 0"
           }
         },
+        "daily": {
+          "$date": {
+            "$counterKey": {
+              ".write": false,
+              ".validate": "newData.isNumber() && newData.val() >= 0"
+            }
+          }
+        },
+        "monthly": {
+          "$month": {
+            "$counterKey": {
+              ".write": false,
+              ".validate": "newData.isNumber() && newData.val() >= 0"
+            }
+          }
+        },
+        "monthlyIncrements": {
+          "$counterKey": {
+            "$date": {
+              ".write": false
+            }
+          }
+        },
         "lastUpdated": {
+          ".write": false,
+          ".validate": "newData.isNumber()"
+        },
+        "views": {
+          ".write": false,
+          ".validate": "newData.isNumber() && newData.val() >= 0"
+        }
+      }
+    },
+    "security": {
+      ".read": false,
+      ".write": false,
+      "nonces": {
+        "$nonce": {
+          ".read": false,
+          ".write": false
+        }
+      },
+      "daily": {
+        "$date": {
+          "$fingerprint": {
+            ".read": false,
+            ".write": false
+          }
+        }
+      }
+    },
+    "subscriptions": {
+      ".read": true,
+      "$token": {
+        ".write": "auth != null && auth.token.firebase.sign_in_provider === 'anonymous'",
+        "plates": {
+          ".validate": "newData.isString() || (newData.hasChildren() && newData.val().length <= 10)"
+        },
+        "timestamp": {
           ".validate": "newData.isNumber()"
         }
       }
     },
     "roadStress": {
       ".read": true,
-      ".write": true
+      ".write": false
     },
     "global": {
       ".read": true,
-      ".write": true
+      ".write": false,
+      "allTime": {
+        "$counterKey": {
+          ".write": false,
+          ".validate": "newData.isNumber() && newData.val() >= 0"
+        }
+      },
+      "daily": {
+        "$date": {
+          "$counterKey": {
+            ".write": false,
+            ".validate": "newData.isNumber() && newData.val() >= 0"
+          }
+        }
+      },
+      "weekly": {
+        "$week": {
+          "$counterKey": {
+            ".write": false,
+            ".validate": "newData.isNumber() && newData.val() >= 0"
+          }
+        }
+      },
+      "monthly": {
+        "$month": {
+          "$counterKey": {
+            ".write": false,
+            ".validate": "newData.isNumber() && newData.val() >= 0"
+          }
+        }
+      },
+      "yearly": {
+        "$year": {
+          "$counterKey": {
+            ".write": false,
+            ".validate": "newData.isNumber() && newData.val() >= 0"
+          }
+        }
+      }
     },
     "analytics": {
       ".read": true,
+      ".write": false,
       "realtime": {
-        ".write": false,
         "activeUsers": {
           ".validate": "newData.isNumber() && newData.val() >= 0"
         },
@@ -44,13 +133,39 @@
     },
     "leaderboards": {
       ".read": true,
-      ".write": true
+      ".write": false,
+      "allTime": {
+        "$plateNumber": {
+          ".write": false
+        }
+      },
+      "daily": {
+        "$date": {
+          "$plateNumber": {
+            ".write": false
+          }
+        }
+      },
+      "weekly": {
+        "$week": {
+          "$plateNumber": {
+            ".write": false
+          }
+        }
+      },
+      "monthly": {
+        "$month": {
+          "$plateNumber": {
+            ".write": false
+          }
+        }
+      }
     },
     "referrals": {
       "users": {
         ".read": true,
+        ".write": false,
         "$referrerId": {
-          ".write": true,
           "total": {
             ".validate": "newData.isNumber() && newData.val() >= 0"
           },
@@ -66,10 +181,10 @@
       },
       "leaderboards": {
         ".read": true,
+        ".write": false,
         "daily": {
           "$date": {
             "$referrerId": {
-              ".write": true,
               ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 50"
             }
           }
@@ -77,9 +192,9 @@
       },
       "dailyWinners": {
         ".read": true,
+        ".write": false,
         "$date": {
           "$referrerId": {
-            ".write": true,
             "achievedAt": {
               ".validate": "newData.isNumber()"
             }
