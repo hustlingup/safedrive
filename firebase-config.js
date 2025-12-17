@@ -2,16 +2,17 @@
 // This file contains your Firebase project credentials
 // Note: These credentials are safe to expose in client-side code
 // Security is enforced through Firebase Security Rules, not by hiding the config
+// Configuration values are injected during build from environment variables
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDIdD_L-FHumeBjvAzB-2e1iLv8dpAak7w",
-    authDomain: "safedrive-fa567.firebaseapp.com",
-    databaseURL: "https://safedrive-fa567-default-rtdb.firebaseio.com",
-    projectId: "safedrive-fa567",
-    storageBucket: "safedrive-fa567.firebasestorage.app",
-    messagingSenderId: "637630322258",
-    appId: "1:637630322258:web:407f2f745f51aa3d58b18b",
-    measurementId: "G-9R8RZYZC7X"
+    apiKey: "__FIREBASE_API_KEY__",
+    authDomain: "__FIREBASE_AUTH_DOMAIN__",
+    databaseURL: "__FIREBASE_DATABASE_URL__",
+    projectId: "__FIREBASE_PROJECT_ID__",
+    storageBucket: "__FIREBASE_STORAGE_BUCKET__",
+    messagingSenderId: "__FIREBASE_MESSAGING_SENDER_ID__",
+    appId: "__FIREBASE_APP_ID__",
+    measurementId: "__FIREBASE_MEASUREMENT_ID__"
 };
 
 // Initialize Firebase

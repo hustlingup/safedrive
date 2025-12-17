@@ -8,6 +8,9 @@ node build.js
 if %ERRORLEVEL% EQU 0 (
     echo.
     echo Build successful! Ready to deploy.
+    echo.
+    echo Verifying build...
+    node verify-build.js
 ) else (
     echo.
     echo Build failed! Please check the errors above.

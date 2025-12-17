@@ -63,6 +63,39 @@ function injectEnvVariables(filePath, env) {
         console.log(`✓ Injected VAPID_KEY into ${path.basename(filePath)}`);
     }
     
+    // Replace Firebase config placeholders
+    const firebaseVars = {
+        '__FIREBASE_API_KEY__': 'FIREBASE_API_KEY',
+        '__FIREBASE_AUTH_DOMAIN__': 'FIREBASE_AUTH_DOMAIN',
+        '__FIREBASE_DATABASE_URL__': 'FIREBASE_DATABASE_URL',
+        '__FIREBASE_PROJECT_ID__': 'FIREBASE_PROJECT_ID',
+        '__FIREBASE_STORAGE_BUCKET__': 'FIREBASE_STORAGE_BUCKET',
+        '__FIREBASE_MESSAGING_SENDER_ID__': 'FIREBASE_MESSAGING_SENDER_ID',
+        '__FIREBASE_APP_ID__': 'FIREBASE_APP_ID',
+        '__FIREBASE_MEASUREMENT_ID__': 'FIREBASE_MEASUREMENT_ID'
+    };
+    
+    let firebaseModified = false;
+    for (const [placeholder, envKey] of Object.entries(firebaseVars)) {
+        if (content.includes(placeholder)) {
+            const value = env[envKey] || process.env[envKey];
+            
+            if (!value) {
+                console.error(`✗ ${envKey} not found in .env file or environment variables`);
+                console.error(`  Please add ${envKey} to your .env file`);
+                return false;
+            }
+            
+            content = content.replace(new RegExp(placeholder, 'g'), value);
+            firebaseModified = true;
+        }
+    }
+    
+    if (firebaseModified) {
+        modified = true;
+        console.log(`✓ Injected Firebase config into ${path.basename(filePath)}`);
+    }
+    
     // Write back if modified
     if (modified) {
         fs.writeFileSync(filePath, content, 'utf8');
@@ -80,7 +113,17 @@ function build() {
     const env = loadEnv();
     
     // Check for required environment variables
-    const requiredVars = ['VAPID_KEY'];
+    const requiredVars = [
+        'VAPID_KEY',
+        'FIREBASE_API_KEY',
+        'FIREBASE_AUTH_DOMAIN',
+        'FIREBASE_DATABASE_URL',
+        'FIREBASE_PROJECT_ID',
+        'FIREBASE_STORAGE_BUCKET',
+        'FIREBASE_MESSAGING_SENDER_ID',
+        'FIREBASE_APP_ID',
+        'FIREBASE_MEASUREMENT_ID'
+    ];
     const missing = requiredVars.filter(key => !env[key] && !process.env[key]);
     
     if (missing.length > 0) {
@@ -93,7 +136,9 @@ function build() {
     // Files to process
     const filesToProcess = [
         'script.js',
-        'subscription-manager.js'
+        'subscription-manager.js',
+        'firebase-config.js',
+        'sw.js'
     ];
     
     let success = true;

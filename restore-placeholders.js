@@ -23,12 +23,31 @@ function restorePlaceholders(filePath) {
     if (vapidKeyPattern.test(content)) {
         content = content.replace(vapidKeyPattern, "const vapidKey = '__VAPID_KEY__';");
         modified = true;
-        console.log(`✓ Restored placeholder in ${path.basename(filePath)}`);
+    }
+    
+    // Replace Firebase config values with placeholders
+    const firebaseReplacements = [
+        { pattern: /apiKey: "AIza[A-Za-z0-9_-]+"/g, replacement: 'apiKey: "__FIREBASE_API_KEY__"' },
+        { pattern: /authDomain: "[a-z0-9-]+\.firebaseapp\.com"/g, replacement: 'authDomain: "__FIREBASE_AUTH_DOMAIN__"' },
+        { pattern: /databaseURL: "https:\/\/[a-z0-9-]+-default-rtdb\.firebaseio\.com"/g, replacement: 'databaseURL: "__FIREBASE_DATABASE_URL__"' },
+        { pattern: /projectId: "[a-z0-9-]+"/g, replacement: 'projectId: "__FIREBASE_PROJECT_ID__"' },
+        { pattern: /storageBucket: "[a-z0-9-]+\.firebasestorage\.app"/g, replacement: 'storageBucket: "__FIREBASE_STORAGE_BUCKET__"' },
+        { pattern: /messagingSenderId: "\d+"/g, replacement: 'messagingSenderId: "__FIREBASE_MESSAGING_SENDER_ID__"' },
+        { pattern: /appId: "1:\d+:web:[a-z0-9]+"/g, replacement: 'appId: "__FIREBASE_APP_ID__"' },
+        { pattern: /measurementId: "G-[A-Z0-9]+"/g, replacement: 'measurementId: "__FIREBASE_MEASUREMENT_ID__"' }
+    ];
+    
+    for (const { pattern, replacement } of firebaseReplacements) {
+        if (pattern.test(content)) {
+            content = content.replace(pattern, replacement);
+            modified = true;
+        }
     }
     
     // Write back if modified
     if (modified) {
         fs.writeFileSync(filePath, content, 'utf8');
+        console.log(`✓ Restored placeholders in ${path.basename(filePath)}`);
         return true;
     } else {
         console.log(`  No changes needed in ${path.basename(filePath)}`);
@@ -43,7 +62,9 @@ function restore() {
     // Files to process
     const filesToProcess = [
         'script.js',
-        'subscription-manager.js'
+        'subscription-manager.js',
+        'firebase-config.js',
+        'sw.js'
     ];
     
     let anyModified = false;
