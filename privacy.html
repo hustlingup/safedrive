@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9R8RZYZC7X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      gtag('config', 'G-9R8RZYZC7X');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SAFE DRIVE 개인정보처리방침 - 개인정보 수집, 이용, 보호에 관한 정책을 확인하세요.">
+    <meta name="keywords" content="세이프드라이브, 개인정보처리방침, 개인정보보호, 프라이버시">
+    <meta name="author" content="SAFE DRIVE">
+    <title>개인정보처리방침 - SAFE DRIVE</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://safedrive.kr/privacy.html">
+    <meta property="og:title" content="개인정보처리방침 - SAFE DRIVE">
+    <meta property="og:description" content="SAFE DRIVE 개인정보처리방침 - 개인정보 수집, 이용, 보호에 관한 정책을 확인하세요.">
+    <meta property="og:image" content="https://safedrive.kr/assets/img/safedrive_thumbnail.webp">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://safedrive.kr/privacy.html">
+    <meta name="twitter:title" content="개인정보처리방침 - SAFE DRIVE">
+    <meta name="twitter:description" content="SAFE DRIVE 개인정보처리방침 - 개인정보 수집, 이용, 보호에 관한 정책을 확인하세요.">
+    <meta name="twitter:image" content="https://safedrive.kr/assets/img/safedrive_thumbnail.webp">
+    
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://safedrive.kr/privacy.html">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            min-height: 100vh;
+            padding: 80px 20px 20px;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+        .nav-logo img {
+            height: 32px;
+            display: block;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #667eea;
+        }
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background: #333;
+            transition: all 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                transition: left 0.3s;
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .nav-toggle {
+                display: flex;
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .article {
+            margin-bottom: 28px;
+        }
+
+        .article h2 {
+            color: #11998e;
+            font-size: 20px;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #11998e;
+        }
+
+        .article p,
+        .article ol {
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .article ol {
+            padding-left: 20px;
+        }
+
+        .article li {
+            margin-bottom: 6px;
+        }
+
+        .article strong {
+            color: #222;
+        }
+
+        .highlight-box {
+            background: #e6fff7;
+            border-left: 4px solid #11998e;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .contact-info {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 12px 16px;
+            margin-top: 8px;
+            font-size: 14px;
+        }
+
+        .contact-info p {
+            margin-bottom: 4px;
+        }
+
+        .notice {
+            margin: 20px 0 10px;
+            padding: 14px 18px;
+            border-radius: 10px;
+            background: #fff9e6;
+            border-left: 4px solid #f0ad4e;
+            font-size: 13px;
+            color: #444;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            border: 1px solid #11998e;
+            color: #11998e;
+            text-decoration: none;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+
+        .back-button:hover {
+            background: #11998e;
+            color: #fff;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #f8fafc;
+            border-top: 1px solid #e5e7eb;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .footer-links {
+            margin-bottom: 16px;
+        }
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover {
+            color: #667eea;
+        }
+        .footer-contact-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .footer-contact-link:hover {
+            text-decoration: underline;
+        }
+        .copyright {
+            color: #999;
+            font-size: 0.75rem;
+            margin: 0;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 16px;
+            }
+
+            .header {
+                padding: 28px 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .content {
+                padding: 24px 20px;
+            }
+
+            .article h2 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html#home" class="nav-logo">
+                <img src="assets/img/SAFEDRIVE_logo.svg" alt="SAFE DRIVE Logo">
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html#home" class="nav-link">홈</a></li>
+                <li><a href="qr-generator.html" class="nav-link">QR</a></li>
+                <li><a href="referral.html" class="nav-link">이벤트</a></li>
+                <li><a href="index.html#road-stress" class="nav-link">도로스트레스</a></li>
+                <li><a href="index.html#mostLikedSection" class="nav-link">인기번호판</a></li>
+                <li><a href="index.html#designated-lane" class="nav-link">지정차로</a></li>
+                <li><a href="index.html#legal-notice" class="nav-link">안내</a></li>
+                <li><a href="contact.html" class="nav-link">문의</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>개인정보처리방침(전문)</h1>
+            <p>허슬업 차량 번호판 기반 템플릿 메시지 카운트 및 통계 서비스</p>
+        </div>
+
+        <div class="content">
+            <div class="article">
+                <h2>제1조 (총칙)</h2>
+                <p>운영자는 이용자의 개인정보 보호를 중요하게 생각하며 「개인정보보호법」 및 관련 법령을 준수합니다. 본 서비스는 운영자가 직접 수집하는 정보는 최소화하고, 웹 분석 및 광고 제공을 위하여 Google Analytics, Google AdSense 등 제3자 도구가 일부 온라인 식별 정보를 수집·이용할 수 있는 구조로 설계되어 있습니다.</p>
+            </div>
+
+            <div class="article">
+                <h2>제2조 (수집하는 개인정보 항목)</h2>
+
+                <div class="highlight-box">
+                    <strong>본 서비스는 회원가입·로그인·본인인증을 제공하지 않으며, 서비스 기능 수행에 필요한 최소한의 정보만을 수집합니다.</strong>
+                </div>
+
+                <p><strong>1. 운영자가 직접 수집·저장하는 정보</strong></p>
+                <ol>
+                    <li>차량 번호판(서비스 내 식별자)</li>
+                    <li>이용자가 선택한 템플릿 메시지 종류</li>
+                    <li>메시지 입력 시각(timestamp)</li>
+                    <li>(선택 기능) 구독 기능 이용 시 FCM(Firebase Cloud Messaging) 토큰 및 구독 번호판 목록</li>
+                </ol>
+                <p>위 정보에는 이름, 전화번호, 이메일, 주민등록번호 등 직접적인 개인정보가 포함되지 않으며, 운영자는 이 정보를 통해 특정 개인을 직접 식별하지 않습니다.</p>
+
+                <p><strong>2. 브라우저 LocalStorage에 저장되는 정보</strong></p>
+                <p>서비스 이용 중 브라우저 LocalStorage에 저장되는 데이터는 이용자 단말기 내 로컬 저장 정보로, 운영자는 해당 값에 직접 접근·열람·수집하지 않습니다.</p>
+
+                <p><strong>3. 제3자 도구(Google Analytics, Google AdSense 등)가 자동 수집하는 정보</strong></p>
+                <p>서비스는 웹사이트 분석 및 광고 제공을 위해 Google Analytics, Google AdSense 등 제3자 도구를 사용할 수 있으며, 이 과정에서 아래 정보가 Google에 의해 자동으로 수집·처리될 수 있습니다.</p>
+                <ol>
+                    <li>쿠키 및 유사 기술을 통해 생성되는 온라인 식별자(쿠키 ID, 광고 ID 등)</li>
+                    <li>브라우저·기기 정보(브라우저 종류, OS, 화면 해상도 등)</li>
+                    <li>방문·세션 정보(방문한 페이지, 체류 시간, 클릭 정보 등)</li>
+                    <li>IP 주소 기반 일반 위치정보(국가·도시 수준)</li>
+                    <li>광고 노출 및 클릭 기록(AdSense 사용 시)</li>
+                </ol>
+                <p>해당 정보의 구체적 항목 및 처리 방식은 Google의 개인정보처리방침 및 약관에 따르며, 운영자는 Google이 수집한 원시 데이터에 임의로 접근하지 않습니다.</p>
+            </div>
+
+            <div class="article">
+                <h2>제3조 (개인정보의 수집·이용 목적)</h2>
+                <p><strong>1. 운영자가 직접 수집하는 정보의 이용 목적</strong></p>
+                <ol>
+                    <li>차량 번호판을 식별자로 활용한 템플릿 메시지 카운트 및 통계 제공</li>
+                    <li>차량별 메시지 누적 현황, 템플릿별 사용 현황 등 비식별 통계 제공</li>
+                    <li>(선택 기능) 구독 기능을 통한 특정 번호판의 업데이트 알림 제공</li>
+                </ol>
+
+                <p><strong>2. Google Analytics의 이용 목적</strong></p>
+                <ol>
+                    <li>서비스 이용 현황·트래픽 분석</li>
+                    <li>페이지별 이용 행태 분석 및 서비스 품질 개선</li>
+                    <li>오류 분석 및 성능 최적화 등 통계 분석</li>
+                </ol>
+
+                <p><strong>3. Google AdSense의 이용 목적</strong></p>
+                <ol>
+                    <li>광고 노출·클릭에 따른 광고 제공 및 성과 측정</li>
+                    <li>Google 정책에 따른 맞춤형 또는 비맞춤형 광고 제공</li>
+                    <li>서비스 운영 및 유지에 필요한 비용 충당</li>
+                </ol>
+            </div>
+
+            <div class="article">
+                <h2>제4조 (개인정보의 보유 및 이용기간)</h2>
+                <p><strong>1. 운영자가 직접 수집하는 정보</strong></p>
+                <ol>
+                    <li>차량 번호판, 템플릿 메시지, 입력 시각, 구독 관련 정보는 서비스 제공 및 통계 작성 목적을 위해 보유·이용합니다.</li>
+                    <li>이용자가 구독을 취소하는 경우, 해당 번호판에 대한 FCM 토큰 및 구독 목록 정보는 지체 없이 삭제됩니다.</li>
+                    <li>운영자는 서비스 구조상 개별 자연인과 정보를 직접 연결하지 않으므로, 특정 ‘개인’을 기준으로 한 별도 보유기간은 존재하지 않습니다. 다만, 서비스 운영 정책 변경, 법령 개정 등에 따라 필요 시 보유기간을 조정할 수 있으며, 이 경우 서비스 내 공지를 통해 안내합니다.</li>
+                </ol>
+
+                <p><strong>2. 제3자 도구(Google)의 정보 보유기간</strong></p>
+                <p>Google Analytics 및 Google AdSense가 수집한 정보의 보유·이용기간은 Google의 정책에 따르며, 이용자는 Google 계정 설정 및 관련 페이지를 통해 일부 정보를 직접 관리·제한할 수 있습니다.</p>
+            </div>
+
+            <div class="article">
+                <h2>제5조 (개인정보의 제3자 제공 및 처리위탁)</h2>
+                <ol>
+                    <li>운영자는 이용자로부터 직접 수집한 정보를 원칙적으로 제3자에게 판매·임대·양도하지 않습니다.</li>
+                    <li>다만, 다음 각 호와 같이 서비스 분석 및 광고 제공을 위해 불가피하게 Google에 정보가 전송될 수 있습니다.
+                        <ol>
+                            <li>제공받는 자: Google LLC 및 그 계열사</li>
+                            <li>제공되는 항목: 쿠키 ID, 광고 ID, 브라우저·기기 정보, 접속 로그, 광고 노출·클릭 정보 등</li>
+                            <li>제공 목적: 웹사이트 분석(Analytics), 광고 제공 및 성과 측정(AdSense)</li>
+                            <li>제공 근거: 이용자의 서비스 이용 및 브라우저 설정, Google의 서비스 약관 및 개인정보처리방침</li>
+                        </ol>
+                    </li>
+                    <li>Google이 수집·처리하는 정보에 대한 자세한 내용은 Google이 제공하는 개인정보처리방침 및 기술 문서를 통해 확인할 수 있습니다.</li>
+                </ol>
+            </div>
+
+            <div class="article">
+                <h2>제6조 (쿠키 및 분석 도구의 사용)</h2>
+                <ol>
+                    <li>운영자는 서비스 자체적으로 별도의 쿠키를 생성하여 저장하지 않으나, Google Analytics, Google AdSense 등 제3자 도구가 브라우저에 쿠키를 설치하거나 읽어들일 수 있습니다.</li>
+                    <li>쿠키 및 유사 기술은 다음 목적을 위하여 사용될 수 있습니다.
+                        <ol>
+                            <li>재방문 여부 식별 및 세션 관리</li>
+                            <li>페이지 이용 행태 분석을 통한 서비스 품질 개선</li>
+                            <li>광고 노출·클릭 기록 기반 광고 제공 및 성과 측정</li>
+                            <li>Google 정책에 따른 맞춤형 광고 제공(이용자가 허용한 경우)</li>
+                        </ol>
+                    </li>
+                    <li>이용자는 브라우저 설정을 통해 쿠키 저장을 거부하거나 제한할 수 있으며, 이 경우 일부 기능 이용에 제한이 발생할 수 있습니다.</li>
+                    <li>이용자는 다음과 같은 방법으로 광고·분석 도구의 일부 기능을 제한할 수 있습니다.
+                        <ol>
+                            <li>웹 브라우저의 쿠키 차단/삭제 설정 변경</li>
+                            <li>Google 광고 설정 페이지에서 맞춤형 광고 비활성화</li>
+                            <li>Google Analytics 차단 브라우저 애드온 설치(지원되는 경우)</li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="article">
+                <h2>제7조 (이용자의 권리)</h2>
+                <ol>
+                    <li>운영자는 이름, 연락처 등 직접적인 개인정보를 수집하지 않으므로, 일반적인 의미의 “개인별 열람·정정·삭제·처리정지 요청”은 기술적으로 제한될 수 있습니다.</li>
+                    <li>그럼에도 불구하고 이용자가 본 서비스에서 관리되는 데이터(예: 특정 차량번호와 관련된 메시지 통계 등)에 대해 문의·삭제 요청을 하고자 하는 경우, 운영자 연락처를 통해 문의하시면 가능한 범위 내에서 처리 여부를 검토합니다.</li>
+                    <li>Google Analytics 및 Google AdSense에 의해 수집·처리되는 정보에 대한 열람·삭제·제한 등 권리 행사는 Google이 제공하는 계정 설정, 광고 설정, 개인정보 보호 도구를 통해 진행되며, 해당 절차는 Google의 정책에 따릅니다.</li>
+                </ol>
+            </div>
+
+            <div class="article">
+                <h2>제8조 (개인정보 보호를 위한 기술적·관리적 조치)</h2>
+                <ol>
+                    <li>운영자는 개인정보 최소 수집 원칙을 준수하며, 서비스 운영에 반드시 필요한 정보만을 제한적으로 취급합니다.</li>
+                    <li>운영자는 다음과 같은 보호조치를 취하고자 노력합니다.
+                        <ol>
+                            <li>Firebase 등 외부 서비스 사용 시 접근 권한 최소화 및 인증키 보호</li>
+                            <li>서버·DB에 대한 접근 통제, 권한 관리 및 로그 관리</li>
+                            <li>외부 공격·침입 방지를 위한 보안 설정 및 점검</li>
+                            <li>데이터 전송 구간 암호화(HTTPS 등)</li>
+                        </ol>
+                    </li>
+                    <li>제3자 도구(Google Analytics, Google AdSense)의 보안 및 안전성에 대해서는 Google의 정책과 기술적 조치에 따르며, 운영자는 해당 도구의 내부 동작에 대한 직접적인 통제권을 가지지 않습니다.</li>
+                </ol>
+            </div>
+
+            <div class="article">
+                <h2>제9조 (개인정보 미·최소 수집에 따른 운영자 책임 제한)</h2>
+                <ol>
+                    <li>본 서비스는 이용자 신원을 확인할 수 있는 정보(이름, 전화번호, 계정 ID 등)를 수집하지 않으며, 운영자는 이용자의 신원·연락처·접속 계정 등 직접적인 개인식별 정보를 보유하지 않습니다.</li>
+                    <li>이로 인해, 이용자 간 또는 이용자와 제3자 간 분쟁이 발생하더라도, 운영자는 특정 자연인을 특정하기 위한 자료(신원, 연락처, 상세 접속기록 등)를 제공하거나 사실관계를 입증하기 어렵습니다. 따라서 개인정보를 매개로 한 분쟁에 관하여 운영자가 개입하거나 책임을 부담하기 어려울 수 있습니다.</li>
+                    <li>이용자가 차량 번호판, 캡처 이미지, 외부 공유 등을 통해 제3자의 개인정보를 유출하거나, 개인정보보호법·정보통신망법 등을 위반하는 경우, 그 책임은 전적으로 해당 이용자에게 있으며, 운영자는 이에 대한 법적 책임을 부담하지 않습니다.</li>
+                </ol>
+            </div>
+
+            <div class="article">
+                <h2>제10조 (구독 기능 관련 정보 처리)</h2>
+                <ol>
+                    <li>구독 기능은 FCM(Firebase Cloud Messaging) 토큰을 사용해 알림을 전송하며, 이는 개별 디바이스를 식별하기 위한 온라인 식별자입니다. 운영자는 토큰을 특정 자연인의 실명, 연락처 등과 결합하지 않으며, 이를 통해 이용자의 신원을 직접 식별하지 않습니다.</li>
+                    <li>이용자가 PWA(Progressive Web App)를 설치하고 알림을 허용하는 경우, 해당 기기에 대한 FCM 토큰이 생성되며, 구독 번호판 목록과 연계되어 Firebase에 저장됩니다. 이 정보는 오직 구독 알림 발송 목적으로만 사용됩니다.</li>
+                    <li>이용자가 구독을 취소하거나 브라우저/앱 설정에서 알림을 비활성화하는 경우, 해당 토큰 및 구독 정보는 가능한 한 지체 없이 삭제되거나 더 이상 알림 발송에 이용되지 않습니다.</li>
+                    <li>이메일 주소 등 추가적인 개인정보는 구독 절차에서 수집하지 않으며, 알림 동의·철회는 브라우저의 Notification API 및 디바이스 설정을 통해 이용자가 직접 관리할 수 있습니다.</li>
+                    <li>운영자는 구독 관련 데이터의 안전한 저장 및 접근 통제에 노력하며, 보유 기간은 구독 유지 기간으로 한정합니다. 데이터 유출이 의심되거나 확인되는 경우, 관련 법령에 따라 지체 없이 통지하고 대응합니다.</li>
+                </ol>
+            </div>
+
+            <div class="article">
+                <h2>제11조 (알림 수신 동의 및 철회)</h2>
+                <ol>
+                    <li>알림 수신 동의는 PWA 설치 또는 브라우저 알림 허용 과정에서 명시적으로 획득합니다.</li>
+                    <li>이용자는 언제든지 다음 방법으로 알림 수신 동의를 철회할 수 있습니다.
+                        <ol>
+                            <li>브라우저 또는 OS 설정에서 해당 웹사이트의 알림 차단</li>
+                            <li>서비스 내 구독 목록 화면에서 개별 번호판 구독 취소</li>
+                            <li>앱/브라우저 캐시 삭제 또는 PWA 제거</li>
+                        </ol>
+                    </li>
+                    <li>알림 수신 동의 철회 후에는 새로운 알림이 발송되지 않으며, 관련 토큰 및 구독 정보는 더 이상 알림 발송 목적으로 이용되지 않습니다.</li>
+                </ol>
+            </div>
+
+            <div class="article">
+                <h2>제12조 (개인정보 보호책임자)</h2>
+                <p>운영자는 이용자의 개인정보 보호와 관련한 문의를 처리하기 위하여 개인정보 보호책임자를 지정하고 있습니다.</p>
+                <div class="contact-info">
+                    <p><strong>운영자:</strong> 허슬업</p>
+                    <p>
+                        <button id="emailRevealBtn" class="email-reveal-btn" onclick="revealEmail()">클릭해서 이메일 보기</button>
+                        <span id="emailAddress" class="email-hidden"></span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="notice">
+                <p>
+                    <strong>이메일 무단 수집 금지</strong><br>
+                    본 웹사이트에 게시된 이메일 주소가 전자우편 수집 프로그램이나 그 밖의 기술적 장치를 이용하여
+                    무단으로 수집되는 것을 거부하며, 이를 위반 시 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」
+                    등에 의해 형사 처벌될 수 있음을 유념하시기 바랍니다.
+                </p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>2026년 1월 1일 Hustle Up</strong></p>
+            <p style="margin-top: 10px;">
+                <a href="terms.html" style="color: #11998e; text-decoration: none; margin: 0 8px;">이용약관</a> | 
+                <a href="legal.html" style="color: #11998e; text-decoration: none; margin: 0 8px;">법적 고지</a> | 
+                <a href="faq.html" style="color: #11998e; text-decoration: none; margin: 0 8px;">자주 묻는 질문</a>
+            </p>
+            <a href="index.html" class="back-button">← 홈으로 돌아가기</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <nav class="footer-links">
+                <a href="terms.html">이용약관</a> | <a href="privacy.html">개인정보처리방침</a> | <a href="legal.html">법적 고지</a> | <a href="faq.html">자주 묻는 질문</a>
+            </nav>
+            <a class="footer-contact-link" href="contact.html">문의</a>
+            <p class="copyright">© 2025 Hustle Up. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (navToggle) {
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+    <script>
+        function revealEmail() {
+            const btn = document.getElementById('emailRevealBtn');
+            const emailContainer = document.getElementById('emailAddress');
+            
+            // Construct email dynamically to prevent scraping
+            const user = 'hustlin.up';
+            const domain = 'gmail';
+            const tld = 'com';
+            const emailAddress = user + '@' + domain + '.' + tld;
+            
+            // Create mailto link
+            const link = document.createElement('a');
+            link.href = 'mailto:' + emailAddress;
+            link.className = 'email-link';
+            link.textContent = emailAddress;
+            
+            emailContainer.appendChild(link);
+            
+            btn.style.display = 'none';
+            emailContainer.classList.remove('email-hidden');
+            emailContainer.classList.add('email-visible');
+        }
+    </script>
+</body>
+</html>

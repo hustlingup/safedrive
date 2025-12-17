@@ -1,0 +1,97 @@
+{
+  "rules": {
+    "subscriptions": {
+      ".read": true,
+      "$token": {
+        ".write": true
+      }
+    },
+    "plates": {
+      ".read": true,
+      "$plateNumber": {
+        ".write": true,
+        "counters": {
+          ".read": true,
+          ".write": true,
+          "$counterKey": {
+            ".validate": "newData.isNumber() && newData.val() >= 0"
+          }
+        },
+        "lastUpdated": {
+          ".validate": "newData.isNumber()"
+        }
+      }
+    },
+    "roadStress": {
+      ".read": true,
+      ".write": true
+    },
+    "global": {
+      ".read": true,
+      ".write": true
+    },
+    "analytics": {
+      ".read": true,
+      "realtime": {
+        ".write": false,
+        "activeUsers": {
+          ".validate": "newData.isNumber() && newData.val() >= 0"
+        },
+        "lastUpdated": {
+          ".validate": "newData.isNumber()"
+        }
+      }
+    },
+    "leaderboards": {
+      ".read": true,
+      ".write": true
+    },
+    "referrals": {
+      "users": {
+        ".read": true,
+        "$referrerId": {
+          ".write": true,
+          "total": {
+            ".validate": "newData.isNumber() && newData.val() >= 0"
+          },
+          "daily": {
+            "$date": {
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 50"
+            }
+          },
+          "createdAt": {
+            ".validate": "newData.isNumber()"
+          }
+        }
+      },
+      "leaderboards": {
+        ".read": true,
+        "daily": {
+          "$date": {
+            "$referrerId": {
+              ".write": true,
+              ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 50"
+            }
+          }
+        }
+      },
+      "dailyWinners": {
+        ".read": true,
+        "$date": {
+          "$referrerId": {
+            ".write": true,
+            "achievedAt": {
+              ".validate": "newData.isNumber()"
+            }
+          }
+        }
+      },
+      "config": {
+        "adminKey": {
+          ".read": true,
+          ".write": false
+        }
+      }
+    }
+  }
+}

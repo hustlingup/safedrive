@@ -1,0 +1,729 @@
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9R8RZYZC7X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      gtag('config', 'G-9R8RZYZC7X');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SAFE DRIVE 자주 묻는 질문 - 서비스 이용에 대한 궁금증을 해결하세요.">
+    <meta name="keywords" content="세이프드라이브, FAQ, 자주묻는질문, 도움말">
+    <meta name="author" content="SAFE DRIVE">
+    <title>자주 묻는 질문 - SAFE DRIVE</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://safedrive.kr/faq.html">
+    <meta property="og:title" content="자주 묻는 질문 - SAFE DRIVE">
+    <meta property="og:description" content="SAFE DRIVE 자주 묻는 질문 - 서비스 이용에 대한 궁금증을 해결하세요.">
+    <meta property="og:image" content="https://safedrive.kr/assets/img/safedrive_thumbnail.webp">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://safedrive.kr/faq.html">
+    <meta name="twitter:title" content="자주 묻는 질문 - SAFE DRIVE">
+    <meta name="twitter:description" content="SAFE DRIVE 자주 묻는 질문 - 서비스 이용에 대한 궁금증을 해결하세요.">
+    <meta name="twitter:image" content="https://safedrive.kr/assets/img/safedrive_thumbnail.webp">
+    
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://safedrive.kr/faq.html">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 80px 20px 20px;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
+        }
+        .nav-logo img {
+            height: 32px;
+            display: block;
+        }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: #666;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #667eea;
+        }
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .hamburger-line {
+            width: 24px;
+            height: 2px;
+            background: #333;
+            transition: all 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                transition: left 0.3s;
+            }
+            .nav-menu.active {
+                left: 0;
+            }
+            .nav-toggle {
+                display: flex;
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .intro-box {
+            background: #fff4fb;
+            border-left: 4px solid #f093fb;
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .faq-item {
+            background: #fdfdfd;
+            border-radius: 16px;
+            padding: 18px 18px 16px 18px;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: box-shadow 0.2s ease, transform 0.1s ease, border-color 0.2s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transform: translateY(-1px);
+            border-color: rgba(240,147,251,0.6);
+        }
+
+        .question {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            gap: 10px;
+        }
+
+        .question-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .question-text {
+            font-weight: 600;
+            font-size: 15px;
+            color: #222;
+        }
+
+        .answer {
+            margin-left: 40px;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .answer p {
+            margin-bottom: 6px;
+        }
+
+        .answer ul {
+            margin: 6px 0 8px 16px;
+            padding-left: 4px;
+        }
+
+        .answer li {
+            margin-bottom: 4px;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: #ffe8f5;
+            color: #c2185b;
+            margin-left: 6px;
+        }
+
+        .footer {
+            background: #f8f9fa;
+            padding: 20px 30px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        .footer-links a {
+            color: #2193b0;
+            text-decoration: none;
+            margin: 0 8px;
+            font-size: 13px;
+            padding: 4px 8px;
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+
+        .footer-links a:hover {
+            background: #f093fb;
+            color: white;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: transform 0.2s;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .site-footer {
+            background: #f8fafc;
+            border-top: 1px solid #e5e7eb;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .footer-links {
+            margin-bottom: 16px;
+        }
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+        .footer-links a:hover {
+            color: #667eea;
+        }
+        .footer-contact-link {
+            display: inline-block;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .footer-contact-link:hover {
+            text-decoration: underline;
+        }
+        .copyright {
+            color: #999;
+            font-size: 0.75rem;
+            margin: 0;
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                border-radius: 16px;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .content {
+                padding: 24px 20px;
+            }
+
+            .answer {
+                margin-left: 0;
+                margin-top: 6px;
+            }
+
+            .question {
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html#home" class="nav-logo">
+                <img src="assets/img/SAFEDRIVE_logo.svg" alt="SAFE DRIVE Logo">
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html#home" class="nav-link">홈</a></li>
+                <li><a href="qr-generator.html" class="nav-link">QR</a></li>
+                <li><a href="referral.html" class="nav-link">이벤트</a></li>
+                <li><a href="index.html#road-stress" class="nav-link">도로스트레스</a></li>
+                <li><a href="index.html#mostLikedSection" class="nav-link">인기번호판</a></li>
+                <li><a href="index.html#designated-lane" class="nav-link">지정차로</a></li>
+                <li><a href="index.html#legal-notice" class="nav-link">안내</a></li>
+                <li><a href="contact.html" class="nav-link">문의</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>❓ 자주 묻는 질문 (FAQ)</h1>
+            <p>SAFE DRIVE / 허슬업 서비스, 개인정보, 광고·분석에 대해 궁금하신 점을 정리했습니다.</p>
+        </div>
+
+        <div class="content">
+            <div class="intro-box">
+                이 페이지는 Google Analytics / Google AdSense 연동을 포함한 최신 개인정보·광고 정책을 반영한 FAQ입니다.<br>
+                보다 자세한 내용은 <strong>이용약관</strong> 및 <strong>개인정보처리방침</strong>을 참고해 주세요.
+            </div>
+
+            <!-- Q1 -->
+            <div class="faq-item">
+                <div class="question">
+                    <div class="question-icon">Q1</div>
+                    <div class="question-text">이 서비스는 어떤 서비스인가요?</div>
+                </div>
+                <div class="answer">
+                    <p><strong>A.</strong></p>
+                    <p>
+                        SAFE DRIVE(허슬업)는 <strong>차량 번호판을 단순 식별자로 사용하는 익명 플랫폼</strong>입니다.<br>
+                        운전자가 아닌 제3자도 특정 차량 번호판을 입력하고,
+                        준비된 <strong>템플릿 안전 메시지</strong>(예: 전방주시, 방향지시등, 차량 상태 등)를 선택해 “카운트”를 남길 수 있습니다.
+                    </p>
+                    <p>
+                        이 카운트들이 모여 <strong>차량별·템플릿별 통계</strong>를 보여주는 서비스이며,
+                        이 정보를 바탕으로 <strong>교통안전 인식 개선과 차량 관리 편의</strong>를 돕는 것을 목적으로 합니다.
+                    </p>
+                    <ul>
+                        <li><a href="https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS292&mCode=I040010000&nttId=10666" target="_blank">개인정보보호위원회 - 자동차등록번호는 개인정보일까? 1부</a></li>
+                        <li><a href="https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS292&mCode=I040010000&nttId=10667" target="_blank">개인정보보호위원회 - 자동차등록번호는 개인정보일까? 2부</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="faq-item">
+                <div class="question">
+                    <div class="question-icon">Q2</div>
+                    <div class="question-text">개인정보를 수집하나요? 제 이름이나 전화번호가 저장되나요?</div>
+                </div>
+                <div class="answer">
+                    <p><strong>A.</strong></p>
+                    <p>
+                        <strong>서비스 자체는 이름, 전화번호, 이메일, 계정 ID 등 “직접적인 개인정보”를 수집하지 않습니다.</strong><br>
+                        회원가입·로그인·본인인증 같은 절차도 없고, 차주의 신원을 알 수 있는 정보도 받지 않습니다.
+                    </p>
+                    <p>운영자가 직접 다루는 데이터는 아래와 같습니다.</p>
+                    <ul>
+                        <li>차량 번호판(서비스 내부에서 쓰는 식별자)</li>
+                        <li>사용자가 선택한 템플릿 메시지 종류</li>
+                        <li>메시지 입력 시각(timestamp)</li>
+                        <li>(선택) 구독 기능을 위한 FCM 토큰 + 구독 번호판 목록</li>
+                    </ul>
+                    <p>
+                        이 정보만으로 <strong>운영자가 개별 “사람”이 누구인지 역추적하는 일은 하지 않으며, 할 수 없게 설계</strong>했습니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="faq-item">
+                <div class="question">
+                    <div class="question-icon">Q3</div>
+                    <div class="question-text">Google Analytics / Google AdSense는 어떤 정보를 가져가나요? <span class="tag">GA · AdSense</span></div>
+                </div>
+                <div class="answer">
+                    <p><strong>A.</strong></p>
+                    <p>
+                        서비스는 웹사이트 분석과 광고 제공을 위해 <strong>Google Analytics / Google AdSense</strong>를 사용합니다.<br>
+                        이 도구들은 다음과 같은 정보를 <strong>Google 서버로 전송</strong>할 수 있습니다.
+                    </p>
+                    <ul>
+                        <li>쿠키 및 유사 기술을 통한 온라인 식별자 (쿠키 ID, 광고 ID 등)</li>
+                        <li>브라우저/기기 정보 (브라우저 종류, OS, 화면 크기 등)</li>
+                        <li>방문·세션 정보 (어떤 페이지를 얼마나 봤는지 등)</li>
+                        <li>IP 기반 대략적인 위치정보 (국가/도시 수준)</li>
+                        <li>광고 노출·클릭 기록(AdSense)</li>
+                    </ul>
+                    <p>
+                        이 정보의 수집·이용·보관은 <strong>Google의 개인정보처리방침과 약관</strong>에 따라 이루어지며,
+                        운영자는 Google이 가진 원시 데이터에 마음대로 접근하지 않습니다.
+                    </p>
+                    <p>
+                        정리하면,
+                        <br>– <strong>서비스 본체</strong> → 번호판·템플릿·시간 같은 통계 데이터
+                        <br>– <strong>Google 도구</strong> → 쿠키/기기 정보 기반의 분석·광고 데이터
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="faq-item">
+                <div class="question">
+                    <div class="question-icon">Q4</div>
+                    <div class="question-text">위치정보(GPS)를 수집하나요?</div>
+                </div>
+                <div class="answer">
+                    <p><strong>A.</strong></p>
+                    <p>
+                        서비스 자체는 <strong>GPS 같은 정밀 위치정보를 수집하지 않습니다.</strong><br>
+                        “내 위치 가져오기” 기능도 없고, 저장되는 것은 번호판/템플릿/시간뿐입니다.
+                    </p>
+                    <p>
+                        다만, Google Analytics/AdSense가 <strong>IP 정보를 바탕으로 “국가·도시 단위 정도의 대략적인 위치”</strong>를
+                        추정할 수는 있습니다. 이 역시 Google 시스템 내에서만 사용되며,
+                        운영자가 사용자의 정확한 위치를 조회하는 기능은 없습니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="faq-item">
+                <div class="question">
+                    <div class="question-icon">Q5</div>
+                    <div class="question-text">저장되는 데이터는 정확히 무엇인가요?</div>
+                </div>
+                <div class="answer">
+                    <p><strong>A.</strong></p>
+                    <p>서비스 서버 기준으로 보면:</p>
+                    <ul>
+                        <li>차량 번호판 (예: 12가3456 – 공적 번호판일 뿐, 차주 정보는 알지 못함)</li>
+                        <li>선택된 템플릿 메시지 종류 (예: “방향지시등 미점등”, “타이어 점검 필요” 등)</li>
+                        <li>메시지가 입력된 시각</li>
+                        <li>(선택 사항) 구독 기능을 위한 FCM 토큰 + 구독 중인 번호판 목록</li>
+                    </ul>
+                    <p>
+                        이 데이터로
+                        <br>– 번호판별로 “어떤 유형의 메시지가 얼마나 누적되었는지”
+                        <br>– 전체적으로 어떤 템플릿이 많이 발생하는지
+                        <br>같은 <strong>비식별 통계만 제공합니다.</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="faq-item">
+                <div class="question">
+                    <div class="question-icon">Q6</div>
+                    <div class="question-text">광고가 너무 많은데, 맞춤형 광고를 끌 수는 없나요?</div>
+                </div>
+                <div class="answer">
+                    <p><strong>A.</strong></p>
+                    <p>네, 이용자 쪽에서 어느 정도 조절할 수 있습니다.</p>
+                    <ul>
+                        <li><strong>브라우저 설정</strong>에서 쿠키 차단/삭제</li>
+                        <li><strong>Google 광고 설정 페이지</strong>에서 맞춤형 광고 비활성화</li>
+                        <li><strong>광고 차단(Ad-block) 확장 프로그램</strong> 사용</li>
+                        <li>Google Analytics Opt-out 애드온 사용(지원 브라우저 한정)</li>
+                    </ul>
+                    <p>
+                        단, 쿠키/광고/분석 기능을 모두 차단하면 일부분 통계·광고 기능이 정상 동작하지 않을 수 있습니다.<br>
+                        서비스 이용 자체는 가능하지만, <strong>경험(UX)이 달라질 수 있습니다.</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="faq-item">
+                <div class="question">
+                    <div class="question-icon">Q7</div>
+                    <div class="question-text">구독 기능은 어떤 정보를 쓰고, 어떻게 끌 수 있나요?</div>
+                </div>
+                <div class="answer">
+                    <p><strong>A.</strong></p>
+                    <p>
+                        구독 기능은 특정 번호판에 <strong>새 메시지/좋아요가 쌓일 때 알림을 주는 옵션</strong>입니다.
+                    </p>
+                    <ul>
+                        <li>PWA 설치 + 알림 허용 시, 브라우저/기기에 <strong>FCM 토큰</strong>이 생성됩니다.</li>
+                        <li>“이 토큰 ↔ 구독 중인 번호판 목록” 정도만 Firebase에 저장됩니다.</li>
+                        <li>이메일, 전화번호 등은 구독 과정에서 <strong>전혀 수집하지 않습니다.</strong></li>
+                    </ul>
+                    <p><strong>해지 방법</strong></p>
+                    <ul>
+                        <li>앱/사이트 내 <strong>구독 목록</strong>에서 개별 번호판 구독 취소</li>
+                        <li>브라우저/OS 설정에서 해당 사이트의 알림 차단</li>
+                        <li>PWA 삭제 또는 브라우저 캐시 삭제</li>
+                    </ul>
+                    <p>
+                        구독 취소 후에는 해당 토큰/구독 정보는 알림 발송용으로 더 이상 사용되지 않으며,
+                        가능한 범위 내에서 빠르게 삭제·무효화됩니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="faq-item">
+                <div class="question">
+                    <div class="question-icon">Q8</div>
+                    <div class="question-text">특정 번호판에 달린 메시지나 통계를 지워달라고 요청할 수 있나요?</div>
+                </div>
+                <div class="answer">
+                    <p><strong>A.</strong></p>
+                    <p>
+                        서비스는 <strong>“사람” 단위 계정이 아니라 “번호판” 단위 통계</strong>로 동작하기 때문에,<br>
+                        일반적인 개인정보 열람/삭제 요청처럼 “나에 대한 데이터 전부를 지워달라”는 요청은 구조상 바로 매칭하기 어렵습니다.
+                    </p>
+                    <p>
+                        다만,
+                    </p>
+                    <ul>
+                        <li>명백한 욕설, 비방, 특정인 공격 등</li>
+                        <li>법적 문제가 될 수 있는 내용</li>
+                    </ul>
+                    <p>
+                        과 관련된 문의가 있다면,
+                        <strong>운영자 이메일(hustlin.up@gmail.com)</strong>로 구체적인 번호판/내용을 알려주시면<br>
+                        가능한 범위 내에서 <strong>삭제 또는 제한 여부를 검토</strong>할 수 있습니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="faq-item">
+                <div class="question">
+                    <div class="question-icon">Q9</div>
+                    <div class="question-text">이 서비스는 공공기관(한국도로공사 등)의 공식 서비스인가요?</div>
+                </div>
+                <div class="answer">
+                    <p><strong>A.</strong></p>
+                    <p>
+                        <strong>아니요.</strong><br>
+                        SAFE DRIVE/허슬업은 <strong>민간 사업자가 독립적으로 운영하는 서비스</strong>입니다.
+                    </p>
+                    <ul>
+                        <li>한국도로공사 등 공공기관에서 제공하는 공식 서비스가 아닙니다.</li>
+                        <li>공공기관의 공식 입장, 단속 기준, 행정조치와도 직접적인 관련이 없습니다.</li>
+                    </ul>
+                    <p>
+                        서비스에서 제공하는 통계와 메시지는 <strong>어디까지나 이용자들이 남긴 카운트 데이터</strong>일 뿐,<br>
+                        공식적인 단속 정보나 공문서가 아닙니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="faq-item">
+                <div class="question">
+                    <div class="question-icon">Q10</div>
+                    <div class="question-text">누가 캡처해서 커뮤니티에 올렸는데, 그 책임은 누구에게 있나요?</div>
+                </div>
+                <div class="answer">
+                    <p><strong>A.</strong></p>
+                    <p>
+                        서비스는 플랫폼 내에서 <strong>번호판 + 템플릿 카운트 통계</strong>를 보여줄 뿐이고,<br>
+                        이를 <strong>외부(SNS, 커뮤니티, 단톡방 등)에 캡처·공유하는 행동은 이용자의 선택</strong>입니다.
+                    </p>
+                    <p>
+                        그 과정에서 특정 차량/사람을 추론할 수 있는 방식으로 노출되거나,
+                        명예훼손·모욕·사생활 침해·개인정보 유출에 해당하는 방식으로 사용되면,
+                    </p>
+                    <p>
+                        → <strong>해당 외부 게시·유포 행위에 대한 법적 책임은 올린 이용자에게 있습니다.</strong><br>
+                        운영자는 이용자의 외부 유포까지 통제할 수 없고, 그로 인한 민·형사 책임도 부담하지 않습니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q11 -->
+            <div class="faq-item">
+                <div class="question">
+                    <div class="question-icon">Q11</div>
+                    <div class="question-text">사용자 간 분쟁이 생기면, 운영자가 중재해 주나요?</div>
+                </div>
+                <div class="answer">
+                    <p><strong>A.</strong></p>
+                    <p>
+                        기본적으로 <strong>아니요.</strong><br>
+                        운영자는 <strong>개별 자연인을 특정할 수 있는 신원 정보를 보유하지 않기 때문에</strong>,<br>
+                        누구와 누구 사이의 분쟁인지 확인하기 어렵습니다.
+                    </p>
+                    <p>
+                        따라서 사용자 간/사용자-제3자 간 분쟁에
+                        <strong>사실관계 확인, 증거 제공, 중재</strong> 등의 역할을 하기는 구조적으로 힘듭니다.
+                    </p>
+                    <p>
+                        법적 분쟁이 필요한 경우에는 관계 법령에 따른 절차(경찰서, 법원 등)를 통해 진행해야 합니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Q12 -->
+            <div class="faq-item">
+                <div class="question">
+                    <div class="question-icon">Q12</div>
+                    <div class="question-text">더 궁금한 점이 있으면 어디로 문의하면 되나요?</div>
+                </div>
+                <div class="answer">
+                    <p><strong>A.</strong></p>
+                    <p>
+                        서비스 이용·개인정보·광고/분석 관련 문의는 아래 링크내 주소로 보내주시면 됩니다.
+                    </p>
+                        <a class="footer-contact-link" href="contact.html">문의하기</a>
+                    <p>
+                        가능한 범위에서, 그리고 법령이 허용하는 선에서<br>
+                        최대한 빠르게 답변 드리도록 노력하겠습니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>2026년 1월 1일 Hustle Up</strong></p>
+            <p class="footer-links" style="margin-top: 10px;">
+                <a href="terms.html">이용약관</a> | 
+                <a href="privacy.html">개인정보처리방침</a> | 
+                <a href="legal.html">법적 고지</a>
+            </p>
+            <a href="index.html" class="back-button">← 홈으로 돌아가기</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <nav class="footer-links">
+                <a href="terms.html">이용약관</a> | <a href="privacy.html">개인정보처리방침</a> | <a href="legal.html">법적 고지</a> | <a href="faq.html">자주 묻는 질문</a>
+            </nav>
+            <a class="footer-contact-link" href="contact.html">문의</a>
+            <p class="copyright">© 2025 Hustle Up. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        
+        if (navToggle) {
+            navToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
+        }
+    </script>
+</body>
+</html>

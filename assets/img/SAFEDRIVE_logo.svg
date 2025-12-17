@@ -1,0 +1,36 @@
+<svg viewBox="0 0 1020 160" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <pattern id="polyPatternRed" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+            <rect width="80" height="80" fill="#e63946"/>
+            <polygon points="0,0 30,15 15,35" fill="#ff4444" opacity="0.35"/>
+            <polygon points="30,15 50,0 65,25" fill="#cc0000" opacity="0.45"/>
+            <polygon points="15,35 40,50 0,60" fill="#ff6666" opacity="0.3"/>
+            <polygon points="40,50 65,40 55,70" fill="#990000" opacity="0.4"/>
+            <polygon points="65,25 80,10 80,45" fill="#ff3333" opacity="0.35"/>
+            <polygon points="50,0 80,0 65,25" fill="#dd0000" opacity="0.45"/>
+            <polygon points="0,60 25,80 0,80" fill="#ff5555" opacity="0.35"/>
+            <polygon points="25,80 55,70 80,80" fill="#bb0000" opacity="0.4"/>
+            <polygon points="65,40 80,45 80,70" fill="#ff4444" opacity="0.35"/>
+            <polygon points="15,35 0,60 0,35" fill="#ee3333" opacity="0.3"/>
+            <polygon points="55,70 80,70 80,80" fill="#cc1111" opacity="0.4"/>
+            <polygon points="30,15 15,35 40,50" fill="#ff5555" opacity="0.25"/>
+        </pattern>
+        <pattern id="polyPatternBlue" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+            <rect width="80" height="80" fill="#2563eb"/>
+            <polygon points="0,0 28,20 12,38" fill="#1e40af" opacity="0.45"/>
+            <polygon points="28,20 52,5 68,30" fill="#0a1929" opacity="0.55"/>
+            <polygon points="12,38 45,55 5,65" fill="#3b82f6" opacity="0.35"/>
+            <polygon points="45,55 68,45 58,72" fill="#1e3a8a" opacity="0.45"/>
+            <polygon points="68,30 80,12 80,48" fill="#2563eb" opacity="0.4"/>
+            <polygon points="52,5 80,0 68,30" fill="#0f172a" opacity="0.5"/>
+            <polygon points="0,65 22,80 0,80" fill="#60a5fa" opacity="0.35"/>
+            <polygon points="22,80 58,72 80,80" fill="#1e40af" opacity="0.45"/>
+            <polygon points="68,45 80,48 80,72" fill="#3b82f6" opacity="0.4"/>
+            <polygon points="12,38 0,65 0,38" fill="#2563eb" opacity="0.35"/>
+            <polygon points="58,72 80,72 80,80" fill="#1e3a8a" opacity="0.45"/>
+            <polygon points="28,20 12,38 45,55" fill="#60a5fa" opacity="0.3"/>
+        </pattern>
+    </defs>
+    <text x="0" y="130" font-family="GmarketSans, Arial Black, sans-serif" font-size="140" font-weight="900" fill="url(#polyPatternRed)" stroke="url(#polyPatternRed)" stroke-width="5" stroke-linejoin="round" paint-order="stroke fill" letter-spacing="-5">SAFE</text>
+    <text x="420" y="130" font-family="GmarketSans, Arial Black, sans-serif" font-size="140" font-weight="900" fill="url(#polyPatternBlue)" stroke="url(#polyPatternBlue)" stroke-width="5" stroke-linejoin="round" paint-order="stroke fill" letter-spacing="-5">DRIVE</text>
+</svg>

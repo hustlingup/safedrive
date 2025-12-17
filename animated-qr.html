@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SAFE DRIVE 애니메이션 QR 코드 - 슬라이딩 퍼즐 QR 코드">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Animated QR - SAFE DRIVE</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+        .container { text-align: center; padding: 20px; }
+        svg { max-width: 400px; filter: drop-shadow(0 8px 20px rgba(0,0,0,0.4)); }
+        h1 { color: white; margin-bottom: 20px; font-family: Arial, sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧩 Sliding Puzzle QR</h1>
+        <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <!-- Frame -->
+            <rect id="frame" x="5" y="5" width="290" height="290" fill="white" rx="10"/>
+            <rect x="5" y="5" width="290" height="290" fill="none" stroke="#333" stroke-width="6" rx="10"/>
+
+            <!-- QR Corner Patterns (fixed) -->
+            <g id="corner-tl">
+                <rect x="20" y="20" width="60" height="60" fill="black"/>
+                <rect x="28" y="28" width="44" height="44" fill="white"/>
+                <rect x="36" y="36" width="28" height="28" fill="black"/>
+            </g>
+            <g id="corner-tr">
+                <rect x="220" y="20" width="60" height="60" fill="black"/>
+                <rect x="228" y="28" width="44" height="44" fill="white"/>
+                <rect x="236" y="36" width="28" height="28" fill="black"/>
+            </g>
+            <g id="corner-bl">
+                <rect x="20" y="220" width="60" height="60" fill="black"/>
+                <rect x="28" y="228" width="44" height="44" fill="white"/>
+                <rect x="36" y="236" width="28" height="28" fill="black"/>
+            </g>
+
+            <!-- Sliding Puzzle Tiles (4x4 grid in center area) -->
+            <g id="puzzle-tiles">
+                <!-- Row 1 -->
+                <rect id="t1" x="100" y="20" width="25" height="25" fill="black"/>
+                <rect id="t2" x="130" y="20" width="25" height="25" fill="black"/>
+                <rect id="t3" x="160" y="20" width="25" height="25" fill="black"/>
+                <rect id="t4" x="190" y="20" width="25" height="25" fill="black"/>
+                
+                <!-- Row 2 -->
+                <rect id="t5" x="100" y="50" width="25" height="25" fill="black"/>
+                <rect id="t6" x="130" y="50" width="55" height="25" fill="black"/>
+                <rect id="t7" x="190" y="50" width="25" height="25" fill="black"/>
+                
+                <!-- Row 3 -->
+                <rect id="t8" x="100" y="80" width="25" height="25" fill="black"/>
+                <rect id="t9" x="160" y="80" width="25" height="25" fill="black"/>
+                <rect id="t10" x="190" y="80" width="25" height="25" fill="black"/>
+
+                <!-- Center area tiles -->
+                <rect id="t11" x="100" y="120" width="25" height="25" fill="black"/>
+                <rect id="t12" x="130" y="120" width="25" height="25" fill="black"/>
+                <rect id="t13" x="160" y="120" width="25" height="55" fill="black"/>
+                <rect id="t14" x="190" y="120" width="25" height="25" fill="black"/>
+                
+                <rect id="t15" x="100" y="150" width="55" height="25" fill="black"/>
+                <rect id="t16" x="190" y="150" width="25" height="25" fill="black"/>
+                
+                <!-- Bottom area tiles -->
+                <rect id="t17" x="100" y="190" width="25" height="25" fill="black"/>
+                <rect id="t18" x="130" y="190" width="25" height="25" fill="black"/>
+                <rect id="t19" x="160" y="190" width="25" height="25" fill="black"/>
+                <rect id="t20" x="190" y="190" width="25" height="25" fill="black"/>
+                
+                <rect id="t21" x="100" y="220" width="25" height="55" fill="black"/>
+                <rect id="t22" x="130" y="220" width="25" height="25" fill="black"/>
+                <rect id="t23" x="160" y="220" width="55" height="25" fill="black"/>
+                
+                <rect id="t24" x="130" y="250" width="25" height="25" fill="black"/>
+                <rect id="t25" x="190" y="250" width="25" height="25" fill="black"/>
+                
+                <!-- Side tiles -->
+                <rect id="t26" x="20" y="100" width="25" height="25" fill="black"/>
+                <rect id="t27" x="50" y="100" width="25" height="55" fill="black"/>
+                <rect id="t28" x="20" y="130" width="25" height="25" fill="black"/>
+                <rect id="t29" x="20" y="160" width="55" height="25" fill="black"/>
+                <rect id="t30" x="20" y="190" width="25" height="25" fill="black"/>
+                <rect id="t31" x="50" y="190" width="25" height="25" fill="black"/>
+
+                <!-- Right side tiles -->
+                <rect id="t32" x="255" y="100" width="25" height="25" fill="black"/>
+                <rect id="t33" x="255" y="130" width="25" height="55" fill="black"/>
+                <rect id="t34" x="220" y="130" width="25" height="25" fill="black"/>
+                <rect id="t35" x="220" y="160" width="25" height="25" fill="black"/>
+                <rect id="t36" x="255" y="190" width="25" height="25" fill="black"/>
+                <rect id="t37" x="220" y="190" width="25" height="55" fill="black"/>
+                <rect id="t38" x="255" y="220" width="25" height="55" fill="black"/>
+            </g>
+        </svg>
+    </div>
+
+    <script>
+        // Color schemes
+        const colors = [
+            { fg: '#000000', bg: '#ffffff' },
+            { fg: '#ff0000', bg: '#ffffff' },
+            { fg: '#ff69b4', bg: '#000000' },
+            { fg: '#ffd700', bg: '#000000' }
+        ];
+        
+        let colorIndex = 0;
+        const tiles = document.querySelectorAll('#puzzle-tiles rect');
+        const frame = document.getElementById('frame');
+        const d = 0.15; // faster duration
+        
+        // Sliding puzzle animation - more movements!
+        function createSlideAnimation() {
+            const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.2 });
+            
+            // Center area rapid movements
+            tl.to('#t1', { x: 30, duration: d, ease: 'power2.inOut' })
+              .to('#t2', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t3', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t4', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t5', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t7', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t8', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t9', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t10', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              
+              // Middle section
+              .to('#t11', { x: 30, duration: d, ease: 'power2.inOut' })
+              .to('#t12', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t14', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t16', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t15', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              
+              // Bottom area
+              .to('#t17', { x: 30, duration: d, ease: 'power2.inOut' })
+              .to('#t18', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t19', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t20', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t22', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t24', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t25', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              
+              // Reset center
+              .to(['#t1','#t5','#t11','#t15','#t17','#t19','#t22'], { x: 0, duration: d, ease: 'power2.inOut' })
+              .to(['#t2','#t4','#t7','#t10','#t12','#t20'], { y: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
+              .to(['#t3','#t9','#t14','#t25'], { x: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
+              .to(['#t8','#t16','#t18','#t24'], { y: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
+              
+              // Right side rapid movements
+              .to('#t32', { y: 30, duration: d, ease: 'power2.inOut' })
+              .to('#t34', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t33', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t35', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t36', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t37', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t38', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              
+              // Reset right
+              .to(['#t32','#t33','#t35','#t37','#t38'], { y: 0, duration: d, ease: 'power2.inOut' })
+              .to(['#t34'], { x: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
+              .to(['#t36'], { x: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
+              
+              // Left side rapid movements
+              .to('#t26', { y: 30, duration: d, ease: 'power2.inOut' })
+              .to('#t27', { x: -25, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t28', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t29', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t30', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              .to('#t31', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+              
+              // Reset left
+              .to(['#t26','#t29','#t30'], { y: 0, duration: d, ease: 'power2.inOut' })
+              .to(['#t27','#t28','#t31'], { x: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
+              
+              // Simultaneous chaos burst!
+              .to('#t1, #t4, #t8, #t11, #t17, #t20', { x: 25, duration: d, ease: 'power2.inOut' })
+              .to('#t2, #t5, #t9, #t12, #t18, #t22', { y: 25, duration: d, ease: 'power2.inOut' }, '-=0.1')
+              .to('#t3, #t7, #t10, #t14, #t19, #t24', { x: -25, duration: d, ease: 'power2.inOut' }, '-=0.1')
+              .to('#t6, #t13, #t15, #t16, #t23, #t25', { y: -25, duration: d, ease: 'power2.inOut' }, '-=0.1')
+              
+              // Reset all
+              .to('#puzzle-tiles rect', { x: 0, y: 0, duration: 0.2, ease: 'power2.inOut' });
+            
+            return tl;
+        }
+
+        // Faster color cycling animation
+        function cycleColors() {
+            colorIndex = (colorIndex + 1) % colors.length;
+            const scheme = colors[colorIndex];
+            
+            gsap.to(tiles, {
+                fill: scheme.fg,
+                duration: 0.4,
+                ease: 'power2.inOut',
+                stagger: 0.01
+            });
+            
+            gsap.to('#corner-tl rect:first-child, #corner-tr rect:first-child, #corner-bl rect:first-child', {
+                fill: scheme.fg,
+                duration: 0.4,
+                ease: 'power2.inOut'
+            });
+            
+            gsap.to('#corner-tl rect:nth-child(3), #corner-tr rect:nth-child(3), #corner-bl rect:nth-child(3)', {
+                fill: scheme.fg,
+                duration: 0.4,
+                ease: 'power2.inOut'
+            });
+            
+            gsap.to(frame, {
+                fill: scheme.bg,
+                duration: 0.4,
+                ease: 'power2.inOut'
+            });
+            
+            gsap.to('#corner-tl rect:nth-child(2), #corner-tr rect:nth-child(2), #corner-bl rect:nth-child(2)', {
+                fill: scheme.bg,
+                duration: 0.4,
+                ease: 'power2.inOut'
+            });
+        }
+        
+        // Start animations
+        createSlideAnimation();
+        setInterval(cycleColors, 1200); // faster: every 1.2 seconds
+    </script>
+</body>
+</html>
