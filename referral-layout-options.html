@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referral Page Layout Options</title>
+    
+    <style>
+        @font-face {
+            font-family: 'GmarketSans';
+            font-weight: 500;
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+        }
+        @font-face {
+            font-family: 'GmarketSans';
+            font-weight: 700;
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'GmarketSans', -apple-system, sans-serif;
+            background: #0d1117;
+            color: #fff;
+            padding: 40px 20px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .page-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-header p {
+            color: #8b949e;
+            font-size: 14px;
+        }
+        
+        .option-wrapper {
+            max-width: 500px;
+            margin: 0 auto 80px;
+        }
+        
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #30363d;
+        }
+        
+        .option-number {
+            background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+            color: #1a1a1a;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        
+        .option-title {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        .option-desc {
+            color: #8b949e;
+            font-size: 12px;
+            margin-left: auto;
+        }
+        
+        /* Common Golden Theme */
+        .golden-bg {
+            background: linear-gradient(135deg, #000000 0%, #231136 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .golden-card {
+            background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+            color: #1a1a1a;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ========================================
+           OPTION 1: Vertical Stack (Current Style)
+           ======================================== */
+        .layout-1 {
+            background: linear-gradient(135deg, #000000 0%, #231136 100%);
+            padding: 40px 20px;
+            border-radius: 12px;
+        }
+        
+        .layout-1 .golden-ticket {
+            background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
+        
+        .layout-1 .ticket-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        
+        .layout-1 .ticket-title {
+            font-size: 24px;
+            font-weight: 900;
+            margin-bottom: 8px;
+        }
+        
+        .layout-1 .ticket-subtitle {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+        
+        .layout-1 .info-section {
+            background: rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .layout-1 .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        
+        .layout-1 .info-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .layout-1 .link-box {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .layout-1 .link-input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(0,0,0,0.1);
+            font-size: 11px;
+        }
+        
+        .layout-1 .copy-btn {
+            padding: 10px 16px;
+            background: #1a1a1a;
+            color: #ffd700;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .layout-1 .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .layout-1 .stat-box {
+            background: rgba(0,0,0,0.1);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+        
+        .layout-1 .stat-value {
+            font-size: 28px;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+        
+        .layout-1 .stat-label {
+            font-size: 11px;
+            opacity: 0.7;
+        }
+        
+        .layout-1 .action-btn {
+            width: 100%;
+            padding: 14px;
+            background: #1a1a1a;
+            color: #ffd700;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* ========================================
+           OPTION 2: Dashboard Style
+           ======================================== */
+        .layout-2 {
+            background: linear-gradient(135deg, #000000 0%, #231136 100%);
+            padding: 40px 20px;
+            border-radius: 12px;
+        }
+        
+        .layout-2 .dashboard-header {
+            background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+            border-radius: 20px 20px 0 0;
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .layout-2 .dashboard-title {
+            font-size: 22px;
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+        
+        .layout-2 .dashboard-subtitle {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+        
+        .layout-2 .dashboard-body {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-top: none;
+            border-radius: 0 0 20px 20px;
+            padding: 24px;
+        }
+        
+        .layout-2 .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .layout-2 .quick-stat {
+            background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+            border-radius: 12px;
+            padding: 12px 8px;
+            text-align: center;
+        }
+        
+        .layout-2 .quick-stat-value {
+            font-size: 20px;
+            font-weight: 900;
+            color: #1a1a1a;
+        }
+        
+        .layout-2 .quick-stat-label {
+            font-size: 9px;
+            color: rgba(0,0,0,0.7);
+            margin-top: 2px;
+        }
+        
+        .layout-2 .link-section {
+            background: rgba(255, 215, 0, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .layout-2 .link-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+        
+        .layout-2 .link-display {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .layout-2 .link-text {
+            flex: 1;
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            font-size: 11px;
+            color: #fff;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .layout-2 .link-btn {
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .layout-2 .reward-info {
+            background: rgba(255, 215, 0, 0.15);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            color: #fff;
+        }
+        
+        .layout-2 .reward-text {
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* ========================================
+           OPTION 3: Split Panel
+           ======================================== */
+        .layout-3 {
+            background: linear-gradient(135deg, #000000 0%, #231136 100%);
+            padding: 40px 20px;
+            border-radius: 12px;
+        }
+        
+        .layout-3 .split-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        
+        .layout-3 .left-panel {
+            background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+            border-radius: 20px;
+            padding: 24px;
+        }
+        
+        .layout-3 .panel-title {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .layout-3 .big-stat {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        
+        .layout-3 .big-stat-value {
+            font-size: 48px;
+            font-weight: 900;
+            line-height: 1;
+        }
+        
+        .layout-3 .big-stat-label {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-top: 4px;
+        }
+        
+        .layout-3 .mini-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        
+        .layout-3 .mini-stat {
+            background: rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        .layout-3 .mini-stat-value {
+            font-size: 20px;
+            font-weight: 900;
+        }
+        
+        .layout-3 .mini-stat-label {
+            font-size: 10px;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+        
+        .layout-3 .right-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .layout-3 .info-card {
+            background: rgba(255, 215, 0, 0.1);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 16px;
+            padding: 16px;
+            flex: 1;
+        }
+        
+        .layout-3 .info-card-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+        
+        .layout-3 .info-card-content {
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.5;
+        }
+        
+        .layout-3 .link-display-box {
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            padding: 8px;
+            font-size: 10px;
+            color: #fff;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            margin-top: 8px;
+        }
+        
+        .layout-3 .action-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .layout-3 .action-btn-small {
+            flex: 1;
+            padding: 10px;
+            background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 600px) {
+            .layout-3 .split-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ========================================
+           OPTION 4: Compact Card Stack
+           ======================================== */
+        .layout-4 {
+            background: linear-gradient(135deg, #000000 0%, #231136 100%);
+            padding: 40px 20px;
+            border-radius: 12px;
+        }
+        
+        .layout-4 .compact-card {
+            background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .layout-4 .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .layout-4 .card-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        
+        .layout-4 .card-title-text {
+            flex: 1;
+        }
+        
+        .layout-4 .card-title-main {
+            font-size: 16px;
+            font-weight: 900;
+        }
+        
+        .layout-4 .card-title-sub {
+            font-size: 11px;
+            opacity: 0.7;
+        }
+        
+        .layout-4 .card-content {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+        
+        .layout-4 .inline-stats {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        
+        .layout-4 .inline-stat {
+            flex: 1;
+            background: rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        .layout-4 .inline-stat-value {
+            font-size: 18px;
+            font-weight: 900;
+        }
+        
+        .layout-4 .inline-stat-label {
+            font-size: 9px;
+            opacity: 0.7;
+            margin-top: 2px;
+        }
+        
+        .layout-4 .link-compact {
+            display: flex;
+            gap: 6px;
+            margin-top: 12px;
+        }
+        
+        .layout-4 .link-compact-input {
+            flex: 1;
+            padding: 8px;
+            background: rgba(0,0,0,0.1);
+            border: none;
+            border-radius: 6px;
+            font-size: 10px;
+        }
+        
+        .layout-4 .link-compact-btn {
+            padding: 8px 14px;
+            background: #1a1a1a;
+            color: #ffd700;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 11px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <h1>🎨 Referral Page Layout Options</h1>
+        <p>referral.html에 적용할 레이아웃 옵션들 (Golden Ticket 톤 적용)</p>
+    </div>
+
+    <!-- OPTION 1: Vertical Stack -->
+    <div class="option-wrapper">
+        <div class="option-label">
+            <div class="option-number">1</div>
+            <div class="option-title">Vertical Stack</div>
+            <div class="option-desc">현재 스타일 개선 버전</div>
+        </div>
+        <div class="layout-1">
+            <div class="golden-ticket">
+                <div class="ticket-header">
+                    <div class="ticket-title">🎁 친구 추천 프로그램</div>
+                    <div class="ticket-subtitle">SafeDrive를 공유하고 보상을 받으세요</div>
+                </div>
+                
+                <div class="info-section">
+                    <div class="info-row">
+                        <span>추천 ID</span>
+                        <span style="font-family: monospace; font-weight: 700;">ABC123XYZ789</span>
+                    </div>
+                    <div class="info-row">
+                        <span>이벤트 기간</span>
+                        <span style="font-weight: 700;">2026.02.01 ~ 02.29</span>
+                    </div>
+                </div>
+                
+                <div class="link-box">
+                    <input type="text" class="link-input" value="https://safedrive.app/?ref=ABC123XYZ789" readonly>
+                    <button class="copy-btn">복사</button>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">12</div>
+                        <div class="stat-label">오늘 성공</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">87</div>
+                        <div class="stat-label">누적 성공</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">38</div>
+                        <div class="stat-label">남은 횟수</div>
+                    </div>
+                    <div class="stat-box" style="background: rgba(0,0,0,0.2);">
+                        <div class="stat-value">5</div>
+                        <div class="stat-label">TOP3까지</div>
+                    </div>
+                </div>
+                
+                <button class="action-btn">📤 링크 공유하기</button>
+            </div>
+            
+            <div style="text-align: center; padding: 20px;">
+                <a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none; font-size: 13px;">← 홈으로 돌아가기</a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- OPTION 2: Dashboard Style -->
+    <div class="option-wrapper">
+        <div class="option-label">
+            <div class="option-number">2</div>
+            <div class="option-title">Dashboard Style</div>
+            <div class="option-desc">대시보드 느낌의 정보 중심</div>
+        </div>
+        <div class="layout-2">
+            <div class="dashboard-header">
+                <div class="dashboard-title">친구 추천 대시보드</div>
+                <div class="dashboard-subtitle">실시간 통계 및 보상 현황</div>
+            </div>
+            <div class="dashboard-body">
+                <div class="quick-stats">
+                    <div class="quick-stat">
+                        <div class="quick-stat-value">12</div>
+                        <div class="quick-stat-label">오늘</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div class="quick-stat-value">87</div>
+                        <div class="quick-stat-label">누적</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div class="quick-stat-value">38</div>
+                        <div class="quick-stat-label">남음</div>
+                    </div>
+                    <div class="quick-stat">
+                        <div class="quick-stat-value">3위</div>
+                        <div class="quick-stat-label">순위</div>
+                    </div>
+                </div>
+                
+                <div class="link-section">
+                    <div class="link-title">📋 내 추천 링크</div>
+                    <div class="link-display">
+                        <div class="link-text">https://safedrive.app/?ref=ABC123XYZ789</div>
+                        <button class="link-btn">복사</button>
+                    </div>
+                </div>
+                
+                <div class="reward-info">
+                    <div class="reward-text">
+                        ☕ 커피쿠폰 이벤트<br>
+                        <small style="opacity: 0.7;">2026년 2월 1일 ~ 2월 29일</small><br>
+                        <small style="opacity: 0.7;">매일 TOP3 또는 50명 달성 선착순 3명</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- OPTION 3: Split Panel -->
+    <div class="option-wrapper">
+        <div class="option-label">
+            <div class="option-number">3</div>
+            <div class="option-title">Split Panel</div>
+            <div class="option-desc">좌우 분할 레이아웃</div>
+        </div>
+        <div class="layout-3">
+            <div class="split-container">
+                <div class="left-panel">
+                    <div class="panel-title">내 통계</div>
+                    <div class="big-stat">
+                        <div class="big-stat-value">12</div>
+                        <div class="big-stat-label">오늘 추천 성공</div>
+                    </div>
+                    <div class="mini-stats">
+                        <div class="mini-stat">
+                            <div class="mini-stat-value">87</div>
+                            <div class="mini-stat-label">누적</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-value">38</div>
+                            <div class="mini-stat-label">남음</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-value">3위</div>
+                            <div class="mini-stat-label">순위</div>
+                        </div>
+                        <div class="mini-stat">
+                            <div class="mini-stat-value">5</div>
+                            <div class="mini-stat-label">TOP3까지</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="right-panel">
+                    <div class="info-card">
+                        <div class="info-card-title">📋 추천 링크</div>
+                        <div class="info-card-content">
+                            친구에게 아래 링크를 공유하세요
+                        </div>
+                        <div class="link-display-box">https://safedrive.app/?ref=ABC123XYZ789</div>
+                        <div class="action-buttons">
+                            <button class="action-btn-small">복사</button>
+                            <button class="action-btn-small">공유</button>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <div class="info-card-title">🎁 보상 안내</div>
+                        <div class="info-card-content">
+                            ☕ 커피쿠폰 이벤트<br>
+                            <small style="opacity: 0.7;">2026.02.01 ~ 02.29</small><br>
+                            <small style="opacity: 0.7;">매일 TOP3 또는 50명 달성</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- OPTION 4: Compact Card Stack -->
+    <div class="option-wrapper">
+        <div class="option-label">
+            <div class="option-number">4</div>
+            <div class="option-title">Compact Card Stack</div>
+            <div class="option-desc">컴팩트한 카드 스택</div>
+        </div>
+        <div class="layout-4">
+            <div class="compact-card">
+                <div class="card-header">
+                    <div class="card-icon">📊</div>
+                    <div class="card-title-text">
+                        <div class="card-title-main">내 통계</div>
+                        <div class="card-title-sub">실시간 업데이트</div>
+                    </div>
+                </div>
+                <div class="inline-stats">
+                    <div class="inline-stat">
+                        <div class="inline-stat-value">12</div>
+                        <div class="inline-stat-label">오늘</div>
+                    </div>
+                    <div class="inline-stat">
+                        <div class="inline-stat-value">87</div>
+                        <div class="inline-stat-label">누적</div>
+                    </div>
+                    <div class="inline-stat">
+                        <div class="inline-stat-value">38</div>
+                        <div class="inline-stat-label">남음</div>
+                    </div>
+                    <div class="inline-stat">
+                        <div class="inline-stat-value">3위</div>
+                        <div class="inline-stat-label">순위</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="compact-card">
+                <div class="card-header">
+                    <div class="card-icon">🔗</div>
+                    <div class="card-title-text">
+                        <div class="card-title-main">추천 링크</div>
+                        <div class="card-title-sub">친구에게 공유하세요</div>
+                    </div>
+                </div>
+                <div class="link-compact">
+                    <input type="text" class="link-compact-input" value="https://safedrive.app/?ref=ABC123XYZ789" readonly>
+                    <button class="link-compact-btn">복사</button>
+                    <button class="link-compact-btn">공유</button>
+                </div>
+            </div>
+            
+            <div class="compact-card">
+                <div class="card-header">
+                    <div class="card-icon">🎁</div>
+                    <div class="card-title-text">
+                        <div class="card-title-main">보상 안내</div>
+                        <div class="card-title-sub">2026.02.01 ~ 02.29</div>
+                    </div>
+                </div>
+                <div class="card-content">
+                    ☕ 커피쿠폰 이벤트 진행 중<br>
+                    매일 TOP3 또는 50명 달성 선착순 3명에게 증정
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Prevention System Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .test-section {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .test-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        
+        .test-button:active {
+            transform: translateY(0);
+        }
+        
+        .test-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .status-box {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .status-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .status-item:last-child {
+            border-bottom: none;
+        }
+        
+        .status-label {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .status-value {
+            font-family: 'Courier New', monospace;
+            color: #667eea;
+        }
+        
+        .status-value.success {
+            color: #28a745;
+        }
+        
+        .status-value.error {
+            color: #dc3545;
+        }
+        
+        .status-value.warning {
+            color: #ffc107;
+        }
+        
+        .log-box {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border-radius: 12px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        
+        .log-entry {
+            margin-bottom: 8px;
+            padding: 5px;
+            border-left: 3px solid transparent;
+        }
+        
+        .log-entry.info {
+            border-left-color: #667eea;
+        }
+        
+        .log-entry.success {
+            border-left-color: #28a745;
+        }
+        
+        .log-entry.error {
+            border-left-color: #dc3545;
+        }
+        
+        .log-entry.warning {
+            border-left-color: #ffc107;
+        }
+        
+        .timestamp {
+            color: #888;
+            margin-right: 10px;
+        }
+        
+        .clear-button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .info-box {
+            background: #e7f3ff;
+            border-left: 4px solid #2196F3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .info-box h3 {
+            color: #2196F3;
+            margin-bottom: 10px;
+        }
+        
+        .info-box ul {
+            margin-left: 20px;
+        }
+        
+        .info-box li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🛡️ Bot Prevention System Test</h1>
+            <p class="subtitle">SafeDrive Security Module Testing Interface</p>
+        </div>
+        
+        <div class="test-section">
+            <h2>📊 System Status</h2>
+            <div class="status-box">
+                <div class="status-item">
+                    <span class="status-label">Firebase Initialized:</span>
+                    <span class="status-value" id="firebase-status">Checking...</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Security Module Loaded:</span>
+                    <span class="status-value" id="security-status">Checking...</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Browser Fingerprint:</span>
+                    <span class="status-value" id="fingerprint-status">Generating...</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Web Crypto API:</span>
+                    <span class="status-value" id="crypto-status">Checking...</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">Test Plate Number:</span>
+                    <span class="status-value">09루3363</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🧪 Basic Tests</h2>
+            <div class="info-box">
+                <h3>What These Tests Do:</h3>
+                <ul>
+                    <li><strong>Single Increment:</strong> Tests one counter increment with full validation</li>
+                    <li><strong>Rapid Fire (5x):</strong> Tests rate limiting by sending 5 requests quickly</li>
+                    <li><strong>Stress Test (20x):</strong> Tests rate limiting with 20 rapid requests (should hit limit)</li>
+                </ul>
+            </div>
+            <div class="test-grid">
+                <button class="test-button" onclick="testSingleIncrement()">
+                    Single Increment Test
+                </button>
+                <button class="test-button" onclick="testRapidFire()">
+                    Rapid Fire Test (5x)
+                </button>
+                <button class="test-button" onclick="testStressTest()">
+                    Stress Test (20x)
+                </button>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>🔒 Security Tests</h2>
+            <div class="info-box">
+                <h3>What These Tests Do:</h3>
+                <ul>
+                    <li><strong>Invalid Signature:</strong> Tests HMAC validation by sending wrong signature</li>
+                    <li><strong>Replay Attack:</strong> Tests nonce validation by reusing same nonce</li>
+                    <li><strong>Timestamp Drift:</strong> Tests timestamp validation with old timestamp</li>
+                </ul>
+            </div>
+            <div class="test-grid">
+                <button class="test-button" onclick="testInvalidSignature()">
+                    Invalid Signature Test
+                </button>
+                <button class="test-button" onclick="testReplayAttack()">
+                    Replay Attack Test
+                </button>
+                <button class="test-button" onclick="testTimestampDrift()">
+                    Timestamp Drift Test
+                </button>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📈 Performance Tests</h2>
+            <div class="info-box">
+                <h3>What These Tests Do:</h3>
+                <ul>
+                    <li><strong>Latency Test:</strong> Measures average response time over 10 requests</li>
+                    <li><strong>Concurrent Test:</strong> Tests 5 simultaneous requests</li>
+                </ul>
+            </div>
+            <div class="test-grid">
+                <button class="test-button" onclick="testLatency()">
+                    Latency Test (10x)
+                </button>
+                <button class="test-button" onclick="testConcurrent()">
+                    Concurrent Test (5x)
+                </button>
+            </div>
+        </div>
+        
+        <div class="test-section">
+            <h2>📝 Test Log</h2>
+            <div class="log-box" id="log-box"></div>
+            <button class="clear-button" onclick="clearLog()">Clear Log</button>
+        </div>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-functions-compat.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="firebase-config.js"></script>
+    
+    <!-- Security Module -->
+    <script src="security.js"></script>
+    
+    <script>
+        // Test plate number
+        const TEST_PLATE = '09루3363';
+        const TEST_COUNTER = 'speeding';
+        
+        // Log function
+        function log(message, type = 'info') {
+            const logBox = document.getElementById('log-box');
+            const timestamp = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.innerHTML = `<span class="timestamp">[${timestamp}]</span>${message}`;
+            logBox.appendChild(entry);
+            logBox.scrollTop = logBox.scrollHeight;
+            console.log(`[${type.toUpperCase()}] ${message}`);
+        }
+        
+        function clearLog() {
+            document.getElementById('log-box').innerHTML = '';
+        }
+        
+        // Check system status
+        async function checkStatus() {
+            // Firebase
+            if (typeof firebase !== 'undefined' && firebase.apps.length > 0) {
+                document.getElementById('firebase-status').textContent = '✅ Ready';
+                document.getElementById('firebase-status').className = 'status-value success';
+                log('Firebase initialized successfully', 'success');
+            } else {
+                document.getElementById('firebase-status').textContent = '❌ Not Initialized';
+                document.getElementById('firebase-status').className = 'status-value error';
+                log('Firebase not initialized', 'error');
+            }
+            
+            // Security Module
+            if (typeof SecurityModule !== 'undefined') {
+                document.getElementById('security-status').textContent = '✅ Loaded';
+                document.getElementById('security-status').className = 'status-value success';
+                log('Security Module loaded successfully', 'success');
+            } else {
+                document.getElementById('security-status').textContent = '❌ Not Loaded';
+                document.getElementById('security-status').className = 'status-value error';
+                log('Security Module not loaded', 'error');
+            }
+            
+            // Fingerprint
+            if (typeof SecurityModule !== 'undefined') {
+                try {
+                    const fingerprint = await SecurityModule.generateFingerprint();
+                    document.getElementById('fingerprint-status').textContent = fingerprint.substring(0, 16) + '...';
+                    document.getElementById('fingerprint-status').className = 'status-value success';
+                    log(`Fingerprint generated: ${fingerprint.substring(0, 16)}...`, 'success');
+                } catch (error) {
+                    document.getElementById('fingerprint-status').textContent = '❌ Error';
+                    document.getElementById('fingerprint-status').className = 'status-value error';
+                    log(`Fingerprint generation failed: ${error.message}`, 'error');
+                }
+            }
+            
+            // Web Crypto API
+            if (window.crypto && window.crypto.subtle) {
+                document.getElementById('crypto-status').textContent = '✅ Available';
+                document.getElementById('crypto-status').className = 'status-value success';
+                log('Web Crypto API available', 'success');
+            } else {
+                document.getElementById('crypto-status').textContent = '⚠️ Not Available';
+                document.getElementById('crypto-status').className = 'status-value warning';
+                log('Web Crypto API not available (using fallback)', 'warning');
+            }
+        }
+        
+        // Test: Single Increment
+        async function testSingleIncrement() {
+            log('=== Starting Single Increment Test ===', 'info');
+            try {
+                const startTime = Date.now();
+                const newValue = await SecurityModule.secureIncrementCounter(TEST_PLATE, TEST_COUNTER);
+                const duration = Date.now() - startTime;
+                log(`✅ Single increment successful! New value: ${newValue} (${duration}ms)`, 'success');
+            } catch (error) {
+                log(`❌ Single increment failed: ${error.message}`, 'error');
+            }
+        }
+        
+        // Test: Rapid Fire
+        async function testRapidFire() {
+            log('=== Starting Rapid Fire Test (5x) ===', 'info');
+            let successCount = 0;
+            let failCount = 0;
+            
+            for (let i = 0; i < 5; i++) {
+                try {
+                    const startTime = Date.now();
+                    const newValue = await SecurityModule.secureIncrementCounter(TEST_PLATE, TEST_COUNTER);
+                    const duration = Date.now() - startTime;
+                    successCount++;
+                    log(`✅ Request ${i + 1}/5 successful: ${newValue} (${duration}ms)`, 'success');
+                } catch (error) {
+                    failCount++;
+                    log(`❌ Request ${i + 1}/5 failed: ${error.message}`, 'error');
+                }
+                await new Promise(resolve => setTimeout(resolve, 100)); // 100ms delay
+            }
+            
+            log(`=== Rapid Fire Test Complete: ${successCount} success, ${failCount} failed ===`, 'info');
+        }
+        
+        // Test: Stress Test
+        async function testStressTest() {
+            log('=== Starting Stress Test (20x) - Expect rate limiting ===', 'info');
+            let successCount = 0;
+            let rateLimitCount = 0;
+            let otherFailCount = 0;
+            
+            const promises = [];
+            for (let i = 0; i < 20; i++) {
+                promises.push(
+                    SecurityModule.secureIncrementCounter(TEST_PLATE, TEST_COUNTER)
+                        .then(newValue => {
+                            successCount++;
+                            log(`✅ Request ${i + 1}/20 successful: ${newValue}`, 'success');
+                        })
+                        .catch(error => {
+                            if (error.message.includes('Rate limit') || error.message.includes('너무 많은 요청')) {
+                                rateLimitCount++;
+                                log(`⚠️ Request ${i + 1}/20 rate limited (expected)`, 'warning');
+                            } else {
+                                otherFailCount++;
+                                log(`❌ Request ${i + 1}/20 failed: ${error.message}`, 'error');
+                            }
+                        })
+                );
+            }
+            
+            await Promise.all(promises);
+            log(`=== Stress Test Complete: ${successCount} success, ${rateLimitCount} rate limited, ${otherFailCount} other fails ===`, 'info');
+        }
+        
+        // Test: Invalid Signature
+        async function testInvalidSignature() {
+            log('=== Starting Invalid Signature Test ===', 'info');
+            try {
+                const fingerprint = await SecurityModule.generateFingerprint();
+                const timestamp = Date.now();
+                const nonce = SecurityModule.generateNonce();
+                
+                const payload = {
+                    plateNumber: TEST_PLATE,
+                    counterKey: TEST_COUNTER,
+                    fingerprint: fingerprint,
+                    timestamp: timestamp,
+                    nonce: nonce,
+                    signature: 'invalid_signature_12345' // Invalid signature
+                };
+                
+                const secureIncrementCounter = firebase.functions().httpsCallable('secureIncrementCounter');
+                await secureIncrementCounter(payload);
+                
+                log('❌ Test failed: Invalid signature was accepted (should be rejected)', 'error');
+            } catch (error) {
+                if (error.message.includes('signature') || error.message.includes('거부')) {
+                    log('✅ Test passed: Invalid signature correctly rejected', 'success');
+                } else {
+                    log(`⚠️ Test inconclusive: ${error.message}`, 'warning');
+                }
+            }
+        }
+        
+        // Test: Replay Attack
+        async function testReplayAttack() {
+            log('=== Starting Replay Attack Test ===', 'info');
+            try {
+                const fingerprint = await SecurityModule.generateFingerprint();
+                const timestamp = Date.now();
+                const nonce = SecurityModule.generateNonce();
+                
+                const payload = {
+                    plateNumber: TEST_PLATE,
+                    counterKey: TEST_COUNTER,
+                    fingerprint: fingerprint,
+                    timestamp: timestamp,
+                    nonce: nonce,
+                };
+                
+                payload.signature = await SecurityModule.generateHMAC(payload);
+                
+                const secureIncrementCounter = firebase.functions().httpsCallable('secureIncrementCounter');
+                
+                // First request should succeed
+                const result1 = await secureIncrementCounter(payload);
+                log('✅ First request successful', 'success');
+                
+                // Second request with same nonce should fail
+                try {
+                    await secureIncrementCounter(payload);
+                    log('❌ Test failed: Replay attack was accepted (should be rejected)', 'error');
+                } catch (error) {
+                    if (error.message.includes('nonce') || error.message.includes('already used')) {
+                        log('✅ Test passed: Replay attack correctly rejected', 'success');
+                    } else {
+                        log(`⚠️ Test inconclusive: ${error.message}`, 'warning');
+                    }
+                }
+            } catch (error) {
+                log(`❌ Test failed: ${error.message}`, 'error');
+            }
+        }
+        
+        // Test: Timestamp Drift
+        async function testTimestampDrift() {
+            log('=== Starting Timestamp Drift Test ===', 'info');
+            try {
+                const fingerprint = await SecurityModule.generateFingerprint();
+                const oldTimestamp = Date.now() - (10 * 60 * 1000); // 10 minutes ago
+                const nonce = SecurityModule.generateNonce();
+                
+                const payload = {
+                    plateNumber: TEST_PLATE,
+                    counterKey: TEST_COUNTER,
+                    fingerprint: fingerprint,
+                    timestamp: oldTimestamp,
+                    nonce: nonce,
+                };
+                
+                payload.signature = await SecurityModule.generateHMAC(payload);
+                
+                const secureIncrementCounter = firebase.functions().httpsCallable('secureIncrementCounter');
+                await secureIncrementCounter(payload);
+                
+                log('❌ Test failed: Old timestamp was accepted (should be rejected)', 'error');
+            } catch (error) {
+                if (error.message.includes('timestamp') || error.message.includes('expired') || error.message.includes('만료')) {
+                    log('✅ Test passed: Old timestamp correctly rejected', 'success');
+                } else {
+                    log(`⚠️ Test inconclusive: ${error.message}`, 'warning');
+                }
+            }
+        }
+        
+        // Test: Latency
+        async function testLatency() {
+            log('=== Starting Latency Test (10 requests) ===', 'info');
+            const latencies = [];
+            
+            for (let i = 0; i < 10; i++) {
+                try {
+                    const startTime = Date.now();
+                    await SecurityModule.secureIncrementCounter(TEST_PLATE, TEST_COUNTER);
+                    const duration = Date.now() - startTime;
+                    latencies.push(duration);
+                    log(`Request ${i + 1}/10: ${duration}ms`, 'info');
+                    await new Promise(resolve => setTimeout(resolve, 200)); // 200ms delay
+                } catch (error) {
+                    log(`Request ${i + 1}/10 failed: ${error.message}`, 'error');
+                }
+            }
+            
+            if (latencies.length > 0) {
+                const avg = latencies.reduce((a, b) => a + b, 0) / latencies.length;
+                const min = Math.min(...latencies);
+                const max = Math.max(...latencies);
+                log(`=== Latency Test Complete ===`, 'info');
+                log(`Average: ${avg.toFixed(0)}ms, Min: ${min}ms, Max: ${max}ms`, 'success');
+            }
+        }
+        
+        // Test: Concurrent
+        async function testConcurrent() {
+            log('=== Starting Concurrent Test (5 simultaneous requests) ===', 'info');
+            const startTime = Date.now();
+            
+            const promises = [];
+            for (let i = 0; i < 5; i++) {
+                promises.push(
+                    SecurityModule.secureIncrementCounter(TEST_PLATE, TEST_COUNTER)
+                        .then(newValue => {
+                            log(`✅ Concurrent request ${i + 1}/5 successful: ${newValue}`, 'success');
+                        })
+                        .catch(error => {
+                            log(`❌ Concurrent request ${i + 1}/5 failed: ${error.message}`, 'error');
+                        })
+                );
+            }
+            
+            await Promise.all(promises);
+            const duration = Date.now() - startTime;
+            log(`=== Concurrent Test Complete: ${duration}ms total ===`, 'info');
+        }
+        
+        // Initialize on load
+        window.addEventListener('load', () => {
+            setTimeout(checkStatus, 1000);
+        });
+    </script>
+</body>
+</html>

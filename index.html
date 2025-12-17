@@ -1,0 +1,3657 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9R8RZYZC7X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      gtag('config', 'G-9R8RZYZC7X');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SAFE DRIVE - 익명으로 차량 안전을 공유하세요. 실시간 차량 안전 정보, 케어 인덱스, 지정차로 안내를 확인하세요.">
+    <meta name="keywords" content="세이프드라이브, 차량안전, 번호판조회, 케어인덱스, 지정차로, 도로안전, 익명공유">
+    <meta name="author" content="SAFE DRIVE">
+    <title>SAFE DRIVE - 익명 차량 안전 공유</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://safedrive.kr/">
+    <meta property="og:title" content="SAFE DRIVE - 익명 차량 안전 공유">
+    <meta property="og:description" content="익명으로 차량 안전을 공유하세요. 실시간 차량 안전 정보, 케어 인덱스, 지정차로 안내를 확인하세요.">
+    <meta property="og:image" content="https://safedrive.kr/assets/img/safedrive_thumbnail.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://safedrive.kr/">
+    <meta name="twitter:title" content="SAFE DRIVE - 익명 차량 안전 공유">
+    <meta name="twitter:description" content="익명으로 차량 안전을 공유하세요. 실시간 차량 안전 정보, 케어 인덱스, 지정차로 안내를 확인하세요.">
+    <meta name="twitter:image" content="https://safedrive.kr/assets/img/safedrive_thumbnail.webp">
+    
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Korean">
+    <link rel="canonical" href="https://safedrive.kr/">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    
+    <!-- DNS Prefetch for performance -->
+    <link rel="dns-prefetch" href="https://www.gstatic.com">
+    <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com">
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Full Screen Scroll Lock Styles -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            margin: 0;
+            background: white;
+            transition: background 0.6s ease;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        
+        .container {
+            padding: 0 !important;
+            margin: 0 !important;
+            max-width: 100% !important;
+            min-height: 100%;
+        }
+        
+        /* Content wrapper to constrain width on wide screens */
+        .content-wrapper {
+            max-width: 480px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .full-screen-section {
+            padding: 80px 0;
+            margin: 0;
+        }
+        
+        /* Add top spacing for content */
+        .full-screen-section .content-wrapper {
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+        
+        .site-footer {
+            position: relative;
+            width: 100%;
+            z-index: 999;
+        }
+
+        /* Index.html specific navbar styles */
+        #mainNavbar {
+            background: transparent;
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #mainNavbar .nav-container {
+            background: transparent;
+        }
+
+        #mainNavbar .nav-link {
+            color: white;
+        }
+
+        #mainNavbar .hamburger-line {
+            background: white;
+        }
+
+        /* Scrolled state - white background with gray text */
+        #mainNavbar.scrolled {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #mainNavbar.scrolled .nav-link {
+            color: #666;
+        }
+
+        #mainNavbar.scrolled .nav-link:hover {
+            color: #667eea;
+        }
+
+        #mainNavbar.scrolled .hamburger-line {
+            background: #333;
+        }
+        
+        .hero.full-screen-section {
+            background-color: white;
+            padding-top: 100px;
+        }
+        
+        .hero.full-screen-section .content-wrapper {
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+        
+        /* New Hero Styles */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(102, 126, 234, 0.5) 100%);
+        }
+        
+        .animated-road {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #1a1a1a;
+            overflow: hidden;
+        }
+        
+        .road-line {
+            position: absolute;
+            width: 10px;
+            height: 100px;
+            background: white;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: roadMove 2s linear infinite;
+        }
+        
+        @keyframes roadMove {
+            0% {
+                top: -200px;
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                top: calc(100vh + 100px);
+                opacity: 0;
+            }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 900px;
+            color: white;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            animation: pulseDot 2s infinite;
+        }
+        
+        @keyframes pulseDot {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
+            }
+        }
+        
+        .hero-headline {
+            font-size: 64px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-subheadline {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 22px 180px 22px 30px;
+            font-size: 20px;
+            border: 2px solid transparent;
+            border-radius: 60px;
+            background: white;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .search-input::placeholder {
+            font-size: 16px;
+        }
+        
+        /* Focus outline is handled by JavaScript validation */
+        
+        .search-button {
+            position: absolute;
+            right: 6px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 14px 35px;
+            font-size: 18px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-button:hover {
+            transform: translateY(-50%) scale(1.05);
+        }
+        
+        .trust-indicators {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+        
+        .trust-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .hero .stats-row {
+            display: flex;
+            gap: 10px;
+            justify-content: space-evenly;
+            margin-top: 40px;
+            flex-wrap: wrap;
+            flex-direction: row;
+            align-content: center;
+        }
+        
+        .hero .stat-item {
+            text-align: center;
+            border: none;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .hero .stat-value {
+            font-size: 48px;
+            font-weight: 900;
+            color: #667eea;
+            margin-bottom: 5px;
+            order: 1;
+            border: none;
+            text-decoration: none;
+        }
+        
+        .hero .stat-label {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            order: 2;
+            border: none;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-headline {
+                font-size: 36px;
+            }
+            
+            .hero-subheadline {
+                font-size: 16px;
+            }
+            
+            .search-input {
+                padding: 18px 120px 18px 20px;
+                font-size: 16px;
+            }
+            
+            .search-button {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+            
+            .hero .stat-value {
+                font-size: 32px;
+            }
+            
+            .hero .stats-row {
+                gap: 10px;
+            }
+            
+            .impact-section {
+                flex-direction: column;
+            }
+            
+            .split-side {
+                min-height: 50vh;
+            }
+            
+            .side-icon {
+                font-size: 60px;
+            }
+            
+            .side-headline {
+                font-size: 28px;
+            }
+            
+            .side-text {
+                font-size: 16px;
+            }
+            
+            .divider {
+                left: 50%;
+                top: 50%;
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .journey-title {
+                font-size: 32px;
+            }
+            
+            .journey-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Impact Comparison Section */
+        .impact-section {
+            min-height: 100vh;
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .split-side {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 40px;
+            position: relative;
+            transition: flex 0.5s ease;
+        }
+        
+        .split-side:hover {
+            flex: 1.1;
+        }
+        
+        .left-side {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+        }
+        
+        .right-side {
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            color: white;
+        }
+        
+        .side-content {
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .side-icon {
+            font-size: 100px;
+            margin-bottom: 30px;
+            animation: bounceIcon 2s ease-in-out infinite;
+        }
+        
+        @keyframes bounceIcon {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .side-label {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .side-headline {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .side-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        
+        .side-cta {
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            background: white;
+            color: #333;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .side-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .divider {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 900;
+            color: #333;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+        
+        /* Journey Section */
+        .journey-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 20px 120px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .journey-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .journey-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .journey-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            align-items: start;
+        }
+        
+        .journey-step {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: auto;
+        }
+        
+        .journey-step:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: white;
+            color: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 900;
+            margin: 0 auto 20px;
+        }
+        
+        .step-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        
+        .step-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .step-description {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .step-notice {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            font-style: italic;
+        }
+        
+        .journey-step a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: underline;
+            font-size: 14px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .journey-step a:hover {
+            color: white;
+        }
+        
+        /* Flip Card Styles */
+        .flip-card {
+            perspective: 1000px;
+            cursor: pointer;
+            padding: 0;
+            background: transparent;
+            border: none;
+        }
+        
+        .flip-card:hover {
+            transform: none;
+            background: transparent;
+            box-shadow: none;
+        }
+        
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            min-height: 450px;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+        
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            min-height: 450px;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .flip-card-front::before,
+        .flip-card-back::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.3) 50%,
+                transparent 70%
+            );
+            transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            animation: glassyShine 3s ease-in-out infinite;
+        }
+        
+        @keyframes glassyShine {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+            50% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+            }
+            100% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+            }
+        }
+        
+        .flip-card:hover .flip-card-front,
+        .flip-card:hover .flip-card-back {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .flip-card-front {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .flip-card-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: rotateY(180deg);
+        }
+        
+        .flip-hint {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 15px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+        
+        /* Gradient backgrounds - DARKER for better text contrast */
+        
+
+        
+        /* Road Stress Section */
+        .road-stress-section {
+            background: linear-gradient(180deg, #000428 0%, #004e92 100%);
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stress-rain-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .road-stress-section .content-wrapper {
+            position: relative;
+            z-index: 10;
+        }
+
+        .stress-rain-particle {
+            position: absolute;
+            font-size: 32px;
+            pointer-events: none;
+            animation: stressFall linear forwards;
+            will-change: transform, opacity;
+        }
+
+        @keyframes stressFall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(600px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .stress-title {
+            font-size: 32px;
+            font-weight: 900;
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+            line-height: 1.3;
+        }
+
+        .stress-bar-chart-container {
+            height: 220px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stress-comment-box {
+            background: rgba(102, 126, 234, 0.2);
+            border: 2px solid rgba(102, 126, 234, 0.4);
+            border-radius: 20px;
+            padding: 0;
+            margin-bottom: 30px;
+            text-align: center;
+            height: 70px;
+            max-height: 70px;
+            min-height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+
+        .stress-comment-box.pulse {
+            animation: stressCommentPulse 0.3s ease;
+        }
+
+        @keyframes stressCommentPulse {
+            0%, 100% {
+                border-color: rgba(102, 126, 234, 0.4);
+                background: rgba(102, 126, 234, 0.2);
+            }
+            50% {
+                border-color: rgba(102, 126, 234, 0.8);
+                background: rgba(102, 126, 234, 0.3);
+            }
+        }
+
+        .stress-comment-text {
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .stress-emotion-cta {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .stress-emotion-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 0;
+        }
+
+        .stress-emotion-btn {
+            aspect-ratio: 1;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.2);
+            border-radius: 15px;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stress-emotion-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .stress-emotion-btn:active::before {
+            width: 200%;
+            height: 200%;
+        }
+
+        .stress-emotion-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .stress-quote-display {
+            background: transparent;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+            height: 128px;
+            min-height: 128px;
+            max-height: 128px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .stress-quote-text {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+            max-height: 102px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+
+        .stress-stats-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 15px;
+        }
+
+        .stress-stat-box {
+            flex: 1;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px 15px;
+            text-align: center;
+        }
+
+        .stress-stat-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+
+        .stress-stat-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            font-weight: 600;
+        }
+
+        /* Designated lane section - horizontal scroll design */
+        #designated-lane {
+            background: white;
+            padding: 80px 0;
+        }
+        
+        #designated-lane .content-wrapper {
+            max-width: 100%;
+            padding: 0;
+        }
+        
+        .horizontal-scroll-title {
+            color: #1a1a1a;
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-family: 'GmarketSans', sans-serif;
+            font-weight: 700;
+        }
+
+        .horizontal-scroll-subtitle {
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .horizontal-scroll-wrapper {
+            overflow: hidden;
+            width: min(400px, 85vw);
+            max-width: 400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .horizontal-scroll-container {
+            display: flex;
+            gap: 40px;
+            padding: 40px calc(50vw - min(200px, 42.5vw));
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            cursor: grab;
+            user-select: none;
+            width: calc(100vw);
+            margin-left: calc(-50vw + min(200px, 42.5vw));
+        }
+        
+        .horizontal-scroll-container:active {
+            cursor: grabbing;
+            scroll-behavior: auto;
+        }
+        
+        .horizontal-scroll-container.dragging {
+            scroll-behavior: auto;
+        }
+
+        .horizontal-scroll-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .horizontal-scroll-container::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 10px;
+        }
+
+        .horizontal-scroll-container::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+
+        .horizontal-scroll-container::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+
+        .horizontal-scroll-item {
+            flex: 0 0 auto;
+            width: min(400px, 85vw);
+            max-width: 400px;
+            position: relative;
+        }
+
+        .horizontal-scroll-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+
+        .horizontal-scroll-item:hover img {
+            transform: scale(1.02);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+        }
+        
+        .horizontal-scroll-container.dragging img {
+            transition: none;
+        }
+
+        .horizontal-scroll-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+
+        
+        /* Lane types section - gradient background */
+        #lane-types {
+            background: linear-gradient(135deg, #1f9aa2 0%, #1f0642 100%);
+            color: white;
+        }
+        
+        #lane-types .content-wrapper {
+            max-width: 1200px !important;
+        }
+        
+        .legal-notice-section.full-screen-section {
+            background: white;
+            color: #1a1a1a;
+        }
+        
+        /* Override text colors for gradient sections */
+        .leaderboard-section.full-screen-section h2 {
+            color: white !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .legal-notice-section.full-screen-section h3 {
+            color: #1a1a1a;
+        }
+        
+        .legal-notice-section .legal-items {
+            max-width: 600px;
+            margin: 0 auto;
+            padding-bottom: 40px;
+        }
+        
+        .legal-notice-section .legal-items p {
+            margin-bottom: 12px;
+            line-height: 1.6;
+            font-size: 13px;
+            padding-left: 8px;
+            color: #999;
+        }
+        
+        /* ========================================
+           QR Generator Intro Section
+           ======================================== */
+        .qr-generator-intro-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            padding: 80px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .qr-intro-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .qr-intro-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 30px;
+            margin-bottom: 24px;
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .qr-badge-icon {
+            font-size: 20px;
+        }
+        
+        .qr-badge-text {
+            color: white;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        
+        .qr-intro-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+        
+        .qr-intro-subtitle {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .qr-intro-features {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .qr-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .qr-intro-example {
+            background: white;
+            border-radius: 24px;
+            padding: 50px 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .qr-example-preview {
+            margin-bottom: 40px;
+        }
+        
+        .qr-example-mockup {
+            display: inline-block;
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .qr-mockup-code {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .qr-mockup-code svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+        }
+        
+        .qr-mockup-plate {
+            font-size: 32px;
+            font-weight: 900;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+        
+        .qr-mockup-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .qr-example-steps {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .qr-step-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .qr-step-num {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        
+        .qr-step-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .qr-step-arrow {
+            font-size: 24px;
+            color: #667eea;
+            font-weight: 700;
+        }
+        
+        .qr-intro-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+            margin-bottom: 30px;
+        }
+        
+        .qr-intro-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 36px rgba(102, 126, 234, 0.4);
+        }
+        
+        .qr-cta-arrow {
+            font-size: 24px;
+            transition: transform 0.3s ease;
+        }
+        
+        .qr-intro-cta:hover .qr-cta-arrow {
+            transform: translateX(5px);
+        }
+        
+        .qr-intro-notice {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+        
+        @media (max-width: 768px) {
+            .qr-intro-title {
+                font-size: 32px;
+            }
+            
+            .qr-intro-subtitle {
+                font-size: 16px;
+            }
+            
+            .qr-feature-item {
+                font-size: 13px;
+            }
+            
+            .qr-intro-example {
+                padding: 30px 20px;
+            }
+            
+            .qr-mockup-code {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .qr-mockup-plate {
+                font-size: 24px;
+            }
+            
+            .qr-example-steps {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .qr-step-arrow {
+                transform: rotate(90deg);
+            }
+            
+            .qr-intro-cta {
+                padding: 16px 40px;
+                font-size: 18px;
+            }
+        }
+        
+        /* ========================================
+           Referral Section - Golden Ticket Style
+           ======================================== */
+        .referral-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #000000 0%, #231136 100%);
+            padding: 80px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .referral-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .referral-ticket {
+            background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            color: #1a1a1a;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .referral-ticket:hover {
+            transform: translateY(-5px);
+        }
+        
+        .ticket-top {
+            padding: 40px 30px 30px;
+            text-align: center;
+        }
+        
+        .ticket-badge {
+            display: inline-block;
+            background: rgb(0, 0, 0);
+            padding: 8px 18px;
+            border-radius: 20px;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+
+        .ticket-badge .emoji {
+            font-size: 25px;          /* increase emoji size */
+            margin-right: 6px;         /* spacing from text */
+            vertical-align: -5px;     /* fine vertical alignment */
+        }
+        
+        .ticket-title {
+            font-size: 32px;
+            font-weight: 900;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+        
+        .ticket-desc {
+            font-size: 15px;
+            opacity: 0.85;
+            line-height: 1.6;
+            margin-bottom: 8px;
+        }
+        
+        .ticket-condition {
+            font-size: 13px;
+            opacity: 0.75;
+            font-weight: 600;
+        }
+        
+        .ticket-divider {
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+        
+        .ticket-hole {
+            width: 24px;
+            height: 24px;
+            background: #000000;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .ticket-dashed {
+            flex: 1;
+            border-top: 2px dashed rgba(0,0,0,0.2);
+            margin: 0 10px;
+        }
+        
+        .ticket-rewards {
+            padding: 24px 30px 30px;
+        }
+        
+        .ticket-reward-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .ticket-reward-item:last-child {
+            border-bottom: none;
+        }
+        
+        .ticket-reward-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        
+        .ticket-reward-icon {
+            font-size: 36px;
+        }
+        
+        .ticket-reward-text {
+            font-size: 15px;
+            font-weight: 700;
+        }
+        
+        .ticket-reward-text span {
+            display: block;
+            font-size: 11px;
+            opacity: 0.7;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+        
+        .ticket-cta {
+            background: #1a1a1a;
+            color: #ffd700;
+            padding: 12px 28px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .ticket-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        /* Disabled reward item */
+        .ticket-reward-disabled {
+            opacity: 0.5;
+        }
+        
+        .ticket-reward-disabled .ticket-reward-icon {
+            filter: grayscale(1);
+        }
+        
+        .ticket-cta-disabled {
+            background: rgba(0,0,0,0.2);
+            color: rgba(0,0,0,0.5);
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 14px;
+            white-space: nowrap;
+            cursor: not-allowed;
+        }
+        
+        @media (max-width: 768px) {
+            .ticket-title {
+                font-size: 26px;
+            }
+            
+            .ticket-top {
+                padding: 30px 24px 24px;
+            }
+            
+            .ticket-rewards {
+                padding: 20px 24px 24px;
+            }
+            
+            .ticket-reward-icon {
+                font-size: 32px;
+            }
+            
+            .ticket-reward-text {
+                font-size: 14px;
+            }
+            
+            .ticket-cta {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+            
+            .ticket-cta-disabled {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+        }
+        
+        /* Table styling for gradient backgrounds */
+        .leaderboard-section.full-screen-section table {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            overflow: visible !important;
+            display: table !important;
+            width: 100%;
+            visibility: visible !important;
+        }
+        
+        .leaderboard-section.full-screen-section tbody {
+            display: table-row-group !important;
+            visibility: visible !important;
+        }
+        
+        .leaderboard-section.full-screen-section tr {
+            display: table-row !important;
+            visibility: visible !important;
+        }
+        
+        .leaderboard-section.full-screen-section td,
+        .leaderboard-section.full-screen-section th {
+            display: table-cell !important;
+            visibility: visible !important;
+        }
+        
+        /* Ensure leaderboard content is visible */
+        .leaderboard-content {
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+        
+        #mostLikedTable {
+            display: table-row-group !important;
+            visibility: visible !important;
+        }
+        
+        /* Override GSAP animation inline styles that hide rows */
+        #mostLikedTable tr {
+            opacity: 1 !important;
+            transform: none !important;
+            translate: none !important;
+            rotate: none !important;
+            scale: none !important;
+        }
+        
+        #mostLikedTable td {
+            opacity: 1 !important;
+        }
+        
+        .leaderboard-section.full-screen-section thead {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        .leaderboard-section.full-screen-section th {
+            color: #333;
+        }
+        
+        .leaderboard-section.full-screen-section tbody tr {
+            background-color: white;
+        }
+        
+        .leaderboard-section.full-screen-section tbody tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.02);
+        }
+        
+
+        
+        /* Tab styling for gradient backgrounds - all white text */
+        .leaderboard-section.full-screen-section .tabs .tab {
+            background-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .leaderboard-section.full-screen-section .tabs .tab:hover {
+            background-color: rgba(255, 255, 255, 0.35);
+        }
+        
+        .leaderboard-section.full-screen-section .tabs .tab.active {
+            background-color: white;
+            color: #4a5bbd;
+            border-color: white;
+        }
+        
+
+        
+        /* Blur & Focus Animation - DISABLED */
+        /* All content is always visible for better UX */
+        .full-screen-section .content-wrapper > * {
+            opacity: 1 !important;
+            filter: none !important;
+            transform: none !important;
+        }
+        
+        /* Keep hero plate animation working (it has its own animation) */
+        .hero-animation {
+            opacity: 1;
+        }
+        
+        /* Scroll Down Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .scroll-indicator.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .scroll-indicator-text {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        
+        .scroll-arrow {
+            font-size: 32px;
+            color: #ffffff;
+            animation: bounce 2s infinite;
+            display: block;
+        }
+        
+        /* Hero section scroll indicator - white color */
+        .hero .scroll-indicator-text {
+            color: white !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero .scroll-arrow {
+            color: white !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero .scroll-indicator .scroll-arrow {
+            color: white !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Scroll arrows for gradient sections - white color */
+        .leaderboard-section .scroll-arrow {
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Scroll arrow for road stress section - white color */
+        .road-stress-section .scroll-arrow {
+            color: white;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Scroll arrow for legal notice section - gray color */
+        .legal-notice-section .scroll-arrow {
+            color: #999;
+        }
+        
+        /* Scroll arrow for plate types section - positioned below grid */
+        .plate-types-section .scroll-indicator {
+            position: relative;
+            bottom: auto;
+            margin-top: 0;
+            margin-bottom: 20px;
+            left: 0;
+            transform: none;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+        
+        /* Remove bottom margin from construction plate */
+        .plate-types-section .plate-flip-tall {
+            margin-bottom: 0;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-15px);
+            }
+            60% {
+                transform: translateY(-8px);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+        
+        /* Hide scroll indicator on scroll */
+        .scroll-indicator.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .full-screen-section {
+                padding: 60px 15px 30px;
+            }
+            
+            .scroll-indicator {
+                bottom: 20px;
+            }
+            
+            .scroll-indicator-text {
+                font-size: 12px;
+            }
+            
+            .scroll-arrow {
+                font-size: 28px;
+            }
+            
+            .horizontal-scroll-title {
+                font-size: 28px;
+            }
+            
+            .horizontal-scroll-subtitle {
+                font-size: 12px;
+            }
+        }
+        
+        /* ===== CUSTOM LEADERBOARD DESIGNS ===== */
+        
+
+        
+        /* Fix: Make title and tabs darker for white background */
+        #rankings h2 {
+            color: #1f2937 !important;
+            text-shadow: none !important;
+        }
+        
+        #rankings .tabs .tab {
+            background-color: #f3f4f6 !important;
+            border-color: #d1d5db !important;
+            color: #374151 !important;
+            font-weight: 600;
+        }
+        
+        #rankings .tabs .tab:hover {
+            background-color: #e5e7eb !important;
+        }
+        
+        #rankings .tabs .tab.active {
+            background-color: #4a5bbd !important;
+            color: white !important;
+            border-color: #4a5bbd !important;
+        }
+        
+        /* Fix: Make Most Liked section match bubble pop theme - Using ID for higher specificity */
+        #mostLikedSection {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #fd79a8 100%) !important;
+            color: white !important;
+        }
+        
+        /* Most Liked title styling - Dark text for better visibility */
+        #mostLikedSection h2 {
+            color: #1f2937 !important;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8) !important;
+            font-weight: 700 !important;
+        }
+        
+        /* Most Liked tabs styling - Dark text on light background */
+        #mostLikedSection .tabs .tab {
+            background-color: rgba(255, 255, 255, 0.9) !important;
+            border: 2px solid rgba(255, 255, 255, 1) !important;
+            color: #1f2937 !important;
+            font-weight: 700 !important;
+            text-shadow: none !important;
+        }
+        
+        #mostLikedSection .tabs .tab:hover {
+            background-color: rgba(255, 255, 255, 1) !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        #mostLikedSection .tabs .tab.active {
+            background-color: #e84393 !important;
+            color: white !important;
+            border-color: #e84393 !important;
+            box-shadow: 0 4px 12px rgba(232, 67, 147, 0.4);
+        }
+        
+        /* Most Liked table background */
+        #mostLikedSection table {
+            background: transparent !important;
+        }
+        
+        /* Most Liked table header - Dark text */
+        #mostLikedSection thead {
+            background-color: transparent !important;
+        }
+        
+        #mostLikedSection th {
+            color: #1f2937 !important;
+            font-weight: 700 !important;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
+        }
+        
+        /* Most Liked scroll arrow */
+        #mostLikedSection .scroll-arrow {
+            color: #1f2937 !important;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8) !important;
+        }
+        
+        /* Design 11: Bubble Pop - Applied to Most Liked leaderboard */
+        #mostLikedTable tr {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%) !important;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(253, 203, 110, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        #mostLikedTable tr:nth-child(2) {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%) !important;
+        }
+        
+        #mostLikedTable tr:nth-child(3) {
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%) !important;
+        }
+        
+        #mostLikedTable tr:nth-child(n+4) {
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%) !important;
+        }
+        
+        #mostLikedTable tr td {
+            color: white !important;
+            font-weight: 700 !important;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+        }
+        
+        #mostLikedTable tr td:first-child {
+            font-size: 1.3rem !important;
+        }
+        
+        #mostLikedTable tr:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(253, 203, 110, 0.6);
+        }
+        
+        /* Ensure proper spacing for leaderboard */
+        #mostLikedTable tr td:first-child {
+            border-top-left-radius: 50px;
+            border-bottom-left-radius: 50px;
+            padding-left: 20px;
+        }
+        
+        #mostLikedTable tr td:last-child {
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50px;
+            padding-right: 20px;
+        }
+        
+        /* Remove blue link color from leaderboard */
+        #mostLikedTable a,
+        #mostLikedTable a:link,
+        #mostLikedTable a:visited,
+        #mostLikedTable a:hover,
+        #mostLikedTable a:active {
+            color: inherit !important;
+            text-decoration: none !important;
+        }
+        
+        /* Add subtle hover effect for links */
+        #mostLikedTable a:hover {
+            opacity: 0.8;
+        }
+    </style>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js"></script>
+    
+    <!-- Firebase Configuration -->
+    <script src="firebase-config.js"></script>
+</head>
+<body>
+    <nav class="navbar" id="mainNavbar">
+       
+        <!--  Navigation Menu -->
+        <div class="nav-container">
+            <a href="#home" class="nav-logo" id="navLogo">
+                <img src="assets/img/SAFEDRIVE_logo.svg" alt="SAFE DRIVE Logo">
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="nav-link">홈</a></li>
+                <li><a href="#qr-generator-intro" class="nav-link" id="qrNavLink">QR</a></li>
+                <li><a href="#referral" class="nav-link" id="eventNavLink">이벤트</a></li>
+                <li><a href="#road-stress" class="nav-link">도로스트레스</a></li>
+                <li><a href="#mostLikedSection" class="nav-link">인기번호판</a></li>
+                <li><a href="#designated-lane" class="nav-link">지정차로</a></li>
+                <li><a href="#legal-notice" class="nav-link">안내</a></li>
+                <li><a href="contact.html" class="nav-link">문의</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container">
+        <header class="hero full-screen-section active" id="home">
+            <div class="video-background">
+                <div class="animated-road" id="road"></div>
+                <div class="video-overlay"></div>
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <div class="live-dot"></div>
+                    <span>LIVE · 실시간 도로 안전 네트워크</span>
+                </div>
+                
+                <h1 class="hero-headline">
+                    도로 위 위험,<br>
+                    익명으로 공유하세요
+                </h1>
+                
+                <p class="hero-subheadline">
+                    브레이크등 고장부터 타이어 펑크까지.<br>
+                    당신의 한마디가 누군가의 생명을 구합니다.
+                </p>
+                
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="plateInput" 
+                        class="search-input" 
+                        placeholder="번호판 입력(예:12가3456)"
+                        autocomplete="off"
+                    >
+                    <button id="heroMicBtn" class="voice-mic-btn" aria-label="음성 입력" type="button">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 18.75C15.3137 18.75 18 16.0637 18 12.75V11.25M12 18.75C8.68629 18.75 6 16.0637 6 12.75V11.25M12 18.75V22.5M8.25 22.5H15.75M12 15.75C10.3431 15.75 9 14.4069 9 12.75V4.5C9 2.84315 10.3431 1.5 12 1.5C13.6569 1.5 15 2.84315 15 4.5V12.75C15 14.4069 13.6569 15.75 12 15.75Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <button type="button" class="search-button" id="heroSearchBtn">검색</button>
+                </div>
+                
+                <div class="trust-indicators">
+                    <div class="trust-item">
+                        <span>😎100% 익명</span>
+                    </div>
+                    <div class="trust-item">
+                        <span>⚡10초 소요</span>
+                    </div>
+                    <div class="trust-item">
+                        <span>💰무료</span>
+                    </div>
+                </div>
+                
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-value" id="activeUsers">0</div>
+                        <div class="stat-label">활성 사용자</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalPlateViews">0</div>
+                        <div class="stat-label">총 검색수</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="totalMessagesSent">0</div>
+                        <div class="stat-label">오늘 발송 메세지</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Down Indicator -->
+            <div class="scroll-indicator" id="scrollIndicator">
+                <div class="scroll-indicator-text">아래로 스크롤</div>
+                <span class="scroll-arrow">↓</span>
+            </div>
+        </header>
+
+        <!-- Impact Comparison Section -->
+        <section class="impact-section">
+            <div class="split-side left-side">
+                <div class="side-content">
+                    <div class="side-icon">⚠️</div>
+                    <div class="side-label">현실</div>
+                    <h2 class="side-headline">침묵하는 도로,<br>증가하는 위험</h2>
+                    <p class="side-text">
+                        고장난 브레이크등을 모른 채 달리는 차량.<br>
+                        펑크 직전의 타이어를 방치하는 운전자.<br>
+                        한국에서만 연간 20만 건 이상의 교통사고 발생.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="split-side right-side">
+                <div class="side-content">
+                    <div class="side-icon">🛡️</div>
+                    <div class="side-label">SAFE DRIVE 함께</div>
+                    <h2 class="side-headline">연결된 도로,<br>안전한 미래</h2>
+                    <p class="side-text">
+                        실시간으로 공유되는 차량 안전 정보.<br>
+                        익명으로 도움을 주고받는 운전자들.<br>
+                        당신의 10초 관심으로 사고 예방 성공.
+                    </p>
+                    <button class="side-cta" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">지금 참여하기</button>
+                </div>
+            </div>
+            
+            <div class="divider">VS</div>
+        </section>
+
+        <!-- Journey Section -->
+        <section class="journey-section">
+            <div class="journey-container">
+                <h2 class="journey-title">SAFE DRIVE 사용법 - 3단계면 충분합니다</h2>
+                
+                <div class="journey-steps">
+                    <div class="journey-step">
+                        <div class="step-number">1</div>
+                        <div class="step-icon">🔍</div>
+                        <h3 class="step-title">번호판 입력 5초</h3>
+                        <p class="step-description">
+                            주의가 필요한 차량의 번호판을 입력 후 검색하세요. 
+                        </p>
+                        <p class="step-description">
+                            차량 소유주를 특정할 수 있는 정보는 수집되지 않습니다.
+                        </p>
+                        <a href="https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS292&mCode=I040010000&nttId=10666" target="_blank" rel="noopener">자동차등록번호는 개인정보일까?</a>
+                    </div>
+                    
+                    <div class="journey-step">
+                        <div class="step-number">2</div>
+                        <div class="step-icon">📝</div>
+                        <h3 class="step-title">원클릭 안전 메세지</h3>
+                        <p class="step-description">
+                            브레이크등 고장, 타이어 문제, 양보 감사 등 안전 메세지 전송. 
+                        </p>
+                        <p class="step-description">
+                            완전 익명으로 처리되며, 본 서비스는 개인식별 절차를 제공하지 않습니다.
+                        </p>
+                    </div>
+                    
+                    <div class="journey-step flip-card">
+                        <div class="flip-card-inner">
+                            <!-- Front Side -->
+                            <div class="flip-card-front">
+                                <div class="step-number">3</div>
+                                <div class="step-icon">🤔</div>
+                                <h3 class="step-title">수신 메세지 확인</h3>
+                                <p class="step-description">
+                                    내 번호판을 조회하여 수신한 안전 메세지 통계를 확인하세요.
+                                </p>
+                                <p class="step-notice">
+                                    제공되는 정보는 이용자가 선택한 템플릿 메시지 기반의 익명·비식별 통계 정보일 뿐, 실제 차량 상태 또는 운전습관에 대한 판단 자료로 사용될 수 없습니다.
+                                </p>
+                                <div class="flip-hint">💡 카드를 클릭하세요</div>
+                            </div>
+                            
+                            <!-- Back Side -->
+                            <div class="flip-card-back">
+                                <div class="step-number">+1</div>
+                                <div class="step-icon">🔔</div>
+                                <h3 class="step-title">번호판 구독 & 알림</h3>
+                                <p class="step-description">
+                                    관심 있는 번호판을 구독하면 새로운 메시지가 등록될 때 푸시 알림을 받을 수 있습니다.
+                                </p>
+                                <p class="step-description">
+                                    최대 10개 번호판 구독 가능. 개인정보는 수집되지 않으며 기기의 토큰만 저장됩니다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QR Generator Intro Section -->
+        <section class="qr-generator-intro-section full-screen-section" id="qr-generator-intro">
+            <div class="qr-intro-container">
+                <div class="qr-intro-badge">
+                    <span class="qr-badge-icon">📱</span>
+                    <span class="qr-badge-text">NEW FEATURE</span>
+                </div>
+                
+                <h2 class="qr-intro-title">번호판 QR 코드 생성기</h2>
+                <p class="qr-intro-subtitle">내 번호판을 QR 코드로 만들어 차량에 부착하세요</p>
+                
+                <div class="qr-intro-features">
+                    <div class="qr-feature-item">
+                        <span>🎨 커스텀 디자인</span>
+                    </div>
+                    <div class="qr-feature-item">
+                        <span>⚡ 빠른 생성</span>
+                    </div>
+                    <div class="qr-feature-item">
+                        <span>💬 안전 메시지 수신</span>
+                    </div>
+                </div>
+                
+                <div class="qr-intro-example">
+                    <div class="qr-example-preview">
+                        <div class="qr-example-mockup">
+                            <div class="qr-mockup-code">
+                                <svg id="qr-art" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+                                    <rect id="qr-frame" x="5" y="5" width="290" height="290" fill="white" rx="10"/>
+                                    <rect x="5" y="5" width="290" height="290" fill="none" stroke="#333" stroke-width="6" rx="10"/>
+                                    <g id="corner-tl"><rect x="20" y="20" width="60" height="60" fill="black"/><rect x="28" y="28" width="44" height="44" fill="white"/><rect x="36" y="36" width="28" height="28" fill="black"/></g>
+                                    <g id="corner-tr"><rect x="220" y="20" width="60" height="60" fill="black"/><rect x="228" y="28" width="44" height="44" fill="white"/><rect x="236" y="36" width="28" height="28" fill="black"/></g>
+                                    <g id="corner-bl"><rect x="20" y="220" width="60" height="60" fill="black"/><rect x="28" y="228" width="44" height="44" fill="white"/><rect x="36" y="236" width="28" height="28" fill="black"/></g>
+                                    <g id="puzzle-tiles">
+                                        <rect id="t1" x="100" y="20" width="25" height="25" fill="black"/><rect id="t2" x="130" y="20" width="25" height="25" fill="black"/><rect id="t3" x="160" y="20" width="25" height="25" fill="black"/><rect id="t4" x="190" y="20" width="25" height="25" fill="black"/>
+                                        <rect id="t5" x="100" y="50" width="25" height="25" fill="black"/><rect id="t6" x="130" y="50" width="55" height="25" fill="black"/><rect id="t7" x="190" y="50" width="25" height="25" fill="black"/>
+                                        <rect id="t8" x="100" y="80" width="25" height="25" fill="black"/><rect id="t9" x="160" y="80" width="25" height="25" fill="black"/><rect id="t10" x="190" y="80" width="25" height="25" fill="black"/>
+                                        <rect id="t11" x="100" y="120" width="25" height="25" fill="black"/><rect id="t12" x="130" y="120" width="25" height="25" fill="black"/><rect id="t13" x="160" y="120" width="25" height="55" fill="black"/><rect id="t14" x="190" y="120" width="25" height="25" fill="black"/>
+                                        <rect id="t15" x="100" y="150" width="55" height="25" fill="black"/><rect id="t16" x="190" y="150" width="25" height="25" fill="black"/>
+                                        <rect id="t17" x="100" y="190" width="25" height="25" fill="black"/><rect id="t18" x="130" y="190" width="25" height="25" fill="black"/><rect id="t19" x="160" y="190" width="25" height="25" fill="black"/><rect id="t20" x="190" y="190" width="25" height="25" fill="black"/>
+                                        <rect id="t21" x="100" y="220" width="25" height="55" fill="black"/><rect id="t22" x="130" y="220" width="25" height="25" fill="black"/><rect id="t23" x="160" y="220" width="55" height="25" fill="black"/>
+                                        <rect id="t24" x="130" y="250" width="25" height="25" fill="black"/><rect id="t25" x="190" y="250" width="25" height="25" fill="black"/>
+                                        <rect id="t26" x="20" y="100" width="25" height="25" fill="black"/><rect id="t27" x="50" y="100" width="25" height="55" fill="black"/><rect id="t28" x="20" y="130" width="25" height="25" fill="black"/><rect id="t29" x="20" y="160" width="55" height="25" fill="black"/><rect id="t30" x="20" y="190" width="25" height="25" fill="black"/><rect id="t31" x="50" y="190" width="25" height="25" fill="black"/>
+                                        <rect id="t32" x="255" y="100" width="25" height="25" fill="black"/><rect id="t33" x="255" y="130" width="25" height="55" fill="black"/><rect id="t34" x="220" y="130" width="25" height="25" fill="black"/><rect id="t35" x="220" y="160" width="25" height="25" fill="black"/><rect id="t36" x="255" y="190" width="25" height="25" fill="black"/><rect id="t37" x="220" y="190" width="25" height="55" fill="black"/><rect id="t38" x="255" y="220" width="25" height="55" fill="black"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="qr-mockup-plate">12가3456</div>
+                            <div class="qr-mockup-text">안전 메시지를 보내주세요!</div>
+                        </div>
+                    </div>
+                    <div class="qr-example-steps">
+                        <div class="qr-step-item">
+                            <span class="qr-step-num">1</span>
+                            <span class="qr-step-text">번호판 입력</span>
+                        </div>
+                        <div class="qr-step-arrow">→</div>
+                        <div class="qr-step-item">
+                            <span class="qr-step-num">2</span>
+                            <span class="qr-step-text">색상 & 문구 선택</span>
+                        </div>
+                        <div class="qr-step-arrow">→</div>
+                        <div class="qr-step-item">
+                            <span class="qr-step-num">3</span>
+                            <span class="qr-step-text">다운로드 & 부착</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="qr-generator.html" class="qr-intro-cta">
+                    <span class="qr-cta-text">QR 코드 생성하러 가기</span>
+                    <span class="qr-cta-arrow">→</span>
+                </a>
+                
+                <p class="qr-intro-notice">
+                    💡 생성된 QR코드를 잘보이는 곳에 부착하면, SAFE DRIVE를 모르는 운전자도 쉽게 내 번호판으로 안전 메시지를 전달할 수 있습니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- Referral Section - Golden Ticket -->
+        <section class="referral-section full-screen-section" id="referral">
+            <div class="referral-container">
+                <div class="referral-ticket">
+                    <div class="ticket-top">
+                        <div class="ticket-badge">
+                            <span class="emoji">🎫</span> REFERRAL PROGRAM
+                        </div>
+                        <div class="ticket-title">초대 이벤트</div>
+                        <div class="ticket-desc">고유 링크를 공유하고 보상 받으세요</div>
+                        <div class="ticket-condition">상세 조건은 참여버튼 클릭</div>
+                    </div>
+                    <div class="ticket-divider">
+                        <div class="ticket-hole"></div>
+                        <div class="ticket-dashed"></div>
+                        <div class="ticket-hole"></div>
+                    </div>
+                    <div class="ticket-rewards">
+                        <div class="ticket-reward-item">
+                            <div class="ticket-reward-left">
+                                <div class="ticket-reward-icon">☕</div>
+                                <div class="ticket-reward-text">
+                                    커피쿠폰
+                                    <span>2026.02.01 ~ 02.28</span>
+                                </div>
+                            </div>
+                            <a href="/referral.html" class="ticket-cta">참여 →</a>
+                        </div>
+                        <div class="ticket-reward-item ticket-reward-disabled">
+                            <div class="ticket-reward-left">
+                                <div class="ticket-reward-icon">🍗</div>
+                                <div class="ticket-reward-text">
+                                    치킨쿠폰
+                                    <span>아직 이벤트 기간이 아닙니다</span>
+                                </div>
+                            </div>
+                            <span class="ticket-cta-disabled">봉인중</span>
+                        </div>
+                        <div class="ticket-reward-item ticket-reward-disabled">
+                            <div class="ticket-reward-left">
+                                <div class="ticket-reward-icon">🛵</div>
+                                <div class="ticket-reward-text">
+                                    배달쿠폰
+                                    <span>아직 이벤트 기간이 아닙니다</span>
+                                </div>
+                            </div>
+                            <span class="ticket-cta-disabled">봉인중</span>
+                        </div>
+                        <div class="ticket-increase">📈이용자 증가에 따라 보상가치 증가 예정</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Road Stress Index Section -->
+        <section class="road-stress-section full-screen-section scrollable" id="road-stress">
+            <div class="stress-rain-canvas" id="stressRainCanvas"></div>
+            <div class="content-wrapper">
+                <h2 class="stress-title">실시간 도로 감정상태</h2>
+                
+                <div class="stress-bar-chart-container">
+                    <canvas id="stressBarChart"></canvas>
+                </div>
+
+                <div class="stress-comment-box">
+                    <div class="stress-comment-text" id="stressCommentText">
+                        데이터를 불러오는 중...
+                    </div>
+                </div>
+
+                <div class="stress-emotion-cta">오늘의 감정을 도로에 뿌려주세요</div>
+
+                <div class="stress-emotion-grid">
+                    <button class="stress-emotion-btn" data-value="-3">😍</button>
+                    <button class="stress-emotion-btn" data-value="-2">😎</button>
+                    <button class="stress-emotion-btn" data-value="-1">😄</button>
+                    <button class="stress-emotion-btn" data-value="0">😐</button>
+                    <button class="stress-emotion-btn" data-value="1">😤</button>
+                    <button class="stress-emotion-btn" data-value="2">😡</button>
+                    <button class="stress-emotion-btn" data-value="3">🤯</button>
+                </div>
+
+                <div class="stress-quote-display">
+                    <div class="stress-quote-text" id="stressQuoteText"></div>
+                </div>
+
+                <div class="stress-stats-container">
+                    <div class="stress-stat-box">
+                        <div class="stress-stat-value" id="stressTotalCount">0</div>
+                        <div class="stress-stat-label">오늘 감정 누적</div>
+                    </div>
+                    <div class="stress-stat-box">
+                        <div class="stress-stat-value" id="stressAngerPercent">0%</div>
+                        <div class="stress-stat-label">화남 상태</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Arrow -->
+            <div class="scroll-indicator">
+                <span class="scroll-arrow">↓</span>
+            </div>
+        </section>
+
+        <section class="leaderboard-section full-screen-section scrollable" id="mostLikedSection">
+            <div class="content-wrapper">
+                <h2>❤️ 인기 번호판 TOP 10</h2>
+                <div class="tabs" id="mostLikedTabs">
+                    <button class="tab" data-period="today">오늘</button>
+                    <button class="tab" data-period="week">이번주</button>
+                    <button class="tab" data-period="month">이번달</button>
+                    <button class="tab" data-period="year">올해</button>
+                    <button class="tab active" data-period="allTime">역대</button>
+                </div>
+                <div id="mostLikedLeaderboard" class="leaderboard-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>순위</th>
+                                <th>번호판</th>
+                                <th>좋아요</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mostLikedTable">
+                            <!-- Populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Scroll Arrow -->
+            <div class="scroll-indicator">
+                <span class="scroll-arrow">↓</span>
+            </div>
+        </section>
+
+
+
+        <section class="plate-types-section full-screen-section scrollable" id="plate-types">
+            <div class="content-wrapper">
+                <h2>🚘 번호판 종류</h2>
+                <br>
+                <div class="plates-grid">
+                    <!-- 1. 일반 차량 -->
+                    <div class="plate-flip-container">
+                        <div class="plate-flipper">
+                            <div class="plate-front plate-general">
+                                <span class="plate-text">123가 4567</span>
+                            </div>
+                            <div class="plate-back plate-general">
+                                <span class="plate-back-text">일반 차량</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. 일반 차량 변형 -->
+                    <div class="plate-flip-container">
+                        <div class="plate-flipper">
+                            <div class="plate-front plate-general-variant">
+                                <span class="plate-text">123가 4567</span>
+                            </div>
+                            <div class="plate-back plate-general-variant">
+                                <span class="plate-back-text">일반 차량 변형</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. 친환경/전기차 -->
+                    <div class="plate-flip-container">
+                        <div class="plate-flipper">
+                            <div class="plate-front plate-eco">
+                                <span class="plate-text">01가 0000</span>
+                            </div>
+                            <div class="plate-back plate-eco">
+                                <span class="plate-back-text">친환경/전기차</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. 사업용/영업용 -->
+                    <div class="plate-flip-container">
+                        <div class="plate-flipper">
+                            <div class="plate-front plate-commercial">
+                                <span class="plate-text-vertical">
+                                    <span class="vertical-prefix">경남</span>
+                                    <span class="horizontal-number">&nbsp;&nbsp;01가 0000</span>
+                                </span>
+                            </div>
+                            <div class="plate-back plate-commercial">
+                                <span class="plate-back-text">사업용/영업용</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. 고가 법인 업무용 -->
+                    <div class="plate-flip-container">
+                        <div class="plate-flipper">
+                            <div class="plate-front plate-corporate">
+                                <span class="plate-text">123가 4567</span>
+                            </div>
+                            <div class="plate-back plate-corporate">
+                                <span class="plate-back-text">고가 법인 업무용</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. 외교용 -->
+                    <div class="plate-flip-container">
+                        <div class="plate-flipper">
+                            <div class="plate-front plate-diplomatic">
+                                <span class="plate-text-vertical">
+                                    <span class="vertical-prefix">외교</span>
+                                    <span class="horizontal-number">&nbsp;&nbsp;01가 0000</span>
+                                </span>
+                            </div>
+                            <div class="plate-back plate-diplomatic">
+                                <span class="plate-back-text">외교용</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. 건설 기계용 -->
+                    <div class="plate-flip-container plate-flip-tall">
+                        <div class="plate-flipper">
+                            <div class="plate-front plate-construction">
+                                <span class="plate-text-two-rows">
+                                    <span class="row-top">
+                                        <span class="circle-yeong">영</span>
+                                        <span>경남</span>
+                                    </span>
+                                    <span class="row-bottom">01가 0000</span>
+                                </span>
+                            </div>
+                            <div class="plate-back plate-construction">
+                                <span class="plate-back-text">건설 기계용</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8. 신형 이륜차 -->
+                    <div class="plate-flip-container plate-flip-motorbike">
+                        <div class="plate-flipper">
+                            <div class="plate-front plate-motorbike-new">
+                                <span class="plate-text-motorbike">
+                                    <span class="motorbike-row1">1가2</span>
+                                    <span class="motorbike-row2">3456</span>
+                                </span>
+                            </div>
+                            <div class="plate-back plate-motorbike-new">
+                                <span class="plate-back-text">신형 이륜차</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. 구형 이륜차 -->
+                    <div class="plate-flip-container plate-flip-motorbike plate-motorbike-old">
+                        <div class="plate-flipper">
+                            <div class="plate-front">
+                                <span class="plate-text-motorbike">
+                                    <span class="motorbike-row1">서울 강남</span>
+                                    <span class="motorbike-row2-split">
+                                        <span class="motorbike-row2-left">가</span>
+                                        <span class="motorbike-row2-right">1234</span>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="plate-back">
+                                <span class="plate-back-text">구형 이륜차</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="full-screen-section" id="designated-lane">
+            <div class="content-wrapper">
+                <h2 class="horizontal-scroll-title">🚗 지정차로 안내</h2>
+                <p class="horizontal-scroll-subtitle">스크롤 하여 넘기기 →</p>
+                <div class="horizontal-scroll-wrapper">
+                    <div class="horizontal-scroll-container" id="horizontalScroll">
+                        <div class="horizontal-scroll-item">
+                            <div class="horizontal-scroll-badge">1 / 5</div>
+                            <img src="assets/img/designated_lane/designated_lane1.webp" alt="지정차로 안내 1">
+                        </div>
+                        <div class="horizontal-scroll-item">
+                            <div class="horizontal-scroll-badge">2 / 5</div>
+                            <img src="assets/img/designated_lane/designated_lane2.webp" alt="지정차로 안내 2">
+                        </div>
+                        <div class="horizontal-scroll-item">
+                            <div class="horizontal-scroll-badge">3 / 5</div>
+                            <img src="assets/img/designated_lane/designated_lane3.webp" alt="지정차로 안내 3">
+                        </div>
+                        <div class="horizontal-scroll-item">
+                            <div class="horizontal-scroll-badge">4 / 5</div>
+                            <img src="assets/img/designated_lane/designated_lane4.webp" alt="지정차로 안내 4">
+                        </div>
+                        <div class="horizontal-scroll-item">
+                            <div class="horizontal-scroll-badge">5 / 5</div>
+                            <img src="assets/img/designated_lane/designated_lane5.webp" alt="지정차로 안내 5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scroll Arrow -->
+            <div class="scroll-indicator">
+                <span class="scroll-arrow">↓</span>
+            </div>
+        </section>
+
+
+        <section class="legal-notice-section full-screen-section" id="legal-notice">
+            <div class="content-wrapper">
+                <h3>간략 안내</h3>
+                <div class="legal-items">
+                    <p>본 서비스는 교통안전 목적의 익명 무료 플랫폼입니다.</p>
+                    <p>회원가입·로그인 없이 이용되며, 개인 식별 정보는 수집하지 않습니다.</p>
+                    <p>입력은 운영자 제공 템플릿 메시지만 가능합니다.</p>
+                    <p>비방·오용·조작 및 비방을 목적으로한 번호판 캡처 외부 공유 금지</p>
+                    <p>오용으로 발생한 책임은 이용자 본인에게 있습니다.</p>
+                    <p>개인정보를 저장하지 않습니다. (이름·전화번호·계정 없음)</p>
+                    <p>저장되는 정보는 번호판 식별자 + 템플릿 카운트와 구독 시 기기 토큰 뿐이며 개인을 특정할 수 없습니다.</p>
+                    <p>Google Adsense 등 광고/쿠키 사용 가능하나, 운영자는 개인식별 정보에 접근하지 않습니다.</p>
+                    <p>카운트 정보는 일정 기간 후 삭제될 수 있습니다.</p>
+                    <p>번호판이 포함된 화면과 차량의 위치나 외형을 묘사한 정보를을 SNS 등에 게시 및 공유하게되면</p>
+                    <p>특정 차량이 식별될 수 있으며 법적 책임(명예훼손·모욕·개인정보 보호)은 이용자에게 발생합니다.</p>
+                    <p>템플릿 외 입력·악용·조작 등 목적 외 사용 금지</p>
+                    <p>운영자는 사용자 간 분쟁 및 외부 유포로 인한 문제에 책임지지 않습니다.</p>
+                    <p>본 서비스는 공공기관이 아닌 민간 플랫폼이며 영리를 목적으로 하며 법령을 준수합니다.</p>
+                    <p>서비스 초기에는 운영비용 문제로 서비스 운영 및 이벤트 진행이 조기 종료될 수 있습니다.</p>
+                    <p>상세 내용은 아래 이용약관, 개인정보처리방침, 법적고지 전문을 참고해주세요.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <div class="footer-content">
+                <nav class="footer-links">
+                    <a href="terms.html">이용약관</a> | <a href="privacy.html">개인정보처리방침</a> | <a href="legal.html">법적 고지</a> | <a href="faq.html">자주 묻는 질문</a>
+                </nav>
+                <a class="footer-contact-link" href="contact.html">문의</a>
+                <p class="copyright">© 2025 Hustle Up. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+
+    <div id="loadingIndicator" class="loading" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="notification" class="notification" style="display: none;"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // QR Sliding Puzzle Animation
+            (function initQRAnimation() {
+                const colors = [
+                    { fg: '#000000', bg: '#ffffff' },
+                    { fg: '#ff0000', bg: '#ffffff' },
+                    { fg: '#ff69b4', bg: '#000000' },
+                    { fg: '#ffd700', bg: '#000000' }
+                ];
+                let colorIndex = 0;
+                const tiles = document.querySelectorAll('#puzzle-tiles rect');
+                const frame = document.getElementById('qr-frame');
+                if (!tiles.length || !frame) return;
+                
+                const d = 0.15;
+                const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.2 });
+                tl.to('#t1', { x: 30, duration: d, ease: 'power2.inOut' })
+                  .to('#t2', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t3', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t4', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t5', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t7', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t8', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t9', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t10', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t11', { x: 30, duration: d, ease: 'power2.inOut' })
+                  .to('#t12', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t14', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t16', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t15', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t17', { x: 30, duration: d, ease: 'power2.inOut' })
+                  .to('#t18', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t19', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t20', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t22', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t24', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t25', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to(['#t1','#t5','#t11','#t15','#t17','#t19','#t22'], { x: 0, duration: d, ease: 'power2.inOut' })
+                  .to(['#t2','#t4','#t7','#t10','#t12','#t20'], { y: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
+                  .to(['#t3','#t9','#t14','#t25'], { x: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
+                  .to(['#t8','#t16','#t18','#t24'], { y: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
+                  .to('#t32', { y: 30, duration: d, ease: 'power2.inOut' })
+                  .to('#t34', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t33', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t35', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t36', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t37', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t38', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to(['#t32','#t33','#t35','#t37','#t38'], { y: 0, duration: d, ease: 'power2.inOut' })
+                  .to(['#t34','#t36'], { x: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
+                  .to('#t26', { y: 30, duration: d, ease: 'power2.inOut' })
+                  .to('#t27', { x: -25, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t28', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t29', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t30', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to('#t31', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
+                  .to(['#t26','#t29','#t30'], { y: 0, duration: d, ease: 'power2.inOut' })
+                  .to(['#t27','#t28','#t31'], { x: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
+                  .to('#t1, #t4, #t8, #t11, #t17, #t20', { x: 25, duration: d, ease: 'power2.inOut' })
+                  .to('#t2, #t5, #t9, #t12, #t18, #t22', { y: 25, duration: d, ease: 'power2.inOut' }, '-=0.1')
+                  .to('#t3, #t7, #t10, #t14, #t19, #t24', { x: -25, duration: d, ease: 'power2.inOut' }, '-=0.1')
+                  .to('#t6, #t13, #t15, #t16, #t23, #t25', { y: -25, duration: d, ease: 'power2.inOut' }, '-=0.1')
+                  .to('#puzzle-tiles rect', { x: 0, y: 0, duration: 0.2, ease: 'power2.inOut' });
+                
+                function cycleColors() {
+                    colorIndex = (colorIndex + 1) % colors.length;
+                    const scheme = colors[colorIndex];
+                    gsap.to(tiles, { fill: scheme.fg, duration: 0.4, ease: 'power2.inOut', stagger: 0.01 });
+                    gsap.to('#corner-tl rect:first-child, #corner-tr rect:first-child, #corner-bl rect:first-child, #corner-tl rect:nth-child(3), #corner-tr rect:nth-child(3), #corner-bl rect:nth-child(3)', { fill: scheme.fg, duration: 0.4, ease: 'power2.inOut' });
+                    gsap.to(frame, { fill: scheme.bg, duration: 0.4, ease: 'power2.inOut' });
+                    gsap.to('#corner-tl rect:nth-child(2), #corner-tr rect:nth-child(2), #corner-bl rect:nth-child(2)', { fill: scheme.bg, duration: 0.4, ease: 'power2.inOut' });
+                }
+                setInterval(cycleColors, 1200);
+            })();
+            
+            // Flip Card Animation
+            const flipCard = document.querySelector('.flip-card');
+            if (flipCard) {
+                flipCard.addEventListener('click', function() {
+                    this.classList.toggle('flipped');
+                });
+            }
+            
+            // Animated Road Lines
+            const road = document.getElementById('road');
+            if (road) {
+                const lineHeight = 100;
+                const gapHeight = 100;
+                const totalSegment = lineHeight + gapHeight;
+                const numLines = Math.ceil(window.innerHeight / totalSegment) + 2;
+                
+                for (let i = 0; i < numLines; i++) {
+                    const line = document.createElement('div');
+                    line.className = 'road-line';
+                    line.style.animationDelay = -(i * (totalSegment / window.innerHeight) * 2) + 's';
+                    road.appendChild(line);
+                }
+            }
+            
+            // Hero Search Button
+            const heroSearchBtn = document.getElementById('heroSearchBtn');
+            const plateInput = document.getElementById('plateInput');
+            if (heroSearchBtn && plateInput) {
+                heroSearchBtn.addEventListener('click', function() {
+                    const plateNumber = plateInput.value.trim();
+                    if (plateNumber) {
+                        window.location.href = `plate.html?plate=${encodeURIComponent(plateNumber)}`;
+                    }
+                });
+                
+                plateInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        heroSearchBtn.click();
+                    }
+                });
+                
+                // Plate input validation with visual feedback
+                let validationTimer = null;
+                plateInput.addEventListener('input', function(e) {
+                    // Clear previous timer
+                    if (validationTimer) {
+                        clearTimeout(validationTimer);
+                    }
+                    
+                    // Set new timer for validation feedback (300ms debounce)
+                    validationTimer = setTimeout(() => {
+                        const input = e.target.value.trim().replace(/\s+/g, '');
+                        if (input !== '') {
+                            // Simple Korean plate validation patterns
+                            const isValid = /^(\d{2,3}[가-힣][가-힣]?\d{4})$/.test(input) ||
+                                           /^([가-힣]{1,2}\d{2,3}[가-힣]\d{4})$/.test(input) ||
+                                           /^([가-힣]{3,7}\d{4})$/.test(input) ||
+                                           /^(\d[가-힣]\d{5})$/.test(input) ||
+                                           /^(영[가-힣]{2}\d{2}[가-힣]\d{4})$/.test(input);
+                            
+                            // Visual feedback for validation with outline effect
+                            if (isValid) {
+                                e.target.style.setProperty('outline', '3px solid #10b981', 'important');
+                                e.target.style.setProperty('outline-offset', '0px', 'important');
+                                e.target.style.setProperty('border-color', '#10b981', 'important');
+                                e.target.style.setProperty('box-shadow', '0 0 0 3px rgba(16, 185, 129, 0.2)', 'important');
+                            } else {
+                                e.target.style.setProperty('outline', '3px solid #ef4444', 'important');
+                                e.target.style.setProperty('outline-offset', '0px', 'important');
+                                e.target.style.setProperty('border-color', '#ef4444', 'important');
+                                e.target.style.setProperty('box-shadow', '0 0 0 3px rgba(239, 68, 68, 0.2)', 'important');
+                            }
+                        } else {
+                            // Reset styles when empty
+                            e.target.style.removeProperty('outline');
+                            e.target.style.removeProperty('outline-offset');
+                            e.target.style.removeProperty('border-color');
+                            e.target.style.removeProperty('box-shadow');
+                        }
+                    }, 300);
+                });
+                
+                // Reset styles on blur
+                plateInput.addEventListener('blur', function(e) {
+                    e.target.style.removeProperty('outline');
+                    e.target.style.removeProperty('outline-offset');
+                    e.target.style.removeProperty('border-color');
+                    e.target.style.removeProperty('box-shadow');
+                });
+            }
+            
+            // Active Users Counter is now handled by initLandingPage() in script.js
+            // which fetches real data from Firebase (updated by Cloud Function from GA4)
+            
+            // Mouse drag scrolling for horizontal scroll containers
+            function enableDragScroll(container) {
+                let isDown = false;
+                let startX;
+                let scrollLeft;
+
+                container.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    container.classList.add('dragging');
+                    startX = e.pageX - container.offsetLeft;
+                    scrollLeft = container.scrollLeft;
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    isDown = false;
+                    container.classList.remove('dragging');
+                });
+
+                container.addEventListener('mouseup', () => {
+                    isDown = false;
+                    container.classList.remove('dragging');
+                });
+
+                container.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - container.offsetLeft;
+                    const walk = (x - startX) * 2;
+                    container.scrollLeft = scrollLeft - walk;
+                });
+            }
+
+            // Enable drag scroll for both containers
+            const horizontalScroll = document.getElementById('horizontalScroll');
+            const laneTypeScroll = document.getElementById('laneTypeScroll');
+            
+            if (horizontalScroll) enableDragScroll(horizontalScroll);
+            if (laneTypeScroll) enableDragScroll(laneTypeScroll);
+
+            // GSAP Animation for announcement banner - slide to left
+            const announcementText = document.getElementById('announcementText');
+            
+            // Only animate if element exists
+            if (announcementText) {
+                // Sliding animation to the left - start from 0 so text is visible on load
+                gsap.fromTo(announcementText, 
+                    { x: '0%' },
+                    {
+                        x: '-100%',
+                        duration: 30,
+                        ease: 'none',
+                        repeat: -1
+                    }
+                );
+                
+                // Blinking animation (faster loop)
+                gsap.to(announcementText, {
+                    opacity: 0.3,
+                    duration: 0.4,
+                    ease: 'power1.inOut',
+                    repeat: -1,
+                    yoyo: true
+                });
+            }
+
+            // Navbar smooth scroll and mobile toggle
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mainNavbar = document.getElementById('mainNavbar');
+            const navLogo = document.getElementById('navLogo');
+
+            // Toggle mobile menu
+            if (navToggle) {
+                navToggle.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                    navToggle.classList.toggle('active');
+                });
+            }
+
+            // Logo click - scroll to top
+            if (navLogo) {
+                navLogo.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                    navMenu.classList.remove('active');
+                    navToggle.classList.remove('active');
+                });
+            }
+
+            // Smooth scroll for all nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    
+                    // Allow external links like contact.html to work normally
+                    if (href === 'contact.html' || !href.startsWith('#')) {
+                        return; // Let browser handle it
+                    }
+                    
+                    e.preventDefault();
+                    const targetId = href;
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        const navbarHeight = mainNavbar ? mainNavbar.offsetHeight : 60;
+                        const targetPosition = targetSection.offsetTop - navbarHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Close mobile menu after click
+                        navMenu.classList.remove('active');
+                        navToggle.classList.remove('active');
+                    }
+                });
+            });
+
+            // Get elements
+            const scrollIndicator = document.getElementById('scrollIndicator');
+            const footer = document.querySelector('.site-footer');
+            let lastScrollTop = 0;
+
+            // Add shadow to navbar on scroll and change colors
+            window.addEventListener('scroll', function() {
+                const navbar = document.getElementById('mainNavbar');
+                if (!navbar) return;
+                
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight;
+                const clientHeight = window.innerHeight;
+                
+                // Navbar color change on scroll
+                if (scrollTop > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+                
+                lastScrollTop = scrollTop;
+            });
+
+            // Hide hero scroll indicator on scroll
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                if (scrollTop > 100) {
+                    scrollIndicator.classList.add('hidden');
+                } else {
+                    scrollIndicator.classList.remove('hidden');
+                }
+            });
+            
+            // Click handlers for all scroll indicators
+            const allScrollIndicators = document.querySelectorAll('.scroll-indicator');
+            allScrollIndicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', function() {
+                    const currentSection = indicator.closest('.full-screen-section');
+                    const allSections = document.querySelectorAll('.full-screen-section');
+                    const currentIndex = Array.from(allSections).indexOf(currentSection);
+                    
+                    // Scroll to next section if available
+                    if (currentIndex < allSections.length - 1) {
+                        allSections[currentIndex + 1].scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+            
+            // Blur & Focus Animation - Detect active sections and update body background
+            function updateActiveSections() {
+                const sections = document.querySelectorAll('.full-screen-section');
+                const windowHeight = window.innerHeight;
+                const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+                
+                let mostVisibleSection = null;
+                let maxVisibility = 0;
+                
+                sections.forEach((section) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    // Calculate how much of the section is visible
+                    const visibleTop = Math.max(scrollPosition, sectionTop);
+                    const visibleBottom = Math.min(scrollPosition + windowHeight, sectionTop + sectionHeight);
+                    const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+                    
+                    // Check if section is in viewport (with some threshold)
+                    if (scrollPosition >= sectionTop - windowHeight / 2 && 
+                        scrollPosition < sectionTop + sectionHeight - windowHeight / 2) {
+                        section.classList.add('active');
+                        
+                        // Track the most visible section
+                        if (visibleHeight > maxVisibility) {
+                            maxVisibility = visibleHeight;
+                            mostVisibleSection = section;
+                        }
+                    } else {
+                        section.classList.remove('active');
+                    }
+                });
+                
+                // Update body background to match the most visible section
+                if (mostVisibleSection) {
+                    const computedStyle = window.getComputedStyle(mostVisibleSection);
+                    const background = computedStyle.background || computedStyle.backgroundColor;
+                    document.body.style.background = background;
+                }
+            }
+            
+            // Initialize on load
+            updateActiveSections();
+            
+            // Update on scroll - use window scroll
+            window.addEventListener('scroll', updateActiveSections);
+            
+            // Update on resize
+            window.addEventListener('resize', updateActiveSections);
+        });
+
+        // ===== ROAD STRESS SECTION =====
+        let stressBarChart;
+        const stressQuotes = [
+            "깜빡이를 쓰는 순간, 운전 실력 50% 좋아보이는 기적.",
+            "급정거하고 \"아 미안요~\" 손 들면 다 해결된다고 믿는 사람들.",
+            "1차로 정속주행? 그건 차가 아니라 이동식 벽이다.",
+            "하이빔 키면 멋있는 줄 아는 듯한 뒤차들.",
+            "네비보다 빠른길을 안다는 당신과 실시간 교통량 데이터 반영 네비의 대결.",
+            "차선을 바꾸면 바꾸기전 차선이 더 빨리 가는 불변의 법칙.",
+            "끼어들기 하는 순간 표정이 왜 이렇게 당당함?",
+            "방향지시등 켰더니 바로 끼어드는 영피프티.",
+            "와이퍼가 울 때 내 멘탈도 같이 울고 있음.",
+            "2차로 비어도 굳이 1차로 기어가는 사람들.",
+            "도로 위 빌런들의 공통점: 절대 자기 잘못 아님.",
+            "초보운전 표지 붙이면 뒤차들이 갑자기 천사됨.",
+            "세차한 날에만 비 오는 건 국가적 음모임.",
+            "차 안에서 먹는 간식은 이상하게 두 배로 맛있음.",
+            "너랑 있으면 신호 기다리는 시간마저 아깝지가 않아.",
+            "안전거리 유지해야 하는데… 너랑은 좀 붙어 있고 싶네.",
+            "속도 줄여도 돼. 좀 더 오래 같이 있고 싶어서.",
+            "운전자 중 약 70%가 자신의 운전 실력을 '상위 25%'라고 믿는다.",
+            "급가속·급브레이크 습관은 연비를 최대 40%까지 낮춘다.",
+            "운전 중 욕을 참는 건 복근 운동보다 어렵다.",
+            "출근길 신호등은 항상 나에게만 적대적이다.",
+            "비 오는 날 사고 발생률은 맑은 날의 2~3배 증가한다.",
+            "야간 운전 사고 치사율은 주간보다 3배 이상 높다.",
+            "과속은 위험하다. 몰랐는가? 놀랍게도 사실이다. 하지마라.",
+            "운전 중 휴대폰을 보면 사망에 이를 수 도 있다. 몰랐는가? 놀랍게도 사실이다. 하지마라.",
+            "깜빡이는 켜면 켜진다. 기술의 기적 수준이다.",
+            "차선은 사람이 꾸민 예술이 아니라 따라가라고 그린 거다.",
+            "도로교통법은 피로 쓰여졌다.",
+            "양보는 약함이 아니라 여유다. 빠른 차는 자랑이지만, 안전운전은 인격이다.",
+            "속도가 빠르면 시야가 좁아진다. 인생도 같다.",
+            "운전은 기술이지만, 안전은 태도다.",
+            "오늘의 작은 방심이, 누군가의 내일을 지워버릴 수 있다.",
+            "빨리 가는 건 선택이지만, 돌아오지 못하는 건 비극이다.",
+            "'설마 괜찮겠지'는 가장 치명적인 착각이다.",
+            "무사히 도착한 하루는 감사의 이유가 된다.",
+            "아빠 천천히 와❤️ 사랑해~",
+            "엄마 조심히 와❤️ 사랑해~",
+            "아들 천천히 와❤️ 사랑해~",
+            "딸 천천히 와❤️ 사랑해~"
+        ];
+        
+        const stressComments = [
+            { max: 10, text: '😍 완벽해요! 도로가 천국이에요' },
+            { max: 20, text: '😎 최고의 드라이빙 날씨네요' },
+            { max: 30, text: '😄 기분 좋은 운전 되세요' },
+            { max: 40, text: '🙂 평온한 도로 상태입니다' },
+            { max: 50, text: '😐 보통의 하루네요' },
+            { max: 60, text: '😕 조금 답답한 상황이에요' },
+            { max: 70, text: '😤 짜증나는 교통 상황입니다' },
+            { max: 80, text: '😡 오늘 한국의 도로는 화나 있어요' },
+            { max: 90, text: '🤬 매우 위험한 상황입니다' },
+            { max: 100, text: '🤯 긴장하세요 무슨일이 날것 같아요' }
+        ];
+
+        let currentStressQuoteIndex = -1;
+        let stressQuoteInterval;
+
+        // Initialize stress bar chart
+        function initStressBarChart() {
+            const ctx = document.getElementById('stressBarChart').getContext('2d');
+            stressBarChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['😍', '😎', '😄', '😐', '😤', '😡', '🤯'],
+                    datasets: [{
+                        label: '감정 분포',
+                        data: [0, 0, 0, 0, 0, 0, 0],
+                        backgroundColor: [
+                            'rgba(34, 197, 94, 0.8)',
+                            'rgba(52, 211, 153, 0.8)',
+                            'rgba(132, 204, 22, 0.8)',
+                            'rgba(234, 179, 8, 0.8)',
+                            'rgba(249, 115, 22, 0.8)',
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(220, 38, 38, 0.8)'
+                        ],
+                        borderColor: [
+                            'rgba(34, 197, 94, 1)',
+                            'rgba(52, 211, 153, 1)',
+                            'rgba(132, 204, 22, 1)',
+                            'rgba(234, 179, 8, 1)',
+                            'rgba(249, 115, 22, 1)',
+                            'rgba(239, 68, 68, 1)',
+                            'rgba(220, 38, 38, 1)'
+                        ],
+                        borderWidth: 2,
+                        borderRadius: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                color: 'rgba(255,255,255,0.6)',
+                                font: { size: 11 }
+                            },
+                            grid: { color: 'rgba(255,255,255,0.1)' }
+                        },
+                        x: {
+                            ticks: {
+                                color: 'rgba(255,255,255,0.8)',
+                                font: { size: 18 }
+                            },
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        // Display quote with letter-by-letter animation
+        function displayStressQuote() {
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * stressQuotes.length);
+            } while (newIndex === currentStressQuoteIndex && stressQuotes.length > 1);
+            
+            currentStressQuoteIndex = newIndex;
+            const quote = stressQuotes[currentStressQuoteIndex];
+            
+            const quoteElement = document.getElementById('stressQuoteText');
+            quoteElement.textContent = '';
+            
+            const chars = quote.split('');
+            const span = document.createElement('span');
+            
+            chars.forEach((char) => {
+                const charSpan = document.createElement('span');
+                charSpan.textContent = char;
+                charSpan.style.opacity = '0';
+                span.appendChild(charSpan);
+            });
+            
+            quoteElement.appendChild(span);
+            
+            gsap.to(span.children, {
+                opacity: 1,
+                duration: 0.03,
+                stagger: 0.03,
+                ease: 'none'
+            });
+        }
+
+        // Start quote rotation
+        function startStressQuoteRotation() {
+            displayStressQuote();
+            stressQuoteInterval = setInterval(() => {
+                displayStressQuote();
+            }, 10000);
+        }
+
+        // Format number with commas
+        function formatNumberWithCommas(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Counter animation with comma formatting
+        function animateCounter(element, target) {
+            const start = parseInt(element.textContent.replace(/,/g, '')) || 0;
+            const duration = 1000;
+            const startTime = performance.now();
+            
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const current = Math.floor(start + (target - start) * progress);
+                element.textContent = formatNumberWithCommas(current);
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            requestAnimationFrame(update);
+        }
+
+        // Rain effect variables
+        let stressActiveParticles = 0;
+        const stressMaxParticles = 12;
+        let stressLastClickTime = 0;
+        const stressClickCooldown = 100;
+
+        // Create rain particles
+        function createStressRainParticles(emoji) {
+            const container = document.getElementById('stressRainCanvas');
+            if (!container) return;
+            
+            if (stressActiveParticles >= stressMaxParticles) return;
+            
+            const particleCount = 2;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'stress-rain-particle';
+                particle.textContent = emoji;
+                
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = '-50px';
+                
+                const duration = Math.random() * 0.4 + 0.8;
+                particle.style.animationDuration = duration + 's';
+                
+                container.appendChild(particle);
+                stressActiveParticles++;
+                
+                setTimeout(() => {
+                    particle.remove();
+                    stressActiveParticles--;
+                }, duration * 1000);
+            }
+        }
+
+        // Calculate anger percentage
+        function calculateStressAngerPercent(emotionCounts, totalCount) {
+            if (totalCount === 0) return 0;
+            
+            const negativeCount = emotionCounts[4] + emotionCounts[5] + emotionCounts[6];
+            const positiveCount = emotionCounts[0] + emotionCounts[1] + emotionCounts[2];
+            
+            const angerScore = (negativeCount / totalCount) * 100;
+            const positiveScore = (positiveCount / totalCount) * 100;
+            
+            let angerPercent = angerScore - (positiveScore * 0.5);
+            angerPercent = Math.max(0, Math.min(100, angerPercent));
+            
+            return Math.round(angerPercent);
+        }
+
+        // Get comment based on anger percentage
+        function getStressComment(angerPercent) {
+            for (let i = 0; i < stressComments.length; i++) {
+                if (angerPercent <= stressComments[i].max) {
+                    return stressComments[i].text;
+                }
+            }
+            return stressComments[stressComments.length - 1].text;
+        }
+
+        // Update stress display
+        function updateStressDisplay(emotionCounts, totalCount) {
+            // Update bar chart
+            stressBarChart.data.datasets[0].data = emotionCounts;
+            stressBarChart.update('none');
+
+            // Update total count with animation
+            animateCounter(document.getElementById('stressTotalCount'), totalCount);
+
+            // Calculate and update anger percentage
+            const angerPercent = calculateStressAngerPercent(emotionCounts, totalCount);
+            document.getElementById('stressAngerPercent').textContent = `${angerPercent}%`;
+
+            // Update comment
+            const comment = getStressComment(angerPercent);
+            document.getElementById('stressCommentText').textContent = comment;
+
+            // Pulse animation
+            const commentBox = document.querySelector('.stress-comment-box');
+            commentBox.classList.remove('pulse');
+            void commentBox.offsetWidth;
+            commentBox.classList.add('pulse');
+        }
+
+        // Listen to Firebase for real-time updates
+        function initStressFirebase() {
+            const stressRef = firebase.database().ref('roadStress');
+            
+            stressRef.on('value', (snapshot) => {
+                const data = snapshot.val() || {
+                    emotionCounts: [0, 0, 0, 0, 0, 0, 0],
+                    totalCount: 0,
+                    lastResetDate: null
+                };
+                
+                updateStressDisplay(data.emotionCounts, data.totalCount);
+            });
+        }
+
+        // Check if it's midnight in Korean time and reset if needed
+        function checkAndResetStressAtMidnight() {
+            const now = new Date();
+            // Convert to Korean time (UTC+9)
+            const koreanTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+            const koreanHour = koreanTime.getUTCHours();
+            const koreanMinute = koreanTime.getUTCMinutes();
+            
+            // Only reset if it's between 00:00 and 00:01 KST
+            if (koreanHour === 0 && koreanMinute === 0) {
+                const stressRef = firebase.database().ref('roadStress');
+                
+                stressRef.transaction((current) => {
+                    if (current === null) {
+                        return {
+                            emotionCounts: [0, 0, 0, 0, 0, 0, 0],
+                            totalCount: 0,
+                            lastResetDate: getKoreanDateString()
+                        };
+                    }
+                    
+                    const currentKoreanDate = getKoreanDateString();
+                    const lastResetDate = current.lastResetDate || null;
+                    
+                    // Only reset if we haven't already reset today
+                    if (lastResetDate !== currentKoreanDate) {
+                        return {
+                            emotionCounts: [0, 0, 0, 0, 0, 0, 0],
+                            totalCount: 0,
+                            lastResetDate: currentKoreanDate
+                        };
+                    }
+                    
+                    // No change needed
+                    return current;
+                });
+            }
+        }
+
+        // Get current date in Korean timezone (YYYY-MM-DD format)
+        function getKoreanDateString() {
+            const now = new Date();
+            // Convert to Korean time (UTC+9)
+            const koreanTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+            const year = koreanTime.getUTCFullYear();
+            const month = String(koreanTime.getUTCMonth() + 1).padStart(2, '0');
+            const day = String(koreanTime.getUTCDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // Start periodic check for midnight reset (check every minute)
+        function startMidnightResetCheck() {
+            // Check every minute for midnight
+            setInterval(checkAndResetStressAtMidnight, 60000);
+        }
+
+        // Handle emotion button clicks
+        function handleStressEmotionClick(value, emoji) {
+            const currentTime = Date.now();
+            
+            // Throttle clicks
+            if (currentTime - stressLastClickTime < stressClickCooldown) {
+                return;
+            }
+            
+            stressLastClickTime = currentTime;
+            
+            // Create rain effect
+            createStressRainParticles(emoji);
+            
+            // Update Firebase
+            const stressRef = firebase.database().ref('roadStress');
+            
+            stressRef.transaction((current) => {
+                if (current === null) {
+                    return {
+                        emotionCounts: [0, 0, 0, 0, 0, 0, 0],
+                        totalCount: 0
+                    };
+                }
+                
+                const index = parseInt(value) + 3;
+                current.emotionCounts[index] = (current.emotionCounts[index] || 0) + 1;
+                current.totalCount = (current.totalCount || 0) + 1;
+                
+                return current;
+            });
+        }
+
+        // Initialize stress section
+        if (document.getElementById('stressBarChart')) {
+            initStressBarChart();
+            startStressQuoteRotation();
+            
+            // Wait for Firebase to be ready
+            if (typeof firebase !== 'undefined') {
+                initStressFirebase();
+                startMidnightResetCheck();
+            } else {
+                window.addEventListener('load', () => {
+                    if (typeof firebase !== 'undefined') {
+                        initStressFirebase();
+                        startMidnightResetCheck();
+                    }
+                });
+            }
+            
+            // Add click handlers to emotion buttons
+            document.querySelectorAll('.stress-emotion-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const value = this.getAttribute('data-value');
+                    const emoji = this.textContent;
+                    handleStressEmotionClick(value, emoji);
+                });
+            });
+        }
+    </script>
+    <script src="script.js"></script>
+    
+    <!-- Voice Input Modal with Candidate Selection -->
+    <div id="voiceInputModal" class="voice-modal" aria-hidden="true">
+        <div class="voice-overlay" onclick="VoiceInput.close()"></div>
+        <div class="voice-sheet" id="voiceSheet">
+            <div class="voice-handle"></div>
+            
+            <!-- Step 1: Guide + Listening -->
+            <div id="voiceStep1">
+                <p id="voiceGuideText" class="voice-text">
+                    번호판을 말해주세요<br>
+                    <small style="color:#8b949e">예: '<strong>영 구 루 삼 삼 육 삼</strong>' → 09루3363<br>천천히, 띄어 말해주세요</small>
+                </p>
+                
+                <p id="voiceListeningText" class="voice-text" style="display:none;">
+                    듣는 중<span class="animated-dots"></span>
+                </p>
+                
+                <svg id="voiceMicIcon" width="72" height="72" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 18.75C15.3137 18.75 18 16.0637 18 12.75V11.25M12 18.75C8.68629 18.75 6 16.0637 6 12.75V11.25M12 18.75V22.5M8.25 22.5H15.75M12 15.75C10.3431 15.75 9 14.4069 9 12.75V4.5C9 2.84315 10.3431 1.5 12 1.5C13.6569 1.5 15 2.84315 15 4.5V12.75C15 14.4069 13.6569 15.75 12 15.75Z" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                
+                <button class="voice-cancel-btn" id="voiceCancelStep1" onclick="VoiceInput.close()">취소</button>
+            </div>
+            
+            <!-- Step 2: Candidate Selection -->
+            <div id="voiceStep2" style="display:none; text-align:center;">
+                <p class="voice-text" style="margin-bottom:16px; color:#22c55e; font-weight:700;">
+                    ✓ 인식 완료! 선택해주세요
+                </p>
+                
+                <div id="voiceCandidates" class="voice-candidates">
+                    <!-- Filled by JS -->
+                </div>
+                
+                <button class="voice-cancel-btn" style="margin-top:20px;" onclick="VoiceInput.restart()">
+                    다시 말하기
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ===== In-app browser escape bar (Chrome/Safari) ===== -->
+    <div id="openInBrowserBar" class="oib-hidden" role="dialog" aria-live="polite" aria-label="브라우저에서 열기 안내">
+        <div class="oib-card">
+            <div class="oib-header">
+                <div class="oib-title">앱 내 브라우저에서는 기능이 제한될 수 있어요</div>
+                <button type="button" class="oib-close" id="oibCloseBtn" aria-label="닫기">×</button>
+            </div>
+            <div class="oib-desc">추천 보상, 음성 인식/알림 등 일부 기능이 앱 내 브라우저(카카오톡/라인/왓츠앱 등)에서 불안정할 수 있습니다. 아래 버튼으로 외부 브라우저에서 열어주세요.</div>
+            <div class="oib-actions" id="oibActions">
+                <!-- Buttons injected by JS depending on platform -->
+            </div>
+            <div class="oib-hint" id="oibHint" style="display:none;"></div>
+        </div>
+    </div>
+    
+    <style>
+        #openInBrowserBar.oib-hidden { display:none; }
+        #openInBrowserBar {
+            position: fixed; left: 0; right: 0; bottom: 0;
+            z-index: 99999;
+            padding: 12px;
+            background: rgba(0,0,0,0.35);
+            backdrop-filter: blur(2px);
+        }
+        .oib-card {
+            max-width: 720px;
+            margin: 0 auto;
+            border-radius: 14px;
+            background: #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.20);
+            padding: 12px 12px 10px 12px;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        }
+        .oib-header {
+            display:flex; align-items:center; justify-content:space-between;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .oib-title { font-size: 14px; font-weight: 700; line-height: 1.2; }
+        .oib-close {
+            border: 0; background: transparent; font-size: 22px; cursor: pointer;
+            padding: 2px 8px; line-height: 1;
+            color: #444;
+        }
+        .oib-desc {
+            font-size: 12px;
+            color: #444;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+        .oib-actions {
+            display:flex; flex-wrap: wrap; gap: 8px;
+        }
+        .oib-btn {
+            display:inline-flex; align-items:center; gap: 8px;
+            border-radius: 12px;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            background: #fff;
+            cursor:pointer;
+            font-size: 13px;
+            font-weight: 700;
+            color: #111;
+            text-decoration: none;
+            user-select: none;
+        }
+        .oib-btn:active { transform: translateY(1px); }
+        .oib-btn.primary {
+            border-color: #111;
+        }
+        .oib-icon {
+            width: 18px; height: 18px; display:inline-block;
+        }
+        .oib-hint {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #333;
+            line-height: 1.35;
+            padding: 8px 10px;
+            border-radius: 10px;
+            background: #f6f6f6;
+            border: 1px solid #eee;
+            white-space: pre-line;
+        }
+    </style>
+    
+    <script>
+        (function () {
+            // ---- Basic detection (in-app browsers are best-effort heuristics) ----
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            const isAndroid = /Android/i.test(ua);
+            const isIOS = /iPad|iPhone|iPod/i.test(ua);
+            
+            // Common in-app browser markers (KakaoTalk, LINE, WhatsApp, Instagram, Facebook, etc.)
+            const isInApp =
+                /KAKAOTALK|KakaoTalk/i.test(ua) ||
+                /Line/i.test(ua) ||
+                /WhatsApp/i.test(ua) ||
+                /Instagram/i.test(ua) ||
+                /FBAN|FBAV|FBIOS|FB_IAB/i.test(ua) ||
+                /NAVER|Daum|KAKAOSTORY|KAKAOWEBVIEW/i.test(ua);
+            
+            // If you want the bar only inside in-app browsers, keep this condition.
+            if (!isInApp) return;
+            
+            const bar = document.getElementById("openInBrowserBar");
+            const actions = document.getElementById("oibActions");
+            const hint = document.getElementById("oibHint");
+            const closeBtn = document.getElementById("oibCloseBtn");
+            const currentUrl = location.href;
+            
+            // Browser icons from assets
+            const chromeIcon = `<img src="/assets/img/chrome.png" class="oib-icon" alt="Chrome" />`;
+            const safariIcon = `<img src="/assets/img/safari.png" class="oib-icon" alt="Safari" />`;
+            
+            function showHint(text) {
+                hint.textContent = text;
+                hint.style.display = "block";
+            }
+            
+            function makeButton(label, iconSvg, onClick, primary) {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "oib-btn" + (primary ? " primary" : "");
+                btn.innerHTML = iconSvg + "<span>" + label + "</span>";
+                btn.addEventListener("click", onClick, { passive: true });
+                return btn;
+            }
+            
+            // ---- Android: "Open in Chrome" (Intent). Must be user-tapped ----
+            function openAndroidChromeIntent() {
+                // Convert https://example.com/path?x=1 to intent://example.com/path?x=1#Intent;scheme=https;package=com.android.chrome;end
+                const urlObj = new URL(currentUrl);
+                const hostAndPath = urlObj.host + urlObj.pathname + urlObj.search + urlObj.hash;
+                const intentUrl = "intent://" + hostAndPath + "#Intent;scheme=" + urlObj.protocol.replace(":", "") + ";package=com.android.chrome;end";
+                
+                // Try intent first; fallback to normal URL if blocked.
+                try {
+                    location.href = intentUrl;
+                    setTimeout(() => { location.href = currentUrl; }, 900);
+                } catch (e) {
+                    location.href = currentUrl;
+                }
+            }
+            
+            // ---- iOS: "Open in Safari" cannot be forced; we provide instructions + copy link ----
+            async function openIOSInSafariGuide() {
+                // Attempt to open a new tab (some in-app browsers then show "Open in Safari" UI)
+                try { window.open(currentUrl, "_blank"); } catch (e) {}
+                
+                // Provide copy-to-clipboard + clear instructions
+                let copied = false;
+                try {
+                    await navigator.clipboard.writeText(currentUrl);
+                    copied = true;
+                } catch (e) {}
+                
+                showHint((copied ? "현재 링크를 복사했어요.\n" : "") +
+                    "iPhone에서는 웹사이트가 Safari를 강제로 열 수 없습니다.\n" +
+                    "앱 오른쪽 상단 '…' 또는 공유 버튼 → 'Safari에서 열기'를 선택해 주세요.");
+            }
+            
+            // ---- iOS: "Open in Chrome(최적화)" via googlechrome:// scheme (if installed) ----
+            function openIOSInChromeScheme() {
+                // Only works if Chrome is installed. Must be user-tapped. Provide fallback.
+                const urlObj = new URL(currentUrl);
+                const chromeScheme = (urlObj.protocol === "https:") ? "googlechromes:" : "googlechrome:";
+                const chromeUrl = chromeScheme + "//" + urlObj.host + urlObj.pathname + urlObj.search + urlObj.hash;
+                const start = Date.now();
+                
+                // Try to navigate to Chrome
+                location.href = chromeUrl;
+                
+                // If Chrome not installed, user stays here; fallback after a moment.
+                setTimeout(() => {
+                    // If we are still on the page after ~900ms, show guidance
+                    if (Date.now() - start < 2000) {
+                        showHint("Chrome 앱이 설치되어 있지 않거나, 앱 내 브라우저에서 전환이 차단될 수 있어요.\n" +
+                            "Chrome 설치 후 다시 시도하거나, 'Safari에서 열기'를 이용해 주세요.");
+                    }
+                }, 900);
+            }
+            
+            // ---- Render buttons by platform ----
+            actions.innerHTML = "";
+            if (isAndroid) {
+                actions.appendChild(makeButton("크롬에서 열기", chromeIcon, openAndroidChromeIntent, true));
+            } else if (isIOS) {
+                actions.appendChild(makeButton("Safari에서 열기", safariIcon, openIOSInSafariGuide, true));
+                actions.appendChild(makeButton("Open in Chrome(최적화)", chromeIcon, openIOSInChromeScheme, false));
+            } else {
+                // Other platforms: just offer a normal "Open in default browser" pattern
+                actions.appendChild(makeButton("새 탭에서 열기", chromeIcon, () => window.open(currentUrl, "_blank"), true));
+            }
+            
+            // Close behavior + session persistence (avoid showing repeatedly in same session)
+            const key = "oibDismissed";
+            if (sessionStorage.getItem(key) === "1") return;
+            
+            bar.classList.remove("oib-hidden");
+            
+            closeBtn.addEventListener("click", () => {
+                sessionStorage.setItem(key, "1");
+                bar.classList.add("oib-hidden");
+            }, { passive: true });
+        })();
+    </script>
+    <!-- ===== End: In-app browser escape bar ===== -->
+    
+    <!-- Referral System -->
+    <script src="/js/referral-core.js"></script>
+    <script>
+        // Referral 초기화 (ID 생성 + ref 캡처)
+        if (typeof ReferralCore !== 'undefined') {
+            ReferralCore.initOnIndexLoad();
+        }
+    </script>
+</body>
+</html>
