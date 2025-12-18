@@ -63,12 +63,14 @@
     },
     "subscriptions": {
       ".read": true,
+      ".write": false,
       "$token": {
-        ".write": "auth != null && auth.token.firebase.sign_in_provider === 'anonymous'",
+        ".read": true,
+        ".write": false,
         "plates": {
           ".validate": "newData.isString() || (newData.hasChildren() && newData.val().length <= 10)"
         },
-        "timestamp": {
+        "updatedAt": {
           ".validate": "newData.isNumber()"
         }
       }
@@ -161,6 +163,16 @@
         }
       }
     },
+    "plateSubscribers": {
+      ".read": false,
+      ".write": false,
+      "$plateNumber": {
+        "$token": {
+          ".read": false,
+          ".write": false
+        }
+      }
+    },
     "referrals": {
       "users": {
         ".read": true,
@@ -184,6 +196,7 @@
         ".write": false,
         "daily": {
           "$date": {
+            ".indexOn": ".value",
             "$referrerId": {
               ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 50"
             }

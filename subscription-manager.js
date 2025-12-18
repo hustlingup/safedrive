@@ -259,7 +259,7 @@ if (typeof SubscriptionManager === 'undefined') {
         },
         
         /**
-         * Sync notification settings to Firebase
+         * Sync notification settings to Firebase via Cloud Function
          */
         async syncNotificationSettingsToFirebase() {
             try {
@@ -267,19 +267,22 @@ if (typeof SubscriptionManager === 'undefined') {
                 if (!token) return;
                 
                 const subscribed = this.getSubscribedPlates();
-                const settings = this.getNotificationSettings();
                 
                 // Only include plates with notifications enabled
                 const enabledPlates = subscribed.filter(plate => this.isNotificationEnabled(plate));
                 
-                const subscriptionData = {
-                    plates: enabledPlates,
-                    allSubscribed: subscribed,
-                    updatedAt: firebase.database.ServerValue.TIMESTAMP
-                };
+                // Use Cloud Function for secure subscription sync
+                const syncSubscriptions = firebase.functions().httpsCallable('syncSubscriptions');
+                const result = await syncSubscriptions({
+                    token: token,
+                    plates: enabledPlates
+                });
                 
-                await firebase.database().ref(`subscriptions/${token}`).set(subscriptionData);
-                console.log('Notification settings synced to Firebase');
+                if (result.data && result.data.success) {
+                    console.log('Notification settings synced to Firebase via Cloud Function');
+                } else {
+                    console.error('Sync failed:', result.data);
+                }
             } catch (error) {
                 console.error('Error syncing notification settings:', error);
             }
@@ -387,11 +390,16 @@ if (typeof SubscriptionManager === 'undefined') {
             if (this.saveSubscribedPlates(subscribed)) {
                 this.renderSubscribedList();
                 
-                // Update Firebase
+                // Update Firebase via Cloud Function
                 try {
                     const token = await this.getFCMToken();
                     if (token) {
-                        await firebase.database().ref(`subscriptions/${token}/plates/${plate}`).remove();
+                        const manageSubscription = firebase.functions().httpsCallable('manageSubscription');
+                        await manageSubscription({
+                            token: token,
+                            plateNumber: plate,
+                            action: 'unsubscribe'
+                        });
                         console.log(`Removed subscription for ${plate}`);
                     }
                 } catch (error) {
@@ -573,7 +581,7 @@ if (typeof SubscriptionManager === 'undefined') {
         },
         
         /**
-         * Sync subscriptions to Firebase
+         * Sync subscriptions to Firebase via Cloud Function
          */
         async syncSubscriptionsToFirebase(token) {
             const subscribed = this.getSubscribedPlates();
@@ -582,14 +590,18 @@ if (typeof SubscriptionManager === 'undefined') {
                 // Only include plates with notifications enabled
                 const enabledPlates = subscribed.filter(plate => this.isNotificationEnabled(plate));
                 
-                const subscriptionData = {
-                    plates: enabledPlates,
-                    allSubscribed: subscribed,
-                    updatedAt: firebase.database.ServerValue.TIMESTAMP
-                };
+                // Use Cloud Function for secure subscription sync
+                const syncSubscriptions = firebase.functions().httpsCallable('syncSubscriptions');
+                const result = await syncSubscriptions({
+                    token: token,
+                    plates: enabledPlates
+                });
                 
-                await firebase.database().ref(`subscriptions/${token}`).set(subscriptionData);
-                console.log('Subscriptions synced to Firebase (enabled:', enabledPlates.length, '/ total:', subscribed.length, ')');
+                if (result.data && result.data.success) {
+                    console.log('Subscriptions synced to Firebase via Cloud Function (enabled:', enabledPlates.length, '/ total:', subscribed.length, ')');
+                } else {
+                    console.error('Sync failed:', result.data);
+                }
             } catch (error) {
                 console.error('Error syncing subscriptions to Firebase:', error);
             }

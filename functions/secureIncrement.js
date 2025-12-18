@@ -41,8 +41,7 @@ const CONFIG = {
   // Set via: firebase functions:config:set security.hmac_secret="your_secret_here"
   // Or use Secret Manager in production
   HMAC_SECRET: functions.config().security?.hmac_secret || 
-               process.env.HMAC_SECRET || 
-               "e98a8c66dc73c08713c04bfd7b811b17239d11d4a610a4718cdab10da235c782", // Fallback for local dev
+               process.env.HMAC_SECRET,
   
   // Suspicious behavior thresholds (not revealed to client)
   SUSPICIOUS: {

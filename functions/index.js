@@ -13,6 +13,12 @@ const { secureReferralIncrement, createReferrer, cleanupReferralNonces } = requi
 // Import leaderboard functions
 const { getLeaderboard, getLeaderboardHttp } = require("./leaderboard");
 
+// Import subscription management functions
+const { manageSubscription, syncSubscriptions, getSubscriptions } = require("./subscription");
+
+// Import scalable notification function
+const { sendPlateNotificationV2, migrateSubscribersToPlateIndex } = require("./notification");
+
 // Export secure increment functions
 exports.secureIncrementCounter = secureIncrementCounter;
 exports.cleanupSecurityData = cleanupSecurityData;
@@ -25,6 +31,15 @@ exports.cleanupReferralNonces = cleanupReferralNonces;
 // Export leaderboard functions
 exports.getLeaderboard = getLeaderboard;
 exports.getLeaderboardHttp = getLeaderboardHttp;
+
+// Export subscription management functions
+exports.manageSubscription = manageSubscription;
+exports.syncSubscriptions = syncSubscriptions;
+exports.getSubscriptions = getSubscriptions;
+
+// Export scalable notification function (V2)
+exports.sendPlateNotificationV2 = sendPlateNotificationV2;
+exports.migrateSubscribersToPlateIndex = migrateSubscribersToPlateIndex;
 
 // =============================
 // 📊 Google Analytics Real-time Active Users
@@ -191,110 +206,12 @@ exports.getActiveUsers = functions.https.onCall(async () => {
 });
 
 // =============================
-// 📌 Push Notification Function
+// 📌 Push Notification Function (DEPRECATED)
 // =============================
-
-exports.sendPlateNotification = functions.database
-    .ref("/plates/{plateNumber}/counters/{counterKey}")
-    .onWrite(async (change, context) => {
-      // Skip if data was deleted
-      if (!change.after.exists()) {
-        return null;
-      }
-      const plateNumber = context.params.plateNumber;
-      const counterKey = context.params.counterKey;
-
-      console.log(`Counter updated for plate ${plateNumber}: ${counterKey}`);
-
-      // Get subscriptions for this plate
-      const subscriptionsSnapshot = await admin
-          .database()
-          .ref("subscriptions")
-          .once("value");
-
-      console.log(`Total subscriptions in DB: ${subscriptionsSnapshot.numChildren()}`);
-
-      const tokens = [];
-      subscriptionsSnapshot.forEach((child) => {
-        const subscription = child.val();
-        const token = child.key;
-
-        console.log(`Checking token ${token.substring(0, 20)}..., data:`, JSON.stringify(subscription));
-
-        // Handle both array format and object format for plates
-        let plates = [];
-        if (subscription.plates) {
-          if (Array.isArray(subscription.plates)) {
-            plates = subscription.plates;
-          } else if (typeof subscription.plates === "object") {
-            plates = Object.keys(subscription.plates);
-          }
-        }
-
-        console.log(`Plates for this token:`, plates);
-
-        if (plates.includes(plateNumber)) {
-          tokens.push(token);
-          console.log(`✓ Token found for plate ${plateNumber}`);
-        }
-      });
-
-      if (tokens.length === 0) {
-        console.log(`No subscribers for plate ${plateNumber}`);
-        return null;
-      }
-
-      console.log(`Found ${tokens.length} subscribers for plate ${plateNumber}`);
-
-      const message = {
-        notification: {
-          title: `🚗 ${plateNumber}`,
-          body: "새로운 메시지가 등록되었습니다",
-        },
-        data: {
-          plateNumber: plateNumber,
-          counterKey: counterKey,
-          timestamp: Date.now().toString(),
-        },
-        tokens: tokens,
-      };
-
-      try {
-        const response = await admin.messaging().sendEachForMulticast(message);
-        console.log(`Successfully sent ${response.successCount} messages`);
-
-        // Log and clean up failed tokens
-        if (response.failureCount > 0) {
-          console.log(`Failed to send ${response.failureCount} messages`);
-
-          const tokensToRemove = [];
-          response.responses.forEach((resp, idx) => {
-            if (!resp.success) {
-              const errorCode = resp.error?.code;
-              console.log(`Failed token ${idx}: ${errorCode} - ${resp.error?.message}`);
-
-              // Remove invalid tokens
-              if (errorCode === "messaging/invalid-registration-token" ||
-                  errorCode === "messaging/registration-token-not-registered") {
-                tokensToRemove.push(tokens[idx]);
-              }
-            }
-          });
-
-          // Clean up invalid tokens from database
-          if (tokensToRemove.length > 0) {
-            console.log(`Removing ${tokensToRemove.length} invalid tokens`);
-            const removePromises = tokensToRemove.map((token) =>
-              admin.database().ref(`subscriptions/${token}`).remove()
-            );
-            await Promise.all(removePromises);
-            console.log("Invalid tokens removed");
-          }
-        }
-
-        return response;
-      } catch (error) {
-        console.error("Error sending messages:", error);
-        return null;
-      }
-    });
+// NOTE: sendPlateNotification is DEPRECATED and replaced by sendPlateNotificationV2
+// which uses plate-specific subscriber index for O(1) lookup instead of O(n) scan.
+// The V2 function is exported from notification.js
+// DO NOT re-enable this function - it will cause duplicate notifications!
+// 
+// The old sendPlateNotification has been REMOVED to prevent duplicate notifications.
+// Use sendPlateNotificationV2 instead (exported from notification.js)

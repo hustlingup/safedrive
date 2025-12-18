@@ -57,6 +57,24 @@
 **Solution**: Added `firebase-functions-compat.js` script tag  
 **Status**: ✅ Fixed
 
+### Issue 12: Subscription Permission Denied (NEW)
+**Problem**: `subscription-manager.js` tried to write directly to `/subscriptions/{token}` which requires authentication  
+**Solution**: Created Cloud Functions for subscription management:
+- `manageSubscription` - Subscribe/unsubscribe to individual plates
+- `syncSubscriptions` - Sync all subscriptions for a token
+- `getSubscriptions` - Get subscription status
+**Status**: ✅ Fixed
+
+### Issue 13: Notification Scalability (NEW)
+**Problem**: `sendPlateNotification` scanned ALL subscriptions to find subscribers for a plate (O(n) complexity)  
+**Solution**: Created `sendPlateNotificationV2` that uses plate-specific subscriber index (`/plateSubscribers/{plate}/{token}`) for O(1) lookup. Also handles FCM's 500 token batch limit.
+**Status**: ✅ Fixed
+
+### Issue 14: Duplicate Notifications (NEW)
+**Problem**: Both `sendPlateNotification` (old) and `sendPlateNotificationV2` (new) were triggering on the same database path, causing 2 notifications per message  
+**Solution**: Deleted the old `sendPlateNotification` function. Only `sendPlateNotificationV2` is now active.
+**Status**: ✅ Fixed
+
 ## Security Architecture
 
 ### How It Works
@@ -158,6 +176,16 @@ fetch('/getLeaderboardHttp')   getLeaderboardHttp()        /plates (read)
   - `FirebaseClient` - Firebase database operations (uses Cloud Functions for writes)
   - Added `firebase-functions-compat.js` script for Cloud Function calls
 - `script.js` - Updated: Fixed `renderLeaderboard()` to handle both `likes` and `likesCount`
+- `subscription-manager.js` - Updated: Uses Cloud Functions for all subscription writes
+- `index.html` - Updated: Added `firebase-functions-compat.js` script
+
+### New Cloud Functions
+- `functions/subscription.js` - Subscription management (manageSubscription, syncSubscriptions, getSubscriptions)
+- `functions/notification.js` - Scalable notifications (sendPlateNotificationV2, migrateSubscribersToPlateIndex)
+
+### Security Rules Updated
+- `/subscriptions` - Now server-only writes (via Cloud Functions)
+- `/plateSubscribers` - New path for plate-specific subscriber index (server-only)
 
 ### Build System
 - `build.js` - Unchanged (still works correctly)
@@ -189,9 +217,11 @@ curl "https://us-central1-safedrive-fa567.cloudfunctions.net/getLeaderboardHttp?
 ✅ plate.html fixed (no more duplicate declarations)  
 ✅ plate.html uses Cloud Functions for counter increments (secure)  
 ✅ Leaderboard displays likes correctly  
+✅ Subscription system uses Cloud Functions (secure, no direct DB writes)  
+✅ Notification system optimized for scalability (plate-specific subscriber index)  
 ✅ Source files have placeholders (secure)  
 ✅ Deployed to Firebase Hosting and Functions  
-✅ Security maintained - all writes go through Cloud Functions  
+✅ Security maintained - ALL writes go through Cloud Functions  
 
 **Date**: 2025-12-18  
 **Status**: Deployed - Please verify on https://safedrive.kr
@@ -203,12 +233,14 @@ curl "https://us-central1-safedrive-fa567.cloudfunctions.net/getLeaderboardHttp?
 - ✅ Test: `curl "https://us-central1-safedrive-fa567.cloudfunctions.net/getLeaderboardHttp?type=mostLiked&limit=3"`
 - ✅ Response: `{"success":true,"leaderboard":[...]}`
 
-### Deployed (Final - 2025-12-18 19:55 KST):
+### Deployed (Final - 2025-12-18 21:40 KST):
 - ✅ Firebase Hosting: 52 files from `dist/` folder
-- ✅ Cloud Functions: All 11 functions active
+- ✅ Cloud Functions: 16 functions active (5 new subscription/notification functions)
+- ✅ Database Rules: Updated for secure subscription management
 - ✅ plate.html: All required modules defined inline
 - ✅ plate.html: Uses `secureIncrementCounter` Cloud Function for message sending
 - ✅ script.js: Fixed leaderboard to show likes correctly
+- ✅ subscription-manager.js: Uses Cloud Functions for all subscription operations
 
 ### To Verify on Production:
 1. Clear browser cache (Ctrl+Shift+R) or use incognito mode
