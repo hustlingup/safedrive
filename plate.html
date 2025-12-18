@@ -56,6 +56,7 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-functions-compat.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script src="firebase-config.js"></script>
     <script src="security.js"></script>
@@ -2606,17 +2607,7 @@
                 <span>🎯</span>
                 <span>다른 콘텐츠 보기</span>
             </a>
-        </div>
-        
-        <!-- Footer -->
-        <footer class="pro-footer">
-            <p>본 서비스는 익명으로 운영되며, 개인 식별 정보를 수집하지 않습니다.</p>
-            <div>
-                <a href="terms.html">이용약관</a> | <a href="privacy.html">개인정보처리방침</a> | <a href="legal.html">법적 고지</a> | <a href="faq.html">자주 묻는 질문</a>
-            </div>
-            <a class="footer-contact-link" href="contact.html">문의</a>
-            <p class="copyright">© 2025 Hustle Up. All rights reserved.</p>
-        </footer>
+        </div>        
     </div>
     
     <!-- Loading Overlay -->
@@ -2635,8 +2626,383 @@
     <script>
         // ============================================================================
         // SafeDrive Pro Dashboard - Page-Specific Script
-        // Note: Core modules (COUNTER_KEYS, CATEGORIES, Validator, etc.) are loaded from script.js
+        // Core modules defined inline to avoid conflicts with script.js
         // ============================================================================
+        
+        // Initialize database reference (Firebase is initialized in firebase-config.js)
+        const database = firebase.database();
+        
+        // ============================================================================
+        // Validator Module
+        // ============================================================================
+        const Validator = {
+            normalizePlate(input) {
+                const clean = input.trim().replace(/\s+/g, '');
+                
+                // Construction machinery
+                const constructionPattern = /^(영[가-힣]{2}\d{2}[가-힣]\d{4})$/;
+                const matchConstruction = clean.match(constructionPattern);
+                if (matchConstruction) return { plate: matchConstruction[1], type: 'construction', unique: true };
+                
+                // Motorbike with region
+                const motorbikeRegionPattern = /^([가-힣]{3,7}\d{4})$/;
+                const matchMotorbikeRegion = clean.match(motorbikeRegionPattern);
+                if (matchMotorbikeRegion) return { plate: matchMotorbikeRegion[1], type: 'motorbike-region', unique: true };
+                
+                // Motorbike simple
+                const motorbikeSimplePattern = /^(\d[가-힣]\d{5})$/;
+                const matchMotorbikeSimple = clean.match(motorbikeSimplePattern);
+                if (matchMotorbikeSimple) return { plate: matchMotorbikeSimple[1], type: 'motorbike-simple', unique: true };
+                
+                // New format
+                const newPattern = /^(\d{2,3}[가-힣][가-힣]?\d{4})$/;
+                const matchNew = clean.match(newPattern);
+                if (matchNew) return { plate: matchNew[1], type: 'new', unique: true };
+                
+                // Business
+                const bizPattern = /^([7-9]\d[가-힣]\d{4})$/;
+                const matchBiz = clean.match(bizPattern);
+                if (matchBiz) return { plate: matchBiz[1], type: 'business', unique: true };
+                
+                // Old format
+                const oldPattern = /^(?:([가-힣]{1,2}) ?)?(\d{2,3}[가-힣]\d{4})$/;
+                const matchOld = clean.match(oldPattern);
+                if (matchOld) {
+                    const region = matchOld[1] || null;
+                    const number = matchOld[2];
+                    if (region) return { plate: `${region}${number}`, type: 'old', unique: true };
+                    return { plate: number, type: 'old-ambiguous', unique: false };
+                }
+                
+                return null;
+            },
+            
+            validatePlateNumber(input) {
+                if (!input || typeof input !== 'string') return false;
+                return this.normalizePlate(input) !== null;
+            },
+            
+            sanitizePlateNumber(input) {
+                if (!input || typeof input !== 'string') return '';
+                return input.trim().replace(/\s+/g, '');
+            }
+        };
+        
+        // ============================================================================
+        // Router Module
+        // ============================================================================
+        const Router = {
+            parsePlateFromURL() {
+                const pathname = window.location.pathname;
+                const search = window.location.search;
+                const hash = window.location.hash;
+                
+                // Path format: /plate.html/09루3363
+                const pathMatch = pathname.match(/\/plate\.html\/([^\/]+)/);
+                if (pathMatch && pathMatch[1]) {
+                    return Validator.sanitizePlateNumber(decodeURIComponent(pathMatch[1]));
+                }
+                
+                // Query string: ?plate=09루3363
+                if (search) {
+                    const params = new URLSearchParams(search);
+                    const plate = params.get('plate');
+                    if (plate) return Validator.sanitizePlateNumber(plate);
+                }
+                
+                // Hash: #09루3363
+                if (hash && hash.length > 1) {
+                    return Validator.sanitizePlateNumber(decodeURIComponent(hash.substring(1)));
+                }
+                
+                return null;
+            },
+            
+            navigateToPlate(plateNumber) {
+                if (!plateNumber) return;
+                const sanitized = Validator.sanitizePlateNumber(plateNumber);
+                if (!Validator.validatePlateNumber(sanitized)) return;
+                window.location.href = `/plate.html?plate=${encodeURIComponent(sanitized)}`;
+            }
+        };
+        
+        // ============================================================================
+        // Categories and Vehicle Type
+        // ============================================================================
+        const CATEGORIES = {
+            categoryA: { name: 'A급 안전 메세지', keys: ['speeding', 'reckless_merge', 'road_rage', 'sudden_stop', 'no_safe_distance', 'not_watching_ahead', 'halmanghaanj', 'pedestrian_slow_down', 'high_beam'], vehicleType: 'car' },
+            categoryB: { name: 'B급 안전 메세지', keys: ['exit_cutting', 'sudden_lane_change', 'drowsy_driving', 'no_blinker', 'lane_violation', 'habitual_brake', 'slow_driving', 'dont_park_here'], vehicleType: 'car' },
+            categoryC: { name: '차량상태 메세지', keys: ['light_broken', 'tire_issue', 'wheel_balance', 'exhaust_issue', 'engine_smoke', 'oil_leak', 'trunk_open', 'cargo_loose'], vehicleType: 'car' },
+            categoryD: { name: '좋은 감정 메세지', keys: ['thank_you', 'forgive', 'pretty', 'cool', 'good_driver', 'envy', 'beginner_fighting'], vehicleType: 'car' },
+            likes: { name: '좋아요', keys: ['likes'], vehicleType: 'both' },
+            mbSafety: { name: '안전 메세지', keys: ['mb_dangerous_moment', 'mb_dangerous_parking'], vehicleType: 'motorbike' },
+            mbVehicle: { name: '차량 상태', keys: ['mb_light_issue', 'mb_brake_sound', 'mb_tire_issue', 'mb_chain_sound', 'mb_delivery_box'], vehicleType: 'motorbike' },
+            mbPraise: { name: '칭찬', keys: ['mb_signal_respect', 'mb_stop_line', 'mb_pedestrian_first', 'mb_safety_gear', 'mb_considerate_driving', 'mb_lane_keeping'], vehicleType: 'motorbike' },
+            mbSupport: { name: '응원', keys: ['mb_weather_support', 'mb_slippery_warning', 'mb_delivery_thanks'], vehicleType: 'motorbike' }
+        };
+        
+        function getVehicleType(plateNumber) {
+            const normalized = Validator.normalizePlate(plateNumber);
+            if (normalized && (normalized.type === 'motorbike-region' || normalized.type === 'motorbike-simple')) {
+                return 'motorbike';
+            }
+            return 'car';
+        }
+        
+        // ============================================================================
+        // Daily Limit Manager Module
+        // ============================================================================
+        const DailyLimitManager = {
+            getKSTDate() {
+                const now = new Date();
+                const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
+                return new Date(utcTime + (9 * 60 * 60 * 1000));
+            },
+            
+            formatDateKST(date) {
+                const year = date.getFullYear();
+                const month = String(date.getMonth() + 1).padStart(2, '0');
+                const day = String(date.getDate()).padStart(2, '0');
+                return `${year}${month}${day}`;
+            },
+            
+            isNewDay(timestamp) {
+                if (!timestamp || typeof timestamp !== 'number') return true;
+                const currentKSTDate = this.getKSTDate();
+                const currentDateString = this.formatDateKST(currentKSTDate);
+                const storedKST = new Date(timestamp + (9 * 60 * 60 * 1000));
+                const storedDateString = this.formatDateKST(storedKST);
+                return currentDateString !== storedDateString;
+            },
+            
+            generateKey(plateNumber, counterKey) {
+                const kstDate = this.getKSTDate();
+                const dateString = this.formatDateKST(kstDate);
+                return `safedrive_limit_${plateNumber}_${counterKey}_${dateString}`;
+            },
+            
+            canIncrement(plateNumber, counterKey) {
+                if (!plateNumber || !counterKey) return false;
+                try {
+                    const key = this.generateKey(plateNumber, counterKey);
+                    const storedTimestamp = localStorage.getItem(key);
+                    if (!storedTimestamp) return true;
+                    const timestamp = parseInt(storedTimestamp, 10);
+                    if (this.isNewDay(timestamp)) {
+                        localStorage.removeItem(key);
+                        return true;
+                    }
+                    return false;
+                } catch (error) {
+                    return true;
+                }
+            },
+            
+            recordIncrement(plateNumber, counterKey) {
+                if (!plateNumber || !counterKey) return false;
+                try {
+                    const key = this.generateKey(plateNumber, counterKey);
+                    localStorage.setItem(key, Date.now().toString());
+                    return true;
+                } catch (error) {
+                    if (error.name === 'QuotaExceededError') {
+                        this.clearOldEntries();
+                        try {
+                            const key = this.generateKey(plateNumber, counterKey);
+                            localStorage.setItem(key, Date.now().toString());
+                            return true;
+                        } catch (e) { return false; }
+                    }
+                    return false;
+                }
+            },
+            
+            clearOldEntries() {
+                try {
+                    const sevenDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
+                    const keysToRemove = [];
+                    for (let i = 0; i < localStorage.length; i++) {
+                        const key = localStorage.key(i);
+                        if (key && key.startsWith('safedrive_limit_')) {
+                            const value = localStorage.getItem(key);
+                            if (value) {
+                                const timestamp = parseInt(value, 10);
+                                if (timestamp < sevenDaysAgo) keysToRemove.push(key);
+                            }
+                        }
+                    }
+                    keysToRemove.forEach(key => localStorage.removeItem(key));
+                } catch (error) {}
+            }
+        };
+        
+        // ============================================================================
+        // Counter Keys Mapping
+        // ============================================================================
+        const COUNTER_KEYS = {
+            '과속운전': 'speeding', '무리한 합류': 'reckless_merge', '보복운전': 'road_rage',
+            '급정거': 'sudden_stop', '안전거리 미확보': 'no_safe_distance', '전방주시 태만': 'not_watching_ahead',
+            '할많하않': 'halmanghaanj', '보행자 앞에서 속도 줄여주세요': 'pedestrian_slow_down',
+            '상향등 때문에 앞이 잘 안 보여요': 'high_beam', '출구 새치기': 'exit_cutting',
+            '급 차선변경': 'sudden_lane_change', '졸음운전': 'drowsy_driving',
+            '방향지시등 미점등': 'no_blinker', '지정차로 미준수': 'lane_violation',
+            '습관성 브레이크': 'habitual_brake', '저속운전': 'slow_driving',
+            '여기는 정차/주차가 위험한 곳이에요': 'dont_park_here', '라이트 고장': 'light_broken',
+            '타이어 상태 이상': 'tire_issue', '휠 밸런스 이상': 'wheel_balance',
+            '배기가스 이상': 'exhaust_issue', '엔진 연기발생': 'engine_smoke',
+            '엔진오일 누유': 'oil_leak', '트렁크/보닛/연료캡 열림': 'trunk_open',
+            '적재물이 흔들려요, 떨어질 수 있어요': 'cargo_loose', '고맙습니다': 'thank_you',
+            '용서할게요': 'forgive', '예뻐요': 'pretty', '멋져요': 'cool',
+            '운전 잘해요': 'good_driver', '부러워요': 'envy', '초보 화이팅!!!': 'beginner_fighting',
+            '좋아요': 'likes',
+            '방금 위험한 순간이 있었어요. 조금만 더 조심해 주세요.': 'mb_dangerous_moment',
+            '여기는 오토바이 세우기 위험한 곳이에요.': 'mb_dangerous_parking',
+            '라이트 이상': 'mb_light_issue', '브레이크 소리 이상': 'mb_brake_sound',
+            '타이어 이상': 'mb_tire_issue', '체인 소리 이상': 'mb_chain_sound',
+            '배달박스 고정 이상': 'mb_delivery_box',
+            '신호를 끝까지 지켜 주셔서 멋져요.': 'mb_signal_respect',
+            '정지선 잘 지키셔서 보기 좋았습니다.': 'mb_stop_line',
+            '보행자 먼저 배려해 주셔서 고맙습니다.': 'mb_pedestrian_first',
+            '보호장비 완벽하게 착용하신 모습이 인상적이었어요.': 'mb_safety_gear',
+            '배려 운전 덕분에 주변도 편안했어요.': 'mb_considerate_driving',
+            '차선 지키면서 달리는 모습이 정말 멋집니다.': 'mb_lane_keeping',
+            '날씨와 상관없이 늘 고생이 많으십니다!': 'mb_weather_support',
+            '노면이 미끄러울 수 있어요, 항상 안전운행 하세요!': 'mb_slippery_warning',
+            '항상 꼼꼼하게 배달해 주셔서 감사합니다!': 'mb_delivery_thanks'
+        };
+        
+        // ============================================================================
+        // Firebase Client Module (Minimal for plate.html)
+        // Uses Cloud Functions for secure writes
+        // ============================================================================
+        const FirebaseClient = {
+            plateDataCache: {},
+            CACHE_TTL: 5 * 60 * 1000,
+            
+            isPlateDataCached(plateNumber) {
+                const cached = this.plateDataCache[plateNumber];
+                if (!cached) return false;
+                return (Date.now() - cached.timestamp) < this.CACHE_TTL;
+            },
+            
+            getCachedPlateData(plateNumber) {
+                if (this.isPlateDataCached(plateNumber)) return this.plateDataCache[plateNumber].data;
+                return null;
+            },
+            
+            cachePlateData(plateNumber, data) {
+                this.plateDataCache[plateNumber] = { data: data, timestamp: Date.now() };
+            },
+            
+            invalidatePlateDataCache(plateNumber) {
+                if (this.plateDataCache[plateNumber]) delete this.plateDataCache[plateNumber];
+            },
+            
+            getZeroCounters() {
+                const zeroCounters = {};
+                Object.values(COUNTER_KEYS).forEach(key => { zeroCounters[key] = 0; });
+                return zeroCounters;
+            },
+            
+            async getPlateData(plateNumber, forceRefresh = false) {
+                if (!plateNumber) throw new Error('plateNumber is required');
+                // Note: View counting is disabled client-side due to security rules
+                // Views should be tracked server-side or via analytics
+                
+                if (!forceRefresh) {
+                    const cachedData = this.getCachedPlateData(plateNumber);
+                    if (cachedData) return cachedData;
+                }
+                
+                try {
+                    const snapshot = await database.ref(`plates/${plateNumber}`).once('value');
+                    if (!snapshot.exists()) {
+                        const zeroData = { plateNumber, counters: this.getZeroCounters(), lastUpdated: null, views: 0 };
+                        this.cachePlateData(plateNumber, zeroData);
+                        return zeroData;
+                    }
+                    const data = snapshot.val();
+                    const plateData = {
+                        plateNumber,
+                        counters: { ...this.getZeroCounters(), ...(data.counters || {}) },
+                        lastUpdated: data.lastUpdated || null,
+                        views: data.views || 0
+                    };
+                    this.cachePlateData(plateNumber, plateData);
+                    return plateData;
+                } catch (error) {
+                    if (error.code === 'PERMISSION_DENIED') throw new Error('데이터베이스 접근 권한이 없습니다');
+                    throw new Error('데이터를 불러오는 중 오류가 발생했습니다');
+                }
+            },
+            
+            // Generate fingerprint for security module
+            async generateFingerprint() {
+                if (typeof SecurityModule !== 'undefined' && SecurityModule.getFingerprint) {
+                    return SecurityModule.getFingerprint();
+                }
+                // Fallback: generate a simple fingerprint
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                ctx.textBaseline = 'top';
+                ctx.font = '14px Arial';
+                ctx.fillText('fingerprint', 2, 2);
+                const data = canvas.toDataURL() + navigator.userAgent + screen.width + screen.height;
+                // Simple hash
+                let hash = 0;
+                for (let i = 0; i < data.length; i++) {
+                    const char = data.charCodeAt(i);
+                    hash = ((hash << 5) - hash) + char;
+                    hash = hash & hash;
+                }
+                return Math.abs(hash).toString(16).padStart(64, '0');
+            },
+            
+            // Generate nonce for request
+            generateNonce() {
+                const array = new Uint8Array(16);
+                crypto.getRandomValues(array);
+                return Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
+            },
+            
+            async incrementCounter(plateNumber, counterKey) {
+                if (!plateNumber || !counterKey) throw new Error('plateNumber and counterKey are required');
+                
+                try {
+                    // Use Cloud Function for secure increment
+                    const secureIncrement = firebase.functions().httpsCallable('secureIncrementCounter');
+                    
+                    const fingerprint = await this.generateFingerprint();
+                    const timestamp = Date.now();
+                    const nonce = this.generateNonce();
+                    
+                    const result = await secureIncrement({
+                        plateNumber,
+                        counterKey,
+                        fingerprint,
+                        timestamp,
+                        nonce
+                    });
+                    
+                    if (result.data && result.data.success) {
+                        this.invalidatePlateDataCache(plateNumber);
+                        return result.data.newValue;
+                    } else {
+                        throw new Error(result.data?.error || '메세지 전송에 실패했습니다');
+                    }
+                } catch (error) {
+                    console.error('incrementCounter error:', error);
+                    if (error.code === 'resource-exhausted') {
+                        throw new Error('요청 한도를 초과했습니다. 잠시 후 다시 시도해 주세요.');
+                    } else if (error.code === 'permission-denied') {
+                        throw new Error('요청이 거부되었습니다.');
+                    } else if (error.message) {
+                        throw new Error(error.message);
+                    }
+                    throw new Error('메세지 전송 중 오류가 발생했습니다');
+                }
+            }
+        };
         
         // State
         let currentPlate = null;
@@ -3682,8 +4048,8 @@
     <!-- Referral System -->
     <script src="/js/referral-core.js"></script>
     
-    <!-- Voice Input Script -->
-    <script src="script.js"></script>
+    <!-- Note: script.js is NOT loaded here to avoid duplicate declarations -->
+    <!-- Required modules are defined inline below -->
     
     <!-- Voice Input Modal with Candidate Selection -->
     <div id="voiceInputModal" class="voice-modal">

@@ -1,8 +1,5 @@
 // Firebase Configuration
-// This file contains your Firebase project credentials
-// Note: These credentials are safe to expose in client-side code
-// Security is enforced through Firebase Security Rules, not by hiding the config
-// Configuration values are injected during build from environment variables
+// Values are injected during build from .env file
 
 const firebaseConfig = {
     apiKey: "__FIREBASE_API_KEY__",

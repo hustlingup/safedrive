@@ -10,6 +10,9 @@ const { secureIncrementCounter, cleanupSecurityData } = require("./secureIncreme
 // Import secure referral functions
 const { secureReferralIncrement, createReferrer, cleanupReferralNonces } = require("./secureReferralIncrement");
 
+// Import leaderboard functions
+const { getLeaderboard, getLeaderboardHttp } = require("./leaderboard");
+
 // Export secure increment functions
 exports.secureIncrementCounter = secureIncrementCounter;
 exports.cleanupSecurityData = cleanupSecurityData;
@@ -18,6 +21,10 @@ exports.cleanupSecurityData = cleanupSecurityData;
 exports.secureReferralIncrement = secureReferralIncrement;
 exports.createReferrer = createReferrer;
 exports.cleanupReferralNonces = cleanupReferralNonces;
+
+// Export leaderboard functions
+exports.getLeaderboard = getLeaderboard;
+exports.getLeaderboardHttp = getLeaderboardHttp;
 
 // =============================
 // 📊 Google Analytics Real-time Active Users

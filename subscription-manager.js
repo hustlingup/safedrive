@@ -545,8 +545,7 @@ if (typeof SubscriptionManager === 'undefined') {
             }
             
             try {
-                // VAPID key is injected during build from environment variable
-                // Generate in Firebase Console: Project Settings > Cloud Messaging > Web Push certificates
+                // VAPID key - injected during build from .env file
                 const vapidKey = '__VAPID_KEY__';
                 
                 const token = await this.messaging.getToken({ 

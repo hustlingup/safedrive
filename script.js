@@ -1857,23 +1857,34 @@ const LeaderboardDataManager = {
         }
         
         try {
-            // Fetch all plates data
-            const allPlates = await this.fetchAllPlates();
+            // Use Cloud Function to fetch leaderboard (secure - no direct /plates access)
+            console.log('LeaderboardDataManager: Calling Cloud Function getLeaderboardHttp');
             
-            // Compute leaderboard based on type
-            let leaderboardData;
+            const functionUrl = 'https://us-central1-safedrive-fa567.cloudfunctions.net/getLeaderboardHttp';
+            const response = await fetch(`${functionUrl}?type=${type}&limit=${limit}`);
             
-            if (type === 'bestDrivers') {
-                leaderboardData = this.computeBestDriversLeaderboard(allPlates, period, limit);
-            } else if (type === 'mostLiked') {
-                leaderboardData = this.computeMostLikedLeaderboard(allPlates, period, limit);
-            } else {
-                throw new Error(`Invalid leaderboard type: ${type}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error: ${response.status}`);
             }
+            
+            const result = await response.json();
+            
+            if (!result.success) {
+                throw new Error(result.error || 'Failed to fetch leaderboard');
+            }
+            
+            // Transform to expected format
+            const leaderboardData = result.leaderboard.map(entry => ({
+                plateNumber: entry.plateNumber,
+                score: entry.score,
+                likes: entry.likes,
+                rank: entry.rank
+            }));
             
             // Store in cache
             this.setCached(type, period, leaderboardData);
             
+            console.log(`LeaderboardDataManager: Received ${leaderboardData.length} entries from Cloud Function`);
             return leaderboardData;
         } catch (error) {
             console.error('LeaderboardDataManager.getLeaderboard error:', {
@@ -1891,7 +1902,6 @@ const LeaderboardDataManager = {
             } else if (error.message && error.message.includes('network')) {
                 throw new Error('네트워크 오류가 발생했습니다. 다시 시도해 주세요');
             } else if (error.message && error.message.includes('데이터베이스')) {
-                // Already has Korean message
                 throw error;
             } else {
                 throw new Error('리더보드를 불러오는 중 오류가 발생했습니다');
@@ -4055,10 +4065,12 @@ const UIController = {
                 `;
             } else if (type === 'mostLiked') {
                 // Most Liked: rank, plate, likes
+                // Support both 'likes' (from Cloud Function) and 'likesCount' (legacy)
+                const likesValue = entry.likes !== undefined ? entry.likes : (entry.likesCount !== undefined ? entry.likesCount : entry.score);
                 row.innerHTML = `
                     <td>${entry.rank}</td>
                     <td><a href="/plate.html/${encodeURIComponent(entry.plateNumber)}" class="plate-link">${entry.plateNumber}</a></td>
-                    <td>${entry.likesCount}</td>
+                    <td>${likesValue}</td>
                 `;
             }
             
@@ -5824,8 +5836,7 @@ const SubscriptionManager = {
         }
         
         try {
-            // VAPID key is injected during build from environment variable
-            // Generate in Firebase Console: Project Settings > Cloud Messaging > Web Push certificates
+            // VAPID key - injected during build from .env file
             const vapidKey = '__VAPID_KEY__';
             
             const token = await this.messaging.getToken({ 
