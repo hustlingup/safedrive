@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) - with Cookie Consent -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9R8RZYZC7X"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
+      
+      // Default consent to denied (will be updated by cookie consent manager)
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
       
       gtag('config', 'G-9R8RZYZC7X');
     </script>
@@ -3654,5 +3662,18 @@
             ReferralCore.initOnIndexLoad();
         }
     </script>
+
+    <!-- Cookie Consent System -->
+    <link rel="stylesheet" href="/css/cookie-consent.css">
+    <script src="/js/cookie-consent.js"></script>
+    
+    <!-- Cookie Settings Floating Button -->
+    <button 
+        class="cookie-settings-trigger" 
+        onclick="openCookieSettings()" 
+        title="쿠키 설정 관리"
+        aria-label="쿠키 설정 관리">
+        🍪
+    </button>
 </body>
 </html>

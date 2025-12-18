@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Consent Test - SAFE DRIVE</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            color: #667eea;
+        }
+        .test-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .test-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #5568d3;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            background: #e9ecef;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        code {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍪 Cookie Consent System Test</h1>
+    <p>이 페이지는 SAFE DRIVE 쿠키 동의 시스템을 테스트하기 위한 페이지입니다.</p>
+
+    <div class="test-section">
+        <h2>1. 쿠키 배너 테스트</h2>
+        <p>페이지를 처음 방문하면 쿠키 동의 배너가 자동으로 표시됩니다.</p>
+        <button class="test-button" onclick="testResetConsent()">동의 초기화 (배너 다시 보기)</button>
+        <div id="banner-status" class="status"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. 쿠키 설정 관리</h2>
+        <p>우측 하단의 🍪 버튼을 클릭하거나 아래 버튼을 클릭하여 설정을 변경할 수 있습니다.</p>
+        <button class="test-button" onclick="openCookieSettings()">쿠키 설정 열기</button>
+    </div>
+
+    <div class="test-section">
+        <h2>3. 현재 동의 상태</h2>
+        <button class="test-button" onclick="checkConsentStatus()">동의 상태 확인</button>
+        <div id="consent-status" class="status"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>4. 프로그래밍 방식 테스트</h2>
+        <p>JavaScript를 통해 동의 상태를 확인하고 변경할 수 있습니다.</p>
+        <button class="test-button" onclick="testAcceptAll()">모두 동의 (프로그래밍)</button>
+        <button class="test-button" onclick="testRejectAll()">모두 거부 (프로그래밍)</button>
+        <div id="program-status" class="status"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>5. 이벤트 리스너 테스트</h2>
+        <p>동의 상태가 변경되면 이벤트가 발생합니다.</p>
+        <div id="event-log" class="status"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>6. LocalStorage 확인</h2>
+        <button class="test-button" onclick="checkLocalStorage()">LocalStorage 확인</button>
+        <div id="storage-status" class="status"></div>
+    </div>
+
+    <script>
+        // Event listener for consent changes
+        let eventCount = 0;
+        window.addEventListener('cookieConsentChanged', (event) => {
+            eventCount++;
+            const log = document.getElementById('event-log');
+            log.className = 'status success';
+            log.innerHTML = `
+                <strong>이벤트 발생 #${eventCount}</strong><br>
+                필수: ${event.detail.essential ? '✓' : '✗'}<br>
+                분석: ${event.detail.analytics ? '✓' : '✗'}<br>
+                광고: ${event.detail.advertising ? '✓' : '✗'}
+            `;
+        });
+
+        function testResetConsent() {
+            if (window.cookieConsent) {
+                window.cookieConsent.resetConsent();
+                document.getElementById('banner-status').className = 'status success';
+                document.getElementById('banner-status').textContent = '✓ 동의가 초기화되었습니다. 페이지를 새로고침하면 배너가 다시 표시됩니다.';
+                setTimeout(() => location.reload(), 2000);
+            } else {
+                document.getElementById('banner-status').className = 'status error';
+                document.getElementById('banner-status').textContent = '✗ Cookie consent system not loaded';
+            }
+        }
+
+        function checkConsentStatus() {
+            const statusDiv = document.getElementById('consent-status');
+            if (window.cookieConsent) {
+                if (window.cookieConsent.hasConsent()) {
+                    const prefs = window.cookieConsent.getPreferences();
+                    statusDiv.className = 'status success';
+                    statusDiv.innerHTML = `
+                        <strong>✓ 동의 상태 확인됨</strong><br>
+                        필수 쿠키: ${prefs.essential ? '✓ 허용' : '✗ 거부'}<br>
+                        분석 쿠키: ${prefs.analytics ? '✓ 허용' : '✗ 거부'}<br>
+                        광고 쿠키: ${prefs.advertising ? '✓ 허용' : '✗ 거부'}
+                    `;
+                } else {
+                    statusDiv.className = 'status';
+                    statusDiv.textContent = '아직 동의하지 않았습니다.';
+                }
+            } else {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = '✗ Cookie consent system not loaded';
+            }
+        }
+
+        function testAcceptAll() {
+            if (window.cookieConsent) {
+                window.cookieConsent.saveConsent({
+                    essential: true,
+                    analytics: true,
+                    advertising: true
+                });
+                document.getElementById('program-status').className = 'status success';
+                document.getElementById('program-status').textContent = '✓ 모든 쿠키가 허용되었습니다.';
+                checkConsentStatus();
+            }
+        }
+
+        function testRejectAll() {
+            if (window.cookieConsent) {
+                window.cookieConsent.saveConsent({
+                    essential: true,
+                    analytics: false,
+                    advertising: false
+                });
+                document.getElementById('program-status').className = 'status success';
+                document.getElementById('program-status').textContent = '✓ 필수 쿠키만 허용되었습니다.';
+                checkConsentStatus();
+            }
+        }
+
+        function checkLocalStorage() {
+            const statusDiv = document.getElementById('storage-status');
+            try {
+                const stored = localStorage.getItem('safedrive_cookie_consent');
+                if (stored) {
+                    const data = JSON.parse(stored);
+                    statusDiv.className = 'status success';
+                    statusDiv.innerHTML = `
+                        <strong>✓ LocalStorage 데이터:</strong><br>
+                        <code>${JSON.stringify(data, null, 2)}</code>
+                    `;
+                } else {
+                    statusDiv.className = 'status';
+                    statusDiv.textContent = 'LocalStorage에 저장된 동의 정보가 없습니다.';
+                }
+            } catch (e) {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = '✗ Error: ' + e.message;
+            }
+        }
+
+        // Auto-check status on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                checkConsentStatus();
+                document.getElementById('event-log').textContent = '동의 상태를 변경하면 여기에 이벤트가 표시됩니다.';
+            }, 1000);
+        });
+    </script>
+
+    <!-- Cookie Consent System -->
+    <link rel="stylesheet" href="/css/cookie-consent.css">
+    <script src="/js/cookie-consent.js"></script>
+    
+    <!-- Cookie Settings Floating Button -->
+    <button 
+        class="cookie-settings-trigger" 
+        onclick="openCookieSettings()" 
+        title="쿠키 설정 관리"
+        aria-label="쿠키 설정 관리">
+        🍪
+    </button>
+</body>
+</html>

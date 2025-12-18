@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9R8RZYZC7X"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      
-      gtag('config', 'G-9R8RZYZC7X');
-    </script>
+    <!-- Google tag (gtag.js) - with Cookie Consent -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-9R8RZYZC7X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  
+  // Default consent to denied
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied',
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied'
+  });
+  
+  gtag('config', 'G-9R8RZYZC7X');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SAFE DRIVE 초대 이벤트 - 친구를 초대하고 리워드를 받으세요.">
@@ -1055,5 +1063,17 @@
     </script>
     <script src="/js/referral-core.js"></script>
     <script src="/js/referral-ui.js"></script>
+<!-- Cookie Consent System -->
+<link rel="stylesheet" href="/css/cookie-consent.css">
+<script src="/js/cookie-consent.js"></script>
+
+<!-- Cookie Settings Floating Button -->
+<button 
+    class="cookie-settings-trigger" 
+    onclick="openCookieSettings()" 
+    title="쿠키 설정 관리"
+    aria-label="쿠키 설정 관리">
+    🍪
+</button>
 </body>
 </html>
