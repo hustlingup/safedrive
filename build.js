@@ -154,7 +154,8 @@ function build() {
         'animated-qr.html', 'generate-favicon.html',
         'referral-design-options.html', 'referral-layout-options.html',
         'referral-stats.html', 'test-referral.html',
-        'test-voice-pronunciation.html'
+        'test-voice-pronunciation.html', 'test-cookie-consent.html',
+        'cookie-banner-layout-options.html'
     ];
     
     for (const file of filesToCopy) {
@@ -164,7 +165,7 @@ function build() {
     }
     
     // Copy directories
-    const dirsToCopy = ['assets', 'js', 'public'];
+    const dirsToCopy = ['assets', 'css', 'js', 'public'];
     for (const dir of dirsToCopy) {
         if (fs.existsSync(dir)) {
             // For public dir, skip firebase-config.js (already processed)
