@@ -1,6 +1,6 @@
 /**
  * SafeDrive Referral Core Module
- * 추천인 시스템 핵심 로직
+ * 추천???�스???�심 로직
  */
 
 const ReferralCore = (function() {
@@ -9,7 +9,7 @@ const ReferralCore = (function() {
     // Constants
     const REFERRAL_ID_LENGTH = 12;
     const DAILY_LIMIT = 50;
-    const BASE32_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // 혼동 방지: I, O, 0, 1 제외
+    const BASE32_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // ?�동 방�?: I, O, 0, 1 ?�외
     const STORAGE_KEYS = {
         REFERRER_ID: 'sd_referrer_id',
         VISITOR_ID: 'sd_visitor_id',
@@ -20,7 +20,7 @@ const ReferralCore = (function() {
     let db = null;
     
     /**
-     * Firebase 초기화 확인
+     * Firebase 초기???�인
      */
     function ensureFirebase() {
         if (!db && typeof firebase !== 'undefined' && firebase.database) {
@@ -30,7 +30,7 @@ const ReferralCore = (function() {
     }
     
     /**
-     * 오늘 날짜 문자열 (YYYYMMDD)
+     * ?�늘 ?�짜 문자??(YYYYMMDD)
      */
     function getTodayString() {
         const now = new Date();
@@ -41,8 +41,8 @@ const ReferralCore = (function() {
     }
     
     /**
-     * In-app 브라우저 감지
-     * @returns {boolean} in-app 브라우저이면 true
+     * In-app 브라?��? 감�?
+     * @returns {boolean} in-app 브라?��??�면 true
      */
     function isInAppBrowser() {
         const ua = navigator.userAgent || navigator.vendor || window.opera;
@@ -73,7 +73,7 @@ const ReferralCore = (function() {
         // Check if any pattern matches
         for (const pattern of inAppPatterns) {
             if (pattern.test(ua)) {
-                console.log('🚫 In-app browser detected:', ua);
+                // console.log('?�� In-app browser detected:', ua);
                 return true;
             }
         }
@@ -83,7 +83,7 @@ const ReferralCore = (function() {
         const isWebView = !isStandalone && /Mobile|Android|iPhone|iPad|iPod/i.test(ua);
         
         if (isWebView && (ua.includes('wv') || ua.includes('Version/'))) {
-            console.log('🚫 WebView detected:', ua);
+            // console.log('?�� WebView detected:', ua);
             return true;
         }
         
@@ -91,7 +91,7 @@ const ReferralCore = (function() {
     }
     
     /**
-     * 12자 Base32 추천인 ID 생성
+     * 12??Base32 추천??ID ?�성
      */
     function generateReferrerId() {
         let id = '';
@@ -104,7 +104,7 @@ const ReferralCore = (function() {
     }
     
     /**
-     * 추천인 ID 존재 여부 확인 (RTDB)
+     * 추천??ID 존재 ?��? ?�인 (RTDB)
      */
     async function checkReferrerIdExists(id) {
         const database = ensureFirebase();
@@ -120,7 +120,7 @@ const ReferralCore = (function() {
     }
 
     /**
-     * 고유한 추천인 ID 생성 (중복 확인 포함)
+     * 고유??추천??ID ?�성 (중복 ?�인 ?�함)
      */
     async function createUniqueReferrerId() {
         let id = generateReferrerId();
@@ -136,7 +136,7 @@ const ReferralCore = (function() {
     }
     
     /**
-     * 방문자 ID 생성/저장
+     * 방문??ID ?�성/?�??
      */
     function ensureVisitorId() {
         let visitorId = localStorage.getItem(STORAGE_KEYS.VISITOR_ID);
@@ -148,7 +148,7 @@ const ReferralCore = (function() {
     }
     
     /**
-     * 내 추천인 ID 가져오기 (없으면 생성)
+     * ??추천??ID 가?�오�?(?�으�??�성)
      */
     async function getOrCreateReferrerId() {
         let referrerId = localStorage.getItem(STORAGE_KEYS.REFERRER_ID);
@@ -162,7 +162,7 @@ const ReferralCore = (function() {
                 try {
                     const createReferrer = firebase.functions().httpsCallable('createReferrer');
                     await createReferrer({ referrerId });
-                    console.log('✅ Referrer created via Cloud Function:', referrerId);
+                    // console.log('??Referrer created via Cloud Function:', referrerId);
                 } catch (error) {
                     console.error('Error creating referrer:', error);
                 }
@@ -173,16 +173,16 @@ const ReferralCore = (function() {
     }
     
     /**
-     * URL에서 ?ref= 파라미터 감지 및 저장
+     * URL?�서 ?ref= ?�라미터 감�? �??�??
      */
     function captureIncomingRef() {
         const urlParams = new URLSearchParams(window.location.search);
         const ref = urlParams.get('ref');
         
         if (ref && ref.length === REFERRAL_ID_LENGTH) {
-            // 유효한 추천 코드인 경우 저장
+            // ?�효??추천 코드??경우 ?�??
             localStorage.setItem(STORAGE_KEYS.INCOMING_REF, ref);
-            console.log('📥 Referral code captured:', ref);
+            // console.log('?�� Referral code captured:', ref);
             return ref;
         }
         
@@ -190,14 +190,14 @@ const ReferralCore = (function() {
     }
     
     /**
-     * 저장된 incoming ref 가져오기
+     * ?�?�된 incoming ref 가?�오�?
      */
     function getIncomingRef() {
         return localStorage.getItem(STORAGE_KEYS.INCOMING_REF);
     }
     
     /**
-     * 추천인의 오늘 카운트 가져오기
+     * 추천?�의 ?�늘 카운??가?�오�?
      */
     async function getReferrerDailyCount(referrerId) {
         const database = ensureFirebase();
@@ -214,7 +214,7 @@ const ReferralCore = (function() {
     }
 
     /**
-     * 오늘 50회 달성 선착순 winners 확인
+     * ?�늘 50???�성 ?�착??winners ?�인
      */
     async function getDailyWinners() {
         const database = ensureFirebase();
@@ -224,7 +224,7 @@ const ReferralCore = (function() {
         try {
             const snapshot = await database.ref(`referrals/dailyWinners/${today}`).once('value');
             const data = snapshot.val() || {};
-            // achievedAt 기준 정렬
+            // achievedAt 기�? ?�렬
             return Object.entries(data)
                 .map(([id, info]) => ({ id, achievedAt: info.achievedAt || info }))
                 .sort((a, b) => a.achievedAt - b.achievedAt)
@@ -236,7 +236,7 @@ const ReferralCore = (function() {
     }
     
     /**
-     * 오늘 리더보드 TOP3 가져오기
+     * ?�늘 리더보드 TOP3 가?�오�?
      */
     async function getDailyTop3() {
         const database = ensureFirebase();
@@ -260,20 +260,20 @@ const ReferralCore = (function() {
     }
     
     /**
-     * 오늘 보상 대상 3인 계산 (Hybrid 로직)
-     * - 기본: 50회 달성 선착순 3명
-     * - 백업: winners가 3명 미만이면 TOP3로 부족분 채움
+     * ?�늘 보상 ?�??3??계산 (Hybrid 로직)
+     * - 기본: 50???�성 ?�착??3�?
+     * - 백업: winners가 3�?미만?�면 TOP3�?부족분 채�?
      */
     async function getTodayRewardRecipients() {
         const winners = await getDailyWinners();
         const winnerIds = new Set(winners.map(w => w.id));
         
-        // winners가 3명이면 그대로 반환
+        // winners가 3명이�?그�?�?반환
         if (winners.length >= 3) {
             return winners.slice(0, 3).map(w => w.id);
         }
         
-        // 부족분을 TOP3에서 채움
+        // 부족분??TOP3?�서 채�?
         const top = await getDailyTop3();
         const result = [...winners.map(w => w.id)];
         
@@ -288,7 +288,7 @@ const ReferralCore = (function() {
     }
     
     /**
-     * 오늘 3등 점수 가져오기
+     * ?�늘 3???�수 가?�오�?
      */
     async function getThirdPlaceScore() {
         const top = await getDailyTop3();
@@ -320,8 +320,8 @@ const ReferralCore = (function() {
     }
     
     /**
-     * plate.html 진입 시 referral 성공 처리
-     * @param {string} plateNumber - 유효한 번호판 번호
+     * plate.html 진입 ??referral ?�공 처리
+     * @param {string} plateNumber - ?�효??번호??번호
      */
     async function onPlateView(plateNumber) {
         if (!plateNumber) return { success: false, reason: 'no_plate' };
@@ -333,16 +333,16 @@ const ReferralCore = (function() {
         const visitorId = ensureVisitorId();
         const today = getTodayString();
         
-        // 1. Self-referral 금지
+        // 1. Self-referral 금�?
         if (incomingRef === myReferrerId) {
-            console.log('❌ Self-referral blocked');
+            // console.log('??Self-referral blocked');
             return { success: false, reason: 'self_referral' };
         }
         
-        // 2. 방문자→추천인 조합 하루 1회 제한
+        // 2. 방문?�→추천??조합 ?�루 1???�한
         const usedKey = `sd_ref_used_${incomingRef}_${visitorId}_${today}`;
         if (localStorage.getItem(usedKey)) {
-            console.log('❌ Already used today for this referrer');
+            // console.log('??Already used today for this referrer');
             return { success: false, reason: 'already_used_today' };
         }
         
@@ -374,10 +374,10 @@ const ReferralCore = (function() {
                 // Mark as used
                 localStorage.setItem(usedKey, '1');
                 
-                console.log('✅ Referral success! New count:', result.data.newDailyCount);
+                // console.log('??Referral success! New count:', result.data.newDailyCount);
                 
                 if (result.data.isWinner) {
-                    console.log('🏆 Winner! Reached 50 referrals!');
+                    // console.log('?�� Winner! Reached 50 referrals!');
                 }
                 
                 return {
@@ -405,7 +405,7 @@ const ReferralCore = (function() {
     }
 
     /**
-     * 내 추천 통계 가져오기
+     * ??추천 ?�계 가?�오�?
      */
     async function getMyStats() {
         const referrerId = localStorage.getItem(STORAGE_KEYS.REFERRER_ID);
@@ -436,7 +436,7 @@ const ReferralCore = (function() {
     }
     
     /**
-     * 추천 링크 생성
+     * 추천 링크 ?�성
      */
     function getReferralLink(referrerId) {
         const baseUrl = window.location.origin;
@@ -444,77 +444,77 @@ const ReferralCore = (function() {
     }
     
     /**
-     * index.html 로드 시 초기화
+     * index.html 로드 ??초기??
      */
     async function initOnIndexLoad() {
-        console.log('🚀 ReferralCore initializing on index...');
+        // console.log('?? ReferralCore initializing on index...');
         
-        // In-app 브라우저 체크
+        // In-app 브라?��? 체크
         if (isInAppBrowser()) {
-            console.log('⚠️ In-app browser detected. Skipping UUID generation.');
-            console.log('💡 Please open in Chrome or Safari for full referral features.');
+            // console.log('?�️ In-app browser detected. Skipping UUID generation.');
+            // console.log('?�� Please open in Chrome or Safari for full referral features.');
             
-            // URL에서 ref 파라미터만 캡처 (UUID 생성 안 함)
+            // URL?�서 ref ?�라미터�?캡처 (UUID ?�성 ????
             captureIncomingRef();
             
             return;
         }
         
-        // 일반 브라우저에서만 UUID 생성
-        console.log('✅ Standard browser detected. Generating UUIDs...');
+        // ?�반 브라?��??�서�?UUID ?�성
+        // console.log('??Standard browser detected. Generating UUIDs...');
         
-        // 방문자 ID 확보
+        // 방문??ID ?�보
         ensureVisitorId();
         
-        // URL에서 ref 파라미터 캡처
+        // URL?�서 ref ?�라미터 캡처
         captureIncomingRef();
         
-        // 내 추천인 ID 확보 (없으면 생성)
+        // ??추천??ID ?�보 (?�으�??�성)
         await getOrCreateReferrerId();
         
-        console.log('✅ ReferralCore initialized');
+        // console.log('??ReferralCore initialized');
     }
     
     /**
-     * plate.html 로드 시 초기화
-     * @param {string} plateNumber - 유효한 번호판 번호
+     * plate.html 로드 ??초기??
+     * @param {string} plateNumber - ?�효??번호??번호
      */
     async function initOnPlateLoad(plateNumber) {
-        console.log('🚀 ReferralCore initializing on plate...');
+        // console.log('?? ReferralCore initializing on plate...');
         
-        // In-app 브라우저 체크
+        // In-app 브라?��? 체크
         if (isInAppBrowser()) {
-            console.log('⚠️ In-app browser detected. Skipping referral processing.');
+            // console.log('?�️ In-app browser detected. Skipping referral processing.');
             return { success: false, reason: 'in_app_browser' };
         }
         
-        // 방문자 ID 확보
+        // 방문??ID ?�보
         ensureVisitorId();
         
-        // referral 성공 처리
+        // referral ?�공 처리
         const result = await onPlateView(plateNumber);
         
-        console.log('✅ ReferralCore plate init result:', result);
+        // console.log('??ReferralCore plate init result:', result);
         return result;
     }
     
     // Public API
     return {
-        // 초기화
+        // 초기??
         initOnIndexLoad,
         initOnPlateLoad,
         onPlateView,
         
-        // ID 관리
+        // ID 관�?
         ensureVisitorId,
         getOrCreateReferrerId,
         captureIncomingRef,
         getIncomingRef,
         
-        // 유틸리티
+        // ?�틸리티
         isInAppBrowser,
         
-        // 통계
+        // ?�계
         getMyStats,
         getReferrerDailyCount,
         getDailyWinners,
@@ -522,17 +522,17 @@ const ReferralCore = (function() {
         getTodayRewardRecipients,
         getThirdPlaceScore,
         
-        // 유틸
+        // ?�틸
         getReferralLink,
         getTodayString,
         
-        // 상수
+        // ?�수
         DAILY_LIMIT,
         STORAGE_KEYS
     };
 })();
 
-// 전역 노출
+// ?�역 ?�출
 if (typeof window !== 'undefined') {
     window.ReferralCore = ReferralCore;
 }

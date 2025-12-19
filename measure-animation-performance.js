@@ -73,7 +73,7 @@ class AnimationPerformanceMeasurer {
      * Measures the sliding puzzle timeline and color cycling
      */
     async measureQRAnimation() {
-        console.log('📊 Measuring QR Animation Performance...');
+        // console.log('📊 Measuring QR Animation Performance...');
         
         // Scroll to QR section
         const qrSection = document.querySelector('#qr-generator-intro');
@@ -96,7 +96,7 @@ class AnimationPerformanceMeasurer {
             description: 'Timeline animation with infinite loop'
         };
 
-        console.log('✅ QR Animation Results:', this.measurements.qrAnimation);
+        // console.log('✅ QR Animation Results:', this.measurements.qrAnimation);
         return this.measurements.qrAnimation;
     }
 
@@ -105,7 +105,7 @@ class AnimationPerformanceMeasurer {
      * Measures the scroll-triggered stagger animation for table rows
      */
     async measureLeaderboardStagger() {
-        console.log('📊 Measuring Leaderboard Stagger Performance...');
+        // console.log('📊 Measuring Leaderboard Stagger Performance...');
         
         // Find leaderboard section - try multiple selectors
         const leaderboardSection = document.querySelector('#mostLikedSection') || 
@@ -134,7 +134,7 @@ class AnimationPerformanceMeasurer {
             description: 'IntersectionObserver-triggered stagger animation with 80ms delay'
         };
 
-        console.log('✅ Leaderboard Stagger Results:', this.measurements.leaderboardStagger);
+        // console.log('✅ Leaderboard Stagger Results:', this.measurements.leaderboardStagger);
         return this.measurements.leaderboardStagger;
     }
 
@@ -151,12 +151,12 @@ class AnimationPerformanceMeasurer {
      * Generate a comprehensive report
      */
     generateReport() {
-        console.log('\n' + '='.repeat(80));
-        console.log('📈 ANIMATION PERFORMANCE REPORT');
-        console.log('='.repeat(80));
-        console.log(`Target FPS: ${this.targetFPS}`);
-        console.log(`Acceptable Range: ${(this.targetFPS * 0.95).toFixed(1)} - ${this.targetFPS} FPS`);
-        console.log('='.repeat(80));
+        // console.log('\n' + '='.repeat(80));
+        // console.log('📈 ANIMATION PERFORMANCE REPORT');
+        // console.log('='.repeat(80));
+        // console.log(`Target FPS: ${this.targetFPS}`);
+        // console.log(`Acceptable Range: ${(this.targetFPS * 0.95).toFixed(1)} - ${this.targetFPS} FPS`);
+        // console.log('='.repeat(80));
 
         const animations = [
             { name: 'QR Animation', data: this.measurements.qrAnimation },
@@ -165,34 +165,34 @@ class AnimationPerformanceMeasurer {
 
         animations.forEach(({ name, data }) => {
             if (data) {
-                console.log(`\n${name}:`);
-                console.log(`  Type: ${data.animationType}`);
-                console.log(`  Description: ${data.description}`);
-                console.log(`  Average FPS: ${data.averageFPS} ${data.meetsTarget ? '✅' : '❌'}`);
-                console.log(`  Min FPS: ${data.minFPS}`);
-                console.log(`  Max FPS: ${data.maxFPS}`);
-                console.log(`  Total Frames: ${data.totalFrames}`);
-                console.log(`  Dropped Frames: ${data.droppedFrames} (${data.droppedFramePercentage}%)`);
-                console.log(`  Duration: ${data.duration}ms`);
-                console.log(`  Status: ${data.meetsTarget ? 'PASS ✅' : 'FAIL ❌'}`);
+                // console.log(`\n${name}:`);
+                // console.log(`  Type: ${data.animationType}`);
+                // console.log(`  Description: ${data.description}`);
+                // console.log(`  Average FPS: ${data.averageFPS} ${data.meetsTarget ? '✅' : '❌'}`);
+                // console.log(`  Min FPS: ${data.minFPS}`);
+                // console.log(`  Max FPS: ${data.maxFPS}`);
+                // console.log(`  Total Frames: ${data.totalFrames}`);
+                // console.log(`  Dropped Frames: ${data.droppedFrames} (${data.droppedFramePercentage}%)`);
+                // console.log(`  Duration: ${data.duration}ms`);
+                // console.log(`  Status: ${data.meetsTarget ? 'PASS ✅' : 'FAIL ❌'}`);
             } else {
-                console.log(`\n${name}: NOT MEASURED`);
+                // console.log(`\n${name}: NOT MEASURED`);
             }
         });
 
-        console.log('\n' + '='.repeat(80));
+        // console.log('\n' + '='.repeat(80));
         
         // Overall summary
         const allMeasured = animations.every(({ data }) => data !== null);
         const allPass = animations.every(({ data }) => data && data.meetsTarget);
         
-        if (allMeasured) {
-            console.log('OVERALL STATUS:', allPass ? 'ALL ANIMATIONS PASS ✅' : 'SOME ANIMATIONS NEED OPTIMIZATION ⚠️');
-        } else {
-            console.log('OVERALL STATUS: INCOMPLETE - Not all animations measured');
-        }
+        // if (allMeasured) {
+        //     console.log('OVERALL STATUS:', allPass ? 'ALL ANIMATIONS PASS ✅' : 'SOME ANIMATIONS NEED OPTIMIZATION ⚠️');
+        // } else {
+        //     console.log('OVERALL STATUS: INCOMPLETE - Not all animations measured');
+        // }
         
-        console.log('='.repeat(80) + '\n');
+        // console.log('='.repeat(80) + '\n');
 
         return {
             measurements: this.measurements,
@@ -215,8 +215,8 @@ class AnimationPerformanceMeasurer {
             }
         };
 
-        console.log('\n📄 JSON Export:');
-        console.log(JSON.stringify(report, null, 2));
+        // console.log('\n📄 JSON Export:');
+        // console.log(JSON.stringify(report, null, 2));
         
         return report;
     }
@@ -225,7 +225,7 @@ class AnimationPerformanceMeasurer {
      * Measure all animations sequentially
      */
     async measureAll() {
-        console.log('🚀 Starting comprehensive animation performance measurement...\n');
+        // console.log('🚀 Starting comprehensive animation performance measurement...\n');
         
         try {
             // Measure each animation
@@ -261,7 +261,7 @@ window.AnimationPerformanceMeasurer = AnimationPerformanceMeasurer;
 // Auto-run if script is loaded with ?measure=true
 if (typeof window !== 'undefined' && window.location.search.includes('measure=true')) {
     window.addEventListener('load', () => {
-        console.log('Auto-running performance measurement...');
+        // console.log('Auto-running performance measurement...');
         setTimeout(window.measureAllAnimations, 2000); // Wait 2s for page to fully load
     });
 }

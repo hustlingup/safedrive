@@ -18,7 +18,7 @@ if (typeof SubscriptionManager === 'undefined') {
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('/sw.js')
                     .then((registration) => {
-                        console.log('Service Worker registered:', registration);
+                        // console.log('Service Worker registered:', registration);
                         
                         // Send Firebase config to service worker
                         if (registration.active && typeof firebaseConfig !== 'undefined') {
@@ -36,7 +36,7 @@ if (typeof SubscriptionManager === 'undefined') {
             // Initialize Firebase Messaging
             try {
                 this.messaging = firebase.messaging();
-                console.log('Firebase Messaging initialized');
+                // console.log('Firebase Messaging initialized');
             } catch (error) {
                 console.error('Firebase Messaging initialization failed:', error);
             }
@@ -45,7 +45,7 @@ if (typeof SubscriptionManager === 'undefined') {
             window.addEventListener('beforeinstallprompt', (e) => {
                 e.preventDefault();
                 this.deferredPrompt = e;
-                console.log('beforeinstallprompt event captured');
+                // console.log('beforeinstallprompt event captured');
             });
             
             // Setup subscribe button
@@ -62,7 +62,7 @@ if (typeof SubscriptionManager === 'undefined') {
                 return;
             }
             
-            console.log('Subscribe button found, setting up...');
+            // console.log('Subscribe button found, setting up...');
             
             // Update button text based on subscription status
             this.updateSubscribeButtonText();
@@ -88,7 +88,7 @@ if (typeof SubscriptionManager === 'undefined') {
             
             // Click handler
             subscribeBtn.addEventListener('click', () => {
-                console.log('Subscribe button clicked');
+                // console.log('Subscribe button clicked');
                 this.openSubscribePopup();
             });
         },
@@ -281,7 +281,7 @@ if (typeof SubscriptionManager === 'undefined') {
                 });
                 
                 if (result.data && result.data.success) {
-                    console.log('Notification settings synced to Firebase via Cloud Function');
+                    // console.log('Notification settings synced to Firebase via Cloud Function');
                 } else {
                     console.error('Sync failed:', result.data);
                 }
@@ -430,7 +430,7 @@ if (typeof SubscriptionManager === 'undefined') {
                             plateNumber: plate,
                             action: 'unsubscribe'
                         });
-                        console.log(`Removed subscription for ${plate}`);
+                        // console.log(`Removed subscription for ${plate}`);
                     }
                 } catch (error) {
                     console.error('Error removing subscription from Firebase:', error);
@@ -508,10 +508,10 @@ if (typeof SubscriptionManager === 'undefined') {
                 const { outcome } = await this.deferredPrompt.userChoice;
                 
                 if (outcome === 'accepted') {
-                    console.log('PWA installed');
+                    // console.log('PWA installed');
                     this.showToast('앱이 설치되었습니다', 'success');
                 } else {
-                    console.log('PWA installation declined');
+                    // console.log('PWA installation declined');
                 }
                 
                 this.deferredPrompt = null;
@@ -548,7 +548,7 @@ if (typeof SubscriptionManager === 'undefined') {
                 const permission = await Notification.requestPermission();
                 
                 if (permission === 'granted') {
-                    console.log('Notification permission granted');
+                    // console.log('Notification permission granted');
                     
                     // Get FCM token
                     const token = await this.getFCMToken();
@@ -592,10 +592,10 @@ if (typeof SubscriptionManager === 'undefined') {
                 });
                 
                 if (token) {
-                    console.log('FCM Token:', token);
+                    // console.log('FCM Token:', token);
                     return token;
                 } else {
-                    console.log('No FCM token available');
+                    // console.log('No FCM token available');
                     return null;
                 }
             } catch (error) {
@@ -628,7 +628,7 @@ if (typeof SubscriptionManager === 'undefined') {
                 });
                 
                 if (result.data && result.data.success) {
-                    console.log('Subscriptions synced to Firebase via Cloud Function (enabled:', enabledPlates.length, '/ total:', subscribed.length, ')');
+                    // console.log('Subscriptions synced to Firebase via Cloud Function (enabled:', enabledPlates.length, '/ total:', subscribed.length, ')');
                 } else {
                     console.error('Sync failed:', result.data);
                 }

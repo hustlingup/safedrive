@@ -149,7 +149,7 @@ class InMemoryRateLimiter {
       }
     }
     
-    console.log(`Rate limiter cleanup: ${this.buckets.size} active fingerprints`);
+    // console.log(`Rate limiter cleanup: ${this.buckets.size} active fingerprints`);
   }
 }
 
@@ -214,7 +214,7 @@ function validateRequest(payload) {
     // Generate server-side HMAC for logging/auditing
     const serverSignature = generateServerHMAC(payload);
     
-    console.log("Request validation:", {
+    // console.log("Request validation:", {
       fingerprintPrefix: payload.fingerprint.substring(0, 8) + "...",
       timestamp: payload.timestamp,
       noncePrefix: payload.nonce.substring(0, 8) + "...",
@@ -532,7 +532,7 @@ exports.secureIncrementCounter = functions.https.onCall(async (data, context) =>
     // ========================================================================
     
     const duration = Date.now() - startTime;
-    console.log(`Secure increment successful: ${plateNumber}/${counterKey} = ${newValue} (${duration}ms)`);
+    // console.log(`Secure increment successful: ${plateNumber}/${counterKey} = ${newValue} (${duration}ms)`);
     
     return {
       success: true,
@@ -570,7 +570,7 @@ exports.cleanupSecurityData = functions.pubsub
   .schedule("0 3 * * *")
   .timeZone("Asia/Seoul")
   .onRun(async (context) => {
-    console.log("Starting security data cleanup...");
+    // console.log("Starting security data cleanup...");
     
     try {
       const now = Date.now();
@@ -595,7 +595,7 @@ exports.cleanupSecurityData = functions.pubsub
         noncesDeleted++;
       }
       
-      console.log(`Deleted ${noncesDeleted} expired nonces`);
+      // console.log(`Deleted ${noncesDeleted} expired nonces`);
       
       // Cleanup old daily counters (keep last 30 days)
       const dailyRef = db.ref("security/daily");
@@ -621,8 +621,8 @@ exports.cleanupSecurityData = functions.pubsub
         daysDeleted++;
       }
       
-      console.log(`Deleted ${daysDeleted} old daily counter records`);
-      console.log("Security data cleanup completed successfully");
+      // console.log(`Deleted ${daysDeleted} old daily counter records`);
+      // console.log("Security data cleanup completed successfully");
       
       return null;
     } catch (error) {

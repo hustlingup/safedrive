@@ -11,7 +11,7 @@ function loadEnv() {
     const envPath = path.join(__dirname, '.env');
     
     if (!fs.existsSync(envPath)) {
-        console.error('‚ùå .env file not found!');
+        console.error('??.env file not found!');
         console.error('   Create .env file with your credentials.');
         process.exit(1);
     }
@@ -42,7 +42,7 @@ function ensureDir(dirPath) {
 // Process a file - replace placeholders with env values
 function processFile(srcPath, destPath, env) {
     if (!fs.existsSync(srcPath)) {
-        console.error(`‚ùå File not found: ${srcPath}`);
+        console.error(`??File not found: ${srcPath}`);
         return false;
     }
     
@@ -51,7 +51,7 @@ function processFile(srcPath, destPath, env) {
     // Replace VAPID key placeholder
     if (content.includes('__VAPID_KEY__')) {
         if (!env.VAPID_KEY) {
-            console.error('‚ùå VAPID_KEY not found in .env');
+            console.error('??VAPID_KEY not found in .env');
             return false;
         }
         content = content.replace(/__VAPID_KEY__/g, env.VAPID_KEY);
@@ -72,7 +72,7 @@ function processFile(srcPath, destPath, env) {
     for (const [placeholder, value] of Object.entries(replacements)) {
         if (content.includes(placeholder)) {
             if (!value) {
-                console.error(`‚ùå ${placeholder.replace(/__/g, '')} not found in .env`);
+                console.error(`??${placeholder.replace(/__/g, '')} not found in .env`);
                 return false;
             }
             content = content.replace(new RegExp(placeholder, 'g'), value);
@@ -114,7 +114,7 @@ function copyDir(srcDir, destDir, exclude = []) {
 
 // Main build
 function build() {
-    console.log('üî® Building SafeDrive...\\n');
+    // console.log('?î® Building SafeDrive...\\n');
     
     const env = loadEnv();
     const distDir = 'dist';
@@ -126,7 +126,7 @@ function build() {
     ensureDir(distDir);
     
     // Process files with placeholders
-    console.log('üì¶ Processing files with credentials...');
+    // console.log('?ì¶ Processing files with credentials...');
     const filesToProcess = [
         { src: 'script.js', dest: 'dist/script.js' },
         { src: 'subscription-manager.js', dest: 'dist/subscription-manager.js' },
@@ -137,15 +137,15 @@ function build() {
     
     for (const file of filesToProcess) {
         if (processFile(file.src, file.dest, env)) {
-            console.log(`   ‚úì ${file.src}`);
+            // console.log(`   ??${file.src}`);
         } else {
-            console.error(`\\n‚ùå Build failed!`);
+            console.error(`\\n??Build failed!`);
             process.exit(1);
         }
     }
     
     // Copy other files
-    console.log('\\nüìÅ Copying other files...');
+    // console.log('\\n?ìÅ Copying other files...');
     const filesToCopy = [
         'index.html', 'plate.html', 'contact.html', 'faq.html',
         'legal.html', 'terms.html', 'privacy.html', 'other.html',
@@ -160,7 +160,7 @@ function build() {
     
     for (const file of filesToCopy) {
         if (copyFile(file, path.join(distDir, file))) {
-            console.log(`   ‚úì ${file}`);
+            // console.log(`   ??${file}`);
         }
     }
     
@@ -179,13 +179,13 @@ function build() {
             } else {
                 copyDir(dir, path.join(distDir, dir));
             }
-            console.log(`   ‚úì ${dir}/`);
+            // console.log(`   ??${dir}/`);
         }
     }
     
-    console.log('\\n‚úÖ Build completed!');
-    console.log('\\nüìÇ Output: dist/');
-    console.log('\\nüöÄ Deploy: firebase deploy --only hosting');
+    // console.log('\\n??Build completed!');
+    // console.log('\\n?ìÇ Output: dist/');
+    // console.log('\\n?? Deploy: firebase deploy --only hosting');
 }
 
 build();

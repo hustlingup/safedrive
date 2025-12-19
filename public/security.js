@@ -54,7 +54,7 @@ const SecurityModule = {
       // Hash the fingerprint with SHA-256 to ensure privacy
       const hash = await this.sha256(rawFingerprint);
       
-      console.log("SecurityModule: Generated privacy-safe fingerprint");
+      // console.log("SecurityModule: Generated privacy-safe fingerprint");
       
       return hash;
     } catch (error) {
@@ -88,9 +88,9 @@ const SecurityModule = {
       ctx.fillStyle = "#f60";
       ctx.fillRect(125, 1, 62, 20);
       ctx.fillStyle = "#069";
-      ctx.fillText("SafeDrive 🚗", 2, 15);
+      ctx.fillText("SafeDrive ?��", 2, 15);
       ctx.fillStyle = "rgba(102, 204, 0, 0.7)";
-      ctx.fillText("SafeDrive 🚗", 4, 17);
+      ctx.fillText("SafeDrive ?��", 4, 17);
       
       // Get canvas data
       const dataURL = canvas.toDataURL();
@@ -173,7 +173,7 @@ const SecurityModule = {
    */
   async secureIncrementCounter(plateNumber, counterKey) {
     try {
-      console.log(`SecurityModule: Preparing secure increment for ${plateNumber}/${counterKey}`);
+      // console.log(`SecurityModule: Preparing secure increment for ${plateNumber}/${counterKey}`);
       
       // Generate fingerprint
       const fingerprint = await this.generateFingerprint();
@@ -191,7 +191,7 @@ const SecurityModule = {
         nonce,
       };
       
-      console.log("SecurityModule: Calling Cloud Function...");
+      // console.log("SecurityModule: Calling Cloud Function...");
       
       // Call Cloud Function
       const secureIncrementCounter = firebase.functions().httpsCallable("secureIncrementCounter");
@@ -201,7 +201,7 @@ const SecurityModule = {
         throw new Error(result.data?.error || "Increment failed");
       }
       
-      console.log(`SecurityModule: Increment successful, new value: ${result.data.newValue}`);
+      // console.log(`SecurityModule: Increment successful, new value: ${result.data.newValue}`);
       
       return result.data.newValue;
       
@@ -209,18 +209,18 @@ const SecurityModule = {
       console.error("SecurityModule: Secure increment error:", error);
       
       // Parse error message for user-friendly display
-      let userMessage = "메세지 전송에 실패했습니다";
+      let userMessage = "메세지 ?�송???�패?�습?�다";
       
       if (error.code === "functions/resource-exhausted") {
-        userMessage = "너무 많은 요청이 발생했습니다. 잠시 후 다시 시도해 주세요";
+        userMessage = "?�무 많�? ?�청??발생?�습?�다. ?�시 ???�시 ?�도??주세??;
       } else if (error.code === "functions/permission-denied") {
-        userMessage = "요청이 거부되었습니다";
+        userMessage = "?�청??거�??�었?�니??;
       } else if (error.code === "functions/failed-precondition") {
-        userMessage = "요청이 만료되었습니다. 다시 시도해 주세요";
+        userMessage = "?�청??만료?�었?�니?? ?�시 ?�도??주세??;
       } else if (error.code === "functions/invalid-argument") {
-        userMessage = "잘못된 요청입니다";
+        userMessage = "?�못???�청?�니??;
       } else if (error.message && error.message.includes("network")) {
-        userMessage = "네트워크 오류가 발생했습니다. 다시 시도해 주세요";
+        userMessage = "?�트?�크 ?�류가 발생?�습?�다. ?�시 ?�도??주세??;
       }
       
       // Throw error with user-friendly message
@@ -236,7 +236,7 @@ const SecurityModule = {
    */
   async init() {
     try {
-      console.log("SecurityModule: Initializing...");
+      // console.log("SecurityModule: Initializing...");
       
       // Pre-generate fingerprint (cache it)
       this.cachedFingerprint = await this.generateFingerprint();
@@ -251,7 +251,7 @@ const SecurityModule = {
         return this.cachedFingerprint;
       };
       
-      console.log("SecurityModule: Initialized successfully");
+      // console.log("SecurityModule: Initialized successfully");
     } catch (error) {
       console.error("SecurityModule: Initialization error:", error);
       // Non-critical, continue

@@ -1,6 +1,6 @@
 /**
  * SafeDrive Referral UI Module
- * referral.html 전용 UI 렌더링
+ * referral.html ?�용 UI ?�더�?
  */
 
 const ReferralUI = (function() {
@@ -12,12 +12,12 @@ const ReferralUI = (function() {
     let isRewardEligible = false;
     
     /**
-     * 페이지 초기화
+     * ?�이지 초기??
      */
     async function init() {
-        console.log('🎨 ReferralUI initializing...');
+        // console.log('?�� ReferralUI initializing...');
         
-        // ReferralCore 초기화 대기
+        // ReferralCore 초기???��?
         if (typeof ReferralCore === 'undefined') {
             console.error('ReferralCore not loaded');
             return;
@@ -25,17 +25,17 @@ const ReferralUI = (function() {
         
         await ReferralCore.initOnIndexLoad();
         
-        // 통계 로드 및 렌더링
+        // ?�계 로드 �??�더�?
         await loadAndRender();
         
-        // 이벤트 리스너 설정
+        // ?�벤??리스???�정
         setupEventListeners();
         
-        console.log('✅ ReferralUI initialized');
+        // console.log('??ReferralUI initialized');
     }
     
     /**
-     * 통계 로드 및 화면 렌더링
+     * ?�계 로드 �??�면 ?�더�?
      */
     async function loadAndRender() {
         showLoading(true);
@@ -44,36 +44,36 @@ const ReferralUI = (function() {
             myStats = await ReferralCore.getMyStats();
             
             if (!myStats) {
-                showError('추천인 정보를 불러올 수 없습니다.');
+                showError('추천???�보�?불러?????�습?�다.');
                 return;
             }
             
-            // 기본 정보 렌더링
+            // 기본 ?�보 ?�더�?
             renderMyInfo(myStats);
             
-            // 보상 대상 여부 확인
+            // 보상 ?�???��? ?�인
             const rewardRecipients = await ReferralCore.getTodayRewardRecipients();
             isRewardEligible = rewardRecipients.includes(myStats.referrerId);
             
-            // TOP3까지 남은 횟수 계산
+            // TOP3까�? ?��? ?�수 계산
             const thirdPlaceScore = await ReferralCore.getThirdPlaceScore();
             const toTop3 = Math.max(0, thirdPlaceScore - myStats.todayCount + 1);
             
             renderStats(myStats, toTop3, isRewardEligible);
             
-            // 보상 요청 링크 렌더링
+            // 보상 ?�청 링크 ?�더�?
             renderRewardSection(isRewardEligible);
             
         } catch (error) {
             console.error('Error loading referral data:', error);
-            showError('데이터 로딩 중 오류가 발생했습니다.');
+            showError('?�이??로딩 �??�류가 발생?�습?�다.');
         } finally {
             showLoading(false);
         }
     }
 
     /**
-     * 내 정보 렌더링
+     * ???�보 ?�더�?
      */
     function renderMyInfo(stats) {
         const referralLink = ReferralCore.getReferralLink(stats.referrerId);
@@ -90,37 +90,37 @@ const ReferralUI = (function() {
     }
     
     /**
-     * 통계 렌더링
+     * ?�계 ?�더�?
      */
     function renderStats(stats, toTop3, isEligible) {
-        // 오늘 성공 횟수
+        // ?�늘 ?�공 ?�수
         const todayEl = document.getElementById('todayCount');
         if (todayEl) todayEl.textContent = stats.todayCount;
         
-        // 누적 성공 횟수
+        // ?�적 ?�공 ?�수
         const totalEl = document.getElementById('totalCount');
         if (totalEl) totalEl.textContent = stats.totalCount;
         
-        // 오늘 남은 횟수
+        // ?�늘 ?��? ?�수
         const remainingEl = document.getElementById('remainingToday');
         if (remainingEl) remainingEl.textContent = stats.remainingToday;
         
-        // TOP3까지 남은 횟수
+        // TOP3까�? ?��? ?�수
         const toTop3El = document.getElementById('toTop3');
         if (toTop3El) {
             if (isEligible) {
-                toTop3El.textContent = '🎉';
+                toTop3El.textContent = '?��';
                 toTop3El.classList.add('eligible');
             } else if (stats.todayCount === 0) {
                 toTop3El.textContent = toTop3 > 0 ? toTop3 : '1';
             } else {
-                toTop3El.textContent = toTop3 > 0 ? toTop3 : '진입 완료';
+                toTop3El.textContent = toTop3 > 0 ? toTop3 : '진입 ?�료';
             }
         }
     }
     
     /**
-     * 보상 섹션 렌더링
+     * 보상 ?�션 ?�더�?
      */
     function renderRewardSection(isEligible) {
         const rewardSection = document.getElementById('rewardSection');
@@ -134,17 +134,17 @@ const ReferralUI = (function() {
             
             const badge = document.createElement('div');
             badge.className = 'reward-badge';
-            badge.textContent = '🎉 축하합니다!';
+            badge.textContent = '?�� 축하?�니??';
             
             const message = document.createElement('p');
             message.className = 'reward-message';
-            message.textContent = '오늘 보상 대상 3인에 포함되었습니다!';
+            message.textContent = '?�늘 보상 ?�??3?�에 ?�함?�었?�니??';
             
             const link = document.createElement('a');
             link.href = KAKAO_REWARD_LINK;
             link.target = '_blank';
             link.className = 'reward-claim-btn';
-            link.textContent = '💬 카카오톡으로 보상 요청하기';
+            link.textContent = '?�� 카카?�톡?�로 보상 ?�청?�기';
             
             eligibleDiv.appendChild(badge);
             eligibleDiv.appendChild(message);
@@ -157,13 +157,13 @@ const ReferralUI = (function() {
             
             const notice = document.createElement('p');
             notice.className = 'reward-notice';
-            notice.textContent = '보상 대상이 되면 여기 보상요청 버튼이 떠요';
+            notice.textContent = '보상 ?�?�이 ?�면 ?�기 보상?�청 버튼???�요';
             
             const br = document.createElement('br');
             notice.appendChild(br);
             
             const small = document.createElement('small');
-            small.textContent = '(추후 보상 증가)';
+            small.textContent = '(추후 보상 증�?)';
             notice.appendChild(small);
             
             infoDiv.appendChild(notice);
@@ -173,7 +173,7 @@ const ReferralUI = (function() {
     }
     
     /**
-     * 이벤트 리스너 설정
+     * ?�벤??리스???�정
      */
     function setupEventListeners() {
         // 링크 복사 버튼
@@ -188,7 +188,7 @@ const ReferralUI = (function() {
             shareBtn.addEventListener('click', shareReferralLink);
         }
         
-        // 새로고침 버튼
+        // ?�로고침 버튼
         const refreshBtn = document.getElementById('refreshBtn');
         if (refreshBtn) {
             refreshBtn.addEventListener('click', loadAndRender);
@@ -204,12 +204,12 @@ const ReferralUI = (function() {
         
         try {
             await navigator.clipboard.writeText(linkEl.value);
-            showNotification('링크가 복사되었습니다!', 'success');
+            showNotification('링크가 복사?�었?�니??', 'success');
         } catch (error) {
             // Fallback
             linkEl.select();
             document.execCommand('copy');
-            showNotification('링크가 복사되었습니다!', 'success');
+            showNotification('링크가 복사?�었?�니??', 'success');
         }
     }
     
@@ -224,8 +224,8 @@ const ReferralUI = (function() {
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title: 'SAFE DRIVE - 안전 운전 공유',
-                    text: '차량 안전 정보를 확인해보세요!',
+                    title: 'SAFE DRIVE - ?�전 ?�전 공유',
+                    text: '차량 ?�전 ?�보�??�인?�보?�요!',
                     url: referralLink
                 });
             } catch (error) {
@@ -234,13 +234,13 @@ const ReferralUI = (function() {
                 }
             }
         } else {
-            // Web Share API 미지원 시 복사
+            // Web Share API 미�?????복사
             await copyReferralLink();
         }
     }
     
     /**
-     * 로딩 표시
+     * 로딩 ?�시
      */
     function showLoading(show) {
         const loader = document.getElementById('referralLoader');
@@ -251,7 +251,7 @@ const ReferralUI = (function() {
     }
     
     /**
-     * 에러 표시
+     * ?�러 ?�시
      */
     function showError(message) {
         const errorEl = document.getElementById('referralError');
@@ -262,10 +262,10 @@ const ReferralUI = (function() {
     }
     
     /**
-     * 알림 표시
+     * ?�림 ?�시
      */
     function showNotification(message, type = 'info') {
-        // 기존 알림 시스템 사용 또는 간단한 알림
+        // 기존 ?�림 ?�스???�용 ?�는 간단???�림
         const notification = document.createElement('div');
         notification.className = `referral-notification ${type}`;
         notification.textContent = message;
@@ -290,7 +290,7 @@ const ReferralUI = (function() {
     };
 })();
 
-// DOM 로드 시 초기화
+// DOM 로드 ??초기??
 document.addEventListener('DOMContentLoaded', () => {
     ReferralUI.init();
 });

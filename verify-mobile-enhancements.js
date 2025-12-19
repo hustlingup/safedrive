@@ -1,7 +1,7 @@
 // Mobile Enhancements Verification Script
 // Run this in the browser console to verify all enhancements are in place
 
-console.log('=== SafeDrive Mobile Enhancements Verification ===\n');
+// console.log('=== SafeDrive Mobile Enhancements Verification ===\n');
 
 const results = {
     passed: [],
@@ -11,21 +11,21 @@ const results = {
 
 function pass(test) {
     results.passed.push(test);
-    console.log('✅', test);
+    // console.log('??, test);
 }
 
 function fail(test) {
     results.failed.push(test);
-    console.error('❌', test);
+    console.error('??, test);
 }
 
 function warn(test) {
     results.warnings.push(test);
-    console.warn('⚠️', test);
+    console.warn('?�️', test);
 }
 
 // Test 1: Input attributes
-console.log('\n1. Testing Input Attributes...');
+// console.log('\n1. Testing Input Attributes...');
 const inputs = document.querySelectorAll('input[type="tel"]');
 if (inputs.length > 0) {
     pass(`Found ${inputs.length} input(s) with type="tel"`);
@@ -33,7 +33,7 @@ if (inputs.length > 0) {
     inputs.forEach((input, i) => {
         const inputmode = input.getAttribute('inputmode');
         if (inputmode === 'numeric') {
-            pass(`Input ${i + 1}: inputmode="numeric" ✓`);
+            pass(`Input ${i + 1}: inputmode="numeric" ??);
         } else {
             fail(`Input ${i + 1}: inputmode="${inputmode}" (should be "numeric")`);
         }
@@ -43,7 +43,7 @@ if (inputs.length > 0) {
 }
 
 // Test 2: Touch target sizes
-console.log('\n2. Testing Touch Target Sizes...');
+// console.log('\n2. Testing Touch Target Sizes...');
 const interactiveElements = document.querySelectorAll('button, .tab, .counter-btn, a.plate-link');
 let touchTargetIssues = 0;
 
@@ -62,7 +62,7 @@ if (touchTargetIssues === 0) {
 }
 
 // Test 3: Touch action CSS
-console.log('\n3. Testing Touch Action CSS...');
+// console.log('\n3. Testing Touch Action CSS...');
 const button = document.querySelector('button');
 if (button) {
     const touchAction = window.getComputedStyle(button).touchAction;
@@ -76,7 +76,7 @@ if (button) {
 }
 
 // Test 4: Viewport meta tag
-console.log('\n4. Testing Viewport Meta Tag...');
+// console.log('\n4. Testing Viewport Meta Tag...');
 const viewportMeta = document.querySelector('meta[name="viewport"]');
 if (viewportMeta) {
     const content = viewportMeta.getAttribute('content');
@@ -90,7 +90,7 @@ if (viewportMeta) {
 }
 
 // Test 5: Responsive CSS
-console.log('\n5. Testing Responsive CSS...');
+// console.log('\n5. Testing Responsive CSS...');
 const styleSheets = Array.from(document.styleSheets);
 let hasMediaQueries = false;
 
@@ -115,7 +115,7 @@ if (!hasMediaQueries) {
 }
 
 // Test 6: Chart responsiveness
-console.log('\n6. Testing Chart Responsiveness...');
+// console.log('\n6. Testing Chart Responsiveness...');
 const chart = document.querySelector('#plateChart');
 if (chart) {
     const rect = chart.getBoundingClientRect();
@@ -130,13 +130,13 @@ if (chart) {
 }
 
 // Test 7: Viewport dimensions
-console.log('\n7. Testing Viewport Dimensions...');
+// console.log('\n7. Testing Viewport Dimensions...');
 const width = window.innerWidth;
 const height = window.innerHeight;
 const orientation = width > height ? 'landscape' : 'portrait';
 
-console.log(`   Viewport: ${width}x${height}px`);
-console.log(`   Orientation: ${orientation}`);
+// console.log(`   Viewport: ${width}x${height}px`);
+// console.log(`   Orientation: ${orientation}`);
 
 if (width >= 320) {
     pass('Viewport width supports minimum mobile size (320px)');
@@ -145,7 +145,7 @@ if (width >= 320) {
 }
 
 // Test 8: CSS Variables
-console.log('\n8. Testing CSS Variables...');
+// console.log('\n8. Testing CSS Variables...');
 const root = document.documentElement;
 const minTouchTarget = getComputedStyle(root).getPropertyValue('--min-touch-target');
 if (minTouchTarget && minTouchTarget.trim() === '44px') {
@@ -155,15 +155,15 @@ if (minTouchTarget && minTouchTarget.trim() === '44px') {
 }
 
 // Summary
-console.log('\n=== Summary ===');
-console.log(`✅ Passed: ${results.passed.length}`);
-console.log(`❌ Failed: ${results.failed.length}`);
-console.log(`⚠️  Warnings: ${results.warnings.length}`);
+// console.log('\n=== Summary ===');
+// console.log(`??Passed: ${results.passed.length}`);
+// console.log(`??Failed: ${results.failed.length}`);
+// console.log(`?�️  Warnings: ${results.warnings.length}`);
 
 if (results.failed.length === 0) {
-    console.log('\n🎉 All critical tests passed!');
+    // console.log('\n?�� All critical tests passed!');
 } else {
-    console.log('\n⚠️  Some tests failed. Please review the issues above.');
+    // console.log('\n?�️  Some tests failed. Please review the issues above.');
 }
 
 // Return results for programmatic access

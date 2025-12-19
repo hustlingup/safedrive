@@ -18,14 +18,14 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
-console.log('[SW] Firebase initialized in Service Worker');
+// console.log('[SW] Firebase initialized in Service Worker');
 
 messaging.onBackgroundMessage((payload) => {
-    console.log('[SW] Received background message:', payload);
+    // console.log('[SW] Received background message:', payload);
     
-    const notificationTitle = payload.notification?.title || 'SafeDrive 알림';
+    const notificationTitle = payload.notification?.title || 'SafeDrive ?�림';
     const notificationOptions = {
-        body: payload.notification?.body || '새로운 메시지가 있습니다',
+        body: payload.notification?.body || '?�로??메시지가 ?�습?�다',
         icon: '/assets/img/icon-192.png',
         badge: '/assets/img/icon-192.png',
         tag: 'safedrive-notification-' + Date.now(),
@@ -41,8 +41,8 @@ self.addEventListener('push', (event) => {
     if (event.data) {
         try {
             const payload = event.data.json();
-            const notificationTitle = payload.notification?.title || payload.data?.title || 'SafeDrive 알림';
-            const notificationBody = payload.notification?.body || payload.data?.body || '새로운 메시지가 있습니다';
+            const notificationTitle = payload.notification?.title || payload.data?.title || 'SafeDrive ?�림';
+            const notificationBody = payload.notification?.body || payload.data?.body || '?�로??메시지가 ?�습?�다';
             
             event.waitUntil(
                 self.registration.showNotification(notificationTitle, {
@@ -57,8 +57,8 @@ self.addEventListener('push', (event) => {
             );
         } catch (e) {
             event.waitUntil(
-                self.registration.showNotification('SafeDrive 알림', {
-                    body: '새로운 메시지가 있습니다',
+                self.registration.showNotification('SafeDrive ?�림', {
+                    body: '?�로??메시지가 ?�습?�다',
                     icon: '/assets/img/icon-192.png'
                 })
             );

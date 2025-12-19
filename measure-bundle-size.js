@@ -69,14 +69,14 @@ function formatBytes(bytes) {
  * Main measurement function
  */
 async function measureBundleSize() {
-    console.log('📊 Measuring bundle sizes...\n');
+    // console.log('?�� Measuring bundle sizes...\n');
     
     try {
         // Fetch all library sizes
         for (const [key, lib] of Object.entries(LIBRARIES)) {
-            console.log(`Fetching ${lib.name}...`);
+            // console.log(`Fetching ${lib.name}...`);
             lib.size = await getFileSize(lib.url);
-            console.log(`✓ ${lib.name}: ${formatBytes(lib.size)}\n`);
+            // console.log(`??${lib.name}: ${formatBytes(lib.size)}\n`);
         }
         
         // Calculate totals
@@ -92,16 +92,16 @@ async function measureBundleSize() {
         fs.writeFileSync('BUNDLE_SIZE_REPORT.md', report);
         
         // Print summary
-        console.log('\n' + '='.repeat(60));
-        console.log('📦 BUNDLE SIZE REDUCTION SUMMARY');
-        console.log('='.repeat(60));
-        console.log(`\nOriginal (GSAP + ScrollTrigger): ${formatBytes(gsapTotal)}`);
-        console.log(`New (Anime.js):                  ${formatBytes(animeTotal)}`);
-        console.log(`\n✨ Reduction: ${formatBytes(reduction)} (${reductionPercent}%)`);
-        console.log('\n✓ Report saved to BUNDLE_SIZE_REPORT.md\n');
+        // console.log('\n' + '='.repeat(60));
+        // console.log('?�� BUNDLE SIZE REDUCTION SUMMARY');
+        // console.log('='.repeat(60));
+        // console.log(`\nOriginal (GSAP + ScrollTrigger): ${formatBytes(gsapTotal)}`);
+        // console.log(`New (Anime.js):                  ${formatBytes(animeTotal)}`);
+        // console.log(`\n??Reduction: ${formatBytes(reduction)} (${reductionPercent}%)`);
+        // console.log('\n??Report saved to BUNDLE_SIZE_REPORT.md\n');
         
     } catch (error) {
-        console.error('❌ Error measuring bundle sizes:', error.message);
+        console.error('??Error measuring bundle sizes:', error.message);
         process.exit(1);
     }
 }
@@ -205,9 +205,9 @@ The migration from GSAP (GreenSock Animation Platform) to Anime.js has achieved 
 ## Migration Validation
 
 ### Requirements Validated
-- ✓ **Requirement 7.1**: All GSAP script tags removed from HTML files
-- ✓ **Requirement 7.2**: ScrollTrigger script tags removed from HTML files
-- ✓ **Requirement 7.3**: Anime.js added to all files that need animations
+- ??**Requirement 7.1**: All GSAP script tags removed from HTML files
+- ??**Requirement 7.2**: ScrollTrigger script tags removed from HTML files
+- ??**Requirement 7.3**: Anime.js added to all files that need animations
 
 ### Files Modified
 - \`index.html\` - Replaced GSAP with Anime.js
@@ -231,7 +231,7 @@ The design document (design.md) estimated:
 - **Anime.js**: ${formatBytes(animeTotal)}
 - **Actual Reduction**: ${formatBytes(reduction)} (${reductionPercent}%)
 
-${parseFloat(reductionPercent) >= 60 ? '✅ **Achieved expected reduction target**' : '⚠️ **Reduction differs from estimate**'}
+${parseFloat(reductionPercent) >= 60 ? '??**Achieved expected reduction target**' : '?�️ **Reduction differs from estimate**'}
 
 ## Recommendations
 
@@ -268,7 +268,7 @@ All animations maintain identical visual behavior and user experience while deli
 
 **Generated**: ${new Date().toISOString()}  
 **Script**: measure-bundle-size.js  
-**Status**: ✅ Migration Complete
+**Status**: ??Migration Complete
 `;
 }
 

@@ -35,7 +35,7 @@ exports.sendPlateNotificationV2 = functions.database
     const plateNumber = context.params.plateNumber;
     const counterKey = context.params.counterKey;
     
-    console.log(`Counter updated for plate ${plateNumber}: ${counterKey}`);
+    // console.log(`Counter updated for plate ${plateNumber}: ${counterKey}`);
     
     try {
       // Get subscribers for this specific plate (O(1) lookup)
@@ -44,7 +44,7 @@ exports.sendPlateNotificationV2 = functions.database
         .once("value");
       
       if (!subscribersSnapshot.exists()) {
-        console.log(`No subscribers for plate ${plateNumber}`);
+        // console.log(`No subscribers for plate ${plateNumber}`);
         return null;
       }
       
@@ -55,16 +55,16 @@ exports.sendPlateNotificationV2 = functions.database
       });
       
       if (tokens.length === 0) {
-        console.log(`No subscribers for plate ${plateNumber}`);
+        // console.log(`No subscribers for plate ${plateNumber}`);
         return null;
       }
       
-      console.log(`Found ${tokens.length} subscribers for plate ${plateNumber}`);
+      // console.log(`Found ${tokens.length} subscribers for plate ${plateNumber}`);
       
       // Prepare notification message
       const notification = {
-        title: `🚗 ${plateNumber}`,
-        body: "새로운 메시지가 등록되었습니다",
+        title: `?�� ${plateNumber}`,
+        body: "?�로??메시지가 ?�록?�었?�니??,
       };
       
       const data = {
@@ -79,7 +79,7 @@ exports.sendPlateNotificationV2 = functions.database
         batches.push(tokens.slice(i, i + FCM_BATCH_SIZE));
       }
       
-      console.log(`Sending ${batches.length} batch(es) of notifications`);
+      // console.log(`Sending ${batches.length} batch(es) of notifications`);
       
       let totalSuccess = 0;
       let totalFailure = 0;
@@ -113,11 +113,11 @@ exports.sendPlateNotificationV2 = functions.database
         }
       }
       
-      console.log(`Sent ${totalSuccess} messages, ${totalFailure} failed`);
+      // console.log(`Sent ${totalSuccess} messages, ${totalFailure} failed`);
       
       // Clean up invalid tokens
       if (tokensToRemove.length > 0) {
-        console.log(`Removing ${tokensToRemove.length} invalid tokens`);
+        // console.log(`Removing ${tokensToRemove.length} invalid tokens`);
         await cleanupInvalidTokens(tokensToRemove, plateNumber);
       }
       
@@ -160,7 +160,7 @@ async function cleanupInvalidTokens(tokens, plateNumber) {
   
   if (Object.keys(updates).length > 0) {
     await db.ref().update(updates);
-    console.log(`Cleaned up ${tokens.length} invalid tokens`);
+    // console.log(`Cleaned up ${tokens.length} invalid tokens`);
   }
 }
 
@@ -177,7 +177,7 @@ exports.migrateSubscribersToPlateIndex = functions.https.onRequest(async (req, r
   }
   
   try {
-    console.log('Starting migration of subscribers to plate index...');
+    // console.log('Starting migration of subscribers to plate index...');
     
     const subscriptionsSnapshot = await db.ref('subscriptions').once('value');
     
@@ -210,7 +210,7 @@ exports.migrateSubscribersToPlateIndex = functions.https.onRequest(async (req, r
       await db.ref().update(updates);
     }
     
-    console.log(`Migration complete: ${tokenCount} tokens, ${plateSubscriptionCount} plate subscriptions`);
+    // console.log(`Migration complete: ${tokenCount} tokens, ${plateSubscriptionCount} plate subscriptions`);
     
     res.json({
       success: true,

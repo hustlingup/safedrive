@@ -110,7 +110,7 @@ class ReferralRateLimiter {
       }
     }
     
-    console.log(`Referral rate limiter cleanup: ${this.buckets.size} active fingerprints`);
+    // console.log(`Referral rate limiter cleanup: ${this.buckets.size} active fingerprints`);
   }
 }
 
@@ -276,7 +276,7 @@ exports.secureReferralIncrement = functions.https.onCall(async (data, context) =
     const currentCount = dailySnapshot.val() || 0;
     
     if (currentCount >= CONFIG.DAILY_LIMIT) {
-      console.log(`Referral: Daily limit reached for ${referrerId}`);
+      // console.log(`Referral: Daily limit reached for ${referrerId}`);
       throw new functions.https.HttpsError(
         "resource-exhausted",
         "Daily limit reached for this referrer"
@@ -341,7 +341,7 @@ exports.secureReferralIncrement = functions.https.onCall(async (data, context) =
           achievedAt: admin.database.ServerValue.TIMESTAMP,
         });
         isWinner = true;
-        console.log(`ðŸ† Referral winner registered: ${referrerId}`);
+        // console.log(`?† Referral winner registered: ${referrerId}`);
       }
     }
     
@@ -350,7 +350,7 @@ exports.secureReferralIncrement = functions.https.onCall(async (data, context) =
     // ========================================================================
     
     const duration = Date.now() - startTime;
-    console.log(
+    // console.log(
       `Referral increment successful: ${referrerId} = ${newDailyCount}/${CONFIG.DAILY_LIMIT} (${duration}ms)`
     );
     
@@ -408,7 +408,7 @@ exports.createReferrer = functions.https.onCall(async (data, context) => {
     const snapshot = await userRef.once("value");
     
     if (snapshot.exists()) {
-      console.log(`Referrer already exists: ${referrerId}`);
+      // console.log(`Referrer already exists: ${referrerId}`);
       return { success: true, exists: true };
     }
     
@@ -418,7 +418,7 @@ exports.createReferrer = functions.https.onCall(async (data, context) => {
       total: 0,
     });
     
-    console.log(`New referrer created: ${referrerId}`);
+    // console.log(`New referrer created: ${referrerId}`);
     return { success: true, exists: false };
     
   } catch (error) {
@@ -442,7 +442,7 @@ exports.cleanupReferralNonces = functions.pubsub
   .schedule("30 3 * * *")
   .timeZone("Asia/Seoul")
   .onRun(async (context) => {
-    console.log("Starting referral nonce cleanup...");
+    // console.log("Starting referral nonce cleanup...");
     
     try {
       const now = Date.now();
@@ -466,7 +466,7 @@ exports.cleanupReferralNonces = functions.pubsub
         noncesDeleted++;
       }
       
-      console.log(`Deleted ${noncesDeleted} expired referral nonces`);
+      // console.log(`Deleted ${noncesDeleted} expired referral nonces`);
       return null;
     } catch (error) {
       console.error("Referral nonce cleanup error:", error);

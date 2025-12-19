@@ -42,7 +42,7 @@ exports.sendPlateNotificationV2 = sendPlateNotificationV2;
 exports.migrateSubscribersToPlateIndex = migrateSubscribersToPlateIndex;
 
 // =============================
-// ðŸ“Š Google Analytics Real-time Active Users
+// ?“Š Google Analytics Real-time Active Users
 // =============================
 
 // GA4 Property ID (from your GA4 property settings)
@@ -60,14 +60,14 @@ const GA4_PROPERTY_ID = functions.config().ga4?.property_id ||
 exports.updateActiveUsers = functions.pubsub
     .schedule("every 5 minutes")
     .onRun(async () => {
-      console.log(`Starting updateActiveUsers with Property ID: ${GA4_PROPERTY_ID}`);
+      // console.log(`Starting updateActiveUsers with Property ID: ${GA4_PROPERTY_ID}`);
 
       try {
         // Initialize the Analytics Data API client
         // Uses Application Default Credentials (ADC) from Firebase
         const analyticsDataClient = new BetaAnalyticsDataClient();
 
-        console.log("Calling GA4 runRealtimeReport...");
+        // console.log("Calling GA4 runRealtimeReport...");
 
         // Run the real-time report
         const [response] = await analyticsDataClient.runRealtimeReport({
@@ -75,7 +75,7 @@ exports.updateActiveUsers = functions.pubsub
           metrics: [{ name: "activeUsers" }],
         });
 
-        console.log("GA4 API Response:", JSON.stringify(response));
+        // console.log("GA4 API Response:", JSON.stringify(response));
 
         let activeUsers = 0;
 
@@ -83,19 +83,19 @@ exports.updateActiveUsers = functions.pubsub
           activeUsers = parseInt(response.rows[0].metricValues[0].value, 10) || 0;
         }
 
-        console.log(`GA4 Real-time Active Users: ${activeUsers}`);
+        // console.log(`GA4 Real-time Active Users: ${activeUsers}`);
 
         // Store in Firebase Realtime Database
-        console.log("Writing to Firebase RTDB...");
+        // console.log("Writing to Firebase RTDB...");
         await admin.database().ref("analytics/realtime").set({
           activeUsers: activeUsers,
           lastUpdated: admin.database.ServerValue.TIMESTAMP,
         });
 
-        console.log("âœ… Active users updated in Firebase successfully");
+        // console.log("??Active users updated in Firebase successfully");
         return null;
       } catch (error) {
-        console.error("âŒ Error in updateActiveUsers:", error.message);
+        console.error("??Error in updateActiveUsers:", error.message);
         console.error("Error code:", error.code);
         console.error("Error details:", error.details || "N/A");
 
@@ -110,19 +110,19 @@ exports.updateActiveUsers = functions.pubsub
  * Call: https://us-central1-safedrive-fa567.cloudfunctions.net/triggerActiveUsersUpdate
  */
 exports.triggerActiveUsersUpdate = functions.https.onRequest(async (req, res) => {
-  console.log(`Manual trigger: Starting updateActiveUsers with Property ID: ${GA4_PROPERTY_ID}`);
+  // console.log(`Manual trigger: Starting updateActiveUsers with Property ID: ${GA4_PROPERTY_ID}`);
 
   try {
     const analyticsDataClient = new BetaAnalyticsDataClient();
 
-    console.log("Calling GA4 runRealtimeReport...");
+    // console.log("Calling GA4 runRealtimeReport...");
 
     const [response] = await analyticsDataClient.runRealtimeReport({
       property: `properties/${GA4_PROPERTY_ID}`,
       metrics: [{ name: "activeUsers" }],
     });
 
-    console.log("GA4 API Response:", JSON.stringify(response));
+    // console.log("GA4 API Response:", JSON.stringify(response));
 
     let activeUsers = 0;
 
@@ -130,14 +130,14 @@ exports.triggerActiveUsersUpdate = functions.https.onRequest(async (req, res) =>
       activeUsers = parseInt(response.rows[0].metricValues[0].value, 10) || 0;
     }
 
-    console.log(`GA4 Real-time Active Users: ${activeUsers}`);
+    // console.log(`GA4 Real-time Active Users: ${activeUsers}`);
 
     await admin.database().ref("analytics/realtime").set({
       activeUsers: activeUsers,
       lastUpdated: admin.database.ServerValue.TIMESTAMP,
     });
 
-    console.log("âœ… Active users updated in Firebase successfully");
+    // console.log("??Active users updated in Firebase successfully");
 
     res.json({
       success: true,
@@ -146,7 +146,7 @@ exports.triggerActiveUsersUpdate = functions.https.onRequest(async (req, res) =>
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
-    console.error("âŒ Error:", error.message);
+    console.error("??Error:", error.message);
     res.status(500).json({
       success: false,
       error: error.message,
@@ -206,7 +206,7 @@ exports.getActiveUsers = functions.https.onCall(async () => {
 });
 
 // =============================
-// ðŸ“Œ Push Notification Function (DEPRECATED)
+// ?“Œ Push Notification Function (DEPRECATED)
 // =============================
 // NOTE: sendPlateNotification is DEPRECATED and replaced by sendPlateNotificationV2
 // which uses plate-specific subscriber index for O(1) lookup instead of O(n) scan.

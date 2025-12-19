@@ -63,7 +63,7 @@ exports.manageSubscription = functions.https.onCall(async (data, context) => {
         if (currentPlates.length >= CONFIG.MAX_SUBSCRIPTIONS_PER_TOKEN) {
           throw new functions.https.HttpsError(
             'resource-exhausted',
-            `최대 ${CONFIG.MAX_SUBSCRIPTIONS_PER_TOKEN}개 번호판만 구독 가능합니다`
+            `최�? ${CONFIG.MAX_SUBSCRIPTIONS_PER_TOKEN}�?번호?�만 구독 가?�합?�다`
           );
         }
         
@@ -79,7 +79,7 @@ exports.manageSubscription = functions.https.onCall(async (data, context) => {
           subscribedAt: admin.database.ServerValue.TIMESTAMP
         });
         
-        console.log(`Subscribed ${token.substring(0, 20)}... to ${plateNumber}`);
+        // console.log(`Subscribed ${token.substring(0, 20)}... to ${plateNumber}`);
       }
       
       return { success: true, action: 'subscribed', plateNumber };
@@ -105,7 +105,7 @@ exports.manageSubscription = functions.https.onCall(async (data, context) => {
       // Remove token from plate's subscriber list
       await plateSubscribersRef.remove();
       
-      console.log(`Unsubscribed ${token.substring(0, 20)}... from ${plateNumber}`);
+      // console.log(`Unsubscribed ${token.substring(0, 20)}... from ${plateNumber}`);
       
       return { success: true, action: 'unsubscribed', plateNumber };
     }
@@ -182,7 +182,7 @@ exports.syncSubscriptions = functions.https.onCall(async (data, context) => {
       await db.ref().update(updates);
     }
     
-    console.log(`Synced subscriptions for ${token.substring(0, 20)}...: ${validPlates.length} plates`);
+    // console.log(`Synced subscriptions for ${token.substring(0, 20)}...: ${validPlates.length} plates`);
     
     return { 
       success: true, 
