@@ -1611,7 +1611,7 @@
             visibility: visible !important;
         }
         
-        /* Override GSAP animation inline styles that hide rows */
+        /* Override animation inline styles that hide rows */
         #mostLikedTable tr {
             opacity: 1 !important;
             transform: none !important;
@@ -1965,9 +1965,9 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
     
-    <!-- GSAP for animations -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Anime.js for animations -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <script src="js/animation-utils.js"></script>
     
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
@@ -2624,63 +2624,100 @@
                 const frame = document.getElementById('qr-frame');
                 if (!tiles.length || !frame) return;
                 
-                const d = 0.15;
-                const tl = gsap.timeline({ repeat: -1, repeatDelay: 0.2 });
-                tl.to('#t1', { x: 30, duration: d, ease: 'power2.inOut' })
-                  .to('#t2', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t3', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t4', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t5', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t7', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t8', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t9', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t10', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t11', { x: 30, duration: d, ease: 'power2.inOut' })
-                  .to('#t12', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t14', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t16', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t15', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t17', { x: 30, duration: d, ease: 'power2.inOut' })
-                  .to('#t18', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t19', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t20', { y: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t22', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t24', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t25', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to(['#t1','#t5','#t11','#t15','#t17','#t19','#t22'], { x: 0, duration: d, ease: 'power2.inOut' })
-                  .to(['#t2','#t4','#t7','#t10','#t12','#t20'], { y: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
-                  .to(['#t3','#t9','#t14','#t25'], { x: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
-                  .to(['#t8','#t16','#t18','#t24'], { y: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
-                  .to('#t32', { y: 30, duration: d, ease: 'power2.inOut' })
-                  .to('#t34', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t33', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t35', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t36', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t37', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t38', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to(['#t32','#t33','#t35','#t37','#t38'], { y: 0, duration: d, ease: 'power2.inOut' })
-                  .to(['#t34','#t36'], { x: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
-                  .to('#t26', { y: 30, duration: d, ease: 'power2.inOut' })
-                  .to('#t27', { x: -25, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t28', { x: 30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t29', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t30', { y: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to('#t31', { x: -30, duration: d, ease: 'power2.inOut' }, '-=0.05')
-                  .to(['#t26','#t29','#t30'], { y: 0, duration: d, ease: 'power2.inOut' })
-                  .to(['#t27','#t28','#t31'], { x: 0, duration: d, ease: 'power2.inOut' }, '-=0.1')
-                  .to('#t1, #t4, #t8, #t11, #t17, #t20', { x: 25, duration: d, ease: 'power2.inOut' })
-                  .to('#t2, #t5, #t9, #t12, #t18, #t22', { y: 25, duration: d, ease: 'power2.inOut' }, '-=0.1')
-                  .to('#t3, #t7, #t10, #t14, #t19, #t24', { x: -25, duration: d, ease: 'power2.inOut' }, '-=0.1')
-                  .to('#t6, #t13, #t15, #t16, #t23, #t25', { y: -25, duration: d, ease: 'power2.inOut' }, '-=0.1')
-                  .to('#puzzle-tiles rect', { x: 0, y: 0, duration: 0.2, ease: 'power2.inOut' });
+                // Convert duration from seconds to milliseconds
+                const d = 150; // 0.15s = 150ms
+                
+                // Create Anime.js timeline with infinite repeat
+                const tl = anime.timeline({ 
+                    loop: true,
+                    easing: 'easeInOutQuad' // power2.inOut equivalent
+                });
+                
+                // Build the timeline with Anime.js format
+                // Note: '-=0.05' means start 50ms before previous animation ends
+                // In Anime.js, we use '-=50' for the same effect
+                tl.add({ targets: '#t1', translateX: 30, duration: d })
+                  .add({ targets: '#t2', translateY: 30, duration: d }, '-=50')
+                  .add({ targets: '#t3', translateX: -30, duration: d }, '-=50')
+                  .add({ targets: '#t4', translateY: 30, duration: d }, '-=50')
+                  .add({ targets: '#t5', translateX: 30, duration: d }, '-=50')
+                  .add({ targets: '#t7', translateY: 30, duration: d }, '-=50')
+                  .add({ targets: '#t8', translateY: -30, duration: d }, '-=50')
+                  .add({ targets: '#t9', translateX: -30, duration: d }, '-=50')
+                  .add({ targets: '#t10', translateY: 30, duration: d }, '-=50')
+                  .add({ targets: '#t11', translateX: 30, duration: d })
+                  .add({ targets: '#t12', translateY: 30, duration: d }, '-=50')
+                  .add({ targets: '#t14', translateX: -30, duration: d }, '-=50')
+                  .add({ targets: '#t16', translateY: -30, duration: d }, '-=50')
+                  .add({ targets: '#t15', translateX: 30, duration: d }, '-=50')
+                  .add({ targets: '#t17', translateX: 30, duration: d })
+                  .add({ targets: '#t18', translateY: -30, duration: d }, '-=50')
+                  .add({ targets: '#t19', translateX: 30, duration: d }, '-=50')
+                  .add({ targets: '#t20', translateY: 30, duration: d }, '-=50')
+                  .add({ targets: '#t22', translateX: 30, duration: d }, '-=50')
+                  .add({ targets: '#t24', translateY: -30, duration: d }, '-=50')
+                  .add({ targets: '#t25', translateX: -30, duration: d }, '-=50')
+                  .add({ targets: ['#t1','#t5','#t11','#t15','#t17','#t19','#t22'], translateX: 0, duration: d })
+                  .add({ targets: ['#t2','#t4','#t7','#t10','#t12','#t20'], translateY: 0, duration: d }, '-=100')
+                  .add({ targets: ['#t3','#t9','#t14','#t25'], translateX: 0, duration: d }, '-=100')
+                  .add({ targets: ['#t8','#t16','#t18','#t24'], translateY: 0, duration: d }, '-=100')
+                  .add({ targets: '#t32', translateY: 30, duration: d })
+                  .add({ targets: '#t34', translateX: 30, duration: d }, '-=50')
+                  .add({ targets: '#t33', translateY: -30, duration: d }, '-=50')
+                  .add({ targets: '#t35', translateY: -30, duration: d }, '-=50')
+                  .add({ targets: '#t36', translateX: -30, duration: d }, '-=50')
+                  .add({ targets: '#t37', translateY: -30, duration: d }, '-=50')
+                  .add({ targets: '#t38', translateY: -30, duration: d }, '-=50')
+                  .add({ targets: ['#t32','#t33','#t35','#t37','#t38'], translateY: 0, duration: d })
+                  .add({ targets: ['#t34','#t36'], translateX: 0, duration: d }, '-=100')
+                  .add({ targets: '#t26', translateY: 30, duration: d })
+                  .add({ targets: '#t27', translateX: -25, duration: d }, '-=50')
+                  .add({ targets: '#t28', translateX: 30, duration: d }, '-=50')
+                  .add({ targets: '#t29', translateY: -30, duration: d }, '-=50')
+                  .add({ targets: '#t30', translateY: -30, duration: d }, '-=50')
+                  .add({ targets: '#t31', translateX: -30, duration: d }, '-=50')
+                  .add({ targets: ['#t26','#t29','#t30'], translateY: 0, duration: d })
+                  .add({ targets: ['#t27','#t28','#t31'], translateX: 0, duration: d }, '-=100')
+                  .add({ targets: '#t1, #t4, #t8, #t11, #t17, #t20', translateX: 25, duration: d })
+                  .add({ targets: '#t2, #t5, #t9, #t12, #t18, #t22', translateY: 25, duration: d }, '-=100')
+                  .add({ targets: '#t3, #t7, #t10, #t14, #t19, #t24', translateX: -25, duration: d }, '-=100')
+                  .add({ targets: '#t6, #t13, #t15, #t16, #t23, #t25', translateY: -25, duration: d }, '-=100')
+                  .add({ targets: '#puzzle-tiles rect', translateX: 0, translateY: 0, duration: 200 }); // 0.2s = 200ms
                 
                 function cycleColors() {
                     colorIndex = (colorIndex + 1) % colors.length;
                     const scheme = colors[colorIndex];
-                    gsap.to(tiles, { fill: scheme.fg, duration: 0.4, ease: 'power2.inOut', stagger: 0.01 });
-                    gsap.to('#corner-tl rect:first-child, #corner-tr rect:first-child, #corner-bl rect:first-child, #corner-tl rect:nth-child(3), #corner-tr rect:nth-child(3), #corner-bl rect:nth-child(3)', { fill: scheme.fg, duration: 0.4, ease: 'power2.inOut' });
-                    gsap.to(frame, { fill: scheme.bg, duration: 0.4, ease: 'power2.inOut' });
-                    gsap.to('#corner-tl rect:nth-child(2), #corner-tr rect:nth-child(2), #corner-bl rect:nth-child(2)', { fill: scheme.bg, duration: 0.4, ease: 'power2.inOut' });
+                    
+                    // Color animations with Anime.js
+                    // Duration: 0.4s = 400ms, stagger: 0.01s = 10ms
+                    anime({
+                        targets: tiles,
+                        fill: scheme.fg,
+                        duration: 400,
+                        easing: 'easeInOutQuad',
+                        delay: anime.stagger(10)
+                    });
+                    
+                    anime({
+                        targets: '#corner-tl rect:first-child, #corner-tr rect:first-child, #corner-bl rect:first-child, #corner-tl rect:nth-child(3), #corner-tr rect:nth-child(3), #corner-bl rect:nth-child(3)',
+                        fill: scheme.fg,
+                        duration: 400,
+                        easing: 'easeInOutQuad'
+                    });
+                    
+                    anime({
+                        targets: frame,
+                        fill: scheme.bg,
+                        duration: 400,
+                        easing: 'easeInOutQuad'
+                    });
+                    
+                    anime({
+                        targets: '#corner-tl rect:nth-child(2), #corner-tr rect:nth-child(2), #corner-bl rect:nth-child(2)',
+                        fill: scheme.bg,
+                        duration: 400,
+                        easing: 'easeInOutQuad'
+                    });
                 }
                 setInterval(cycleColors, 1200);
             })();
@@ -2818,32 +2855,6 @@
             
             if (horizontalScroll) enableDragScroll(horizontalScroll);
             if (laneTypeScroll) enableDragScroll(laneTypeScroll);
-
-            // GSAP Animation for announcement banner - slide to left
-            const announcementText = document.getElementById('announcementText');
-            
-            // Only animate if element exists
-            if (announcementText) {
-                // Sliding animation to the left - start from 0 so text is visible on load
-                gsap.fromTo(announcementText, 
-                    { x: '0%' },
-                    {
-                        x: '-100%',
-                        duration: 30,
-                        ease: 'none',
-                        repeat: -1
-                    }
-                );
-                
-                // Blinking animation (faster loop)
-                gsap.to(announcementText, {
-                    opacity: 0.3,
-                    duration: 0.4,
-                    ease: 'power1.inOut',
-                    repeat: -1,
-                    yoyo: true
-                });
-            }
 
             // Navbar smooth scroll and mobile toggle
             const navToggle = document.getElementById('navToggle');
@@ -3145,11 +3156,12 @@
             
             quoteElement.appendChild(span);
             
-            gsap.to(span.children, {
+            anime({
+                targets: span.children,
                 opacity: 1,
-                duration: 0.03,
-                stagger: 0.03,
-                ease: 'none'
+                duration: 30,
+                delay: anime.stagger(30),
+                easing: 'linear'
             });
         }
 

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross-Browser Animation Test - SafeDrive</title>
+    
+    <!-- Anime.js -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <script src="js/animation-utils.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        
+        .browser-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .test-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .test-section h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 10px;
+        }
+        
+        .test-description {
+            margin-bottom: 20px;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .test-area {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 40px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        /* Hover Animation Test */
+        .hover-button {
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: none;
+        }
+        
+        /* Timeline Animation Test */
+        .timeline-box {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        /* Scroll Trigger Test */
+        .scroll-item {
+            width: 100%;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        /* Infinite Loop Test */
+        .loop-element {
+            width: 100px;
+            height: 100px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+        
+        /* Stagger Test */
+        .stagger-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .stagger-box {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        /* Test Results */
+        .test-results {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+        }
+        
+        .test-result-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+        
+        .status-icon {
+            font-size: 24px;
+        }
+        
+        .status-pass { color: #22c55e; }
+        .status-fail { color: #ef4444; }
+        .status-pending { color: #fbbf24; }
+        
+        .control-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .control-btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        /* Console Output */
+        .console-output {
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        
+        .console-line {
+            margin-bottom: 5px;
+        }
+        
+        .console-error {
+            color: #ff4444;
+        }
+        
+        .console-success {
+            color: #44ff44;
+        }
+        
+        .console-info {
+            color: #4444ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Cross-Browser Animation Test</h1>
+        
+        <div class="browser-info">
+            <h3>Browser Information</h3>
+            <p id="browserInfo">Detecting...</p>
+            <p id="intersectionObserverSupport">IntersectionObserver: Checking...</p>
+            <p id="animeJsLoaded">Anime.js: Checking...</p>
+        </div>
+        
+        <!-- Test 1: Hover Animations -->
+        <div class="test-section">
+            <h2>1. Hover Animations (Subscribe Button)</h2>
+            <div class="test-description">
+                Tests hover scale animations similar to subscribe buttons. Should scale to 1.1 on hover and back to 1.0 on leave with 300ms duration.
+            </div>
+            <div class="test-area">
+                <button class="hover-button" id="hoverBtn1">Hover Me!</button>
+                <button class="hover-button" id="hoverBtn2">Me Too!</button>
+                <button class="hover-button" id="hoverBtn3">And Me!</button>
+            </div>
+            <div class="test-results">
+                <div class="test-result-item">
+                    <span class="status-icon status-pending" id="hover-status">⏳</span>
+                    <span>Hover animation test - Hover over buttons to test</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test 2: Timeline Animations -->
+        <div class="test-section">
+            <h2>2. Timeline Animations (QR Puzzle)</h2>
+            <div class="test-description">
+                Tests sequential timeline animations with precise timing. Boxes should animate in sequence.
+            </div>
+            <div class="test-area" id="timelineArea">
+                <div class="timeline-box">1</div>
+                <div class="timeline-box">2</div>
+                <div class="timeline-box">3</div>
+                <div class="timeline-box">4</div>
+            </div>
+            <div class="control-buttons">
+                <button class="control-btn" onclick="runTimelineTest()">▶️ Run Timeline</button>
+                <button class="control-btn" onclick="resetTimelineTest()">🔄 Reset</button>
+            </div>
+            <div class="test-results">
+                <div class="test-result-item">
+                    <span class="status-icon status-pending" id="timeline-status">⏳</span>
+                    <span>Timeline animation test - Click "Run Timeline" to test</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test 3: Scroll-Triggered Animations -->
+        <div class="test-section">
+            <h2>3. Scroll-Triggered Animations (Leaderboard)</h2>
+            <div class="test-description">
+                Tests IntersectionObserver-based scroll animations. Scroll down to trigger animations.
+            </div>
+            <div class="test-area" style="flex-direction: column; min-height: 400px;">
+                <div class="scroll-item">Scroll Item 1</div>
+                <div class="scroll-item">Scroll Item 2</div>
+                <div class="scroll-item">Scroll Item 3</div>
+                <div class="scroll-item">Scroll Item 4</div>
+                <div class="scroll-item">Scroll Item 5</div>
+            </div>
+            <div class="test-results">
+                <div class="test-result-item">
+                    <span class="status-icon status-pending" id="scroll-status">⏳</span>
+                    <span>Scroll animation test - Scroll to trigger</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test 4: Infinite Loop Animations -->
+        <div class="test-section">
+            <h2>4. Infinite Loop Animations (QR Color Cycling)</h2>
+            <div class="test-description">
+                Tests infinite loop animations. Element should continuously animate.
+            </div>
+            <div class="test-area">
+                <div class="loop-element">♾️</div>
+            </div>
+            <div class="control-buttons">
+                <button class="control-btn" onclick="startLoopTest()">▶️ Start Loop</button>
+                <button class="control-btn" onclick="stopLoopTest()">⏹️ Stop Loop</button>
+            </div>
+            <div class="test-results">
+                <div class="test-result-item">
+                    <span class="status-icon status-pending" id="loop-status">⏳</span>
+                    <span>Infinite loop test - Click "Start Loop" to test</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test 5: Stagger Animations -->
+        <div class="test-section">
+            <h2>5. Stagger Animations (Leaderboard Rows)</h2>
+            <div class="test-description">
+                Tests stagger animations with delay between elements. Elements should animate sequentially.
+            </div>
+            <div class="test-area">
+                <div class="stagger-container" id="staggerContainer">
+                    <div class="stagger-box"></div>
+                    <div class="stagger-box"></div>
+                    <div class="stagger-box"></div>
+                    <div class="stagger-box"></div>
+                    <div class="stagger-box"></div>
+                    <div class="stagger-box"></div>
+                    <div class="stagger-box"></div>
+                    <div class="stagger-box"></div>
+                </div>
+            </div>
+            <div class="control-buttons">
+                <button class="control-btn" onclick="runStaggerTest()">▶️ Run Stagger</button>
+                <button class="control-btn" onclick="resetStaggerTest()">🔄 Reset</button>
+            </div>
+            <div class="test-results">
+                <div class="test-result-item">
+                    <span class="status-icon status-pending" id="stagger-status">⏳</span>
+                    <span>Stagger animation test - Click "Run Stagger" to test</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Console Output -->
+        <div class="test-section">
+            <h2>📋 Test Console</h2>
+            <div class="console-output" id="consoleOutput">
+                <div class="console-line console-info">Test console initialized...</div>
+            </div>
+            <div class="control-buttons">
+                <button class="control-btn" onclick="clearConsole()">🗑️ Clear Console</button>
+                <button class="control-btn" onclick="runAllTests()">🚀 Run All Tests</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Console logging
+        function logToConsole(message, type = 'info') {
+            const consoleOutput = document.getElementById('consoleOutput');
+            const line = document.createElement('div');
+            line.className = `console-line console-${type}`;
+            line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            consoleOutput.appendChild(line);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            console.log(message);
+        }
+        
+        function clearConsole() {
+            document.getElementById('consoleOutput').innerHTML = '<div class="console-line console-info">Console cleared...</div>';
+        }
+        
+        // Browser detection
+        function detectBrowser() {
+            const ua = navigator.userAgent;
+            let browserName = 'Unknown';
+            let browserVersion = 'Unknown';
+            
+            if (ua.indexOf('Firefox') > -1) {
+                browserName = 'Firefox';
+                browserVersion = ua.match(/Firefox\/(\d+)/)[1];
+            } else if (ua.indexOf('Edg') > -1) {
+                browserName = 'Edge';
+                browserVersion = ua.match(/Edg\/(\d+)/)[1];
+            } else if (ua.indexOf('Chrome') > -1) {
+                browserName = 'Chrome';
+                browserVersion = ua.match(/Chrome\/(\d+)/)[1];
+            } else if (ua.indexOf('Safari') > -1) {
+                browserName = 'Safari';
+                browserVersion = ua.match(/Version\/(\d+)/)[1];
+            }
+            
+            return { name: browserName, version: browserVersion };
+        }
+        
+        // Initialize browser info
+        window.addEventListener('DOMContentLoaded', () => {
+            const browser = detectBrowser();
+            document.getElementById('browserInfo').textContent = 
+                `${browser.name} ${browser.version} on ${navigator.platform}`;
+            
+            // Check IntersectionObserver support
+            const ioSupport = 'IntersectionObserver' in window;
+            document.getElementById('intersectionObserverSupport').textContent = 
+                `IntersectionObserver: ${ioSupport ? '✅ Supported' : '❌ Not Supported'}`;
+            document.getElementById('intersectionObserverSupport').style.color = 
+                ioSupport ? '#22c55e' : '#ef4444';
+            
+            // Check Anime.js
+            const animeLoaded = typeof anime !== 'undefined';
+            document.getElementById('animeJsLoaded').textContent = 
+                `Anime.js: ${animeLoaded ? '✅ Loaded' : '❌ Not Loaded'}`;
+            document.getElementById('animeJsLoaded').style.color = 
+                animeLoaded ? '#22c55e' : '#ef4444';
+            
+            logToConsole(`Browser: ${browser.name} ${browser.version}`, 'info');
+            logToConsole(`IntersectionObserver: ${ioSupport ? 'Supported' : 'Not Supported'}`, ioSupport ? 'success' : 'error');
+            logToConsole(`Anime.js: ${animeLoaded ? 'Loaded' : 'Not Loaded'}`, animeLoaded ? 'success' : 'error');
+            
+            // Initialize tests
+            initHoverTest();
+            initScrollTest();
+        });
+        
+        // Test 1: Hover Animations
+        function initHoverTest() {
+            const buttons = document.querySelectorAll('.hover-button');
+            let hoverCount = 0;
+            
+            buttons.forEach(btn => {
+                btn.addEventListener('mouseenter', () => {
+                    anime({
+                        targets: btn,
+                        scale: 1.1,
+                        duration: 300,
+                        easing: 'easeOutQuad'
+                    });
+                    hoverCount++;
+                    if (hoverCount === 1) {
+                        updateStatus('hover-status', 'pass', 'Hover animation working!');
+                        logToConsole('✓ Hover animation test passed', 'success');
+                    }
+                });
+                
+                btn.addEventListener('mouseleave', () => {
+                    anime({
+                        targets: btn,
+                        scale: 1.0,
+                        duration: 300,
+                        easing: 'easeOutQuad'
+                    });
+                });
+            });
+            
+            logToConsole('Hover animation test initialized', 'info');
+        }
+        
+        // Test 2: Timeline Animations
+        let timelineAnimation = null;
+        
+        function runTimelineTest() {
+            const boxes = document.querySelectorAll('.timeline-box');
+            
+            // Reset positions
+            anime.set(boxes, {
+                translateX: 0,
+                translateY: 0,
+                opacity: 1
+            });
+            
+            // Create timeline
+            const tl = anime.timeline({
+                easing: 'easeOutExpo',
+                duration: 750
+            });
+            
+            tl.add({
+                targets: boxes[0],
+                translateY: -20,
+                duration: 400
+            })
+            .add({
+                targets: boxes[1],
+                translateY: -20,
+                duration: 400
+            }, '-=200')
+            .add({
+                targets: boxes[2],
+                translateY: -20,
+                duration: 400
+            }, '-=200')
+            .add({
+                targets: boxes[3],
+                translateY: -20,
+                duration: 400
+            }, '-=200');
+            
+            timelineAnimation = tl;
+            updateStatus('timeline-status', 'pass', 'Timeline animation running!');
+            logToConsole('✓ Timeline animation test passed', 'success');
+        }
+        
+        function resetTimelineTest() {
+            const boxes = document.querySelectorAll('.timeline-box');
+            anime.set(boxes, {
+                translateX: 0,
+                translateY: 0,
+                opacity: 1
+            });
+            logToConsole('Timeline animation reset', 'info');
+        }
+        
+        // Test 3: Scroll-Triggered Animations
+        function initScrollTest() {
+            const scrollItems = document.querySelectorAll('.scroll-item');
+            let animatedCount = 0;
+            
+            const observer = scrollTriggerAnimation('.scroll-item', {
+                opacity: 1,
+                translateY: 0,
+                duration: 500,
+                easing: 'easeOutQuad',
+                delay: anime.stagger(80)
+            }, {
+                threshold: 0.2,
+                once: true
+            });
+            
+            // Monitor for animations
+            const checkInterval = setInterval(() => {
+                scrollItems.forEach(item => {
+                    if (parseFloat(window.getComputedStyle(item).opacity) > 0.5) {
+                        animatedCount++;
+                    }
+                });
+                
+                if (animatedCount > 0) {
+                    updateStatus('scroll-status', 'pass', 'Scroll animation working!');
+                    logToConsole('✓ Scroll animation test passed', 'success');
+                    clearInterval(checkInterval);
+                }
+            }, 500);
+            
+            logToConsole('Scroll animation test initialized', 'info');
+        }
+        
+        // Test 4: Infinite Loop Animations
+        let loopAnimation = null;
+        
+        function startLoopTest() {
+            const loopElement = document.querySelector('.loop-element');
+            
+            loopAnimation = anime({
+                targets: loopElement,
+                scale: [1, 1.2, 1],
+                rotate: '1turn',
+                duration: 2000,
+                easing: 'easeInOutQuad',
+                loop: true
+            });
+            
+            updateStatus('loop-status', 'pass', 'Infinite loop animation running!');
+            logToConsole('✓ Infinite loop animation test passed', 'success');
+        }
+        
+        function stopLoopTest() {
+            if (loopAnimation) {
+                loopAnimation.pause();
+                logToConsole('Infinite loop animation stopped', 'info');
+            }
+        }
+        
+        // Test 5: Stagger Animations
+        function runStaggerTest() {
+            const boxes = document.querySelectorAll('.stagger-box');
+            
+            anime({
+                targets: boxes,
+                opacity: [0, 1],
+                translateY: [20, 0],
+                duration: 500,
+                delay: anime.stagger(80),
+                easing: 'easeOutQuad'
+            });
+            
+            updateStatus('stagger-status', 'pass', 'Stagger animation running!');
+            logToConsole('✓ Stagger animation test passed', 'success');
+        }
+        
+        function resetStaggerTest() {
+            const boxes = document.querySelectorAll('.stagger-box');
+            anime.set(boxes, {
+                opacity: 0,
+                translateY: 20
+            });
+            logToConsole('Stagger animation reset', 'info');
+        }
+        
+        // Helper function to update status
+        function updateStatus(elementId, status, message) {
+            const statusIcon = document.getElementById(elementId);
+            const statusItem = statusIcon.parentElement;
+            
+            if (status === 'pass') {
+                statusIcon.textContent = '✅';
+                statusIcon.className = 'status-icon status-pass';
+            } else if (status === 'fail') {
+                statusIcon.textContent = '❌';
+                statusIcon.className = 'status-icon status-fail';
+            } else {
+                statusIcon.textContent = '⏳';
+                statusIcon.className = 'status-icon status-pending';
+            }
+            
+            statusItem.querySelector('span:last-child').textContent = message;
+        }
+        
+        // Run all tests
+        function runAllTests() {
+            logToConsole('=== Running all tests ===', 'info');
+            
+            setTimeout(() => {
+                logToConsole('Running timeline test...', 'info');
+                runTimelineTest();
+            }, 500);
+            
+            setTimeout(() => {
+                logToConsole('Running stagger test...', 'info');
+                runStaggerTest();
+            }, 2000);
+            
+            setTimeout(() => {
+                logToConsole('Running infinite loop test...', 'info');
+                startLoopTest();
+            }, 3500);
+            
+            setTimeout(() => {
+                logToConsole('=== All automated tests complete ===', 'success');
+                logToConsole('Please manually test hover and scroll animations', 'info');
+            }, 5000);
+        }
+        
+        // Error handling
+        window.addEventListener('error', (e) => {
+            logToConsole(`ERROR: ${e.message}`, 'error');
+            console.error(e);
+        });
+        
+        // Log when animations complete
+        if (typeof anime !== 'undefined') {
+            logToConsole('Anime.js successfully loaded and ready', 'success');
+        }
+    </script>
+</body>
+</html>

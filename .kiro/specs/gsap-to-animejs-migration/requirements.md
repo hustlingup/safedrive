@@ -14,7 +14,7 @@ This document outlines the requirements for migrating the SafeDrive web applicat
 - **Tween**: A single animation that interpolates property values over time
 - **Stagger**: An animation technique where multiple elements animate with a time delay between each
 - **SafeDrive Application**: The web application being migrated
-- **Hero Animation**: The main animated sequence on the landing page featuring plate scanning
+- **Timeline Animation**: Sequential animations with multiple steps (e.g., QR puzzle)
 - **Leaderboard Animation**: Scroll-triggered stagger animation for table rows
 - **QR Animation**: Animated QR code with sliding puzzle and color cycling effects
 - **Subscribe Button**: Interactive button with hover scale animations
@@ -39,9 +39,9 @@ This document outlines the requirements for migrating the SafeDrive web applicat
 #### Acceptance Criteria
 
 1. WHEN a GSAP timeline is converted THEN the Anime.js implementation SHALL maintain the same duration, easing, and sequencing
-2. WHEN timeline animations include property transforms THEN the system SHALL map GSAP properties (scale, opacity, filter, letterSpacing) to Anime.js equivalents
+2. WHEN timeline animations include property transforms THEN the system SHALL map GSAP properties (translateX, translateY, opacity, fill) to Anime.js equivalents
 3. WHEN timeline animations use relative timing THEN the system SHALL preserve the timing offsets using Anime.js timeline features
-4. WHEN the hero animation plays THEN the visual sequence SHALL match the original GSAP implementation exactly
+4. WHEN timeline animations play THEN the visual sequence SHALL match the original GSAP implementation
 5. WHEN timeline animations include special easing functions THEN the system SHALL use equivalent Anime.js easing curves
 
 ### Requirement 3
@@ -117,7 +117,7 @@ This document outlines the requirements for migrating the SafeDrive web applicat
 
 #### Acceptance Criteria
 
-1. WHEN the hero animation plays THEN the visual timing, easing, and sequencing SHALL be indistinguishable from the GSAP version
+1. WHEN timeline animations play THEN the visual timing, easing, and sequencing SHALL be indistinguishable from the GSAP version
 2. WHEN I scroll to the leaderboard THEN the row animations SHALL trigger at the same scroll position as before
 3. WHEN I hover over interactive buttons THEN the scale effect SHALL feel identical to the original implementation
 4. WHEN the QR code animates THEN the puzzle movements and color transitions SHALL match the original exactly

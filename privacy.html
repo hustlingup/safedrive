@@ -225,6 +225,61 @@
             margin-bottom: 4px;
         }
 
+        .email-reveal-btn {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(17, 153, 142, 0.3);
+        }
+
+        .email-reveal-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(17, 153, 142, 0.4);
+        }
+
+        .email-reveal-btn:active {
+            transform: translateY(0);
+        }
+
+        .email-hidden {
+            display: none;
+        }
+
+        .email-visible {
+            display: inline-block;
+            margin-left: 8px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .email-link {
+            color: #11998e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .email-link:hover {
+            color: #0d7a72;
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         .notice {
             margin: 20px 0 10px;
             padding: 14px 18px;

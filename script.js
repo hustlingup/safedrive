@@ -4111,31 +4111,44 @@ const UIController = {
             tableBody.appendChild(row);
         });
         
-        // Apply GSAP stagger wave animation with ScrollTrigger
-        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-            gsap.registerPlugin(ScrollTrigger);
-            
+        // Apply Anime.js stagger wave animation with IntersectionObserver
+        if (typeof anime !== 'undefined') {
             const rows = tableBody.querySelectorAll('tr');
             const leaderboardSection = tableBody.closest('.leaderboard-section');
             
-            // Set initial state
-            gsap.set(rows, { opacity: 0, y: 20 });
-            
-            // Create ScrollTrigger animation
-            gsap.to(rows, {
-                opacity: 1,
-                y: 0,
-                duration: 0.5,
-                stagger: 0.08,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: leaderboardSection,
-                    start: 'top 80%',
-                    end: 'bottom 20%',
-                    toggleActions: 'play none none none',
-                    once: true
-                }
-            });
+            if (rows.length > 0 && leaderboardSection) {
+                // Set initial state
+                rows.forEach(row => {
+                    row.style.opacity = '0';
+                    row.style.transform = 'translateY(20px)';
+                });
+                
+                // Create IntersectionObserver for scroll-triggered animation
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // Trigger stagger animation with Anime.js
+                            anime({
+                                targets: rows,
+                                opacity: [0, 1],
+                                translateY: [20, 0],
+                                duration: 500,
+                                delay: anime.stagger(80),
+                                easing: 'easeOutQuad'
+                            });
+                            
+                            // Disconnect observer after animation (once: true behavior)
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.2,  // Equivalent to 'start: top 80%'
+                    rootMargin: '0px'
+                });
+                
+                // Observe the leaderboard section
+                observer.observe(leaderboardSection);
+            }
         }
     },
     
@@ -5275,100 +5288,6 @@ document.addEventListener('DOMContentLoaded', () => {
 // ============================================================================
 // Hero License Plate Animation
 // ============================================================================
-
-function initHeroPlateAnimation() {
-    const plate = document.getElementById('heroPlate');
-    const laser = document.getElementById('heroLaser');
-    const envelope = document.getElementById('heroEnvelope');
-    const checkmark = document.getElementById('heroCheckmark');
-    const text = plate?.querySelector('.plate-text');
-    
-    // Check if elements exist (only on home page)
-    if (!plate || !laser || !envelope || !checkmark || !text) {
-        return;
-    }
-    
-    function playHeroAnimation() {
-        // Reset all elements to initial state
-        gsap.set(plate, { scale: 0.3, opacity: 0, filter: 'blur(10px)' });
-        gsap.set(text, { letterSpacing: '0.3em', opacity: 0 });
-        gsap.set(laser, { left: '-10%', opacity: 0 });
-        gsap.set(envelope, { top: -100, opacity: 0 });
-        gsap.set(checkmark, { scale: 0, opacity: 0, right: -60 });
-        
-        gsap.timeline()
-            // Plate appears
-            .to(plate, { 
-                scale: 1, 
-                opacity: 1, 
-                filter: 'blur(0px)', 
-                duration: 0.8, 
-                ease: "power3.out" 
-            })
-            .to(text, { 
-                letterSpacing: '0.05em', 
-                opacity: 1, 
-                duration: 0.6, 
-                ease: "power2.out" 
-            }, "-=0.4")
-            // Blue laser scan (single pass)
-            .to(laser, { opacity: 1, duration: 0.1 })
-            .to(laser, { left: '110%', duration: 1.2, ease: "power1.inOut" })
-            .to(laser, { opacity: 0, duration: 0.1 })
-            // Envelope arrives from top
-            .to(envelope, {
-                opacity: 1,
-                top: 10,
-                duration: 0.6,
-                ease: "back.out(1.5)"
-            })
-            // Envelope bounces slightly
-            .to(envelope, {
-                top: 5,
-                duration: 0.15,
-                yoyo: true,
-                repeat: 1,
-                ease: "power1.inOut"
-            })
-            // Envelope fades out and checkmark appears
-            .to(envelope, {
-                opacity: 0,
-                duration: 0.5,
-                ease: "power2.inOut"
-            })
-            .to(checkmark, { 
-                opacity: 1, 
-                scale: 1, 
-                right: 10,
-                duration: 0.5, 
-                ease: "back.out(2)" 
-            }, "-=0.2")
-            // Checkmark pulse
-            .to(checkmark, { 
-                scale: 1.2, 
-                duration: 0.2, 
-                yoyo: true, 
-                repeat: 1,
-                ease: "power2.inOut"
-            });
-    }
-    
-    // Loop animation continuously
-    function loopHeroAnimation() {
-        playHeroAnimation();
-        // Wait for animation to complete (total duration ~5.5s) then restart
-        setTimeout(loopHeroAnimation, 6000);
-    }
-    
-    // Start animation after a short delay
-    setTimeout(loopHeroAnimation, 500);
-}
-
-// Initialize hero animation when on home page
-if (window.location.hash === '' || window.location.hash === '#home') {
-    initHeroPlateAnimation();
-}
-
 // ============================================================================
 // Heart Button Functionality for Plate Page
 // ============================================================================
@@ -5571,7 +5490,7 @@ const SubscriptionManager = {
     },
     
     /**
-     * Setup subscribe button with GSAP animation
+     * Setup subscribe button with hover animation
      */
     setupSubscribeButton() {
         const subscribeBtn = document.getElementById('subscribeBtn');
@@ -5585,20 +5504,22 @@ const SubscriptionManager = {
         // Update button text based on subscription status
         this.updateSubscribeButtonText();
         
-        // GSAP hover animation
+        // Anime.js hover animation
         subscribeBtn.addEventListener('mouseenter', () => {
-            gsap.to(subscribeBtn, { 
-                duration: 0.3, 
+            anime({ 
+                targets: subscribeBtn,
+                duration: 300, 
                 scale: 1.1, 
-                ease: 'elastic.out(1, 0.3)' 
+                easing: 'easeOutElastic(1, 0.3)' 
             });
         });
         
         subscribeBtn.addEventListener('mouseleave', () => {
-            gsap.to(subscribeBtn, { 
-                duration: 0.3, 
+            anime({ 
+                targets: subscribeBtn,
+                duration: 300, 
                 scale: 1, 
-                ease: 'power2.out' 
+                easing: 'easeOutQuad' 
             });
         });
         

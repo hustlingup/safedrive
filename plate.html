@@ -60,7 +60,10 @@
     <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
     
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <!-- Anime.js for animations -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <script src="js/animation-utils.js"></script>
+    
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js"></script>
@@ -494,6 +497,23 @@
         
         .pro-search-input-wrapper .voice-mic-btn svg {
             color: white;
+        }
+        
+        /* Wide Screen Layout - Desktop */
+        @media (min-width: 1024px) {
+            .pro-search-form {
+                width: 30%;
+            }
+            
+            .pro-search-input-wrapper {
+                flex: 0 0 80%;
+                max-width: 80%;
+            }
+            
+            .pro-search-form .pro-btn-primary {
+                flex: 0 0 20%;
+                max-width: 20%;
+            }
         }
         
         /* Stats Overview */

@@ -53,7 +53,7 @@ if (typeof SubscriptionManager === 'undefined') {
         },
 
         /**
-         * Setup subscribe button with GSAP animation
+         * Setup subscribe button with hover animation
          */
         setupSubscribeButton() {
             const subscribeBtn = document.getElementById('subscribeBtn');
@@ -67,20 +67,22 @@ if (typeof SubscriptionManager === 'undefined') {
             // Update button text based on subscription status
             this.updateSubscribeButtonText();
             
-            // GSAP hover animation
+            // Anime.js hover animation
             subscribeBtn.addEventListener('mouseenter', () => {
-                gsap.to(subscribeBtn, { 
-                    duration: 0.3, 
+                anime({ 
+                    targets: subscribeBtn,
+                    duration: 300, 
                     scale: 1.1, 
-                    ease: 'elastic.out(1, 0.3)' 
+                    easing: 'easeOutElastic(1, 0.3)' 
                 });
             });
             
             subscribeBtn.addEventListener('mouseleave', () => {
-                gsap.to(subscribeBtn, { 
-                    duration: 0.3, 
+                anime({ 
+                    targets: subscribeBtn,
+                    duration: 300, 
                     scale: 1, 
-                    ease: 'power2.out' 
+                    easing: 'easeOutQuad' 
                 });
             });
             

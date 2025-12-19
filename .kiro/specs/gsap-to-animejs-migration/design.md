@@ -14,16 +14,17 @@ The migration involves three main components:
 Based on codebase audit, GSAP is used in the following locations:
 
 **Files with GSAP:**
-- `index.html` - Hero animation, announcement banner, quote animations, QR color cycling
-- `script.js` - Hero animation sequence, leaderboard ScrollTrigger, subscribe button hover
+- `index.html` - QR animations (sliding puzzle + color cycling), announcement banner (sliding + blinking), quote character animations
+- `script.js` - Leaderboard ScrollTrigger stagger, subscribe button hover, unused hero animation code (to be deleted)
 - `plate.html` - Subscribe button hover animation
+- `subscription-manager.js` - Subscribe button hover animation
 
 **Animation Types:**
-1. **Timeline Animations**: Complex sequences with multiple steps (hero animation)
+1. **Timeline Animations**: Complex sequences with multiple steps (QR sliding puzzle)
 2. **Hover Animations**: Interactive button scale effects (subscribe buttons)
 3. **Scroll-Triggered Animations**: Viewport-based triggers (leaderboard stagger)
-4. **Infinite Loop Animations**: Continuous effects (QR puzzle, announcement banner)
-5. **Stagger Animations**: Sequential element animations (leaderboard rows, QR tiles)
+4. **Infinite Loop Animations**: Continuous effects (QR puzzle, announcement banner, QR color cycling)
+5. **Stagger Animations**: Sequential element animations (leaderboard rows, QR tiles, quote characters)
 
 ## Architecture
 
@@ -521,11 +522,11 @@ Property-based tests will verify universal behaviors across many inputs:
 Integration tests will verify complete animation sequences:
 
 **Test Scenarios**:
-1. **Hero Animation Sequence**
-   - Load page with hero animation
-   - Verify all animation steps execute in order
+1. **QR Animation Sequence**
+   - Load page with QR animations
+   - Verify sliding puzzle timeline executes correctly
+   - Verify color cycling continues infinitely
    - Verify timing matches original GSAP version
-   - Measure total animation duration
 
 2. **Scroll-Triggered Leaderboard**
    - Scroll to leaderboard section
@@ -615,8 +616,10 @@ Verify animations work across browsers:
    - Test and verify
 
 3. **Phase 3: Timeline Animations**
-   - Migrate hero animation sequence
-   - Migrate QR animations
+   - Delete unused hero animation code
+   - Migrate QR animations (sliding puzzle + color cycling)
+   - Migrate announcement banner animations
+   - Migrate quote character animations
    - Test and verify
 
 4. **Phase 4: Scroll-Triggered Animations**

@@ -77,7 +77,16 @@
     },
     "roadStress": {
       ".read": true,
-      ".write": false
+      ".write": true,
+      "emotionCounts": {
+        ".validate": "newData.hasChildren()"
+      },
+      "totalCount": {
+        ".validate": "newData.isNumber() && newData.val() >= 0"
+      },
+      "lastResetDate": {
+        ".validate": "newData.isString()"
+      }
     },
     "global": {
       ".read": true,

@@ -1,13 +1,29 @@
 # Implementation Plan
 
-- [ ] 1. Project setup and dependency management
+- [x] 1. Project setup and dependency management
+
+
+
+
+
   - Add Anime.js library to all HTML files that use animations
   - Create a central animation utilities file for reusable functions
   - Keep GSAP temporarily for side-by-side comparison during migration
   - _Requirements: 7.3_
 
-- [ ] 2. Create animation utility functions
-- [ ] 2.1 Implement scrollTriggerAnimation utility
+- [x] 2. Create animation utility functions
+
+
+
+
+
+
+
+- [x] 2.1 Implement scrollTriggerAnimation utility
+
+
+
+
   - Write function that accepts selector, animation config, and options
   - Set up IntersectionObserver with configurable threshold
   - Implement once-only animation tracking using WeakSet
@@ -20,7 +36,12 @@
   - **Property 18: Animation state tracking**
   - **Validates: Requirements 8.1, 8.2, 8.4**
 
-- [ ] 2.3 Implement hoverAnimation utility
+
+- [x] 2.3 Implement hoverAnimation utility
+
+
+
+
   - Write function that accepts element and hover/leave configs
   - Attach mouseenter and mouseleave event listeners
   - Trigger Anime.js animations on hover events
@@ -28,15 +49,27 @@
 
 - [ ]* 2.4 Write property test for hover animation interruption
   - **Property 5: Hover animation interruption handling**
+
   - **Validates: Requirements 3.4**
 
-- [ ] 2.5 Implement animateOnce utility
+- [x] 2.5 Implement animateOnce utility
+
+
+
+
   - Create WeakSet for tracking animated elements
   - Write function that checks if element was already animated
+
   - Prevent duplicate animations
   - _Requirements: 8.4_
 
-- [ ] 2.6 Implement createTimeline utility
+- [x] 2.6 Implement createTimeline utility
+
+
+
+
+
+
   - Write function that creates Anime.js timeline
   - Support timeline offset syntax
   - Handle sequential animation chaining
@@ -46,15 +79,24 @@
   - **Property 3: Timeline offset preservation**
   - **Validates: Requirements 2.3**
 
-- [ ] 3. Migrate hover animations (subscribe buttons)
-- [ ] 3.1 Replace GSAP hover in script.js
+- [x] 3. Migrate hover animations (subscribe buttons)
+
+
+
+
+
+
+- [x] 3.1 Replace GSAP hover in script.js
+
   - Locate subscribe button hover animations in script.js
   - Replace gsap.to calls with anime() calls
   - Convert duration from seconds to milliseconds (0.3s → 300ms)
   - Map scale property and easing
   - _Requirements: 3.1, 3.2, 3.3_
 
-- [ ] 3.2 Replace GSAP hover in plate.html
+- [x] 3.2 Replace GSAP hover in plate.html
+
+
   - Locate subscribe button hover animations in plate.html
   - Replace gsap.to calls with anime() calls
   - Ensure consistent behavior with script.js implementation
@@ -74,35 +116,30 @@
 - [ ] 4. Checkpoint - Verify hover animations work
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 5. Migrate hero animation timeline
-- [ ] 5.1 Convert hero animation to Anime.js timeline
-  - Replace gsap.timeline() with anime.timeline()
-  - Convert all gsap.set() calls to direct style manipulation or anime.set()
-  - Map all property names (scale, opacity, filter, letterSpacing, etc.)
-  - Convert durations from seconds to milliseconds
-  - Map easing functions (power3.out → easeOutCubic, power2.out → easeOutQuad, back.out → easeOutBack)
-  - Preserve timeline offsets (e.g., "-=0.4" → "-=400")
-  - _Requirements: 2.1, 2.2, 2.3, 2.5_
+- [x] 5. Remove unused hero animation code
 
-- [ ]* 5.2 Write property test for timeline duration preservation
-  - **Property 1: Timeline duration preservation**
-  - **Validates: Requirements 2.1**
 
-- [ ]* 5.3 Write property test for property mapping
-  - **Property 2: Property mapping correctness**
-  - **Validates: Requirements 2.2**
 
-- [ ]* 5.4 Write unit test for hero animation sequence
-  - Verify plate scale animation (0.3 → 1)
-  - Verify text letterSpacing animation (0.3em → 0.05em)
-  - Verify laser scan movement (left: -10% → 110%)
-  - Verify envelope arrival (top: -100 → 10)
-  - Verify checkmark appearance (scale: 0 → 1)
-  - Verify timing offsets are preserved
-  - _Requirements: 2.4_
 
-- [ ] 6. Migrate announcement banner animation
-- [ ] 6.1 Replace GSAP announcement banner in index.html
+
+
+- [x] 5.1 Delete unused hero animation functions from script.js
+
+  - Remove initHeroPlateAnimation() function (lines ~5280-5365)
+  - Remove playHeroAnimation() function
+  - Remove loopHeroAnimation() function
+  - These reference HTML elements (heroPlate, heroLaser, heroEnvelope, heroCheckmark) that don't exist
+  - _Requirements: 7.4_
+
+- [x] 6. Migrate announcement banner animation
+
+
+
+
+
+- [x] 6.1 Replace GSAP announcement banner in index.html
+
+
   - Locate gsap.fromTo and gsap.to calls for announcementText
   - Convert sliding animation to Anime.js
   - Convert blinking animation to Anime.js with loop
@@ -113,14 +150,24 @@
   - **Property 14: Infinite loop behavior**
   - **Validates: Requirements 6.3**
 
-- [ ] 7. Migrate QR code animations in index.html
-- [ ] 7.1 Replace QR sliding puzzle timeline
+- [x] 7. Migrate QR code animations in index.html
+
+
+
+
+
+- [x] 7.1 Replace QR sliding puzzle timeline
+
+
   - Convert gsap.timeline() for QR tiles to anime.timeline()
   - Map all tile movement animations (translateX, translateY)
   - Preserve stagger timing and repeat behavior
   - _Requirements: 6.1, 6.3_
 
-- [ ] 7.2 Replace QR color cycling animations
+
+
+- [x] 7.2 Replace QR color cycling animations
+
   - Convert gsap.to() calls for fill color changes
   - Preserve 0.4 second duration for color transitions
   - Maintain stagger of 0.01 seconds for tiles
@@ -140,8 +187,14 @@
 - [ ] 8. Checkpoint - Verify timeline animations work
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 9. Migrate scroll-triggered leaderboard animation
-- [ ] 9.1 Replace ScrollTrigger with IntersectionObserver
+- [x] 9. Migrate scroll-triggered leaderboard animation
+
+
+
+
+- [x] 9.1 Replace ScrollTrigger with IntersectionObserver
+
+
   - Remove gsap.registerPlugin(ScrollTrigger) call
   - Remove gsap.set() for initial row state
   - Remove gsap.to() with scrollTrigger configuration
@@ -150,7 +203,10 @@
   - Implement once: true behavior
   - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5_
 
-- [ ] 9.2 Implement stagger animation with Anime.js
+
+- [x] 9.2 Implement stagger animation with Anime.js
+
+
   - Create Anime.js animation for table rows
   - Set initial state: opacity: 0, translateY: 20
   - Animate to: opacity: 1, translateY: 0
@@ -189,35 +245,59 @@
   - Test opacity and translateY values
   - _Requirements: 4.2, 5.1_
 
-- [ ] 10. Migrate quote character animations
-- [ ] 10.1 Replace GSAP quote animations in index.html
-  - Locate gsap.to() calls for quote span children
+- [x] 10. Migrate quote character animations
+
+
+
+
+- [x] 10.1 Replace GSAP quote animations in index.html
+
+
+  - Locate gsap.to() calls for quote span children (around line 3148)
   - Convert to Anime.js with stagger
-  - Preserve opacity animation and timing
+  - Preserve opacity animation (0 → 1) and duration (0.03s → 30ms)
   - _Requirements: 2.1, 2.2_
+
+- [ ]* 10.2 Write property test for timeline animations
+  - **Property 1: Timeline duration preservation**
+  - **Property 2: Property mapping correctness**
+  - **Validates: Requirements 2.1, 2.2**
 
 - [ ] 11. Checkpoint - Verify scroll-triggered animations work
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 12. Remove GSAP dependencies
-- [ ] 12.1 Remove GSAP script tags from index.html
+- [x] 12. Remove GSAP dependencies
+
+
+
+
+
+
+- [x] 12.1 Remove GSAP script tags from index.html
+
   - Remove GSAP library script tag
   - Remove ScrollTrigger plugin script tag
   - Verify no GSAP references remain in HTML
   - _Requirements: 7.1, 7.2_
 
-- [ ] 12.2 Remove GSAP script tags from plate.html
+
+
+- [x] 12.2 Remove GSAP script tags from plate.html
   - Remove GSAP library script tag
   - Verify no GSAP references remain in HTML
   - _Requirements: 7.1_
 
-- [ ] 12.3 Remove GSAP code from script.js
+
+- [x] 12.3 Remove GSAP code from script.js
+
   - Remove all gsap.* function calls
   - Remove ScrollTrigger references
   - Remove any GSAP-specific comments
   - _Requirements: 7.4_
 
-- [ ] 12.4 Verify no GSAP loading attempts
+
+- [x] 12.4 Verify no GSAP loading attempts
+
   - Check network tab for GSAP CDN requests
   - Verify console has no GSAP-related errors
   - Confirm application loads without GSAP
@@ -230,10 +310,18 @@
   - _Requirements: 7.1, 7.2, 7.3_
 
 - [ ] 13. Performance validation and optimization
-- [ ] 13.1 Measure animation performance
-  - Measure frame rates during hero animation
-  - Measure frame rates during leaderboard stagger
+- [x] 13.1 Measure animation performance
+
+
+
+
+
+
+
+
   - Measure frame rates during QR animations
+  - Measure frame rates during leaderboard stagger
+  - Measure frame rates during announcement banner
   - Compare with GSAP baseline (if available)
   - Verify 60fps target is met
   - _Requirements: 9.5_
@@ -242,36 +330,55 @@
   - **Property 20: Animation performance**
   - **Validates: Requirements 9.5**
 
-- [ ] 13.3 Measure bundle size reduction
+- [x] 13.3 Measure bundle size reduction
+
+
+
+
+
   - Calculate original bundle size with GSAP + ScrollTrigger
   - Calculate new bundle size with Anime.js
   - Document size reduction achieved
   - _Requirements: 7.1, 7.2, 7.3_
 
-- [ ] 14. Cross-browser testing
-- [ ] 14.1 Test in Chrome
+- [x] 14. Cross-browser testing
+
+
+
+
+
+- [x] 14.1 Test in Chrome
+
   - Verify all animations work correctly
   - Verify IntersectionObserver functions properly
   - Check console for errors
   - _Requirements: 10.5_
 
-- [ ] 14.2 Test in Firefox
+- [x] 14.2 Test in Firefox
+
   - Verify all animations work correctly
   - Verify IntersectionObserver functions properly
   - Check console for errors
   - _Requirements: 10.5_
 
-- [ ] 14.3 Test in Safari
+- [x] 14.3 Test in Safari
+
   - Verify all animations work correctly
   - Verify IntersectionObserver functions properly
   - Check console for errors
   - _Requirements: 10.5_
 
-- [ ] 14.4 Test in Edge
+- [x] 14.4 Test in Edge
+
   - Verify all animations work correctly
   - Verify IntersectionObserver functions properly
   - Check console for errors
   - _Requirements: 10.5_
 
-- [ ] 15. Final checkpoint - Complete migration verification
+- [x] 15. Final checkpoint - Complete migration verification
+
+
+
+
+
   - Ensure all tests pass, ask the user if questions arise.
