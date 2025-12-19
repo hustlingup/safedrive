@@ -351,67 +351,66 @@
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="주 내비게이션">
         <div class="nav-container">
-            <a href="index.html#home" class="nav-logo">
-                <img src="assets/img/SAFEDRIVE_logo.svg" alt="SAFE DRIVE Logo">
+            <a href="index.html#home" class="nav-logo" aria-label="SAFE DRIVE 홈으로 이동">
+                <img src="assets/img/SAFEDRIVE_logo.svg" alt="SAFE DRIVE 로고">
             </a>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html#home" class="nav-link">홈</a></li>
-                <li><a href="qr-generator.html" class="nav-link">QR</a></li>
-                <li><a href="referral.html" class="nav-link">이벤트</a></li>
-                <li><a href="index.html#road-stress" class="nav-link">도로스트레스</a></li>
-                <li><a href="index.html#mostLikedSection" class="nav-link">인기번호판</a></li>
-                <li><a href="index.html#designated-lane" class="nav-link">지정차로</a></li>
-                <li><a href="index.html#legal-notice" class="nav-link">안내</a></li>
-                <li><a href="contact.html" class="nav-link active">문의</a></li>
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="index.html#home" class="nav-link" role="menuitem">홈</a></li>
+                <li role="none"><a href="qr-generator.html" class="nav-link" role="menuitem">QR</a></li>
+                <li role="none"><a href="referral.html" class="nav-link" role="menuitem">이벤트</a></li>
+                <li role="none"><a href="index.html#road-stress" class="nav-link" role="menuitem">도로스트레스</a></li>
+                <li role="none"><a href="index.html#mostLikedSection" class="nav-link" role="menuitem">인기번호판</a></li>
+                <li role="none"><a href="index.html#designated-lane" class="nav-link" role="menuitem">지정차로</a></li>
+                <li role="none"><a href="index.html#legal-notice" class="nav-link" role="menuitem">안내</a></li>
+                <li role="none"><a href="contact.html" class="nav-link active" role="menuitem" aria-current="page">문의</a></li>
             </ul>
-            <button class="nav-toggle" id="navToggle">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
+            <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
+                <span class="hamburger-line" aria-hidden="true"></span>
+                <span class="hamburger-line" aria-hidden="true"></span>
+                <span class="hamburger-line" aria-hidden="true"></span>
             </button>
         </div>
     </nav>
 
-    <div class="container">
         <h1>문의하기</h1>
         <p class="subtitle">궁금한 점이나 제안사항이 있으시면 언제든지 연락 주세요. 여러분의 소중한 의견을 기다리고 있습니다.</p>
 
-        <div class="contact-section">
-            <h2>연락처</h2>
+        <section class="contact-section" aria-labelledby="contact-info-heading">
+            <h2 id="contact-info-heading">연락처</h2>
             <p>모든 문의사항은 아래 이메일로 보내주세요:</p>
             <p>
-                <button id="emailRevealBtn" class="email-reveal-btn" onclick="revealEmail()">클릭해서 이메일 보기</button>
-                <span id="emailAddress" class="email-hidden"></span>
+                <button id="emailRevealBtn" class="email-reveal-btn" onclick="revealEmail()" aria-label="이메일 주소 표시">클릭해서 이메일 보기</button>
+                <span id="emailAddress" class="email-hidden" aria-live="polite"></span>
             </p>
-        </div>
+        </section>
 
-        <div class="contact-section">
-            <h2>답변 시간</h2>
+        <section class="contact-section" aria-labelledby="response-time-heading">
+            <h2 id="response-time-heading">답변 시간</h2>
             <p>영업일 기준 24-48시간 이내에 답변드리겠습니다. 조금만 기다려 주세요.</p>
-        </div>
+        </section>
 
-        <div class="contact-types">
-            <h3>어떤 도움이 필요하신가요?</h3>
-            <ul>
+        <section class="contact-types" aria-labelledby="inquiry-types-heading">
+            <h3 id="inquiry-types-heading">어떤 도움이 필요하신가요?</h3>
+            <ul role="list">
                 <li>웹사이트 개선 제안</li>
                 <li>기능 추가 요청</li>
                 <li>광고 및 후원 문의</li>
                 <li>협업 제안</li>
                 <li>일반 문의 및 피드백</li>
             </ul>
-        </div>
+        </section>
 
-        <div class="notice">
+        <aside class="notice" role="note" aria-label="이메일 수집 금지 안내">
             <p><strong>이메일 무단 수집 금지</strong><br>
             본 웹사이트에 게시된 이메일 주소가 전자우편 수집 프로그램이나 그 밖의 기술적 장치를 이용하여 무단으로 수집되는 것을 거부하며, 이를 위반 시 정보통신망법에 의해 형사 처벌됨을 유념하시기 바랍니다.</p>
-        </div>
+        </aside>
 
-        <div class="back-link">
-            <a href="index.html">← 홈으로 돌아가기</a>
-        </div>
-    </div>
+        <nav class="back-link" aria-label="페이지 이동">
+            <a href="index.html" aria-label="홈페이지로 돌아가기">← 홈으로 돌아가기</a>
+        </nav>
+    </main>
 
     <script>
         function revealEmail() {
@@ -443,24 +442,26 @@
         
         if (navToggle) {
             navToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
+                const isExpanded = navMenu.classList.toggle('active');
+                navToggle.setAttribute('aria-expanded', isExpanded);
+                navToggle.setAttribute('aria-label', isExpanded ? '메뉴 닫기' : '메뉴 열기');
             });
         }
     </script>
 
     <!-- Footer -->
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
         <div class="footer-content">
-            <nav class="footer-links">
+            <nav class="footer-links" aria-label="푸터 내비게이션">
                 <a href="terms.html">이용약관</a> | <a href="privacy.html">개인정보처리방침</a> | <a href="legal.html">법적 고지</a> | <a href="faq.html">자주 묻는 질문</a>
             </nav>
-            <a class="footer-contact-link" href="contact.html">문의</a>
+            <a class="footer-contact-link" href="contact.html" aria-label="문의 페이지로 이동">문의</a>
             <p class="copyright">© 2025 Hustle Up. All rights reserved.</p>
         </div>
     </footer>
     
     <!-- ===== In-app browser escape bar (Chrome/Safari) ===== -->
-    <div id="openInBrowserBar" class="oib-hidden" role="dialog" aria-live="polite" aria-label="브라우저에서 열기 안내">
+    <aside id="openInBrowserBar" class="oib-hidden" role="dialog" aria-live="polite" aria-label="브라우저에서 열기 안내" aria-modal="false">
         <div class="oib-card">
             <div class="oib-header">
                 <div class="oib-title">앱 내 브라우저에서는 기능이 제한될 수 있어요</div>
@@ -583,7 +584,12 @@
                 const btn = document.createElement("button");
                 btn.type = "button";
                 btn.className = "oib-btn" + (primary ? " primary" : "");
-                btn.innerHTML = iconSvg + "<span>" + label + "</span>";
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = iconSvg;
+                btn.appendChild(tempDiv.firstChild);
+                const labelSpan = document.createElement('span');
+                labelSpan.textContent = label;
+                btn.appendChild(labelSpan);
                 btn.addEventListener("click", onClick, { passive: true });
                 return btn;
             }
@@ -643,7 +649,7 @@
             }
             
             // ---- Render buttons by platform ----
-            actions.innerHTML = "";
+            actions.textContent = "";
             if (isAndroid) {
                 actions.appendChild(makeButton("크롬에서 열기", chromeIcon, openAndroidChromeIntent, true));
             } else if (isIOS) {
@@ -676,8 +682,9 @@
     class="cookie-settings-trigger" 
     onclick="openCookieSettings()" 
     title="쿠키 설정 관리"
-    aria-label="쿠키 설정 관리">
-    🍪
+    aria-label="쿠키 설정 관리"
+    type="button">
+    <span aria-hidden="true">🍪</span>
 </button>
 </body>
 </html>

@@ -340,6 +340,62 @@
             margin: 0;
         }
 
+        /* Text Size FAB Button */
+        .text-size-fab {
+            position: fixed;
+            bottom: 96px; /* Positioned above cookie button (20px + 56px + 20px spacing) */
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border: none;
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            z-index: 9998; /* Below cookie button (9999) but above other content */
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .text-size-fab:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.5);
+        }
+        
+        .text-size-fab:active {
+            transform: translateY(-2px) scale(1);
+        }
+
+        /* Text size variations */
+        body.text-size-medium {
+            font-size: 16px;
+        }
+
+        body.text-size-medium .question-text {
+            font-size: 16px;
+        }
+
+        body.text-size-medium .answer {
+            font-size: 15px;
+        }
+
+        body.text-size-large {
+            font-size: 18px;
+        }
+
+        body.text-size-large .question-text {
+            font-size: 17px;
+        }
+
+        body.text-size-large .answer {
+            font-size: 16px;
+        }
+
         @media (max-width: 700px) {
             body {
                 padding: 10px;
@@ -369,42 +425,50 @@
             .question {
                 align-items: flex-start;
             }
+
+            .text-size-fab {
+                bottom: 84px; /* Positioned above cookie button on mobile (16px + 48px + 20px spacing) */
+                right: 16px;
+                width: 48px;
+                height: 48px;
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="주 내비게이션">
         <div class="nav-container">
-            <a href="index.html#home" class="nav-logo">
-                <img src="assets/img/SAFEDRIVE_logo.svg" alt="SAFE DRIVE Logo">
+            <a href="index.html#home" class="nav-logo" aria-label="SAFE DRIVE 홈으로 이동">
+                <img src="assets/img/SAFEDRIVE_logo.svg" alt="SAFE DRIVE 로고">
             </a>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html#home" class="nav-link">홈</a></li>
-                <li><a href="qr-generator.html" class="nav-link">QR</a></li>
-                <li><a href="referral.html" class="nav-link">이벤트</a></li>
-                <li><a href="index.html#road-stress" class="nav-link">도로스트레스</a></li>
-                <li><a href="index.html#mostLikedSection" class="nav-link">인기번호판</a></li>
-                <li><a href="index.html#designated-lane" class="nav-link">지정차로</a></li>
-                <li><a href="index.html#legal-notice" class="nav-link">안내</a></li>
-                <li><a href="contact.html" class="nav-link">문의</a></li>
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="index.html#home" class="nav-link" role="menuitem">홈</a></li>
+                <li role="none"><a href="qr-generator.html" class="nav-link" role="menuitem">QR</a></li>
+                <li role="none"><a href="referral.html" class="nav-link" role="menuitem">이벤트</a></li>
+                <li role="none"><a href="index.html#road-stress" class="nav-link" role="menuitem">도로스트레스</a></li>
+                <li role="none"><a href="index.html#mostLikedSection" class="nav-link" role="menuitem">인기번호판</a></li>
+                <li role="none"><a href="index.html#designated-lane" class="nav-link" role="menuitem">지정차로</a></li>
+                <li role="none"><a href="index.html#legal-notice" class="nav-link" role="menuitem">안내</a></li>
+                <li role="none"><a href="contact.html" class="nav-link" role="menuitem">문의</a></li>
             </ul>
-            <button class="nav-toggle" id="navToggle">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
+            <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
+                <span class="hamburger-line" aria-hidden="true"></span>
+                <span class="hamburger-line" aria-hidden="true"></span>
+                <span class="hamburger-line" aria-hidden="true"></span>
             </button>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="header">
+    <main class="container" role="main">
+        <header class="header">
             <h1>❓ 자주 묻는 질문 (FAQ)</h1>
             <p>SAFE DRIVE / 허슬업 서비스, 개인정보, 광고·분석에 대해 궁금하신 점을 정리했습니다.</p>
-        </div>
+        </header>
 
-        <div class="content">
-            <div class="intro-box">
+        <section class="content" aria-label="FAQ 내용">
+            <aside class="intro-box" role="note">
                 이 페이지는 Google Analytics / Google AdSense 연동을 포함한 최신 개인정보·광고 정책을 반영한 FAQ입니다.<br>
                 보다 자세한 내용은 <strong>이용약관</strong> 및 <strong>개인정보처리방침</strong>을 참고해 주세요.
             </div>
@@ -698,26 +762,23 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="footer">
+        <footer class="footer">
             <p><strong>2026년 1월 1일 Hustle Up</strong></p>
-            <p class="footer-links" style="margin-top: 10px;">
-                <a href="terms.html">이용약관</a> | 
-                <a href="privacy.html">개인정보처리방침</a> | 
-                <a href="legal.html">법적 고지</a>
-            </p>
-            <a href="index.html" class="back-button">← 홈으로 돌아가기</a>
-        </div>
-    </div>
+            <nav aria-label="페이지 이동">
+                <a href="index.html" class="back-button" aria-label="홈페이지로 돌아가기">← 홈으로 돌아가기</a>
+            </nav>
+        </footer>
+    </main>
 
     <!-- Footer -->
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
         <div class="footer-content">
-            <nav class="footer-links">
-                <a href="terms.html">이용약관</a> | <a href="privacy.html">개인정보처리방침</a> | <a href="legal.html">법적 고지</a> | <a href="faq.html">자주 묻는 질문</a>
+            <nav class="footer-links" aria-label="푸터 내비게이션">
+                <a href="terms.html">이용약관</a> | <a href="privacy.html">개인정보처리방침</a> | <a href="legal.html">법적 고지</a> | <a href="faq.html" aria-current="page">자주 묻는 질문</a>
             </nav>
-            <a class="footer-contact-link" href="contact.html">문의</a>
+            <a class="footer-contact-link" href="contact.html" aria-label="문의 페이지로 이동">문의</a>
             <p class="copyright">© 2025 Hustle Up. All rights reserved.</p>
         </div>
     </footer>
@@ -729,7 +790,9 @@
         
         if (navToggle) {
             navToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
+                const isExpanded = navMenu.classList.toggle('active');
+                navToggle.setAttribute('aria-expanded', isExpanded);
+                navToggle.setAttribute('aria-label', isExpanded ? '메뉴 닫기' : '메뉴 열기');
             });
         }
     </script>
@@ -742,20 +805,52 @@
     class="cookie-settings-trigger" 
     onclick="openCookieSettings()" 
     title="쿠키 설정 관리"
-    aria-label="쿠키 설정 관리">
-    🍪
+    aria-label="쿠키 설정 관리"
+    type="button">
+    <span aria-hidden="true">🍪</span>
 </button>
-<!-- Cookie Consent System -->
-<link rel="stylesheet" href="/css/cookie-consent.css">
-<script src="/js/cookie-consent.js"></script>
 
-<!-- Cookie Settings Floating Button -->
-<button 
-    class="cookie-settings-trigger" 
-    onclick="openCookieSettings()" 
-    title="쿠키 설정 관리"
-    aria-label="쿠키 설정 관리">
-    🍪
+<!-- Text Size FAB Button -->
+<button class="text-size-fab" id="textSizeFab" aria-label="텍스트 크기 변경" title="텍스트 크기 변경" type="button">
+    <span aria-hidden="true">Aa</span>
 </button>
+
+<script>
+    // Text size toggle functionality
+    const textSizeFab = document.getElementById('textSizeFab');
+    const textSizes = ['text-size-small', 'text-size-medium', 'text-size-large'];
+    let currentSizeIndex = 0;
+
+    // Load saved text size preference
+    const savedSize = localStorage.getItem('textSize');
+    if (savedSize) {
+        currentSizeIndex = textSizes.indexOf(savedSize);
+        if (currentSizeIndex !== -1 && currentSizeIndex !== 0) {
+            document.body.classList.add(savedSize);
+        }
+    }
+
+    textSizeFab.addEventListener('click', () => {
+        // Remove current size class
+        document.body.classList.remove(textSizes[currentSizeIndex]);
+        
+        // Move to next size
+        currentSizeIndex = (currentSizeIndex + 1) % textSizes.length;
+        
+        // Add new size class (skip if it's 'small' which is default)
+        if (currentSizeIndex !== 0) {
+            document.body.classList.add(textSizes[currentSizeIndex]);
+        }
+        
+        // Save preference
+        localStorage.setItem('textSize', textSizes[currentSizeIndex]);
+        
+        // Visual feedback
+        textSizeFab.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            textSizeFab.style.transform = '';
+        }, 150);
+    });
+</script>
 </body>
 </html>

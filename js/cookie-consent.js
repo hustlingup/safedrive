@@ -121,45 +121,15 @@ class CookieConsent {
     createBanner() {
         const banner = document.createElement('div');
         banner.id = 'cookie-consent-banner';
-        banner.className = 'cookie-consent-banner';
+        banner.className = 'cookie-consent-banner cookie-consent-compact';
         banner.innerHTML = `
             <div class="cookie-consent-content">
-                <div class="cookie-consent-header">
-                    <h3>🍪 쿠키 사용 안내</h3>
-                </div>
                 <div class="cookie-consent-body">
-                    <p>SAFE DRIVE는 서비스 품질 개선과 맞춤형 광고 제공을 위해 쿠키를 사용합니다.</p>
-                    <div class="cookie-options">
-                        <label class="cookie-option">
-                            <input type="checkbox" id="consent-essential" checked disabled>
-                            <div class="cookie-option-text">
-                                <strong>필수 쿠키</strong>
-                                <span>사이트 정상 작동에 필요 (현재 미사용)</span>
-                            </div>
-                        </label>
-                        <label class="cookie-option">
-                            <input type="checkbox" id="consent-analytics" checked>
-                            <div class="cookie-option-text">
-                                <strong>분석 쿠키</strong>
-                                <span>Google Analytics - 익명 통계 수집</span>
-                            </div>
-                        </label>
-                        <label class="cookie-option">
-                            <input type="checkbox" id="consent-advertising" checked>
-                            <div class="cookie-option-text">
-                                <strong>광고 쿠키</strong>
-                                <span>Google AdSense, 쿠팡 파트너스 - 맞춤형 광고</span>
-                            </div>
-                        </label>
-                    </div>
-                    <p class="cookie-info-link">
-                        자세한 내용은 <a href="/privacy.html" target="_blank">개인정보처리방침</a>을 참고하세요.
-                    </p>
+                    <p>🍪 SAFE DRIVE는 서비스 품질 개선을 위해 쿠키를 사용합니다. <a href="/privacy.html" target="_blank">자세히 보기</a></p>
                 </div>
                 <div class="cookie-consent-actions">
-                    <button id="cookie-accept-all" class="btn-primary">모두 동의</button>
-                    <button id="cookie-accept-selected" class="btn-secondary">선택 동의</button>
-                    <button id="cookie-reject-all" class="btn-text">거부</button>
+                    <button id="cookie-settings-btn" class="btn-secondary">설정</button>
+                    <button id="cookie-accept-all" class="btn-primary">동의</button>
                 </div>
             </div>
         `;
@@ -178,23 +148,13 @@ class CookieConsent {
             this.hideBanner(banner);
         });
 
-        banner.querySelector('#cookie-accept-selected').addEventListener('click', () => {
-            this.saveConsent({
-                essential: true,
-                analytics: banner.querySelector('#consent-analytics').checked,
-                advertising: banner.querySelector('#consent-advertising').checked
+        const settingsBtn = banner.querySelector('#cookie-settings-btn');
+        if (settingsBtn) {
+            settingsBtn.addEventListener('click', () => {
+                this.hideBanner(banner);
+                this.showSettings();
             });
-            this.hideBanner(banner);
-        });
-
-        banner.querySelector('#cookie-reject-all').addEventListener('click', () => {
-            this.saveConsent({
-                essential: true,
-                analytics: false,
-                advertising: false
-            });
-            this.hideBanner(banner);
-        });
+        }
     }
 
     hideBanner(banner) {

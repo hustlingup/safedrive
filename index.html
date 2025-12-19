@@ -1977,6 +1977,7 @@
     
     <!-- Firebase Configuration -->
     <script src="firebase-config.js"></script>
+    <script src="js/xss-prevention.js"></script>
 </head>
 <body>
     <nav class="navbar" id="mainNavbar">
@@ -3569,7 +3570,12 @@
                 const btn = document.createElement("button");
                 btn.type = "button";
                 btn.className = "oib-btn" + (primary ? " primary" : "");
-                btn.innerHTML = iconSvg + "<span>" + label + "</span>";
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = iconSvg;
+                btn.appendChild(tempDiv.firstChild);
+                const labelSpan = document.createElement('span');
+                labelSpan.textContent = label;
+                btn.appendChild(labelSpan);
                 btn.addEventListener("click", onClick, { passive: true });
                 return btn;
             }
@@ -3629,7 +3635,7 @@
             }
             
             // ---- Render buttons by platform ----
-            actions.innerHTML = "";
+            actions.textContent = "";
             if (isAndroid) {
                 actions.appendChild(makeButton("크롬에서 열기", chromeIcon, openAndroidChromeIntent, true));
             } else if (isIOS) {

@@ -51,13 +51,25 @@ const ReferralStats = (function() {
     function showAccessDenied(message) {
         const container = document.getElementById('statsContainer');
         if (container) {
-            container.innerHTML = `
-                <div class="access-denied">
-                    <div class="denied-icon">🔒</div>
-                    <h2>접근 거부</h2>
-                    <p>${message}</p>
-                </div>
-            `;
+            container.textContent = '';
+            
+            const deniedDiv = document.createElement('div');
+            deniedDiv.className = 'access-denied';
+            
+            const icon = document.createElement('div');
+            icon.className = 'denied-icon';
+            icon.textContent = '🔒';
+            
+            const heading = document.createElement('h2');
+            heading.textContent = '접근 거부';
+            
+            const para = document.createElement('p');
+            para.textContent = message;
+            
+            deniedDiv.appendChild(icon);
+            deniedDiv.appendChild(heading);
+            deniedDiv.appendChild(para);
+            container.appendChild(deniedDiv);
         }
     }
 
@@ -127,28 +139,62 @@ const ReferralStats = (function() {
         const tbody = document.getElementById('leaderboardBody');
         if (!tbody) return;
         
+        tbody.textContent = '';
+        
         if (data.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="4" class="no-data">오늘 데이터가 없습니다.</td></tr>';
+            const row = document.createElement('tr');
+            const cell = document.createElement('td');
+            cell.colSpan = 4;
+            cell.className = 'no-data';
+            cell.textContent = '오늘 데이터가 없습니다.';
+            row.appendChild(cell);
+            tbody.appendChild(row);
             return;
         }
         
-        tbody.innerHTML = data.map((entry, index) => {
+        data.forEach((entry, index) => {
             const rank = index + 1;
             const isWinner = winnerIds.has(entry.id);
-            const rankBadge = rank <= 3 ? ['🥇', '🥈', '🥉'][rank - 1] : rank;
+            const rankBadge = rank <= 3 ? ['🥇', '🥈', '🥉'][rank - 1] : String(rank);
             
-            return `
-                <tr class="${isWinner ? 'winner-row' : ''}">
-                    <td class="rank-cell">${rankBadge}</td>
-                    <td class="id-cell">${entry.id}</td>
-                    <td class="count-cell">${entry.count}</td>
-                    <td class="status-cell">
-                        ${isWinner ? '<span class="winner-badge">🏆 50달성</span>' : ''}
-                        ${rank <= 3 ? '<span class="top3-badge">TOP3</span>' : ''}
-                    </td>
-                </tr>
-            `;
-        }).join('');
+            const row = document.createElement('tr');
+            if (isWinner) row.className = 'winner-row';
+            
+            const rankCell = document.createElement('td');
+            rankCell.className = 'rank-cell';
+            rankCell.textContent = rankBadge;
+            
+            const idCell = document.createElement('td');
+            idCell.className = 'id-cell';
+            idCell.textContent = entry.id;
+            
+            const countCell = document.createElement('td');
+            countCell.className = 'count-cell';
+            countCell.textContent = entry.count;
+            
+            const statusCell = document.createElement('td');
+            statusCell.className = 'status-cell';
+            
+            if (isWinner) {
+                const winnerBadge = document.createElement('span');
+                winnerBadge.className = 'winner-badge';
+                winnerBadge.textContent = '🏆 50달성';
+                statusCell.appendChild(winnerBadge);
+            }
+            
+            if (rank <= 3) {
+                const top3Badge = document.createElement('span');
+                top3Badge.className = 'top3-badge';
+                top3Badge.textContent = 'TOP3';
+                statusCell.appendChild(top3Badge);
+            }
+            
+            row.appendChild(rankCell);
+            row.appendChild(idCell);
+            row.appendChild(countCell);
+            row.appendChild(statusCell);
+            tbody.appendChild(row);
+        });
     }
     
     /**
@@ -162,20 +208,47 @@ const ReferralStats = (function() {
         const totalParticipants = data.length;
         const winnersCount = winners.length;
         
-        summaryEl.innerHTML = `
-            <div class="summary-card">
-                <div class="summary-value">${totalParticipants}</div>
-                <div class="summary-label">참여자 수</div>
-            </div>
-            <div class="summary-card">
-                <div class="summary-value">${totalReferrals}</div>
-                <div class="summary-label">총 추천 수</div>
-            </div>
-            <div class="summary-card">
-                <div class="summary-value">${winnersCount}/3</div>
-                <div class="summary-label">50달성 Winners</div>
-            </div>
-        `;
+        summaryEl.textContent = '';
+        
+        // Participants card
+        const card1 = document.createElement('div');
+        card1.className = 'summary-card';
+        const value1 = document.createElement('div');
+        value1.className = 'summary-value';
+        value1.textContent = totalParticipants;
+        const label1 = document.createElement('div');
+        label1.className = 'summary-label';
+        label1.textContent = '참여자 수';
+        card1.appendChild(value1);
+        card1.appendChild(label1);
+        
+        // Total referrals card
+        const card2 = document.createElement('div');
+        card2.className = 'summary-card';
+        const value2 = document.createElement('div');
+        value2.className = 'summary-value';
+        value2.textContent = totalReferrals;
+        const label2 = document.createElement('div');
+        label2.className = 'summary-label';
+        label2.textContent = '총 추천 수';
+        card2.appendChild(value2);
+        card2.appendChild(label2);
+        
+        // Winners card
+        const card3 = document.createElement('div');
+        card3.className = 'summary-card';
+        const value3 = document.createElement('div');
+        value3.className = 'summary-value';
+        value3.textContent = `${winnersCount}/3`;
+        const label3 = document.createElement('div');
+        label3.className = 'summary-label';
+        label3.textContent = '50달성 Winners';
+        card3.appendChild(value3);
+        card3.appendChild(label3);
+        
+        summaryEl.appendChild(card1);
+        summaryEl.appendChild(card2);
+        summaryEl.appendChild(card3);
     }
 
     /**

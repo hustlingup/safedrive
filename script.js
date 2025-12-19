@@ -3747,7 +3747,12 @@ const UIController = {
         console.log('renderRatingBadges: Starting for plate', plateNumber);
         
         // Show loading indicator
-        container.innerHTML = '<span class="pro-badge-pill" style="opacity: 0.6;">⏳ 배지 계산 중...</span>';
+        container.textContent = '';
+        const loadingSpan = document.createElement('span');
+        loadingSpan.className = 'pro-badge-pill';
+        loadingSpan.style.opacity = '0.6';
+        loadingSpan.textContent = '⏳ 배지 계산 중...';
+        container.appendChild(loadingSpan);
         
         try {
             // Get 90-day counters with performance timing
@@ -3865,7 +3870,7 @@ const UIController = {
             console.log('renderRatingBadges: Badges earned:', badges);
             
             // Clear loading indicator
-            container.innerHTML = '';
+            container.textContent = '';
             
             // Limit to 3 badges
             badges.slice(0, 3).forEach(label => {
@@ -4036,7 +4041,7 @@ const UIController = {
         }
         
         // Clear existing rows
-        tableBody.innerHTML = '';
+        tableBody.textContent = '';
         
         // Check if data is empty
         if (!data || !Array.isArray(data) || data.length === 0) {
@@ -4056,22 +4061,51 @@ const UIController = {
             
             if (type === 'bestDrivers') {
                 // Best Drivers: rank, plate, score, thanks, safety
-                row.innerHTML = `
-                    <td>${entry.rank}</td>
-                    <td><a href="/plate.html/${encodeURIComponent(entry.plateNumber)}" class="plate-link">${entry.plateNumber}</a></td>
-                    <td>${entry.score}</td>
-                    <td>${entry.thanksCount}</td>
-                    <td>${entry.safetyCount}</td>
-                `;
+                const rankCell = document.createElement('td');
+                rankCell.textContent = entry.rank;
+                
+                const plateCell = document.createElement('td');
+                const plateLink = document.createElement('a');
+                plateLink.href = `/plate.html/${encodeURIComponent(entry.plateNumber)}`;
+                plateLink.className = 'plate-link';
+                plateLink.textContent = entry.plateNumber;
+                plateCell.appendChild(plateLink);
+                
+                const scoreCell = document.createElement('td');
+                scoreCell.textContent = entry.score;
+                
+                const thanksCell = document.createElement('td');
+                thanksCell.textContent = entry.thanksCount;
+                
+                const safetyCell = document.createElement('td');
+                safetyCell.textContent = entry.safetyCount;
+                
+                row.appendChild(rankCell);
+                row.appendChild(plateCell);
+                row.appendChild(scoreCell);
+                row.appendChild(thanksCell);
+                row.appendChild(safetyCell);
             } else if (type === 'mostLiked') {
                 // Most Liked: rank, plate, likes
                 // Support both 'likes' (from Cloud Function) and 'likesCount' (legacy)
                 const likesValue = entry.likes !== undefined ? entry.likes : (entry.likesCount !== undefined ? entry.likesCount : entry.score);
-                row.innerHTML = `
-                    <td>${entry.rank}</td>
-                    <td><a href="/plate.html/${encodeURIComponent(entry.plateNumber)}" class="plate-link">${entry.plateNumber}</a></td>
-                    <td>${likesValue}</td>
-                `;
+                
+                const rankCell = document.createElement('td');
+                rankCell.textContent = entry.rank;
+                
+                const plateCell = document.createElement('td');
+                const plateLink = document.createElement('a');
+                plateLink.href = `/plate.html/${encodeURIComponent(entry.plateNumber)}`;
+                plateLink.className = 'plate-link';
+                plateLink.textContent = entry.plateNumber;
+                plateCell.appendChild(plateLink);
+                
+                const likesCell = document.createElement('td');
+                likesCell.textContent = likesValue;
+                
+                row.appendChild(rankCell);
+                row.appendChild(plateCell);
+                row.appendChild(likesCell);
             }
             
             tableBody.appendChild(row);
@@ -5590,10 +5624,18 @@ const SubscriptionManager = {
         const isSubscribed = subscribed.includes(currentPlate);
         
         if (isSubscribed) {
-            subscribeBtn.innerHTML = '<span>✓</span> 구독중';
+            subscribeBtn.textContent = '';
+            const checkSpan = document.createElement('span');
+            checkSpan.textContent = '✓';
+            subscribeBtn.appendChild(checkSpan);
+            subscribeBtn.appendChild(document.createTextNode(' 구독중'));
             subscribeBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
         } else {
-            subscribeBtn.innerHTML = '<span>🔔</span> 구독';
+            subscribeBtn.textContent = '';
+            const bellSpan = document.createElement('span');
+            bellSpan.textContent = '🔔';
+            subscribeBtn.appendChild(bellSpan);
+            subscribeBtn.appendChild(document.createTextNode(' 구독'));
             subscribeBtn.style.background = 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)';
         }
     },
@@ -5673,10 +5715,13 @@ const SubscriptionManager = {
         }
         
         // Clear list
-        listEl.innerHTML = '';
+        listEl.textContent = '';
         
         if (subscribed.length === 0) {
-            listEl.innerHTML = '<p class="no-subscriptions">구독 된 번호 없음</p>';
+            const noSubsMsg = document.createElement('p');
+            noSubsMsg.className = 'no-subscriptions';
+            noSubsMsg.textContent = '구독 된 번호 없음';
+            listEl.appendChild(noSubsMsg);
             this.updateSubscribeButtonText();
             return;
         }
@@ -5685,10 +5730,18 @@ const SubscriptionManager = {
         subscribed.forEach(plate => {
             const item = document.createElement('div');
             item.className = 'subscribed-item';
-            item.innerHTML = `
-                <span class="subscribed-item-plate">${plate}</span>
-                <button class="subscribed-item-cancel" onclick="SubscriptionManager.cancelSubscription('${plate}')">취소</button>
-            `;
+            
+            const plateSpan = document.createElement('span');
+            plateSpan.className = 'subscribed-item-plate';
+            plateSpan.textContent = plate;
+            
+            const cancelBtn = document.createElement('button');
+            cancelBtn.className = 'subscribed-item-cancel';
+            cancelBtn.textContent = '취소';
+            cancelBtn.onclick = () => SubscriptionManager.cancelSubscription(plate);
+            
+            item.appendChild(plateSpan);
+            item.appendChild(cancelBtn);
             listEl.appendChild(item);
         });
         
@@ -6213,7 +6266,7 @@ const VoiceInput = {
         document.getElementById('voiceStep1').style.display = 'none';
         document.getElementById('voiceStep2').style.display = 'block';
         const container = document.getElementById('voiceCandidates');
-        container.innerHTML = '';
+        container.textContent = '';
         
         candidates.forEach((plate, i) => {
             const el = document.createElement('div');

@@ -126,26 +126,48 @@ const ReferralUI = (function() {
         const rewardSection = document.getElementById('rewardSection');
         if (!rewardSection) return;
         
+        rewardSection.textContent = '';
+        
         if (isEligible) {
-            rewardSection.innerHTML = `
-                <div class="reward-eligible">
-                    <div class="reward-badge">🎉 축하합니다!</div>
-                    <p class="reward-message">오늘 보상 대상 3인에 포함되었습니다!</p>
-                    <a href="${KAKAO_REWARD_LINK}" target="_blank" class="reward-claim-btn">
-                        💬 카카오톡으로 보상 요청하기
-                    </a>
-                </div>
-            `;
+            const eligibleDiv = document.createElement('div');
+            eligibleDiv.className = 'reward-eligible';
+            
+            const badge = document.createElement('div');
+            badge.className = 'reward-badge';
+            badge.textContent = '🎉 축하합니다!';
+            
+            const message = document.createElement('p');
+            message.className = 'reward-message';
+            message.textContent = '오늘 보상 대상 3인에 포함되었습니다!';
+            
+            const link = document.createElement('a');
+            link.href = KAKAO_REWARD_LINK;
+            link.target = '_blank';
+            link.className = 'reward-claim-btn';
+            link.textContent = '💬 카카오톡으로 보상 요청하기';
+            
+            eligibleDiv.appendChild(badge);
+            eligibleDiv.appendChild(message);
+            eligibleDiv.appendChild(link);
+            rewardSection.appendChild(eligibleDiv);
             rewardSection.style.display = 'block';
         } else {
-            rewardSection.innerHTML = `
-                <div class="reward-info">
-                    <p class="reward-notice">
-                        보상 대상이 되면 여기 보상요청 버튼이 떠요<br>
-                        <small>(추후 보상 증가)</small>
-                    </p>
-                </div>
-            `;
+            const infoDiv = document.createElement('div');
+            infoDiv.className = 'reward-info';
+            
+            const notice = document.createElement('p');
+            notice.className = 'reward-notice';
+            notice.textContent = '보상 대상이 되면 여기 보상요청 버튼이 떠요';
+            
+            const br = document.createElement('br');
+            notice.appendChild(br);
+            
+            const small = document.createElement('small');
+            small.textContent = '(추후 보상 증가)';
+            notice.appendChild(small);
+            
+            infoDiv.appendChild(notice);
+            rewardSection.appendChild(infoDiv);
             rewardSection.style.display = 'block';
         }
     }

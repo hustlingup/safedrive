@@ -294,6 +294,66 @@
             margin: 0;
         }
 
+        /* Text Size FAB Button */
+        .text-size-fab {
+            position: fixed;
+            bottom: 96px; /* Positioned above cookie button (20px + 56px + 20px spacing) */
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border: none;
+            box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            z-index: 9998; /* Below cookie button (9999) but above other content */
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .text-size-fab:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 24px rgba(59, 130, 246, 0.5);
+        }
+        
+        .text-size-fab:active {
+            transform: translateY(-2px) scale(1);
+        }
+
+        /* Text size variations */
+        body.text-size-medium {
+            font-size: 16px;
+        }
+
+        body.text-size-medium .section h2 {
+            font-size: 19px;
+        }
+
+        body.text-size-medium .section p,
+        body.text-size-medium .warning-box p,
+        body.text-size-medium .info-box {
+            font-size: 15px;
+        }
+
+        body.text-size-large {
+            font-size: 18px;
+        }
+
+        body.text-size-large .section h2 {
+            font-size: 21px;
+        }
+
+        body.text-size-large .section p,
+        body.text-size-large .warning-box p,
+        body.text-size-large .info-box {
+            font-size: 17px;
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 10px;
@@ -318,42 +378,50 @@
             .section h2 {
                 font-size: 16px;
             }
+
+            .text-size-fab {
+                bottom: 84px; /* Positioned above cookie button on mobile (16px + 48px + 20px spacing) */
+                right: 16px;
+                width: 48px;
+                height: 48px;
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar" role="navigation" aria-label="주 내비게이션">
         <div class="nav-container">
-            <a href="index.html#home" class="nav-logo">
-                <img src="assets/img/SAFEDRIVE_logo.svg" alt="SAFE DRIVE Logo">
+            <a href="index.html#home" class="nav-logo" aria-label="SAFE DRIVE 홈으로 이동">
+                <img src="assets/img/SAFEDRIVE_logo.svg" alt="SAFE DRIVE 로고">
             </a>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html#home" class="nav-link">홈</a></li>
-                <li><a href="qr-generator.html" class="nav-link">QR</a></li>
-                <li><a href="referral.html" class="nav-link">이벤트</a></li>
-                <li><a href="index.html#road-stress" class="nav-link">도로스트레스</a></li>
-                <li><a href="index.html#mostLikedSection" class="nav-link">인기번호판</a></li>
-                <li><a href="index.html#designated-lane" class="nav-link">지정차로</a></li>
-                <li><a href="index.html#legal-notice" class="nav-link">안내</a></li>
-                <li><a href="contact.html" class="nav-link">문의</a></li>
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="index.html#home" class="nav-link" role="menuitem">홈</a></li>
+                <li role="none"><a href="qr-generator.html" class="nav-link" role="menuitem">QR</a></li>
+                <li role="none"><a href="referral.html" class="nav-link" role="menuitem">이벤트</a></li>
+                <li role="none"><a href="index.html#road-stress" class="nav-link" role="menuitem">도로스트레스</a></li>
+                <li role="none"><a href="index.html#mostLikedSection" class="nav-link" role="menuitem">인기번호판</a></li>
+                <li role="none"><a href="index.html#designated-lane" class="nav-link" role="menuitem">지정차로</a></li>
+                <li role="none"><a href="index.html#legal-notice" class="nav-link" role="menuitem">안내</a></li>
+                <li role="none"><a href="contact.html" class="nav-link" role="menuitem">문의</a></li>
             </ul>
-            <button class="nav-toggle" id="navToggle">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
+            <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
+                <span class="hamburger-line" aria-hidden="true"></span>
+                <span class="hamburger-line" aria-hidden="true"></span>
+                <span class="hamburger-line" aria-hidden="true"></span>
             </button>
         </div>
     </nav>
 
-    <div class="container">
-        <div class="header">
+    <main class="container" role="main">
+        <header class="header">
             <h1>⚖️ 법적 고지</h1>
             <p>허슬업 차량 번호판 기반 템플릿 메시지 카운트 및 통계 서비스</p>
-        </div>
+        </header>
 
-        <div class="content">
-            <div class="info-box">
+        <article class="content">
+            <aside class="info-box" role="note">
                 <p>
                     <strong>📌 핵심 요약:</strong>
                     본 서비스는 차량 번호판 기반 템플릿 메시지 카운트 및 통계 제공을 위한 익명 플랫폼으로,
@@ -362,8 +430,8 @@
                     이용자의 부적절한 사용(외부 공유, 명예훼손, 광고 부정 클릭 등)으로 인한 모든 법적 책임은 이용자 본인에게 있습니다.
                 </p>
             </div>
-            <div class="section">
-                <h2>🎯 서비스 목적 및 성격</h2>
+            <section class="section" aria-labelledby="legal-purpose">
+                <h2 id="legal-purpose">🎯 서비스 목적 및 성격</h2>
                 <p>
                     본 서비스는 교통안전 증진과 차량 관리 편의를 목적으로, 차량 번호판을 단순 식별자로 사용하여
                     특정 차량에 대한 템플릿 메시지 기반 카운트 정보를 제공하는 익명 플랫폼입니다.
@@ -424,27 +492,24 @@
                     본 서비스는 이용 과정에서 개인을 직접 특정하지 않도록 설계되었으며,
                     사용자 간 분쟁 및 이용자와 제3자(광고주, 플랫폼 등) 간 분쟁에 원칙적으로 개입하지 않습니다.
                 </p>
-            </div>
-            </div>
+            </section>
+        </article>
 
-        <div class="footer">
+        <footer class="footer">
             <p><strong>2026년 1월 1일 Hustle Up</strong></p>
-            <p style="margin-top: 10px;">
-                <a href="terms.html" style="color: #2193b0; text-decoration: none; margin: 0 8px;">이용약관</a> | 
-                <a href="privacy.html" style="color: #2193b0; text-decoration: none; margin: 0 8px;">개인정보처리방침</a> | 
-                <a href="faq.html" style="color: #2193b0; text-decoration: none; margin: 0 8px;">자주 묻는 질문</a>
-            </p>
-            <a href="index.html" class="back-button">← 홈으로 돌아가기</a>
-        </div>
-    </div>
+            <nav aria-label="페이지 이동">
+                <a href="index.html" class="back-button" aria-label="홈페이지로 돌아가기">← 홈으로 돌아가기</a>
+            </nav>
+        </footer>
+    </main>
 
     <!-- Footer -->
-    <footer class="site-footer">
+    <footer class="site-footer" role="contentinfo">
         <div class="footer-content">
-            <nav class="footer-links">
-                <a href="terms.html">이용약관</a> | <a href="privacy.html">개인정보처리방침</a> | <a href="legal.html">법적 고지</a> | <a href="faq.html">자주 묻는 질문</a>
+            <nav class="footer-links" aria-label="푸터 내비게이션">
+                <a href="terms.html">이용약관</a> | <a href="privacy.html">개인정보처리방침</a> | <a href="legal.html" aria-current="page">법적 고지</a> | <a href="faq.html">자주 묻는 질문</a>
             </nav>
-            <a class="footer-contact-link" href="contact.html">문의</a>
+            <a class="footer-contact-link" href="contact.html" aria-label="문의 페이지로 이동">문의</a>
             <p class="copyright">© 2025 Hustle Up. All rights reserved.</p>
         </div>
     </footer>
@@ -456,7 +521,9 @@
         
         if (navToggle) {
             navToggle.addEventListener('click', () => {
-                navMenu.classList.toggle('active');
+                const isExpanded = navMenu.classList.toggle('active');
+                navToggle.setAttribute('aria-expanded', isExpanded);
+                navToggle.setAttribute('aria-label', isExpanded ? '메뉴 닫기' : '메뉴 열기');
             });
         }
     </script>
@@ -469,8 +536,52 @@
     class="cookie-settings-trigger" 
     onclick="openCookieSettings()" 
     title="쿠키 설정 관리"
-    aria-label="쿠키 설정 관리">
-    🍪
+    aria-label="쿠키 설정 관리"
+    type="button">
+    <span aria-hidden="true">🍪</span>
 </button>
+
+<!-- Text Size FAB Button -->
+<button class="text-size-fab" id="textSizeFab" aria-label="텍스트 크기 변경" title="텍스트 크기 변경" type="button">
+    <span aria-hidden="true">Aa</span>
+</button>
+
+<script>
+    // Text size toggle functionality
+    const textSizeFab = document.getElementById('textSizeFab');
+    const textSizes = ['text-size-small', 'text-size-medium', 'text-size-large'];
+    let currentSizeIndex = 0;
+
+    // Load saved text size preference
+    const savedSize = localStorage.getItem('textSize');
+    if (savedSize) {
+        currentSizeIndex = textSizes.indexOf(savedSize);
+        if (currentSizeIndex !== -1 && currentSizeIndex !== 0) {
+            document.body.classList.add(savedSize);
+        }
+    }
+
+    textSizeFab.addEventListener('click', () => {
+        // Remove current size class
+        document.body.classList.remove(textSizes[currentSizeIndex]);
+        
+        // Move to next size
+        currentSizeIndex = (currentSizeIndex + 1) % textSizes.length;
+        
+        // Add new size class (skip if it's 'small' which is default)
+        if (currentSizeIndex !== 0) {
+            document.body.classList.add(textSizes[currentSizeIndex]);
+        }
+        
+        // Save preference
+        localStorage.setItem('textSize', textSizes[currentSizeIndex]);
+        
+        // Visual feedback
+        textSizeFab.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            textSizeFab.style.transform = '';
+        }, 150);
+    });
+</script>
 </body>
 </html>

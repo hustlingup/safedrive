@@ -68,6 +68,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script src="firebase-config.js"></script>
     <script src="security.js"></script>
+    <script src="js/xss-prevention.js"></script>
     
     <style>
         /* =============================================
@@ -1800,8 +1801,8 @@
         /* Text Size FAB Button */
         .text-size-fab {
             position: fixed;
-            bottom: 24px;
-            right: 24px;
+            bottom: 96px; /* Positioned above cookie button (20px + 56px + 20px spacing) */
+            right: 20px;
             width: 56px;
             height: 56px;
             border-radius: 50%;
@@ -1814,7 +1815,7 @@
             justify-content: center;
             font-size: 1.5rem;
             color: white;
-            z-index: 1000;
+            z-index: 9998; /* Below cookie button (9999) but above other content */
             transition: all 0.3s ease;
             animation: fadeInUp 0.3s ease;
         }
@@ -1867,10 +1868,10 @@
         
         @media (max-width: 768px) {
             .text-size-fab {
-                bottom: 20px;
-                right: 20px;
-                width: 52px;
-                height: 52px;
+                bottom: 84px; /* Positioned above cookie button on mobile (16px + 48px + 20px spacing) */
+                right: 16px;
+                width: 48px;
+                height: 48px;
                 font-size: 1.3rem;
             }
         }
@@ -3363,7 +3364,7 @@
                 const viewChangeEl = document.getElementById('viewChange');
                 if (viewChangeEl) {
                     if (views > 0) {
-                        viewChangeEl.innerHTML = `↑ ${viewChange} 이번 주`;
+                        viewChangeEl.textContent = `↑ ${viewChange} 이번 주`;
                         viewChangeEl.className = 'pro-stat-change up';
                     } else {
                         viewChangeEl.textContent = '-';
@@ -3375,7 +3376,7 @@
                 const messageChangeEl = document.getElementById('messageChange');
                 if (messageChangeEl) {
                     if (messages > 0) {
-                        messageChangeEl.innerHTML = `↑ ${messageChange} 이번 주`;
+                        messageChangeEl.textContent = `↑ ${messageChange} 이번 주`;
                         messageChangeEl.className = 'pro-stat-change up';
                     } else {
                         messageChangeEl.textContent = '-';
@@ -3387,7 +3388,7 @@
                 const likeChangeEl = document.getElementById('likeChange');
                 if (likeChangeEl) {
                     if (likes > 0) {
-                        likeChangeEl.innerHTML = `↑ ${likeChange} 이번 주`;
+                        likeChangeEl.textContent = `↑ ${likeChange} 이번 주`;
                         likeChangeEl.className = 'pro-stat-change up';
                     } else {
                         likeChangeEl.textContent = '-';
@@ -3596,7 +3597,12 @@
                 console.log('renderRatingBadges: Starting for plate', plateNumber);
                 
                 // Show loading indicator
-                container.innerHTML = '<span class="pro-badge-pill" style="opacity: 0.6;">⏳ 배지 계산 중...</span>';
+                container.textContent = '';
+                const loadingSpan = document.createElement('span');
+                loadingSpan.className = 'pro-badge-pill';
+                loadingSpan.style.opacity = '0.6';
+                loadingSpan.textContent = '⏳ 배지 계산 중...';
+                container.appendChild(loadingSpan);
                 
                 try {
                     const startTime = performance.now();
@@ -3707,7 +3713,7 @@
                     console.log('renderRatingBadges: Badges earned:', badges);
                     
                     // Clear loading indicator
-                    container.innerHTML = '';
+                    container.textContent = '';
                     
                     // Render badges (max 3)
                     if (badges.length === 0) {
@@ -3990,12 +3996,18 @@
                 // Only inject if not already injected AND can send (not sent today)
                 if (canSend && !span.querySelector('.paper-plane-icon')) {
                     const currentText = span.textContent.trim();
-                    span.innerHTML = svgHTML + `<span>${currentText}</span>`;
+                    span.textContent = '';
+                    const tempDiv = document.createElement('div');
+                    tempDiv.innerHTML = svgHTML;
+                    span.appendChild(tempDiv.firstChild);
+                    const textSpan = document.createElement('span');
+                    textSpan.textContent = currentText;
+                    span.appendChild(textSpan);
                 } else if (!canSend && span.querySelector('.paper-plane-icon')) {
                     // Remove plane if it was sent today
                     const textSpan = span.querySelector('span');
                     if (textSpan) {
-                        span.innerHTML = textSpan.textContent;
+                        span.textContent = textSpan.textContent;
                     }
                 }
             });
@@ -4224,7 +4236,12 @@
                 const btn = document.createElement("button");
                 btn.type = "button";
                 btn.className = "oib-btn" + (primary ? " primary" : "");
-                btn.innerHTML = iconSvg + "<span>" + label + "</span>";
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = iconSvg;
+                btn.appendChild(tempDiv.firstChild);
+                const labelSpan = document.createElement('span');
+                labelSpan.textContent = label;
+                btn.appendChild(labelSpan);
                 btn.addEventListener("click", onClick, { passive: true });
                 return btn;
             }
@@ -4284,7 +4301,7 @@
             }
             
             // ---- Render buttons by platform ----
-            actions.innerHTML = "";
+            actions.textContent = "";
             if (isAndroid) {
                 actions.appendChild(makeButton("크롬에서 열기", chromeIcon, openAndroidChromeIntent, true));
             } else if (isIOS) {

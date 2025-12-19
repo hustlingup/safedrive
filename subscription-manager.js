@@ -357,21 +357,49 @@ if (typeof SubscriptionManager === 'undefined') {
                 const isNotificationOn = this.isNotificationEnabled(plate);
                 const item = document.createElement('div');
                 item.className = 'subscribed-item';
-                item.innerHTML = `
-                    <span class="subscribed-item-plate">${plate}</span>
-                    <div class="subscribed-item-actions">
-                        <div class="notification-toggle-wrapper">
-                            <span class="notification-label">알림</span>
-                            <button class="toggle-switch ${isNotificationOn ? 'on' : 'off'}" 
-                                    onclick="SubscriptionManager.toggleNotification('${plate}')"
-                                    title="알림 ${isNotificationOn ? 'ON' : 'OFF'}">
-                                <span class="toggle-slider"></span>
-                                <span class="toggle-text">${isNotificationOn ? 'ON' : 'OFF'}</span>
-                            </button>
-                        </div>
-                        <button class="subscribed-item-cancel" onclick="SubscriptionManager.cancelSubscription('${plate}')">구독취소</button>
-                    </div>
-                `;
+                
+                const plateSpan = document.createElement('span');
+                plateSpan.className = 'subscribed-item-plate';
+                plateSpan.textContent = plate;
+                
+                const actionsDiv = document.createElement('div');
+                actionsDiv.className = 'subscribed-item-actions';
+                
+                const toggleWrapper = document.createElement('div');
+                toggleWrapper.className = 'notification-toggle-wrapper';
+                
+                const notifLabel = document.createElement('span');
+                notifLabel.className = 'notification-label';
+                notifLabel.textContent = '알림';
+                
+                const toggleBtn = document.createElement('button');
+                toggleBtn.className = `toggle-switch ${isNotificationOn ? 'on' : 'off'}`;
+                toggleBtn.onclick = () => SubscriptionManager.toggleNotification(plate);
+                toggleBtn.title = `알림 ${isNotificationOn ? 'ON' : 'OFF'}`;
+                
+                const toggleSlider = document.createElement('span');
+                toggleSlider.className = 'toggle-slider';
+                
+                const toggleText = document.createElement('span');
+                toggleText.className = 'toggle-text';
+                toggleText.textContent = isNotificationOn ? 'ON' : 'OFF';
+                
+                toggleBtn.appendChild(toggleSlider);
+                toggleBtn.appendChild(toggleText);
+                
+                toggleWrapper.appendChild(notifLabel);
+                toggleWrapper.appendChild(toggleBtn);
+                
+                const cancelBtn = document.createElement('button');
+                cancelBtn.className = 'subscribed-item-cancel';
+                cancelBtn.textContent = '구독취소';
+                cancelBtn.onclick = () => SubscriptionManager.cancelSubscription(plate);
+                
+                actionsDiv.appendChild(toggleWrapper);
+                actionsDiv.appendChild(cancelBtn);
+                
+                item.appendChild(plateSpan);
+                item.appendChild(actionsDiv);
                 listEl.appendChild(item);
             });
             
