@@ -341,7 +341,7 @@ exports.secureReferralIncrement = functions.https.onCall(async (data, context) =
           achievedAt: admin.database.ServerValue.TIMESTAMP,
         });
         isWinner = true;
-        // console.log(`?�� Referral winner registered: ${referrerId}`);
+        // console.log(`Referral winner registered: ${referrerId}`);
       }
     }
     

@@ -42,7 +42,7 @@ exports.sendPlateNotificationV2 = sendPlateNotificationV2;
 exports.migrateSubscribersToPlateIndex = migrateSubscribersToPlateIndex;
 
 // =============================
-// ?“Š Google Analytics Real-time Active Users
+// Google Analytics Real-time Active Users
 // =============================
 
 // GA4 Property ID (from your GA4 property settings)
@@ -92,10 +92,10 @@ exports.updateActiveUsers = functions.pubsub
           lastUpdated: admin.database.ServerValue.TIMESTAMP,
         });
 
-        // console.log("??Active users updated in Firebase successfully");
+        // console.log("Active users updated in Firebase successfully");
         return null;
       } catch (error) {
-        console.error("??Error in updateActiveUsers:", error.message);
+        console.error("Error in updateActiveUsers:", error.message);
         console.error("Error code:", error.code);
         console.error("Error details:", error.details || "N/A");
 
@@ -137,7 +137,7 @@ exports.triggerActiveUsersUpdate = functions.https.onRequest(async (req, res) =>
       lastUpdated: admin.database.ServerValue.TIMESTAMP,
     });
 
-    // console.log("??Active users updated in Firebase successfully");
+    // console.log("Active users updated in Firebase successfully");
 
     res.json({
       success: true,
@@ -146,7 +146,7 @@ exports.triggerActiveUsersUpdate = functions.https.onRequest(async (req, res) =>
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
-    console.error("??Error:", error.message);
+    console.error("Error:", error.message);
     res.status(500).json({
       success: false,
       error: error.message,
@@ -206,7 +206,7 @@ exports.getActiveUsers = functions.https.onCall(async () => {
 });
 
 // =============================
-// ?“Œ Push Notification Function (DEPRECATED)
+// Push Notification Function (DEPRECATED)
 // =============================
 // NOTE: sendPlateNotification is DEPRECATED and replaced by sendPlateNotificationV2
 // which uses plate-specific subscriber index for O(1) lookup instead of O(n) scan.
