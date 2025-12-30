@@ -63,8 +63,8 @@ exports.sendPlateNotificationV2 = functions.database
       
       // Prepare notification message
       const notification = {
-        title: `?�� ${plateNumber}`,
-        body: "?�로??메시지가 ?�록?�었?�니??,
+        title: `🚗 ${plateNumber}`,
+        body: "새로운 메시지가 등록되었습니다.",
       };
       
       const data = {

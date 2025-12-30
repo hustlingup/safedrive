@@ -88,9 +88,9 @@ const SecurityModule = {
       ctx.fillStyle = "#f60";
       ctx.fillRect(125, 1, 62, 20);
       ctx.fillStyle = "#069";
-      ctx.fillText("SafeDrive ?��", 2, 15);
+      ctx.fillText("SafeDrive ?��", 2, 15);
       ctx.fillStyle = "rgba(102, 204, 0, 0.7)";
-      ctx.fillText("SafeDrive ?��", 4, 17);
+      ctx.fillText("SafeDrive ?��", 4, 17);
       
       // Get canvas data
       const dataURL = canvas.toDataURL();
@@ -211,19 +211,20 @@ const SecurityModule = {
       console.error("SecurityModule: Secure increment error:", error);
       
       // Parse error message for user-friendly display
-      let userMessage = "메세지 ?�송???�패?�습?�다";
-      
+      let userMessage = "메시지 전송에 실패했습니다.";
+
       if (error.code === "functions/resource-exhausted") {
-        userMessage = "?�무 많�? ?�청??발생?�습?�다. ?�시 ???�시 ?�도??주세??;
+        userMessage = "요청이 너무 많습니다. 잠시 후 다시 시도해 주세요.";
       } else if (error.code === "functions/permission-denied") {
-        userMessage = "?�청??거�??�었?�니??;
+        userMessage = "요청이 거부되었습니다.";
       } else if (error.code === "functions/failed-precondition") {
-        userMessage = "?�청??만료?�었?�니?? ?�시 ?�도??주세??;
+        userMessage = "요청이 만료되었습니다. 다시 시도해 주세요.";
       } else if (error.code === "functions/invalid-argument") {
-        userMessage = "?�못???�청?�니??;
+        userMessage = "잘못된 요청입니다.";
       } else if (error.message && error.message.includes("network")) {
-        userMessage = "?�트?�크 ?�류가 발생?�습?�다. ?�시 ?�도??주세??;
+        userMessage = "네트워크 오류가 발생했습니다. 다시 시도해 주세요.";
       }
+
       
       // Throw error with user-friendly message
       const enhancedError = new Error(userMessage);

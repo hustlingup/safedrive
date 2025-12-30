@@ -15,124 +15,124 @@ if (typeof database === 'undefined') {
 
 // Counter Key Mapping
 const COUNTER_KEYS = {
-    // A�??�전 메세지 (Car)
-    '과속?�전': 'speeding',
-    '무리???�류': 'reckless_merge',
-    '보복?�전': 'road_rage',
-    '급정�?: 'sudden_stop',
-    '?�전거리 미확�?: 'no_safe_distance',
-    '?�방주시 ?�만': 'not_watching_ahead',
-    '?�많?�않': 'halmanghaanj',
-    '보행???�에???�도 줄여주세??: 'pedestrian_slow_down',
-    '?�향???�문???�이 ????보여??: 'high_beam',
-    // B�??�전 메세지 (Car)
-    '출구 ?�치�?: 'exit_cutting',
-    '�?차선변�?: 'sudden_lane_change',
-    '졸음?�전': 'drowsy_driving',
-    '방향지?�등 미점??: 'no_blinker',
-    '지?�차�?미�???: 'lane_violation',
-    '?��???브레?�크': 'habitual_brake',
-    '?�?�운??: 'slow_driving',
-    '?�기???�차/주차가 ?�험??곳이?�요': 'dont_park_here',
-    // 차량?�태 메세지 (Car)
-    '?�이??고장': 'light_broken',
-    '?�?�어 ?�태 ?�상': 'tire_issue',
-    '??밸런???�상': 'wheel_balance',
-    '배기가???�상': 'exhaust_issue',
-    '?�진 ?�기발생': 'engine_smoke',
-    '?�진?�일 ?�유': 'oil_leak',
-    '?�렁??보닛/?�료�??�림': 'trunk_open',
-    '?�재물이 ?�들?�요, ?�어�????�어??: 'cargo_loose',
-    // 좋�? 감정 메세지 (Car)
-    '고맙?�니??: 'thank_you',
-    '?�서?�게??: 'forgive',
-    '?�뻐??: 'pretty',
-    '멋져??: 'cool',
-    '?�전 ?�해??: 'good_driver',
-    '부?�워??: 'envy',
-    '초보 ?�이??!!': 'beginner_fighting',
-    // 좋아??
-    '좋아??: 'likes',
+    // A급 안전 메세지 (Car)
+    '과속운전': 'speeding',
+    '무리한 합류': 'reckless_merge',
+    '보복운전': 'road_rage',
+    '급정거': 'sudden_stop',
+    '안전거리 미확보': 'no_safe_distance',
+    '전방주시 태만': 'not_watching_ahead',
+    '할많하않': 'halmanghaanj',
+    '보행자 앞에서 속도 줄여주세요': 'pedestrian_slow_down',
+    '상향등 때문에 앞이 잘 안 보여요': 'high_beam',
+    // B급 안전 메세지 (Car)
+    '출구 새치기': 'exit_cutting',
+    '급 차선변경': 'sudden_lane_change',
+    '졸음운전': 'drowsy_driving',
+    '방향지시등 미점등': 'no_blinker',
+    '지정차로 미준수': 'lane_violation',
+    '습관성 브레이크': 'habitual_brake',
+    '저속운전': 'slow_driving',
+    '여기는 정차/주차가 위험한 곳이에요': 'dont_park_here',
+    // 차량상태 메세지 (Car)
+    '라이트 고장': 'light_broken',
+    '타이어 상태 이상': 'tire_issue',
+    '휠 밸런스 이상': 'wheel_balance',
+    '배기가스 이상': 'exhaust_issue',
+    '엔진 연기발생': 'engine_smoke',
+    '엔진오일 누유': 'oil_leak',
+    '트렁크/보닛/연료캡 열림': 'trunk_open',
+    '적재물이 흔들려요, 떨어질 수 있어요': 'cargo_loose',
+    // 좋은 감정 메세지 (Car)
+    '고맙습니다': 'thank_you',
+    '용서할게요': 'forgive',
+    '예뻐요': 'pretty',
+    '멋져요': 'cool',
+    '운전 잘해요': 'good_driver',
+    '부러워요': 'envy',
+    '초보 화이팅!!!': 'beginner_fighting',
+    // 좋아요
+    '좋아요': 'likes',
     
     // === MOTORBIKE MESSAGES ===
-    // ?�전 메세지 (Motorbike)
-    '방금 ?�험???�간???�었?�요. 조금�???조심??주세??': 'mb_dangerous_moment',
-    '?�기???�토바이 ?�우�??�험??곳이?�요.': 'mb_dangerous_parking',
-    // 차량 ?�태 (Motorbike)
-    '?�이???�상': 'mb_light_issue',
-    '브레?�크 ?�리 ?�상': 'mb_brake_sound',
-    '?�?�어 ?�상': 'mb_tire_issue',
-    '체인 ?�리 ?�상': 'mb_chain_sound',
-    '배달박스 고정 ?�상': 'mb_delivery_box',
-    // �?�� (Motorbike)
-    '?�호�??�까지 지�?주셔??멋져??': 'mb_signal_respect',
-    '?��?????지?�셔??보기 좋았?�니??': 'mb_stop_line',
-    '보행??먼�? 배려??주셔??고맙?�니??': 'mb_pedestrian_first',
-    '보호?�비 ?�벽?�게 착용?�신 모습???�상?�이?�어??': 'mb_safety_gear',
-    '배려 ?�전 ?�분??주�????�안?�어??': 'mb_considerate_driving',
-    '차선 지?�면???�리??모습???�말 멋집?�다.': 'mb_lane_keeping',
-    // ?�원 (Motorbike)
-    '?�씨?� ?��??�이 ??고생??많으??��??': 'mb_weather_support',
-    '?�면??미끄?�울 ???�어?? ??�� ?�전?�행 ?�세??': 'mb_slippery_warning',
-    '??�� 꼼꼼?�게 배달??주셔??감사?�니??': 'mb_delivery_thanks'
+    // 안전 메세지 (Motorbike)
+    '방금 위험한 순간이 있었어요. 조금만 더 조심해 주세요.': 'mb_dangerous_moment',
+    '여기는 오토바이 세우기 위험한 곳이에요.': 'mb_dangerous_parking',
+    // 차량 상태 (Motorbike)
+    '라이트 이상': 'mb_light_issue',
+    '브레이크 소리 이상': 'mb_brake_sound',
+    '타이어 이상': 'mb_tire_issue',
+    '체인 소리 이상': 'mb_chain_sound',
+    '배달박스 고정 이상': 'mb_delivery_box',
+    // 칭찬 (Motorbike)
+    '신호를 끝까지 지켜 주셔서 멋져요.': 'mb_signal_respect',
+    '정지선 잘 지키셔서 보기 좋았습니다.': 'mb_stop_line',
+    '보행자 먼저 배려해 주셔서 고맙습니다.': 'mb_pedestrian_first',
+    '보호장비 완벽하게 착용하신 모습이 인상적이었어요.': 'mb_safety_gear',
+    '배려 운전 덕분에 주변도 편안했어요.': 'mb_considerate_driving',
+    '차선 지키면서 달리는 모습이 정말 멋집니다.': 'mb_lane_keeping',
+    // 응원 (Motorbike)
+    '날씨와 상관없이 늘 고생이 많으십니다!': 'mb_weather_support',
+    '노면이 미끄러울 수 있어요, 항상 안전운행 하세요!': 'mb_slippery_warning',
+    '항상 꼼꼼하게 배달해 주셔서 감사합니다!': 'mb_delivery_thanks'
 };
 
 const CATEGORIES = {
     // === CAR CATEGORIES ===
     categoryA: {
-        name: 'A�??�전 메세지',
+        name: 'A급 안전 메세지',
         keys: ['speeding', 'reckless_merge', 'road_rage', 'sudden_stop', 'no_safe_distance', 'not_watching_ahead', 'halmanghaanj', 'pedestrian_slow_down', 'high_beam'],
-        labels: ['과속?�전', '무리???�류', '보복?�전', '급정�?, '?�전거리 미확�?, '?�방주시 ?�만', '?�많?�않', '보행???�에???�도 줄여주세??, '?�향???�문???�이 ????보여??],
+        labels: ['과속운전', '무리한 합류', '보복운전', '급정거', '안전거리 미확보', '전방주시 태만', '할많하않', '보행자 앞에서 속도 줄여주세요', '상향등 때문에 앞이 잘 안 보여요'],
         vehicleType: 'car'
     },
     categoryB: {
-        name: 'B�??�전 메세지',
+        name: 'B급 안전 메세지',
         keys: ['exit_cutting', 'sudden_lane_change', 'drowsy_driving', 'no_blinker', 'lane_violation', 'habitual_brake', 'slow_driving', 'dont_park_here'],
-        labels: ['출구 ?�치�?, '�?차선변�?, '졸음?�전', '방향지?�등 미점??, '지?�차�?미�???, '?��???브레?�크', '?�?�운??, '?�기???�차/주차가 ?�험??곳이?�요'],
+        labels: ['출구 새치기', '급 차선변경', '졸음운전', '방향지시등 미점등', '지정차로 미준수', '습관성 브레이크', '저속운전', '여기는 정차/주차가 위험한 곳이에요'],
         vehicleType: 'car'
     },
     categoryC: {
-        name: '차량?�태 메세지',
+        name: '차량상태 메세지',
         keys: ['light_broken', 'tire_issue', 'wheel_balance', 'exhaust_issue', 'engine_smoke', 'oil_leak', 'trunk_open', 'cargo_loose'],
-        labels: ['?�이??고장', '?�?�어 ?�태 ?�상', '??밸런???�상', '배기가???�상', '?�진 ?�기발생', '?�진?�일 ?�유', '?�렁??보닛/?�료�??�림', '?�재물이 ?�들?�요, ?�어�????�어??],
+        labels: ['라이트 고장', '타이어 상태 이상', '휠 밸런스 이상', '배기가스 이상', '엔진 연기발생', '엔진오일 누유', '트렁크/보닛/연료캡 열림', '적재물이 흔들려요, 떨어질 수 있어요'],
         vehicleType: 'car'
     },
     categoryD: {
-        name: '좋�? 감정 메세지',
+        name: '좋은 감정 메세지',
         keys: ['thank_you', 'forgive', 'pretty', 'cool', 'good_driver', 'envy', 'beginner_fighting'],
-        labels: ['고맙?�니??, '?�서?�게??, '?�뻐??, '멋져??, '?�전 ?�해??, '부?�워??, '초보 ?�이??!!'],
+        labels: ['고맙습니다', '용서할게요', '예뻐요', '멋져요', '운전 잘해요', '부러워요', '초보 화이팅!!!'],
         vehicleType: 'car'
     },
     likes: {
-        name: '좋아??,
+        name: '좋아요',
         keys: ['likes'],
-        labels: ['좋아??],
+        labels: ['좋아요'],
         vehicleType: 'both'
     },
     
     // === MOTORBIKE CATEGORIES ===
     mbSafety: {
-        name: '?�전 메세지',
+        name: '안전 메세지',
         keys: ['mb_dangerous_moment', 'mb_dangerous_parking'],
-        labels: ['방금 ?�험???�간???�었?�요. 조금�???조심??주세??', '?�기???�토바이 ?�우�??�험??곳이?�요.'],
+        labels: ['방금 위험한 순간이 있었어요. 조금만 더 조심해 주세요.', '여기는 오토바이 세우기 위험한 곳이에요.'],
         vehicleType: 'motorbike'
     },
     mbVehicle: {
-        name: '차량 ?�태',
+        name: '차량 상태',
         keys: ['mb_light_issue', 'mb_brake_sound', 'mb_tire_issue', 'mb_chain_sound', 'mb_delivery_box'],
-        labels: ['?�이???�상', '브레?�크 ?�리 ?�상', '?�?�어 ?�상', '체인 ?�리 ?�상', '배달박스 고정 ?�상'],
+        labels: ['라이트 이상', '브레이크 소리 이상', '타이어 이상', '체인 소리 이상', '배달박스 고정 이상'],
         vehicleType: 'motorbike'
     },
     mbPraise: {
-        name: '�?��',
+        name: '칭찬',
         keys: ['mb_signal_respect', 'mb_stop_line', 'mb_pedestrian_first', 'mb_safety_gear', 'mb_considerate_driving', 'mb_lane_keeping'],
-        labels: ['?�호�??�까지 지�?주셔??멋져??', '?��?????지?�셔??보기 좋았?�니??', '보행??먼�? 배려??주셔??고맙?�니??', '보호?�비 ?�벽?�게 착용?�신 모습???�상?�이?�어??', '배려 ?�전 ?�분??주�????�안?�어??', '차선 지?�면???�리??모습???�말 멋집?�다.'],
+        labels: ['신호를 끝까지 지켜 주셔서 멋져요.', '정지선 잘 지키셔서 보기 좋았습니다.', '보행자 먼저 배려해 주셔서 고맙습니다.', '보호장비 완벽하게 착용하신 모습이 인상적이었어요.', '배려 운전 덕분에 주변도 편안했어요.', '차선 지키면서 달리는 모습이 정말 멋집니다.'],
         vehicleType: 'motorbike'
     },
     mbSupport: {
-        name: '?�원',
+        name: '응원',
         keys: ['mb_weather_support', 'mb_slippery_warning', 'mb_delivery_thanks'],
-        labels: ['?�씨?� ?��??�이 ??고생??많으??��??', '?�면??미끄?�울 ???�어?? ??�� ?�전?�행 ?�세??', '??�� 꼼꼼?�게 배달??주셔??감사?�니??'],
+        labels: ['날씨와 상관없이 늘 고생이 많으십니다!', '노면이 미끄러울 수 있어요, 항상 안전운행 하세요!', '항상 꼼꼼하게 배달해 주셔서 감사합니다!'],
         vehicleType: 'motorbike'
     },
     
@@ -215,10 +215,10 @@ function getKoreanLabelForCounter(counterKey) {
 // ============================================================================
 const Validator = {
     // Korean plate number regex: 2-3 digits + Korean character + 4 digits
-    PLATE_REGEX: /^(\d{2,3}[가-??\d{4})$/,
+    PLATE_REGEX: /^(\d{2,3}[가-힣]\d{4})$/,
     
     /**
-     * SafeDrive 최종 번호???�규???�수 (2025??최적??버전)
+     * SafeDrive 최종 번호판 정규화 함수 (2025년 최적화 버전)
      * Normalizes Korean plate numbers - handles new, old, and business plates
      * @param {string} input - The plate number to normalize
      * @returns {Object|null} - Normalized plate info or null if invalid
@@ -227,69 +227,69 @@ const Validator = {
     normalizePlate(input) {
         const clean = input.trim().replace(/\s+/g, '');
         
-        // 1. 건설 기계??번호??- Construction machinery plates
-        // Examples: ?�경??1가1234, ?�서??2??678
-        // Format: ??+ region (2 chars) + 2 digits + Korean char + 4 digits
-        const constructionPattern = /^(??가-??{2}\d{2}[가-??\d{4})$/;
+        // 1. 건설 기계용 번호판 - Construction machinery plates
+        // Examples: 영경남01가1234, 영서울02나5678
+        // Format: 영 + region (2 chars) + 2 digits + Korean char + 4 digits
+        const constructionPattern = /^(영[가-힣]{2}\d{2}[가-힣]\d{4})$/;
         const matchConstruction = clean.match(constructionPattern);
         if (matchConstruction) {
             return { plate: matchConstruction[1], type: 'construction', unique: true };
         }
         
-        // 2. ?�륜�?번호??(지??�� ?�함) - Motorbike plates with region
-        // Examples: 부?�남가1234, 경남창원가1234, ?�울강남??678, ?�울?��?문�?1234
+        // 2. 이륜차 번호판 (지역명 포함) - Motorbike plates with region
+        // Examples: 부산남가1234, 경남창원가1234, 서울강남나5678, 서울동대문가1234
         // Format: region + city/district + Korean char + 4 digits (3-7 Korean chars total before digits)
-        const motorbikeRegionPattern = /^([가-??{3,7}\d{4})$/;
+        const motorbikeRegionPattern = /^([가-힣]{3,7}\d{4})$/;
         const matchMotorbikeRegion = clean.match(motorbikeRegionPattern);
         if (matchMotorbikeRegion) {
             return { plate: matchMotorbikeRegion[1], type: 'motorbike-region', unique: true };
         }
         
-        // 3. ?�륜�?번호??(간단?? - Motorbike plates simple format
-        // Examples: 1가21234, 2??4567
+        // 3. 이륜차 번호판 (간단형) - Motorbike plates simple format
+        // Examples: 1가21234, 2나34567
         // Format: 1 digit + Korean char + 5 digits
-        const motorbikeSimplePattern = /^(\d[가-??\d{5})$/;
+        const motorbikeSimplePattern = /^(\d[가-힣]\d{5})$/;
         const matchMotorbikeSimple = clean.match(motorbikeSimplePattern);
         if (matchMotorbikeSimple) {
             return { plate: matchMotorbikeSimple[1], type: 'motorbike-simple', unique: true };
         }
         
-        // 4. ?�형 번호??(가??많음) - New format plates
-        // Examples: 09�?363, 123가1234
-        const newPattern = /^(\d{2,3}[가-??[가-???\d{4})$/;
+        // 4. 신형 번호판 (가장 많음) - New format plates
+        // Examples: 09루3363, 123가1234
+        const newPattern = /^(\d{2,3}[가-힣][가-힣]?\d{4})$/;
         const matchNew = clean.match(newPattern);
         if (matchNew) {
             return { plate: matchNew[1], type: 'new', unique: true };
         }
         
-        // 5. ?�업??(?��??? - Business plates (yellow)
-        // Examples: 70가1234, 89??678 (starts with 7, 8, or 9)
-        const bizPattern = /^([7-9]\d[가-??\d{4})$/;
+        // 5. 영업용 (노란색) - Business plates (yellow)
+        // Examples: 70가1234, 89나5678 (starts with 7, 8, or 9)
+        const bizPattern = /^([7-9]\d[가-힣]\d{4})$/;
         const matchBiz = clean.match(bizPattern);
         if (matchBiz) {
             return { plate: matchBiz[1], type: 'business', unique: true };
         }
         
-        // 6. 구형 ?�색 번호??(지??�� ?�략??경우) - Old green plates
-        // Examples: ?�울12가3456, 경기34??678, or just 12가3456 (without region)
-        const oldPattern = /^(?:([가-??{1,2}) ?)?(\d{2,3}[가-??\d{4})$/;
+        // 6. 구형 녹색 번호판 (지역명 생략된 경우) - Old green plates
+        // Examples: 서울12가3456, 경기34나5678, or just 12가3456 (without region)
+        const oldPattern = /^(?:([가-힣]{1,2}) ?)?(\d{2,3}[가-힣]\d{4})$/;
         const matchOld = clean.match(oldPattern);
         if (matchOld) {
-            const region = matchOld[1] || null;  // ?�울, 경기 ??
+            const region = matchOld[1] || null;  // 서울, 경기 등
             const number = matchOld[2];          // 12가3456
             
             if (region) {
-                // 지??�� ?�으�??�확???�나 - Region specified, unique plate
+                // 지역명 있으면 정확히 하나 - Region specified, unique plate
                 return { plate: `${region}${number}`, type: 'old', unique: true };
             } else {
-                // 지??�� ?�으�???모든 ?�도 버전 ?�용 - No region, ambiguous
+                // 지역명 없으면 → 모든 시도 버전 허용 - No region, ambiguous
                 return { 
                     plate: number, 
                     type: 'old-ambiguous', 
                     unique: false, 
                     possibleRegions: [
-                        '?�울', '부??, '?��?, '?�천', '광주', '?�??, '?�산', '?�종',
-                        '경기', '강원', '충북', '충남', '?�북', '?�남', '경북', '경남', '?�주'
+                        '서울', '부산', '대구', '인천', '광주', '대전', '울산', '세종',
+                        '경기', '강원', '충북', '충남', '전북', '전남', '경북', '경남', '제주'
                     ]
                 };
             }
@@ -333,11 +333,11 @@ const Validator = {
 /**
  * Gets the appropriate vehicle emoji for a plate number
  * @param {string} plateNumber - The plate number to check
- * @returns {string} - Vehicle emoji (?��, ?��, ?��, or ?��)
+ * @returns {string} - Vehicle emoji (🚗, 🚚, 🚌, or 🛵)
  */
 function getVehicleEmoji(plateNumber) {
     if (!plateNumber) {
-        return '?��'; // Default to car
+        return '🚗'; // Default to car
     }
     
     try {
@@ -347,31 +347,31 @@ function getVehicleEmoji(plateNumber) {
         const normalized = Validator.normalizePlate(clean);
         
         if (!normalized) {
-            return '?��'; // Default to car if normalization fails
+            return '🚗'; // Default to car if normalization fails
         }
         
         // console.log('getVehicleEmoji: plate=', clean, 'type=', normalized.type);
         
         // 1. Check if it's a motorbike (highest priority for motorbike patterns)
         if (normalized.type === 'motorbike-region' || normalized.type === 'motorbike-simple') {
-            return '?��';
+            return '🛵';
         }
         
         // 2. Check if it's construction machinery
         if (normalized.type === 'construction') {
-            return '?��';
+            return '🚚';
         }
         
         // 3. For car plates, detect bus or truck based on Korean character and leading digits
         // Extract leading digits and middle Korean character
         // Patterns: 
-        //   - New/Old: 2-3 digits + Korean char + 4 digits (e.g., 09�?363, 70가1234)
-        //   - With region: region + 2-3 digits + Korean char + 4 digits (e.g., ?�울12가3456)
+        //   - New/Old: 2-3 digits + Korean char + 4 digits (e.g., 09루3363, 70가1234)
+        //   - With region: region + 2-3 digits + Korean char + 4 digits (e.g., 서울12가3456)
         
         // Try to extract the numeric prefix and Korean character
         // Handle both with and without region prefix
-        const withRegionPattern = /^[가-??{1,2}(\d{2,3})([가-??)\d{4}$/;
-        const withoutRegionPattern = /^(\d{2,3})([가-??)\d{4}$/;
+        const withRegionPattern = /^[가-힣]{1,2}(\d{2,3})([가-힣])\d{4}$/;
+        const withoutRegionPattern = /^(\d{2,3})([가-힣])\d{4}$/;
         
         let leadingDigits = null;
         let koreanChar = null;
@@ -389,25 +389,25 @@ function getVehicleEmoji(plateNumber) {
         
         if (leadingDigits !== null && koreanChar !== null) {
             // Bus detection: Korean characters commonly used for buses
-            // �? ?? ?? ??are typical bus plate characters in Korea
-            const busChars = ['�?, '??, '??, '??];
+            // 바, 사, 아, 자 are typical bus plate characters in Korea
+            const busChars = ['바', '사', '아', '자'];
             if (busChars.includes(koreanChar)) {
-                return '?��';
+                return '🚌';
             }
             
             // Truck/cargo/business detection: 
             // Leading digits 70-99 are typically for larger/commercial vehicles
             if (leadingDigits >= 70 && leadingDigits <= 99) {
-                return '?��';
+                return '🚚';
             }
         }
         
         // Default to passenger car
-        return '?��';
+        return '🚗';
         
     } catch (error) {
         console.error('getVehicleEmoji error:', error);
-        return '?��'; // Default to car on error
+        return '🚗'; // Default to car on error
     }
 }
 
@@ -418,9 +418,9 @@ const Router = {
     /**
      * Parses plate number from URL
      * Supports multiple formats:
-     * 1. Path format: /plate.html/09�?363
-     * 2. Query string format: /plate.html?plate=09�?363
-     * 3. Hash format: /plate.html#09�?363
+     * 1. Path format: /plate.html/09루3363
+     * 2. Query string format: /plate.html?plate=09루3363
+     * 3. Hash format: /plate.html#09루3363
      * @returns {string|null} - Extracted plate number or null if not found
      */
     parsePlateFromURL() {
@@ -429,14 +429,14 @@ const Router = {
         const search = window.location.search;
         const hash = window.location.hash;
         
-        // Try path format: /plate.html/09�?363
+        // Try path format: /plate.html/09루3363
         const pathMatch = pathname.match(/\/plate\.html\/([^\/]+)/);
         if (pathMatch && pathMatch[1]) {
             const plate = decodeURIComponent(pathMatch[1]);
             return Validator.sanitizePlateNumber(plate);
         }
         
-        // Try query string format: ?plate=09�?363
+        // Try query string format: ?plate=09루3363
         if (search) {
             const params = new URLSearchParams(search);
             const plate = params.get('plate');
@@ -445,7 +445,7 @@ const Router = {
             }
         }
         
-        // Try hash format: #09�?363 (fallback for older browsers)
+        // Try hash format: #09루3363 (fallback for older browsers)
         if (hash && hash.length > 1) {
             const plate = decodeURIComponent(hash.substring(1)); // Remove the # symbol and decode
             return Validator.sanitizePlateNumber(plate);
@@ -888,11 +888,11 @@ const FirebaseClient = {
             
             // Check for specific error types
             if (error.code === 'PERMISSION_DENIED') {
-                throw new Error('?�이?�베?�스 ?�근 권한???�습?�다');
+                throw new Error('데이터베이스 접근 권한이 없습니다');
             } else if (error.message && error.message.includes('network')) {
-                throw new Error('?�트?�크 ?�류가 발생?�습?�다. ?�시 ?�도??주세??);
+                throw new Error('네트워크 오류가 발생했습니다. 다시 시도해 주세요');
             } else {
-                throw new Error('?�이?��? 불러?�는 �??�류가 발생?�습?�다');
+                throw new Error('데이터를 불러오는 중 오류가 발생했습니다');
             }
         }
     },
@@ -951,7 +951,7 @@ const FirebaseClient = {
                     console.warn(`FirebaseClient.incrementCounter: Transaction conflict detected (attempt ${retries}/${maxRetries})`);
                     
                     if (retries >= maxRetries) {
-                        const error = new Error('?�랜??�� 충돌�??�해 메세지 ?�송???�패?�습?�다. ?�시 ?�도??주세??);
+                        const error = new Error('트랜잭션 충돌로 인해 메세지 전송에 실패했습니다. 다시 시도해 주세요');
                         console.error('FirebaseClient.incrementCounter error:', {
                             plateNumber: plateNumber,
                             counterKey: counterKey,
@@ -1013,14 +1013,14 @@ const FirebaseClient = {
                 if (retries >= maxRetries) {
                     // Check for specific error types
                     if (error.code === 'PERMISSION_DENIED') {
-                        throw new Error('?�이?�베?�스 ?�근 권한???�습?�다');
+                        throw new Error('데이터베이스 접근 권한이 없습니다');
                     } else if (error.message && (error.message.includes('network') || error.message.includes('offline'))) {
-                        throw new Error('?�트?�크 ?�류가 발생?�습?�다. ?�시 ?�도??주세??);
-                    } else if (error.message && error.message.includes('?�랜??��')) {
+                        throw new Error('네트워크 오류가 발생했습니다. 다시 시도해 주세요');
+                    } else if (error.message && error.message.includes('트랜잭션')) {
                         // Already has Korean message
                         throw error;
                     } else {
-                        throw new Error('메세지 ?�송 �??�류가 발생?�습?�다. ?�시 ?�도??주세??);
+                        throw new Error('메세지 전송 중 오류가 발생했습니다. 다시 시도해 주세요');
                     }
                 }
                 
@@ -1078,11 +1078,11 @@ const FirebaseClient = {
             
             // Check for specific error types
             if (error.code === 'PERMISSION_DENIED') {
-                throw new Error('?�이?�베?�스 ?�근 권한???�습?�다');
+                throw new Error('데이터베이스 접근 권한이 없습니다');
             } else if (error.message && error.message.includes('network')) {
-                throw new Error('?�트?�크 ?�류가 발생?�습?�다. ?�시 ?�도??주세??);
+                throw new Error('네트워크 오류가 발생했습니다. 다시 시도해 주세요');
             } else {
-                throw new Error('?�계�?불러?�는 �??�류가 발생?�습?�다');
+                throw new Error('통계를 불러오는 중 오류가 발생했습니다');
             }
         }
     },
@@ -1898,13 +1898,13 @@ const LeaderboardDataManager = {
             
             // Check for specific error types
             if (error.code === 'PERMISSION_DENIED') {
-                throw new Error('?�이?�베?�스 ?�근 권한???�습?�다');
+                throw new Error('데이터베이스 접근 권한이 없습니다');
             } else if (error.message && error.message.includes('network')) {
-                throw new Error('?�트?�크 ?�류가 발생?�습?�다. ?�시 ?�도??주세??);
-            } else if (error.message && error.message.includes('?�이?�베?�스')) {
+                throw new Error('네트워크 오류가 발생했습니다. 다시 시도해 주세요');
+            } else if (error.message && error.message.includes('데이터베이스')) {
                 throw error;
             } else {
-                throw new Error('리더보드�?불러?�는 �??�류가 발생?�습?�다');
+                throw new Error('리더보드를 불러오는 중 오류가 발생했습니다');
             }
         }
     }
@@ -1958,7 +1958,7 @@ const PerformanceOptimizer = {
     shouldThrottleFetch() {
         const now = Date.now();
         if (now - this.lastFetchTime < this.FETCH_THROTTLE) {
-            // console.log('?�️ Throttled fetch - using cached data');
+            // console.log('⏱️ Throttled fetch - using cached data');
             return true;
         }
         this.lastFetchTime = now;
@@ -1975,7 +1975,7 @@ const PerformanceOptimizer = {
             if (this.isVisible) {
                 // Resume: Fetch fresh data if stale (30s threshold)
                 if (Date.now() - this.lastUpdate > 30000) {
-                    // console.log('?�� Tab visible - refreshing stale data');
+                    // console.log('🔄 Tab visible - refreshing stale data');
                     // Only refresh if on landing page
                     const pathname = window.location.pathname;
                     if (pathname === '/' || pathname === '/index.html' || pathname.endsWith('/')) {
@@ -1984,14 +1984,14 @@ const PerformanceOptimizer = {
                 }
             } else {
                 // Pause: Disconnect Firebase listeners temporarily
-                // console.log('?�️ Tab hidden - pausing Firebase listeners');
+                // console.log('⏸️ Tab hidden - pausing Firebase listeners');
                 if (this.globalRef) {
                     this.globalRef.off();
                 }
             }
         });
         
-        // console.log('??Performance optimizer initialized');
+        // console.log('✅ Performance optimizer initialized');
     }
 };
 
@@ -2095,11 +2095,11 @@ const MonthlyTrendTracker = {
             
             // Check for specific error types
             if (error.code === 'PERMISSION_DENIED') {
-                throw new Error('?�이?�베?�스 ?�근 권한???�습?�다');
+                throw new Error('데이터베이스 접근 권한이 없습니다');
             } else if (error.message && error.message.includes('network')) {
-                throw new Error('?�트?�크 ?�류가 발생?�습?�다. ?�시 ?�도??주세??);
+                throw new Error('네트워크 오류가 발생했습니다. 다시 시도해 주세요');
             } else {
-                throw new Error('?�별 추세 ?�이?��? 불러?�는 �??�류가 발생?�습?�다');
+                throw new Error('월별 추세 데이터를 불러오는 중 오류가 발생했습니다');
             }
         }
     },
@@ -2207,11 +2207,11 @@ const MonthlyTrendTracker = {
             });
             
             // Re-throw if it's already a formatted error
-            if (error.message && error.message.includes('?�이?�베?�스')) {
+            if (error.message && error.message.includes('데이터베이스')) {
                 throw error;
             }
             
-            throw new Error('?�별 추세 ?�이?��? 불러?�는 �??�류가 발생?�습?�다');
+            throw new Error('월별 추세 데이터를 불러오는 중 오류가 발생했습니다');
         }
     },
     
@@ -2282,11 +2282,11 @@ const MonthlyTrendTracker = {
             });
             
             // Re-throw if it's already a formatted error
-            if (error.message && error.message.includes('?�이?�베?�스')) {
+            if (error.message && error.message.includes('데이터베이스')) {
                 throw error;
             }
             
-            throw new Error('카테고리 ?�별 추세 ?�이?��? 불러?�는 �??�류가 발생?�습?�다');
+            throw new Error('카테고리 월별 추세 데이터를 불러오는 중 오류가 발생했습니다');
         }
     },
     
@@ -2324,10 +2324,10 @@ const ChartManager = {
     },
     
     CATEGORY_LABELS: {
-        repair: '고장?�리',
-        safety: '?�전?�전',
+        repair: '고장수리',
+        safety: '안전운전',
         thanks: '감사',
-        likes: '좋아??
+        likes: '좋아요'
     },
     
     /**
@@ -2456,7 +2456,7 @@ const ChartManager = {
                                 label: function(context) {
                                     const label = context.dataset.label || '';
                                     const value = context.parsed.x;
-                                    return `${label}: ${value}??;
+                                    return `${label}: ${value}회`;
                                 }
                             }
                         }
@@ -2470,7 +2470,7 @@ const ChartManager = {
                             },
                             title: {
                                 display: true,
-                                text: '?�수'
+                                text: '횟수'
                             }
                         },
                         y: {
@@ -2496,7 +2496,7 @@ const ChartManager = {
                 stack: error.stack,
                 counters: counters
             });
-            throw new Error('차트�??�성?????�습?�다');
+            throw new Error('차트를 생성할 수 없습니다');
         }
     },
     
@@ -2536,7 +2536,7 @@ const ChartManager = {
                 stack: error.stack,
                 counters: counters
             });
-            throw new Error('차트�??�데?�트?????�습?�다');
+            throw new Error('차트를 업데이트할 수 없습니다');
         }
     },
     
@@ -2590,7 +2590,7 @@ const ChartManager = {
                 data: {
                     labels: trendData.months,
                     datasets: [{
-                        label: '?�별 증�? ?�수',
+                        label: '월별 증가 횟수',
                         data: trendData.counts,
                         backgroundColor: 'rgba(37, 99, 235, 0.5)', // Semi-transparent blue
                         borderColor: 'rgba(37, 99, 235, 0.8)',
@@ -2615,7 +2615,7 @@ const ChartManager = {
                             callbacks: {
                                 label: function(context) {
                                     const value = context.parsed.y;
-                                    return `증�? ?�수: ${value}??;
+                                    return `증가 횟수: ${value}회`;
                                 }
                             }
                         }
@@ -2624,7 +2624,7 @@ const ChartManager = {
                         x: {
                             title: {
                                 display: true,
-                                text: '??
+                                text: '월'
                             },
                             ticks: {
                                 maxRotation: 45,
@@ -2639,7 +2639,7 @@ const ChartManager = {
                             },
                             title: {
                                 display: true,
-                                text: '증�? ?�수'
+                                text: '증가 횟수'
                             }
                         }
                     }
@@ -2655,7 +2655,7 @@ const ChartManager = {
                 stack: error.stack,
                 trendData: trendData
             });
-            throw new Error('?�별 추세 차트�??�성?????�습?�다');
+            throw new Error('월별 추세 차트를 생성할 수 없습니다');
         }
     },
     
@@ -2693,7 +2693,7 @@ const ChartManager = {
                 data: {
                     labels: trendData.months,
                     datasets: [{
-                        label: '?�별 증�? ?�수',
+                        label: '월별 증가 횟수',
                         data: trendData.counts,
                         backgroundColor: 'rgba(37, 99, 235, 0.1)',
                         borderColor: 'rgba(37, 99, 235, 1)',
@@ -2722,7 +2722,7 @@ const ChartManager = {
                             callbacks: {
                                 label: function(context) {
                                     const value = context.parsed.y;
-                                    return `증�? ?�수: ${value}??;
+                                    return `증가 횟수: ${value}회`;
                                 }
                             }
                         }
@@ -2773,7 +2773,7 @@ const ChartManager = {
                 categoryId: categoryId,
                 trendData: trendData
             });
-            throw new Error('카테고리 추세 차트�??�성?????�습?�다');
+            throw new Error('카테고리 추세 차트를 생성할 수 없습니다');
         }
     },
 
@@ -2812,7 +2812,7 @@ const ChartManager = {
                 stack: error.stack,
                 trendData: trendData
             });
-            throw new Error('?�별 추세 차트�??�데?�트?????�습?�다');
+            throw new Error('월별 추세 차트를 업데이트할 수 없습니다');
         }
     },
     
@@ -2864,7 +2864,7 @@ const ChartManager = {
                     tooltip: {
                         callbacks: {
                             label: function(context) {
-                                return `${context.label}: ${context.parsed.x}??;
+                                return `${context.label}: ${context.parsed.x}회`;
                             }
                         }
                     }
@@ -2911,13 +2911,13 @@ const ChartManager = {
      */
     getPeriodLabel(period) {
         const labels = {
-            today: '?�늘',
-            week: '?�번�?,
-            month: '?�번??,
-            year: '?�해',
-            total: '???'
+            today: '오늘',
+            week: '이번주',
+            month: '이번달',
+            year: '올해',
+            total: '역대'
         };
-        return labels[period] || '???';
+        return labels[period] || '역대';
     },
     
     /**
@@ -2968,7 +2968,7 @@ const ChartManager = {
                         cornerRadius: 8,
                         callbacks: {
                             label: function(context) {
-                                return `${context.label}: ${context.parsed}??;
+                                return `${context.label}: ${context.parsed}회`;
                             }
                         }
                     }
@@ -3016,7 +3016,7 @@ const ChartManager = {
             data: {
                 labels: labels,
                 datasets: [{
-                    label: '메시지 ??,
+                    label: '메시지 수',
                     data: data,
                     backgroundColor: colors,
                     borderColor: colors,
@@ -3037,7 +3037,7 @@ const ChartManager = {
                         enabled: true,
                         callbacks: {
                             label: function(context) {
-                                return context.parsed.x + '??;
+                                return context.parsed.x + '회';
                             }
                         }
                     }
@@ -3215,7 +3215,7 @@ const UIController = {
                 // console.log('UIController.renderPlateResults: Emoji set successfully, current value:', plateEmojiElement.textContent);
             } catch (emojiError) {
                 console.error('UIController.renderPlateResults: Error getting/setting emoji:', emojiError);
-                plateEmojiElement.textContent = '?��'; // Fallback
+                plateEmojiElement.textContent = '🚗'; // Fallback
             }
         } else {
             console.warn('UIController.renderPlateResults: plateEmoji element not found');
@@ -3260,7 +3260,7 @@ const UIController = {
                 canvas.style.display = 'none';
                 
                 // Show notification to user
-                this.showNotification('차트�??�시?????�습?�다. ?�자 ?�보???�상?�으�??�시?�니??, 'info');
+                this.showNotification('차트를 표시할 수 없습니다. 숫자 정보는 정상적으로 표시됩니다', 'info');
                 
                 // Ensure counter displays are visible and working
                 // console.log('UIController.renderPlateResults: Falling back to counter displays only');
@@ -3291,7 +3291,7 @@ const UIController = {
                 monthlyCanvas.style.display = 'none';
                 
                 // Show notification to user
-                this.showNotification('?�별 추세 차트�??�시?????�습?�다', 'info');
+                this.showNotification('월별 추세 차트를 표시할 수 없습니다', 'info');
                 
                 // console.log('UIController.renderPlateResults: Falling back without monthly trend chart');
             }
@@ -3327,7 +3327,7 @@ const UIController = {
     async initializeCategoryCharts(counters, plateNumber) {
         const categories = ['categoryA', 'categoryB', 'categoryC', 'categoryD'];
         
-        // console.log('?�� Initializing category charts for:', categories);
+        // console.log('🎨 Initializing category charts for:', categories);
         
         categories.forEach(categoryId => {
             const canvasId = `${categoryId}Chart`;
@@ -3353,17 +3353,17 @@ const UIController = {
                         // Create new doughnut chart
                         // console.log(`Creating new ${categoryId} doughnut chart`);
                         window[chartKey] = ChartManager.createDoughnutChart(canvas, categoryId, counters, 'total');
-                        // console.log(`??${chartKey} created:`, !!window[chartKey]);
+                        // console.log(`✅ ${chartKey} created:`, !!window[chartKey]);
                     }
                     
                     // Store counters for chart toggle
                     window.currentCounters = counters;
                 } catch (error) {
-                    console.error(`??Failed to render ${categoryId} chart:`, error);
+                    console.error(`❌ Failed to render ${categoryId} chart:`, error);
                     canvas.style.display = 'none';
                 }
             } else {
-                console.warn(`?�️ Canvas not found for ${categoryId}`);
+                console.warn(`⚠️ Canvas not found for ${categoryId}`);
             }
         });
         
@@ -3443,14 +3443,14 @@ const UIController = {
      * @param {string} period - Time period (today, week, month, year, total)
      */
     async updateCategoryChart(categoryId, period) {
-        // console.log(`?�� UIController.updateCategoryChart called: ${categoryId}, period: ${period}`);
+        // console.log(`🔄 UIController.updateCategoryChart called: ${categoryId}, period: ${period}`);
         
         const chartKey = `${categoryId}ChartInstance`;
         // console.log(`Looking for chart instance: ${chartKey}`);
         // console.log(`Chart instance exists:`, !!window[chartKey]);
         
         if (!window[chartKey]) {
-            console.error(`??Chart instance not found: ${chartKey}`);
+            console.error(`❌ Chart instance not found: ${chartKey}`);
             // console.log('Available window properties:', Object.keys(window).filter(k => k.includes('Chart')));
             return;
         }
@@ -3458,28 +3458,28 @@ const UIController = {
         // Get current plate number
         const plateNumber = Router.getCurrentPlate();
         if (!plateNumber) {
-            console.error('??No plate number found');
+            console.error('❌ No plate number found');
             return;
         }
         
-        // console.log(`?�� Plate number: ${plateNumber}`);
+        // console.log(`📍 Plate number: ${plateNumber}`);
         
         try {
             // Fetch period-specific data
-            // console.log(`?�� Fetching data for period: ${period}...`);
+            // console.log(`📥 Fetching data for period: ${period}...`);
             const counters = await this.fetchPeriodData(plateNumber, period);
-            // console.log(`?�� Fetched counters:`, counters);
+            // console.log(`📊 Fetched counters:`, counters);
             
             // Update the chart with new data
             const chart = window[chartKey];
             const category = CATEGORIES[categoryId];
             
-            // console.log(`?�� Updating chart with ChartManager...`);
+            // console.log(`🎨 Updating chart with ChartManager...`);
             ChartManager.updateCategoryChart(chart, categoryId, counters, period);
             
-            // console.log(`??Chart updated successfully for ${categoryId} - ${period}`);
+            // console.log(`✅ Chart updated successfully for ${categoryId} - ${period}`);
         } catch (error) {
-            console.error(`??Error updating chart for ${categoryId}:`, error);
+            console.error(`❌ Error updating chart for ${categoryId}:`, error);
             console.error('Error stack:', error.stack);
         }
     },
@@ -3650,14 +3650,14 @@ const UIController = {
             if (views < 1 || interactionCount === 0) {
                 // Not enough data
                 careIndexValueElement.textContent = '-';
-                careIndexMetaElement.textContent = '?�직 ?�이?��? 부족합?�다';
+                careIndexMetaElement.textContent = '아직 데이터가 부족합니다';
             } else {
                 const ratio = interactionCount / views;
                 const percent = Math.round(ratio * 100);
                 const capped = Math.min(percent, 100); // Cap at 100%
                 
                 careIndexValueElement.textContent = `${capped}%`;
-                careIndexMetaElement.textContent = `조회 ${views}??�?${interactionCount}??반응`;
+                careIndexMetaElement.textContent = `조회 ${views}회 중 ${interactionCount}회 반응`;
             }
         }
     },
@@ -3751,7 +3751,7 @@ const UIController = {
         const loadingSpan = document.createElement('span');
         loadingSpan.className = 'pro-badge-pill';
         loadingSpan.style.opacity = '0.6';
-        loadingSpan.textContent = '??배�? 계산 �?..';
+        loadingSpan.textContent = '⏳ 배지 계산 중...';
         container.appendChild(loadingSpan);
         
         try {
@@ -3836,35 +3836,35 @@ const UIController = {
             const views = plateData.views || 0; // Use all-time views
             
             // console.log('renderRatingBadges: 90-day stats:', {
-                warningCount_90d,
-                conditionCount_90d,
-                thanksCount_90d,
-                likesCount_90d,
-                totalMessages_90d,
-                interactionCount_90d,
-                views
-            });
+            //     warningCount_90d,
+            //     conditionCount_90d,
+            //     thanksCount_90d,
+            //     likesCount_90d,
+            //     totalMessages_90d,
+            //     interactionCount_90d,
+            //     views
+            // });
             
             const badges = [];
             
             // Badge 1: High care index (recent focus)
             if (views >= 10 && interactionCount_90d / views >= 0.2) {
-                badges.push('?�� 많이 ?�경 ??준 번호??);
+                badges.push('💖 많이 신경 써 준 번호판');
             }
             
             // Badge 2: Praise-heavy
             if (thanksCount_90d >= 3 && thanksCount_90d >= warningCount_90d) {
-                badges.push('�?�?��??많이 ?�인 번호??);
+                badges.push('⭐ 칭찬이 많이 쌓인 번호판');
             }
             
             // Badge 3: Frequent warning
             if (warningCount_90d >= 3) {
-                badges.push('?�️ ?�러 �?걱정??번호??);
+                badges.push('⚠️ 여러 번 걱정된 번호판');
             }
             
             // Badge 4: Maintenance alert
             if (conditionCount_90d >= 3) {
-                badges.push('?�� ?�비 ?�림???�러 �??�었??번호??);
+                badges.push('🔧 정비 알림이 여러 번 있었던 번호판');
             }
             
             // console.log('renderRatingBadges: Badges earned:', badges);
@@ -3945,7 +3945,7 @@ const UIController = {
                         bar.setAttribute('data-value', value);
                         
                         // Update tooltip
-                        bar.title = `${value}�?메시지`;
+                        bar.title = `${value}개 메시지`;
                         
                         // Update value label if it exists
                         const valueLabel = bar.querySelector('.chart-bar-value');
@@ -4048,7 +4048,7 @@ const UIController = {
             const emptyRow = document.createElement('tr');
             const emptyCell = document.createElement('td');
             emptyCell.colSpan = type === 'bestDrivers' ? 5 : 3;
-            emptyCell.textContent = '?�이?��? ?�습?�다';
+            emptyCell.textContent = '데이터가 없습니다';
             emptyCell.style.textAlign = 'center';
             emptyRow.appendChild(emptyCell);
             tableBody.appendChild(emptyRow);
@@ -4270,8 +4270,8 @@ const UIController = {
     /**
      * Formats a number with Korean notation (adds comma separators and optional suffix)
      * @param {number} num - Number to format
-     * @param {boolean} addSuffix - Whether to add "?? suffix (default: true)
-     * @returns {string} - Formatted string (e.g., "12,345?? or "12,345")
+     * @param {boolean} addSuffix - Whether to add "회" suffix (default: true)
+     * @returns {string} - Formatted string (e.g., "12,345회" or "12,345")
      */
     formatKoreanNumber(num, addSuffix = true) {
         if (typeof num !== 'number') {
@@ -4281,8 +4281,8 @@ const UIController = {
         // Add comma separators
         const formatted = num.toLocaleString('ko-KR');
         
-        // Add "?? (times) suffix if requested
-        return addSuffix ? `${formatted}?? : formatted;
+        // Add "회" (times) suffix if requested
+        return addSuffix ? `${formatted}회` : formatted;
     },
     
     /**
@@ -4433,7 +4433,7 @@ const UIController = {
             });
         }
         
-        // Good message button - scroll to 좋�? 감정 메세지 section
+        // Good message button - scroll to 좋은 감정 메세지 section
         const goodMessageButton = document.getElementById('goodMessageButton');
         if (goodMessageButton) {
             goodMessageButton.addEventListener('click', () => {
@@ -4482,7 +4482,7 @@ const UIController = {
         // Check for empty input
         if (!input || input.trim() === '') {
             // console.log('UIController.handleSearch: Empty input detected');
-            this.showNotification('번호?�을 ?�력??주세??, 'error');
+            this.showNotification('번호판을 입력해 주세요', 'error');
             return;
         }
         
@@ -4493,21 +4493,21 @@ const UIController = {
         const normalized = Validator.normalizePlate(sanitized);
         if (!normalized) {
             // console.log('UIController.handleSearch: Invalid plate number format:', sanitized);
-            this.showNotification('?�바�?번호???�식???�닙?�다 (?? 09�?363, ?�울12가3456)', 'error');
+            this.showNotification('올바른 번호판 형식이 아닙니다 (예: 09루3363, 서울12가3456)', 'error');
             return;
         }
         
         // Show helpful message for old plates without region
         if (normalized.type === 'old-ambiguous') {
             // console.log('UIController.handleSearch: Old plate without region detected');
-            this.showNotification('구형 번호?? 지???�이??검??가?�합?�다', 'info');
+            this.showNotification('구형 번호판: 지역 없이도 검색 가능합니다', 'info');
         }
         
         // Add spinner animation to button
         if (searchButton) {
             searchButton.classList.add('searching');
             const originalText = searchButton.textContent;
-            searchButton.textContent = '검??�?..';
+            searchButton.textContent = '검색 중...';
             
             // Remove spinner after navigation (or timeout)
             setTimeout(() => {
@@ -4522,7 +4522,7 @@ const UIController = {
             // console.log('UIController.handleSearch: Navigation initiated for:', sanitized);
         } catch (error) {
             console.error('UIController.handleSearch: Navigation error:', error);
-            this.showNotification('?�이지 ?�동 �??�류가 발생?�습?�다', 'error');
+            this.showNotification('페이지 이동 중 오류가 발생했습니다', 'error');
             
             // Remove spinner on error
             if (searchButton) {
@@ -4552,14 +4552,14 @@ const UIController = {
         const plateNumber = Router.getCurrentPlate();
         if (!plateNumber) {
             console.error('UIController.handleCounterClick: No plate number found in URL');
-            this.showNotification('번호???�보�?찾을 ???�습?�다', 'error');
+            this.showNotification('번호판 정보를 찾을 수 없습니다', 'error');
             return;
         }
         
         // Check daily limit (client-side check for UX, server validates too)
         if (!DailyLimitManager.canIncrement(plateNumber, counterKey)) {
             // console.log(`UIController.handleCounterClick: Daily limit reached for ${plateNumber}/${counterKey}`);
-            this.showNotification('?�늘?� ?��? ????��??메세지�?보냈?�니??, 'info');
+            this.showNotification('오늘은 이미 이 항목에 메세지를 보냈습니다', 'info');
             return;
         }
         
@@ -4626,7 +4626,7 @@ const UIController = {
             }
             
             // Show success message
-            this.showNotification(`${counterLabel} 메세지�?보냈?�니??`, 'success');
+            this.showNotification(`${counterLabel} 메세지를 보냈습니다!`, 'success');
         } catch (error) {
             console.error('UIController.handleCounterClick error:', {
                 plateNumber: plateNumber,
@@ -4637,7 +4637,7 @@ const UIController = {
             });
             
             // Use the error message if it's already in Korean, otherwise use default
-            const errorMessage = error.message || '?�트?�크 ?�류가 발생?�습?�다. ?�시 ?�도??주세??;
+            const errorMessage = error.message || '네트워크 오류가 발생했습니다. 다시 시도해 주세요';
             this.showNotification(errorMessage, 'error');
         } finally {
             // Re-enable button
@@ -4665,14 +4665,14 @@ const UIController = {
         const plateNumber = Router.getCurrentPlate();
         if (!plateNumber) {
             console.error('UIController.handleMessageCardClick: No plate number found in URL');
-            this.showNotification('번호???�보�?찾을 ???�습?�다', 'error');
+            this.showNotification('번호판 정보를 찾을 수 없습니다', 'error');
             return;
         }
         
         // Check daily limit
         if (!DailyLimitManager.canIncrement(plateNumber, counterKey)) {
             // console.log(`UIController.handleMessageCardClick: Daily limit reached for ${plateNumber}/${counterKey}`);
-            this.showNotification('?�늘?� ?��? ????��??메세지�?보냈?�니??, 'info');
+            this.showNotification('오늘은 이미 이 항목에 메세지를 보냈습니다', 'info');
             return;
         }
         
@@ -4700,7 +4700,7 @@ const UIController = {
             // Update the count display in the message card
             const countElement = messageCard.querySelector('.send-count');
             if (countElement) {
-                countElement.textContent = `${newValue}??;
+                countElement.textContent = `${newValue}회`;
             }
             
             // Update other displays
@@ -4730,7 +4730,7 @@ const UIController = {
             DailyLimitManager.recordIncrement(plateNumber, counterKey);
             
             // Show success message
-            this.showNotification(`??"${counterLabel}" 메시지가 ?�송?�었?�니??, 'success');
+            this.showNotification(`✓ "${counterLabel}" 메시지가 전송되었습니다`, 'success');
         } catch (error) {
             console.error('UIController.handleMessageCardClick error:', {
                 plateNumber: plateNumber,
@@ -4740,7 +4740,7 @@ const UIController = {
                 stack: error.stack
             });
             
-            const errorMessage = error.message || '?�트?�크 ?�류가 발생?�습?�다. ?�시 ?�도??주세??;
+            const errorMessage = error.message || '네트워크 오류가 발생했습니다. 다시 시도해 주세요';
             this.showNotification(errorMessage, 'error');
         } finally {
             // Re-enable button
@@ -4830,7 +4830,7 @@ const UIController = {
             });
             
             // Use the error message if it's already in Korean, otherwise use default
-            const errorMessage = error.message || '리더보드�?불러?????�습?�다';
+            const errorMessage = error.message || '리더보드를 불러올 수 없습니다';
             this.showNotification(errorMessage, 'error');
             
             // Render empty leaderboard to show user something went wrong
@@ -4845,7 +4845,7 @@ const UIController = {
      */
     handleSiteShare() {
         const url = window.location.origin;
-        const title = 'SafeDrive - ?�명?�로 차량 ?�전??공유?�세??;
+        const title = 'SafeDrive - 익명으로 차량 안전을 공유하세요';
         
         this.shareURL(url, title);
     },
@@ -4856,12 +4856,12 @@ const UIController = {
     handlePlateShare() {
         const plateNumber = Router.getCurrentPlate();
         if (!plateNumber) {
-            this.showNotification('번호???�보�?찾을 ???�습?�다', 'error');
+            this.showNotification('번호판 정보를 찾을 수 없습니다', 'error');
             return;
         }
         
         const url = `${window.location.origin}/plate.html/${encodeURIComponent(plateNumber)}`;
-        const title = `SafeDrive - ${plateNumber} 번호???�보`;
+        const title = `SafeDrive - ${plateNumber} 번호판 정보`;
         
         this.shareURL(url, title);
     },
@@ -4879,7 +4879,7 @@ const UIController = {
                     title: title,
                     url: url
                 });
-                this.showNotification('공유 ?�료!', 'success');
+                this.showNotification('공유 완료!', 'success');
             } catch (error) {
                 // User cancelled or error occurred
                 if (error.name !== 'AbortError') {
@@ -4902,10 +4902,10 @@ const UIController = {
         if (navigator.clipboard && navigator.clipboard.writeText) {
             try {
                 await navigator.clipboard.writeText(text);
-                this.showNotification('링크가 복사?�었?�니??, 'success');
+                this.showNotification('링크가 복사되었습니다', 'success');
             } catch (error) {
                 console.error('Clipboard error:', error);
-                this.showNotification('링크 복사???�패?�습?�다', 'error');
+                this.showNotification('링크 복사에 실패했습니다', 'error');
             }
         } else {
             // Fallback for older browsers
@@ -4918,10 +4918,10 @@ const UIController = {
             
             try {
                 document.execCommand('copy');
-                this.showNotification('링크가 복사?�었?�니??, 'success');
+                this.showNotification('링크가 복사되었습니다', 'success');
             } catch (error) {
                 console.error('Clipboard fallback error:', error);
-                this.showNotification('링크 복사???�패?�습?�다', 'error');
+                this.showNotification('링크 복사에 실패했습니다', 'error');
             }
             
             document.body.removeChild(textArea);
@@ -4998,14 +4998,14 @@ async function initLandingPage() {
             });
             
             // Use the error message if it's already in Korean, otherwise use default
-            const errorMessage = error.message || '?�계�?불러?????�습?�다';
+            const errorMessage = error.message || '통계를 불러올 수 없습니다';
             UIController.showNotification(errorMessage, 'error');
             
             // Render empty stats to show something
             UIController.renderGlobalStats({});
         }
         
-        // Fetch and render most liked leaderboard (default to "???" - allTime)
+        // Fetch and render most liked leaderboard (default to "역대" - allTime)
         try {
             // console.log('initLandingPage: Fetching most liked leaderboard');
             const mostLikedData = await FirebaseClient.getLeaderboard('mostLiked', 'allTime', 10);
@@ -5019,7 +5019,7 @@ async function initLandingPage() {
             });
             
             // Use the error message if it's already in Korean, otherwise use default
-            const errorMessage = error.message || '?�기 번호??TOP 10??불러?????�습?�다';
+            const errorMessage = error.message || '인기 번호판 TOP 10을 불러올 수 없습니다';
             UIController.showNotification(errorMessage, 'error');
             
             // Render empty leaderboard
@@ -5032,7 +5032,7 @@ async function initLandingPage() {
             error: error.message,
             stack: error.stack
         });
-        UIController.showNotification('?�이지�?불러?�는 �??�류가 발생?�습?�다', 'error');
+        UIController.showNotification('페이지를 불러오는 중 오류가 발생했습니다', 'error');
     } finally {
         // Hide loading indicator
         UIController.hideLoading();
@@ -5060,7 +5060,7 @@ async function initPlatePage() {
     // Validate plate number
     if (!plateNumber || !Validator.validatePlateNumber(plateNumber)) {
         console.error('initPlatePage: Invalid plate number in URL:', plateNumber);
-        UIController.showNotification('?�바�?번호???�식???�닙?�다', 'error');
+        UIController.showNotification('올바른 번호판 형식이 아닙니다', 'error');
         
         // Redirect to landing page after 2 seconds
         setTimeout(() => {
@@ -5075,7 +5075,7 @@ async function initPlatePage() {
     // Set placeholder with current plate number
     const plateInput = document.getElementById('plateInput');
     if (plateInput) {
-        plateInput.placeholder = `번호??조회 ?? ${plateNumber}`;
+        plateInput.placeholder = `번호판 조회 예: ${plateNumber}`;
     } else {
         console.warn('initPlatePage: plateInput element not found');
     }
@@ -5107,7 +5107,7 @@ async function initPlatePage() {
         });
         
         // Use the error message if it's already in Korean, otherwise use default
-        const errorMessage = error.message || '?�이?��? 불러?�는 �??�류가 발생?�습?�다';
+        const errorMessage = error.message || '데이터를 불러오는 중 오류가 발생했습니다';
         UIController.showNotification(errorMessage, 'error');
         
         // Display zero-state on error so user can still interact with the page
@@ -5160,7 +5160,7 @@ window.addEventListener('unhandledrejection', (event) => {
     
     // Show user-friendly error message
     if (UIController && UIController.showNotification) {
-        UIController.showNotification('?�상�?못한 ?�류가 발생?�습?�다', 'error');
+        UIController.showNotification('예상치 못한 오류가 발생했습니다', 'error');
     }
 });
 
@@ -5176,7 +5176,7 @@ window.addEventListener('error', (event) => {
     
     // Show user-friendly error message
     if (UIController && UIController.showNotification) {
-        UIController.showNotification('?�상�?못한 ?�류가 발생?�습?�다', 'error');
+        UIController.showNotification('예상치 못한 오류가 발생했습니다', 'error');
     }
 });
 
@@ -5204,7 +5204,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         if (UIController && UIController.showNotification) {
-            UIController.showNotification('??초기??�??�류가 발생?�습?�다', 'error');
+            UIController.showNotification('앱 초기화 중 오류가 발생했습니다', 'error');
         }
     }
     
@@ -5225,7 +5225,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Update the search input placeholder
             const plateInput = document.getElementById('plateInput');
             if (plateInput) {
-                plateInput.placeholder = `번호??조회 ?? ${plateNumber}`;
+                plateInput.placeholder = `번호판 조회 예: ${plateNumber}`;
             } else {
                 console.warn('routechange handler: plateInput element not found');
             }
@@ -5251,7 +5251,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 
                 // Use the error message if it's already in Korean, otherwise use default
-                const errorMessage = error.message || '?�이?��? 불러?�는 �??�류가 발생?�습?�다';
+                const errorMessage = error.message || '데이터를 불러오는 중 오류가 발생했습니다';
                 UIController.showNotification(errorMessage, 'error');
                 
                 // Display zero-state on error
@@ -5278,7 +5278,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = `/plate.html?plate=${encodeURIComponent(plateNumber)}`;
             } catch (error) {
                 console.error('routechange handler: Failed to navigate to plate page:', error);
-                UIController.showNotification('?�이지 ?�동 �??�류가 발생?�습?�다', 'error');
+                UIController.showNotification('페이지 이동 중 오류가 발생했습니다', 'error');
             }
         }
     });
@@ -5352,7 +5352,7 @@ function initHeartButton() {
         const plateNumber = document.getElementById('plateNumber')?.textContent;
         
         if (!plateNumber || plateNumber === '-') {
-            UIController.showNotification('번호?�을 먼�? 조회?�주?�요', 'error');
+            UIController.showNotification('번호판을 먼저 조회해주세요', 'error');
             return;
         }
         
@@ -5390,14 +5390,14 @@ function initHeartButton() {
                     likeCountElement.textContent = newCount;
                 }
                 
-                UIController.showNotification('좋아??', 'success');
+                UIController.showNotification('좋아요!', 'success');
             } catch (error) {
                 console.error('Failed to increment like:', error);
                 // Revert UI state on error
                 isLiked = false;
                 this.classList.remove('active');
                 this.classList.add('inactive');
-                UIController.showNotification('좋아???�패. ?�시 ?�도?�주?�요.', 'error');
+                UIController.showNotification('좋아요 실패. 다시 시도해주세요.', 'error');
             }
         }
     });
@@ -5547,14 +5547,14 @@ const SubscriptionManager = {
         if (isSubscribed) {
             subscribeBtn.textContent = '';
             const checkSpan = document.createElement('span');
-            checkSpan.textContent = '??;
+            checkSpan.textContent = '✓';
             subscribeBtn.appendChild(checkSpan);
-            subscribeBtn.appendChild(document.createTextNode(' 구독�?));
+            subscribeBtn.appendChild(document.createTextNode(' 구독중'));
             subscribeBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
         } else {
             subscribeBtn.textContent = '';
             const bellSpan = document.createElement('span');
-            bellSpan.textContent = '?��';
+            bellSpan.textContent = '🔔';
             subscribeBtn.appendChild(bellSpan);
             subscribeBtn.appendChild(document.createTextNode(' 구독'));
             subscribeBtn.style.background = 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)';
@@ -5641,7 +5641,7 @@ const SubscriptionManager = {
         if (subscribed.length === 0) {
             const noSubsMsg = document.createElement('p');
             noSubsMsg.className = 'no-subscriptions';
-            noSubsMsg.textContent = '구독 ??번호 ?�음';
+            noSubsMsg.textContent = '구독 된 번호 없음';
             listEl.appendChild(noSubsMsg);
             this.updateSubscribeButtonText();
             return;
@@ -5691,7 +5691,7 @@ const SubscriptionManager = {
                 console.error('Error removing subscription from Firebase:', error);
             }
             
-            this.showToast('구독??취소?�었?�니??, 'success');
+            this.showToast('구독이 취소되었습니다', 'success');
         }
     },
     
@@ -5701,14 +5701,14 @@ const SubscriptionManager = {
     async handleInstallAndSubscribe() {
         const currentPlate = document.getElementById('plateNumber')?.textContent;
         if (!currentPlate || currentPlate === '-') {
-            this.showToast('번호???�보�?불러?????�습?�다', 'error');
+            this.showToast('번호판 정보를 불러올 수 없습니다', 'error');
             return;
         }
         
         // Check subscription limit
         let subscribed = this.getSubscribedPlates();
         if (subscribed.length >= this.MAX_SUBSCRIPTIONS && !subscribed.includes(currentPlate)) {
-            this.showToast('최�? 10�?번호?�만 구독 가?�합?�다', 'error');
+            this.showToast('최대 10개 번호판만 구독 가능합니다', 'error');
             return;
         }
         
@@ -5736,7 +5736,7 @@ const SubscriptionManager = {
             
             if (outcome === 'accepted') {
                 // console.log('PWA installed');
-                this.showToast('?�이 ?�치?�었?�니??, 'success');
+                this.showToast('앱이 설치되었습니다', 'success');
             } else {
                 // console.log('PWA installation declined');
             }
@@ -5745,18 +5745,18 @@ const SubscriptionManager = {
         } else {
             // Check if already installed
             if (window.matchMedia('(display-mode: standalone)').matches) {
-                this.showToast('?��? ?�치?�어 ?�습?�다', 'info');
+                this.showToast('이미 설치되어 있습니다', 'info');
             } else {
                 // Show manual installation guide
                 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
                 const isAndroid = /Android/.test(navigator.userAgent);
                 
                 if (isIOS) {
-                    this.showToast('Safari?�서 공유 버튼 ?????�면??추�?�??�택?�세??, 'info');
+                    this.showToast('Safari에서 공유 버튼 → 홈 화면에 추가를 선택하세요', 'info');
                 } else if (isAndroid) {
-                    this.showToast('브라?��? 메뉴?�서 "???�면??추�?"�??�택?�세??, 'info');
+                    this.showToast('브라우저 메뉴에서 "홈 화면에 추가"를 선택하세요', 'info');
                 } else {
-                    this.showToast('모바??브라?��??�서 ???�면??추�??�주?�요', 'info');
+                    this.showToast('모바일 브라우저에서 홈 화면에 추가해주세요', 'info');
                 }
             }
         }
@@ -5767,7 +5767,7 @@ const SubscriptionManager = {
      */
     async requestNotificationPermission() {
         if (!('Notification' in window)) {
-            this.showToast('??브라?��????�림??지?�하지 ?�습?�다', 'error');
+            this.showToast('이 브라우저는 알림을 지원하지 않습니다', 'error');
             return;
         }
         
@@ -5783,20 +5783,20 @@ const SubscriptionManager = {
                 if (token) {
                     // Save subscriptions to Firebase
                     await this.syncSubscriptionsToFirebase(token);
-                    this.showToast('?�림 구독???�료?�었?�니??, 'success');
+                    this.showToast('알림 구독이 완료되었습니다', 'success');
                     this.renderSubscribedList();
                 }
             } else if (permission === 'denied') {
                 // Show sequential alerts for denied permission
-                alert('?�림 권한???�용?��? ?�으�??�림??받을 ???�습?�다.');
-                alert('?�림??받으?�면 ?�정?�서 권한 ?�용 ???�시 구독?�주?�요.');
-                this.showToast('?�림 권한??거�??�었?�니??, 'error');
+                alert('알림 권한을 허용하지 않으면 알림을 받을 수 없습니다.');
+                alert('알림을 받으려면 설정에서 권한 허용 후 다시 구독해주세요.');
+                this.showToast('알림 권한이 거부되었습니다', 'error');
             } else {
-                this.showToast('?�림 권한???�요?�니??, 'info');
+                this.showToast('알림 권한이 필요합니다', 'info');
             }
         } catch (error) {
             console.error('Error requesting notification permission:', error);
-            this.showToast('?�림 ?�정 �??�류가 발생?�습?�다', 'error');
+            this.showToast('알림 설정 중 오류가 발생했습니다', 'error');
         }
     },
     
@@ -5891,40 +5891,40 @@ function closeSubscribePopup() {
 // (e.g., plate.html calls it in its DOMContentLoaded event)
 
 // ============================================================================
-// FINAL KOREAN PLATE VOICE RECOGNITION (2025 최적??버전)
+// FINAL KOREAN PLATE VOICE RECOGNITION (2025 최적화 버전)
 // ============================================================================
 
 const AMBIGUOUS_HANGUL_TO_DIGIT = {
-    '??:'1','??:'2','??:'3','??:'4','??:'5',
-    '??:'6','�?:'7','??:'8','�?:'9'
+    '일':'1','이':'2','삼':'3','사':'4','오':'5',
+    '육':'6','칠':'7','팔':'8','구':'9'
 };
 
-const VALID_PLATE_CHARS = '가?�다?�마거너?�러머버?�어?�고노?�로모보?�오조구?�두루무부?�우주아바사?�하?�호�?.split('');
+const VALID_PLATE_CHARS = '가나다라마거너더러머버서어저고노도로모보소오조구누두루무부수우주아바사자하허호배'.split('');
 
 const SPOKEN_NUMBER_MAP = {
-    '??:'0','�?:'0','?�로':'0',
-    '??:'1','?�나':'1','??:'2','??:'2','??:'3','??:'3',
-    '??:'4','??:'4','??:'5','?�섯':'5',
-    '??:'6','�?:'6','?�섯':'6','�?:'7','?�곱':'7',
-    '??:'8','?�덟':'8','�?:'9','?�홉':'9',
-    '??:'10','??��':'11','??��':'12','??��':'13','??��':'14',
-    '??��':'15','??��':'16','??��':'17','??��':'18','??��':'19'
+    '영':'0','공':'0','제로':'0',
+    '일':'1','하나':'1','이':'2','둘':'2','삼':'3','셋':'3',
+    '사':'4','넷':'4','오':'5','다섯':'5',
+    '육':'6','륙':'6','여섯':'6','칠':'7','일곱':'7',
+    '팔':'8','여덟':'8','구':'9','아홉':'9',
+    '십':'10','십일':'11','십이':'12','십삼':'13','십사':'14',
+    '십오':'15','십육':'16','십칠':'17','십팔':'18','십구':'19'
 };
 
 const SPOKEN_KEYS = Object.keys(SPOKEN_NUMBER_MAP).sort((a,b)=>b.length-a.length);
 
 // Korean spoken number to digit mapping (for pre-plate-letter positions)
 const KOREAN_NUMBER_WORDS = {
-    '??: '0', '�?: '0', '?�로': '0', '�?: '0',
-    '??: '1', '?�나': '1',
-    '??: '2', '??: '2',
-    '??: '3', '??: '3',
-    '??: '4', '??: '4',
-    '??: '5', '?�섯': '5',
-    '??: '6', '�?: '6', '?�섯': '6',
-    '�?: '7', '?�곱': '7',
-    '??: '8', '?�덟': '8',
-    '�?: '9', '?�홉': '9'
+    '영': '0', '공': '0', '제로': '0', '빵': '0',
+    '일': '1', '하나': '1',
+    '이': '2', '둘': '2',
+    '삼': '3', '셋': '3',
+    '사': '4', '넷': '4',
+    '오': '5', '다섯': '5',
+    '육': '6', '륙': '6', '여섯': '6',
+    '칠': '7', '일곱': '7',
+    '팔': '8', '여덟': '8',
+    '구': '9', '아홉': '9'
 };
 
 // Sort by length descending for proper replacement order
@@ -5932,13 +5932,13 @@ const KOREAN_NUMBER_KEYS = Object.keys(KOREAN_NUMBER_WORDS).sort((a, b) => b.len
 
 /**
  * Convert Korean number words to digits in positions before the plate letter
- * Handles cases like "공구�?363" ??"09�?363", "?�구�?363" ??"09�?363"
+ * Handles cases like "공구루3363" → "09루3363", "영구루3363" → "09루3363"
  * @param {string} transcript - Raw transcript
  * @returns {string} - Transcript with number words converted to digits before plate letter
  */
 function convertKoreanNumbersBeforePlateLetter(transcript) {
-    // Find the position of the plate letter (가?�다?�마거너?�러머버?�어?�구누?�루무�??�우주아바사?�하?�호�?
-    const plateLetterMatch = transcript.match(/[가?�다?�마거너?�러머버?�어?�구누?�루무�??�우주아바사?�하?�호�?/);
+    // Find the position of the plate letter (가나다라마거너더러머버서어저구누두루무부수우주아바사자하허호배)
+    const plateLetterMatch = transcript.match(/[가나다라마거너더러머버서어저구누두루무부수우주아바사자하허호배]/);
     
     if (!plateLetterMatch) {
         return transcript; // No plate letter found, return as-is
@@ -5959,13 +5959,13 @@ function convertKoreanNumbersBeforePlateLetter(transcript) {
 
 /**
  * Convert Korean number words to digits in positions after the plate letter
- * Handles cases like "12가?�사?�육" ??"12가3456"
+ * Handles cases like "12가삼사오육" → "12가3456"
  * @param {string} transcript - Transcript (may have numbers before letter already converted)
  * @returns {string} - Transcript with number words converted to digits after plate letter
  */
 function convertKoreanNumbersAfterPlateLetter(transcript) {
     // Find the position of the plate letter
-    const plateLetterMatch = transcript.match(/[가?�다?�마거너?�러머버?�어?�구누?�루무�??�우주아바사?�하?�호�?/);
+    const plateLetterMatch = transcript.match(/[가나다라마거너더러머버서어저구누두루무부수우주아바사자하허호배]/);
     
     if (!plateLetterMatch) {
         return transcript;
@@ -5985,38 +5985,38 @@ function convertKoreanNumbersAfterPlateLetter(transcript) {
 }
 
 // 1. DO NOT convert spoken numbers to digits in normalizeSpokenPlate()
-// ??Keep Hangul as-is for ambiguity detection!
+// → Keep Hangul as-is for ambiguity detection!
 function normalizeSpokenPlate(transcript) {
     transcript = transcript.trim().replace(/\s+/g, '');  // Keep spaces removed only
     
     // Remove dashes only
     transcript = transcript.replace(/-/g, '');
     
-    // IMPORTANT: Convert Korean number words (�? ?? �? etc.) to digits
-    // This handles misrecognition like "공구�?363" ??"09�?363"
+    // IMPORTANT: Convert Korean number words (공, 영, 구, etc.) to digits
+    // This handles misrecognition like "공구루3363" → "09루3363"
     transcript = convertKoreanNumbersBeforePlateLetter(transcript);
     transcript = convertKoreanNumbersAfterPlateLetter(transcript);
     
-    // Critical misrecognition fixes (these are NOT ambiguous ??always wrong)
+    // Critical misrecognition fixes (these are NOT ambiguous — always wrong)
     transcript = transcript
-        .replace(/�?g, '�?)
-        .replace(/�?g, '�?)
-        .replace(/??g, '??)
-        .replace(/??g, '??)
-        .replace(/�?g, '�?)
-        .replace(/??g, '??)
-        .replace(/�?g, '�?);
+        .replace(/로/g, '루')
+        .replace(/보/g, '버')
+        .replace(/소/g, '서')
+        .replace(/호/g, '허')
+        .replace(/고/g, '거')
+        .replace(/노/g, '너')
+        .replace(/모/g, '머');
     
-    // DO NOT TOUCH ????????????�???�?here anymore!
-    return transcript; // ??Return raw Hangul version
+    // DO NOT TOUCH 일,이,삼,사,오,육,칠,팔,구 here anymore!
+    return transcript; // ← Return raw Hangul version
 }
 
-// 2. Update generateVoiceCandidates() ??now works perfectly
+// 2. Update generateVoiceCandidates() — now works perfectly
 function generateVoiceCandidates(rawTranscript) {
-    const raw = normalizeSpokenPlate(rawTranscript);  // ??now contains Hangul preserved
+    const raw = normalizeSpokenPlate(rawTranscript);  // ← now contains Hangul preserved
     const candidates = new Set();
     
-    // Always try the version with ALL ambiguous Hangul ??digits
+    // Always try the version with ALL ambiguous Hangul → digits
     let allDigits = raw;
     Object.entries(AMBIGUOUS_HANGUL_TO_DIGIT).forEach(([h, d]) => {
         allDigits = allDigits.replace(new RegExp(h, 'g'), d);
@@ -6053,23 +6053,23 @@ function generateVoiceCandidates(rawTranscript) {
     let list = Array.from(candidates);
     
     // Must have at least one Hangul letter
-    list = list.filter(p => /[가-??/.test(p));
+    list = list.filter(p => /[가-힣]/.test(p));
     
     // No dash allowed
     list = list.filter(p => !p.includes('-'));
     
     // KEY FIX: If pure digits detected (no Hangul), generate candidates with common letter substitutions
-    // Common misrecognitions: 5?�오, 4?�사 (these sound similar in Korean)
+    // Common misrecognitions: 5↔오, 4↔사 (these sound similar in Korean)
     if (list.length === 0) {
         const pureDigits = raw.replace(/[^0-9]/g, '');  // Extract only digits
         const cleanRaw = rawTranscript.trim().replace(/\s+/g, '').replace(/-/g, '');
         
-        // If input looks like pure digits, try substituting 5?�오 and 4?�사
+        // If input looks like pure digits, try substituting 5→오 and 4→사
         if (/^\d+$/.test(cleanRaw) || /^\d+$/.test(pureDigits)) {
             const digitStr = cleanRaw.replace(/[^0-9]/g, '') || pureDigits;
             
-            // Common digit?�letter substitutions for Korean plates
-            const DIGIT_TO_HANGUL = {'5': '??, '4': '??, '0': '�?};
+            // Common digit→letter substitutions for Korean plates
+            const DIGIT_TO_HANGUL = {'5': '오', '4': '사', '0': '공'};
             
             // Find positions where substitution makes sense (5, 4, 0)
             const subPositions = [];
@@ -6091,7 +6091,7 @@ function generateVoiceCandidates(rawTranscript) {
                 }
                 const str = variant.join('');
                 const norm = Validator.normalizePlate(str);
-                if (norm?.plate && /[가-??/.test(norm.plate)) {
+                if (norm?.plate && /[가-힣]/.test(norm.plate)) {
                     list.push(norm.plate);
                 }
             }
@@ -6101,16 +6101,16 @@ function generateVoiceCandidates(rawTranscript) {
         if (list.length === 0) {
             const fallbackRaw = rawTranscript.trim().replace(/\s+/g, '')
                 .replace(/-/g, '')
-                .replace(/�?g, '�?)
-                .replace(/�?g, '�?)
-                .replace(/??g, '??)
-                .replace(/??g, '??)
-                .replace(/�?g, '�?)
-                .replace(/??g, '??)
-                .replace(/�?g, '�?);
+                .replace(/로/g, '루')
+                .replace(/보/g, '버')
+                .replace(/소/g, '서')
+                .replace(/호/g, '허')
+                .replace(/고/g, '거')
+                .replace(/노/g, '너')
+                .replace(/모/g, '머');
             
             const fallbackNorm = Validator.normalizePlate(fallbackRaw);
-            if (fallbackNorm?.plate && /[가-??/.test(fallbackNorm.plate)) {
+            if (fallbackNorm?.plate && /[가-힣]/.test(fallbackNorm.plate)) {
                 list = [fallbackNorm.plate];
             } else {
                 // Last resort: show the digit string with possible letter positions marked
@@ -6125,7 +6125,7 @@ function generateVoiceCandidates(rawTranscript) {
     return list;
 }
 
-// 3. VoiceInput 객체 (기존 �??�전 교체)
+// 3. VoiceInput 객체 (기존 것 완전 교체)
 const VoiceInput = {
     recognition: null,
     activeInput: null,
@@ -6154,7 +6154,7 @@ const VoiceInput = {
     
     startRecognition() {
         const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!Recognition) return alert('브라?��?가 ?�성 ?�식??지?�하지 ?�습?�다');
+        if (!Recognition) return alert('브라우저가 음성 인식을 지원하지 않습니다');
         
         this.recognition = new Recognition();
         this.recognition.lang = 'ko-KR';
@@ -6174,7 +6174,7 @@ const VoiceInput = {
         };
         
         this.recognition.onend = () => {
-            if (!transcript) return alert('?�성??감�??��? ?�았?�니??), this.close();
+            if (!transcript) return alert('음성이 감지되지 않았습니다'), this.close();
             const candidates = generateVoiceCandidates(transcript);
             this.showCandidates(candidates);
         };
@@ -6191,7 +6191,7 @@ const VoiceInput = {
         
         candidates.forEach((plate, i) => {
             const el = document.createElement('div');
-            el.className = 'voice-candidate';  // ??Removed ' best' entirely
+            el.className = 'voice-candidate';  // ← Removed ' best' entirely
             el.textContent = plate;
             el.onclick = () => this.selectCandidate(plate);
             container.appendChild(el);
@@ -6301,7 +6301,7 @@ const UpdateChecker = {
             await this.unregisterServiceWorker();
             
             // Show success message
-            this.showUpdateMessage('?�데?�트 ?�료! ?�이지�??�로고침?�니??..');
+            this.showUpdateMessage('업데이트 완료! 페이지를 새로고침합니다...');
             
             // Reload page after short delay
             setTimeout(() => {
@@ -6311,7 +6311,7 @@ const UpdateChecker = {
         } catch (error) {
             console.error('Update check failed:', error);
             updateBtn.classList.remove('checking');
-            this.showUpdateMessage('?�데?�트 ?�인 �??�류가 발생?�습?�다.', true);
+            this.showUpdateMessage('업데이트 확인 중 오류가 발생했습니다.', true);
         }
     },
 

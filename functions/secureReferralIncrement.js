@@ -341,7 +341,7 @@ exports.secureReferralIncrement = functions.https.onCall(async (data, context) =
           achievedAt: admin.database.ServerValue.TIMESTAMP,
         });
         isWinner = true;
-        // console.log(`?èÜ Referral winner registered: ${referrerId}`);
+        // console.log(`?ÔøΩÔøΩ Referral winner registered: ${referrerId}`);
       }
     }
     
@@ -350,9 +350,7 @@ exports.secureReferralIncrement = functions.https.onCall(async (data, context) =
     // ========================================================================
     
     const duration = Date.now() - startTime;
-    // console.log(
-      `Referral increment successful: ${referrerId} = ${newDailyCount}/${CONFIG.DAILY_LIMIT} (${duration}ms)`
-    );
+    // console.log(`Referral increment successful: ${referrerId} = ${newDailyCount}/${CONFIG.DAILY_LIMIT} (${duration}ms)`);
     
     return {
       success: true,

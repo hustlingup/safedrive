@@ -1,52 +1,52 @@
 /**
  * SafeDrive Referral Stats Module
- * referral-stats.html ?�용 - 관리자 ?�계 ?�이지
+ * referral-stats.html 전용 - 관리자 통계 페이지
  */
 
 const ReferralStats = (function() {
     'use strict';
     
-    // Admin key??URL ?�라미터�?검�?
-    // ?�제 ?�는 ?�버?�이?�나 ?�경변?�에??관�?권장
+    // Admin key는 URL 파라미터로 검증
+    // 실제 환경에서는 서버사이드나 환경변수에서 관리 권장
     const ADMIN_KEY_PARAM = 'key';
     
-    // ?�경변?�에??admin key 로드 (빌드 ??주입?�거??config?�서 로드)
-    // ?�라?�언???�이?�에?�는 Firebase?�서 검증하??방식 권장
+    // 환경변수에서 admin key 로드 (빌드 시 주입하거나 config에서 로드)
+    // 클라이언트 사이드에서는 Firebase에서 검증하는 방식 권장
     let validAdminKey = null;
     
     /**
-     * Admin key 검�?
+     * Admin key 검증
      */
     async function validateAdminKey() {
         const urlParams = new URLSearchParams(window.location.search);
         const providedKey = urlParams.get(ADMIN_KEY_PARAM);
         
         if (!providedKey) {
-            showAccessDenied('?�근 ?��? ?�요?�니??');
+            showAccessDenied('접근 키가 필요합니다.');
             return false;
         }
         
-        // Firebase?�서 admin key 검�?
+        // Firebase에서 admin key 검증
         try {
             const db = firebase.database();
             const snapshot = await db.ref('referrals/config/adminKey').once('value');
             validAdminKey = snapshot.val();
             
             if (!validAdminKey || providedKey !== validAdminKey) {
-                showAccessDenied('?�효?��? ?��? ?�근 ?�입?�다.');
+                showAccessDenied('유효하지 않은 접근 시도입니다.');
                 return false;
             }
             
             return true;
         } catch (error) {
             console.error('Admin key validation error:', error);
-            showAccessDenied('?�증 ?�류가 발생?�습?�다.');
+            showAccessDenied('인증 오류가 발생했습니다.');
             return false;
         }
     }
     
     /**
-     * ?�근 거�? ?�시
+     * 접근 거부 표시
      */
     function showAccessDenied(message) {
         const container = document.getElementById('statsContainer');
@@ -58,10 +58,10 @@ const ReferralStats = (function() {
             
             const icon = document.createElement('div');
             icon.className = 'denied-icon';
-            icon.textContent = '?��';
+            icon.textContent = '🚫';
             
             const heading = document.createElement('h2');
-            heading.textContent = '?�근 거�?';
+            heading.textContent = '접근 거부';
             
             const para = document.createElement('p');
             para.textContent = message;
@@ -73,27 +73,24 @@ const ReferralStats = (function() {
         }
     }
 
+
     /**
-     * ?�이지 초기??
+     * 페이지 초기화
      */
     async function init() {
-        // console.log('?�� ReferralStats initializing...');
-        
-        // Admin key 검�?
+        // Admin key 검증
         const isValid = await validateAdminKey();
         if (!isValid) return;
         
-        // ?�계 로드
+        // 통계 로드
         await loadStats();
         
-        // ?�벤??리스??
+        // 이벤트 리스너
         setupEventListeners();
-        
-        // console.log('??ReferralStats initialized');
     }
     
     /**
-     * ?�계 로드 �??�더�?
+     * 통계 로드 및 렌더링
      */
     async function loadStats() {
         showLoading(true);
@@ -102,38 +99,38 @@ const ReferralStats = (function() {
             const today = ReferralCore.getTodayString();
             const db = firebase.database();
             
-            // ?�늘 리더보드 가?�오�?
+            // 오늘 리더보드 가져오기
             const leaderboardSnapshot = await db.ref(`referrals/leaderboards/daily/${today}`)
                 .orderByValue()
                 .once('value');
             
             const leaderboardData = leaderboardSnapshot.val() || {};
             
-            // ?�렬 (?�림차순)
+            // 정렬 (내림차순)
             const sortedData = Object.entries(leaderboardData)
                 .map(([id, count]) => ({ id, count }))
                 .sort((a, b) => b.count - a.count);
             
-            // ?�늘 winners 가?�오�?
+            // 오늘 winners 가져오기
             const winners = await ReferralCore.getDailyWinners();
             const winnerIds = new Set(winners.map(w => w.id));
             
-            // ?�이�??�더�?
+            // 테이블 렌더링
             renderLeaderboard(sortedData, winnerIds);
             
-            // ?�약 ?�계
+            // 요약 통계
             renderSummary(sortedData, winners);
             
         } catch (error) {
             console.error('Error loading stats:', error);
-            showError('?�계 로딩 �??�류가 발생?�습?�다.');
+            showError('통계 로딩 중 오류가 발생했습니다.');
         } finally {
             showLoading(false);
         }
     }
     
     /**
-     * 리더보드 ?�이�??�더�?
+     * 리더보드 테이블 렌더링
      */
     function renderLeaderboard(data, winnerIds) {
         const tbody = document.getElementById('leaderboardBody');
@@ -146,7 +143,7 @@ const ReferralStats = (function() {
             const cell = document.createElement('td');
             cell.colSpan = 4;
             cell.className = 'no-data';
-            cell.textContent = '?�늘 ?�이?��? ?�습?�다.';
+            cell.textContent = '오늘 데이터가 없습니다.';
             row.appendChild(cell);
             tbody.appendChild(row);
             return;
@@ -155,7 +152,7 @@ const ReferralStats = (function() {
         data.forEach((entry, index) => {
             const rank = index + 1;
             const isWinner = winnerIds.has(entry.id);
-            const rankBadge = rank <= 3 ? ['?��', '?��', '?��'][rank - 1] : String(rank);
+            const rankBadge = rank <= 3 ? ['🥇', '🥈', '🥉'][rank - 1] : String(rank);
             
             const row = document.createElement('tr');
             if (isWinner) row.className = 'winner-row';
@@ -178,7 +175,7 @@ const ReferralStats = (function() {
             if (isWinner) {
                 const winnerBadge = document.createElement('span');
                 winnerBadge.className = 'winner-badge';
-                winnerBadge.textContent = '?�� 50?�성';
+                winnerBadge.textContent = '🏆 50달성';
                 statusCell.appendChild(winnerBadge);
             }
             
@@ -196,9 +193,10 @@ const ReferralStats = (function() {
             tbody.appendChild(row);
         });
     }
+
     
     /**
-     * ?�약 ?�계 ?�더�?
+     * 요약 통계 렌더링
      */
     function renderSummary(data, winners) {
         const summaryEl = document.getElementById('statsSummary');
@@ -218,7 +216,7 @@ const ReferralStats = (function() {
         value1.textContent = totalParticipants;
         const label1 = document.createElement('div');
         label1.className = 'summary-label';
-        label1.textContent = '참여????;
+        label1.textContent = '참여자 수';
         card1.appendChild(value1);
         card1.appendChild(label1);
         
@@ -230,7 +228,7 @@ const ReferralStats = (function() {
         value2.textContent = totalReferrals;
         const label2 = document.createElement('div');
         label2.className = 'summary-label';
-        label2.textContent = '�?추천 ??;
+        label2.textContent = '총 추천 수';
         card2.appendChild(value2);
         card2.appendChild(label2);
         
@@ -242,7 +240,7 @@ const ReferralStats = (function() {
         value3.textContent = `${winnersCount}/3`;
         const label3 = document.createElement('div');
         label3.className = 'summary-label';
-        label3.textContent = '50?�성 Winners';
+        label3.textContent = '50달성 Winners';
         card3.appendChild(value3);
         card3.appendChild(label3);
         
@@ -260,7 +258,7 @@ const ReferralStats = (function() {
         
         const rows = tbody.querySelectorAll('tr');
         if (rows.length === 0) {
-            alert('?�보???�이?��? ?�습?�다.');
+            alert('내보낼 데이터가 없습니다.');
             return;
         }
         
@@ -278,7 +276,7 @@ const ReferralStats = (function() {
             }
         });
         
-        // ?�운로드
+        // 다운로드
         const blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
         const link = document.createElement('a');
         link.href = URL.createObjectURL(blob);
@@ -288,7 +286,7 @@ const ReferralStats = (function() {
     }
     
     /**
-     * ?�벤??리스???�정
+     * 이벤트 리스너 설정
      */
     function setupEventListeners() {
         // CSV Export 버튼
@@ -297,7 +295,7 @@ const ReferralStats = (function() {
             exportBtn.addEventListener('click', exportToCSV);
         }
         
-        // ?�로고침 버튼
+        // 새로고침 버튼
         const refreshBtn = document.getElementById('refreshStatsBtn');
         if (refreshBtn) {
             refreshBtn.addEventListener('click', loadStats);
@@ -305,7 +303,7 @@ const ReferralStats = (function() {
     }
     
     /**
-     * 로딩 ?�시
+     * 로딩 표시
      */
     function showLoading(show) {
         const loader = document.getElementById('statsLoader');
@@ -316,7 +314,7 @@ const ReferralStats = (function() {
     }
     
     /**
-     * ?�러 ?�시
+     * 에러 표시
      */
     function showError(message) {
         const errorEl = document.getElementById('statsError');
@@ -334,7 +332,7 @@ const ReferralStats = (function() {
     };
 })();
 
-// DOM 로드 ??초기??
+// DOM 로드 후 초기화
 document.addEventListener('DOMContentLoaded', () => {
     ReferralStats.init();
 });

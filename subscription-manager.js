@@ -18,7 +18,7 @@ if (typeof SubscriptionManager === 'undefined') {
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('/sw.js')
                     .then((registration) => {
-                        // console.log('Service Worker registered:', registration);
+                        console.log('Service Worker registered:', registration);
                         
                         // Send Firebase config to service worker
                         if (registration.active && typeof firebaseConfig !== 'undefined') {
@@ -36,7 +36,7 @@ if (typeof SubscriptionManager === 'undefined') {
             // Initialize Firebase Messaging
             try {
                 this.messaging = firebase.messaging();
-                // console.log('Firebase Messaging initialized');
+                console.log('Firebase Messaging initialized');
             } catch (error) {
                 console.error('Firebase Messaging initialization failed:', error);
             }
@@ -45,7 +45,7 @@ if (typeof SubscriptionManager === 'undefined') {
             window.addEventListener('beforeinstallprompt', (e) => {
                 e.preventDefault();
                 this.deferredPrompt = e;
-                // console.log('beforeinstallprompt event captured');
+                console.log('beforeinstallprompt event captured');
             });
             
             // Setup subscribe button
@@ -62,7 +62,7 @@ if (typeof SubscriptionManager === 'undefined') {
                 return;
             }
             
-            // console.log('Subscribe button found, setting up...');
+            console.log('Subscribe button found, setting up...');
             
             // Update button text based on subscription status
             this.updateSubscribeButtonText();
@@ -88,7 +88,7 @@ if (typeof SubscriptionManager === 'undefined') {
             
             // Click handler
             subscribeBtn.addEventListener('click', () => {
-                // console.log('Subscribe button clicked');
+                console.log('Subscribe button clicked');
                 this.openSubscribePopup();
             });
         },
@@ -281,7 +281,7 @@ if (typeof SubscriptionManager === 'undefined') {
                 });
                 
                 if (result.data && result.data.success) {
-                    // console.log('Notification settings synced to Firebase via Cloud Function');
+                    console.log('Notification settings synced to Firebase via Cloud Function');
                 } else {
                     console.error('Sync failed:', result.data);
                 }
@@ -332,10 +332,16 @@ if (typeof SubscriptionManager === 'undefined') {
         /**
          * Render subscribed plates list
          */
-        renderSubscribedList() {
+        renderSubscribedList(showLoading = false) {
             const listEl = document.getElementById('subscribedList');
             const countEl = document.getElementById('subscribeCount');
             if (!listEl) return;
+            
+            // Show loading state if requested
+            if (showLoading) {
+                listEl.innerHTML = '<p class="subscription-loading">구독 설정 저장 중...</p>';
+                return;
+            }
             
             const subscribed = this.getSubscribedPlates();
             
@@ -430,7 +436,7 @@ if (typeof SubscriptionManager === 'undefined') {
                             plateNumber: plate,
                             action: 'unsubscribe'
                         });
-                        // console.log(`Removed subscription for ${plate}`);
+                        console.log(`Removed subscription for ${plate}`);
                     }
                 } catch (error) {
                     console.error('Error removing subscription from Firebase:', error);
@@ -457,15 +463,21 @@ if (typeof SubscriptionManager === 'undefined') {
                 return;
             }
             
-            // Add current plate to subscriptions if not already subscribed
+            // Show loading state
+            this.renderSubscribedList(true);
+            
+            // Add current plate to subscriptions FIRST (local storage)
             if (!subscribed.includes(currentPlate)) {
                 subscribed.push(currentPlate);
                 this.saveSubscribedPlates(subscribed);
                 this.updateSubscribeButtonText();
             }
             
-            // Request notification permission only (no PWA install)
-            await this.requestNotificationPermission();
+            // Then request notification permission and sync to Firebase
+            await this.requestAndSyncNotifications();
+            
+            // Update list (remove loading state)
+            this.renderSubscribedList();
         },
 
         /**
@@ -485,7 +497,10 @@ if (typeof SubscriptionManager === 'undefined') {
                 return;
             }
             
-            // Add current plate to subscriptions if not already subscribed
+            // Show loading state
+            this.renderSubscribedList(true);
+            
+            // Add current plate to subscriptions FIRST (local storage)
             if (!subscribed.includes(currentPlate)) {
                 subscribed.push(currentPlate);
                 this.saveSubscribedPlates(subscribed);
@@ -495,43 +510,371 @@ if (typeof SubscriptionManager === 'undefined') {
             // Try PWA installation
             await this.installPWA();
             
-            // Request notification permission
-            await this.requestNotificationPermission();
+            // Then request notification permission and sync to Firebase
+            await this.requestAndSyncNotifications();
+            
+            // Update list (remove loading state)
+            this.renderSubscribedList();
+        },
+        
+        /**
+         * Request notification permission and sync to Firebase
+         * This is the main function that handles the permission flow
+         */
+        async requestAndSyncNotifications() {
+            // Check push support first
+            const support = this.checkPushSupport();
+            if (!support.supported) {
+                console.warn('Push not supported:', support.reason);
+                this.showToast(support.message, 'info');
+                // Still save locally, just can't get push notifications
+                this.showToast('구독이 저장되었습니다 (알림은 지원되지 않음)', 'info');
+                return;
+            }
+            
+            // Check current permission state
+            const currentPermission = Notification.permission;
+            console.log('Current notification permission:', currentPermission);
+            
+            // If already denied, inform user but still save subscription locally
+            if (currentPermission === 'denied') {
+                this.showToast('알림이 차단되어 있습니다. 브라우저 설정에서 허용해주세요.', 'info');
+                this.showToast('구독이 저장되었습니다', 'success');
+                return;
+            }
+            
+            // Request permission if not granted yet
+            if (currentPermission !== 'granted') {
+                try {
+                    console.log('Requesting notification permission...');
+                    const permission = await Notification.requestPermission();
+                    console.log('Permission result:', permission);
+                    
+                    if (permission === 'denied') {
+                        this.showToast('알림 권한이 거부되었습니다. 설정에서 허용해주세요.', 'info');
+                        this.showToast('구독이 저장되었습니다', 'success');
+                        return;
+                    } else if (permission !== 'granted') {
+                        // User dismissed or 'default' - still save subscription
+                        this.showToast('구독이 저장되었습니다. 알림을 받으려면 권한을 허용해주세요.', 'info');
+                        return;
+                    }
+                } catch (error) {
+                    console.error('Error requesting notification permission:', error);
+                    this.showToast('구독이 저장되었습니다', 'success');
+                    return;
+                }
+            }
+            
+            // Permission granted - get FCM token and sync to Firebase
+            try {
+                const token = await this.getFCMToken();
+                if (token) {
+                    await this.syncSubscriptionsToFirebase(token);
+                    this.showToast('알림 구독이 완료되었습니다', 'success');
+                } else {
+                    this.showToast('구독이 저장되었습니다', 'success');
+                }
+            } catch (error) {
+                console.error('Error during subscription sync:', error);
+                this.showToast('구독이 저장되었습니다', 'success');
+            }
         },
         
         /**
          * Install PWA
          */
         async installPWA() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isAndroid = /Android/.test(navigator.userAgent);
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+            
+            // Check if already installed
+            if (isStandalone) {
+                this.showToast('이미 설치되어 있습니다 ✓', 'success');
+                return;
+            }
+            
+            // Try native install prompt (works on Android Chrome, Edge, etc.)
             if (this.deferredPrompt) {
-                this.deferredPrompt.prompt();
-                const { outcome } = await this.deferredPrompt.userChoice;
-                
-                if (outcome === 'accepted') {
-                    // console.log('PWA installed');
-                    this.showToast('앱이 설치되었습니다', 'success');
-                } else {
-                    // console.log('PWA installation declined');
-                }
-                
-                this.deferredPrompt = null;
-            } else {
-                // Check if already installed
-                if (window.matchMedia('(display-mode: standalone)').matches) {
-                    this.showToast('이미 설치되어 있습니다', 'info');
-                } else {
-                    // Show manual installation guide
-                    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-                    const isAndroid = /Android/.test(navigator.userAgent);
+                try {
+                    this.deferredPrompt.prompt();
+                    const { outcome } = await this.deferredPrompt.userChoice;
                     
-                    if (isIOS) {
-                        this.showToast('Safari에서 공유 버튼 → 홈 화면에 추가를 선택하세요', 'info');
-                    } else if (isAndroid) {
-                        this.showToast('브라우저 메뉴에서 "홈 화면에 추가"를 선택하세요', 'info');
+                    if (outcome === 'accepted') {
+                        console.log('PWA installed');
+                        this.showToast('앱이 설치되었습니다! 🎉', 'success');
                     } else {
-                        this.showToast('모바일 브라우저에서 홈 화면에 추가해주세요', 'info');
+                        console.log('PWA installation declined');
+                        this.showToast('설치가 취소되었습니다', 'info');
                     }
+                    
+                    this.deferredPrompt = null;
+                    return;
+                } catch (error) {
+                    console.error('Error during PWA install prompt:', error);
                 }
+            }
+            
+            // Show manual installation guide for devices without native prompt
+            if (isIOS) {
+                // iOS requires Safari and manual add to home screen
+                this.showInstallGuideModal('ios');
+            } else if (isAndroid) {
+                // Android without beforeinstallprompt (Samsung Internet, Firefox, etc.)
+                this.showInstallGuideModal('android');
+            } else {
+                // Desktop or other
+                this.showInstallGuideModal('desktop');
+            }
+        },
+        
+        /**
+         * Show installation guide modal for manual PWA installation
+         */
+        showInstallGuideModal(platform) {
+            let title, steps;
+            
+            if (platform === 'ios') {
+                title = 'iOS에서 앱 설치하기';
+                steps = [
+                    '1. Safari 브라우저 하단의 <strong>공유 버튼</strong> (□↑) 탭',
+                    '2. 메뉴에서 <strong>"홈 화면에 추가"</strong> 선택',
+                    '3. 오른쪽 상단 <strong>"추가"</strong> 탭'
+                ];
+            } else if (platform === 'android') {
+                title = 'Android에서 앱 설치하기';
+                steps = [
+                    '1. 브라우저 우측 상단 <strong>메뉴 (⋮)</strong> 탭',
+                    '2. <strong>"홈 화면에 추가"</strong> 또는 <strong>"앱 설치"</strong> 선택',
+                    '3. <strong>"설치"</strong> 또는 <strong>"추가"</strong> 탭'
+                ];
+            } else {
+                title = '앱 설치하기';
+                steps = [
+                    '1. 브라우저 주소창 오른쪽의 <strong>설치 아이콘</strong> 클릭',
+                    '2. 또는 브라우저 메뉴에서 <strong>"앱 설치"</strong> 선택',
+                    '3. <strong>"설치"</strong> 클릭'
+                ];
+            }
+            
+            // Create modal
+            const modal = document.createElement('div');
+            modal.className = 'install-guide-modal';
+            modal.innerHTML = `
+                <div class="install-guide-overlay" onclick="this.parentElement.remove()"></div>
+                <div class="install-guide-content">
+                    <button class="install-guide-close" onclick="this.parentElement.parentElement.remove()">✕</button>
+                    <h3>${title}</h3>
+                    <div class="install-guide-steps">
+                        ${steps.map(step => `<p>${step}</p>`).join('')}
+                    </div>
+                    <button class="install-guide-ok" onclick="this.parentElement.parentElement.remove()">확인</button>
+                </div>
+            `;
+            
+            // Add styles if not already added
+            if (!document.getElementById('install-guide-styles')) {
+                const style = document.createElement('style');
+                style.id = 'install-guide-styles';
+                style.textContent = `
+                    .install-guide-modal {
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        z-index: 10001;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        padding: 20px;
+                    }
+                    .install-guide-overlay {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(0, 0, 0, 0.6);
+                    }
+                    .install-guide-content {
+                        position: relative;
+                        background: white;
+                        border-radius: 16px;
+                        padding: 24px;
+                        max-width: 340px;
+                        width: 100%;
+                        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                        animation: slideUp 0.3s ease;
+                    }
+                    @keyframes slideUp {
+                        from { opacity: 0; transform: translateY(20px); }
+                        to { opacity: 1; transform: translateY(0); }
+                    }
+                    .install-guide-close {
+                        position: absolute;
+                        top: 12px;
+                        right: 12px;
+                        width: 28px;
+                        height: 28px;
+                        border: none;
+                        background: #f3f4f6;
+                        border-radius: 50%;
+                        font-size: 16px;
+                        cursor: pointer;
+                    }
+                    .install-guide-content h3 {
+                        font-size: 1.25rem;
+                        font-weight: 700;
+                        color: #1f2937;
+                        margin-bottom: 16px;
+                        text-align: center;
+                    }
+                    .install-guide-steps {
+                        background: #f9fafb;
+                        border-radius: 12px;
+                        padding: 16px;
+                        margin-bottom: 20px;
+                    }
+                    .install-guide-steps p {
+                        font-size: 0.9rem;
+                        color: #374151;
+                        margin-bottom: 12px;
+                        line-height: 1.5;
+                    }
+                    .install-guide-steps p:last-child {
+                        margin-bottom: 0;
+                    }
+                    .install-guide-steps strong {
+                        color: #2563eb;
+                    }
+                    .install-guide-ok {
+                        width: 100%;
+                        padding: 14px;
+                        font-size: 1rem;
+                        font-weight: 600;
+                        color: white;
+                        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                        border: none;
+                        border-radius: 10px;
+                        cursor: pointer;
+                    }
+                    [data-theme="dark"] .install-guide-content {
+                        background: #1f2937;
+                    }
+                    [data-theme="dark"] .install-guide-content h3 {
+                        color: #f9fafb;
+                    }
+                    [data-theme="dark"] .install-guide-steps {
+                        background: #374151;
+                    }
+                    [data-theme="dark"] .install-guide-steps p {
+                        color: #e5e7eb;
+                    }
+                    [data-theme="dark"] .install-guide-close {
+                        background: #374151;
+                        color: #e5e7eb;
+                    }
+                `;
+                document.head.appendChild(style);
+            }
+            
+            document.body.appendChild(modal);
+        },
+        
+        /**
+         * Check if push notifications are supported on this device/browser
+         */
+        checkPushSupport() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+            const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+            
+            // iOS Safari only supports push in PWA mode (iOS 16.4+)
+            if (isIOS && !isStandalone) {
+                return {
+                    supported: false,
+                    reason: 'ios-not-pwa',
+                    message: 'iOS에서 알림을 받으려면 먼저 홈 화면에 추가해주세요. (공유 버튼 → 홈 화면에 추가)'
+                };
+            }
+            
+            // Check basic support
+            if (!('Notification' in window)) {
+                return {
+                    supported: false,
+                    reason: 'no-notification-api',
+                    message: '이 브라우저는 알림을 지원하지 않습니다'
+                };
+            }
+            
+            if (!('serviceWorker' in navigator)) {
+                return {
+                    supported: false,
+                    reason: 'no-service-worker',
+                    message: '이 브라우저는 서비스 워커를 지원하지 않습니다'
+                };
+            }
+            
+            if (!('PushManager' in window)) {
+                return {
+                    supported: false,
+                    reason: 'no-push-manager',
+                    message: '이 브라우저는 푸시 알림을 지원하지 않습니다'
+                };
+            }
+            
+            return { supported: true };
+        },
+        
+        /**
+         * Request notification permission immediately (returns true/false)
+         * Shows permission modal right away without alerts
+         */
+        async requestNotificationPermissionImmediate() {
+            // Check push support first
+            const support = this.checkPushSupport();
+            if (!support.supported) {
+                console.warn('Push not supported:', support.reason);
+                this.showToast(support.message, 'error');
+                return false;
+            }
+            
+            // Check current permission state
+            const currentPermission = Notification.permission;
+            console.log('Current notification permission:', currentPermission);
+            
+            if (currentPermission === 'granted') {
+                console.log('Notification permission already granted');
+                return true;
+            }
+            
+            if (currentPermission === 'denied') {
+                this.showToast('알림이 차단되어 있습니다. 브라우저 설정에서 허용해주세요.', 'error');
+                return false;
+            }
+            
+            // Permission is 'default' - need to request
+            try {
+                console.log('Requesting notification permission...');
+                const permission = await Notification.requestPermission();
+                console.log('Permission result:', permission);
+                
+                if (permission === 'granted') {
+                    console.log('Notification permission granted');
+                    return true;
+                } else if (permission === 'denied') {
+                    this.showToast('알림 권한이 거부되었습니다. 설정에서 허용해주세요.', 'error');
+                    return false;
+                } else {
+                    this.showToast('알림 권한이 필요합니다', 'info');
+                    return false;
+                }
+            } catch (error) {
+                console.error('Error requesting notification permission:', error);
+                this.showToast('알림 설정 중 오류가 발생했습니다: ' + error.message, 'error');
+                return false;
             }
         },
         
@@ -539,16 +882,21 @@ if (typeof SubscriptionManager === 'undefined') {
          * Request notification permission and get FCM token
          */
         async requestNotificationPermission() {
-            if (!('Notification' in window)) {
-                this.showToast('이 브라우저는 알림을 지원하지 않습니다', 'error');
+            // Check push support first
+            const support = this.checkPushSupport();
+            if (!support.supported) {
+                console.warn('Push not supported:', support.reason);
+                this.showToast(support.message, 'error');
                 return;
             }
             
             try {
+                console.log('Requesting notification permission...');
                 const permission = await Notification.requestPermission();
+                console.log('Permission result:', permission);
                 
                 if (permission === 'granted') {
-                    // console.log('Notification permission granted');
+                    console.log('Notification permission granted');
                     
                     // Get FCM token
                     const token = await this.getFCMToken();
@@ -560,16 +908,13 @@ if (typeof SubscriptionManager === 'undefined') {
                         this.renderSubscribedList();
                     }
                 } else if (permission === 'denied') {
-                    // Show sequential alerts for denied permission
-                    alert('알림 권한을 허용하지 않으면 알림을 받을 수 없습니다.');
-                    alert('알림을 받으려면 설정에서 권한 허용 후 다시 구독해주세요.');
-                    this.showToast('알림 권한이 거부되었습니다', 'error');
+                    this.showToast('알림 권한이 거부되었습니다. 설정에서 허용해주세요.', 'error');
                 } else {
                     this.showToast('알림 권한이 필요합니다', 'info');
                 }
             } catch (error) {
                 console.error('Error requesting notification permission:', error);
-                this.showToast('알림 설정 중 오류가 발생했습니다', 'error');
+                this.showToast('알림 설정 중 오류가 발생했습니다: ' + error.message, 'error');
             }
         },
 
@@ -592,10 +937,10 @@ if (typeof SubscriptionManager === 'undefined') {
                 });
                 
                 if (token) {
-                    // console.log('FCM Token:', token);
+                    console.log('FCM Token:', token);
                     return token;
                 } else {
-                    // console.log('No FCM token available');
+                    console.log('No FCM token available');
                     return null;
                 }
             } catch (error) {
@@ -628,7 +973,7 @@ if (typeof SubscriptionManager === 'undefined') {
                 });
                 
                 if (result.data && result.data.success) {
-                    // console.log('Subscriptions synced to Firebase via Cloud Function (enabled:', enabledPlates.length, '/ total:', subscribed.length, ')');
+                    console.log('Subscriptions synced to Firebase via Cloud Function (enabled:', enabledPlates.length, '/ total:', subscribed.length, ')');
                 } else {
                     console.error('Sync failed:', result.data);
                 }

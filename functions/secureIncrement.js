@@ -211,15 +211,16 @@ function validateRequest(payload) {
       return false;
     }
     
-    // Generate server-side HMAC for logging/auditing
-    const serverSignature = generateServerHMAC(payload);
-    
-    // console.log("Request validation:", {
-      fingerprintPrefix: payload.fingerprint.substring(0, 8) + "...",
-      timestamp: payload.timestamp,
-      noncePrefix: payload.nonce.substring(0, 8) + "...",
-      serverSignature: serverSignature.substring(0, 16) + "...",
-    });
+    // Generate server-side HMAC for logging/auditing (only if secret is configured)
+    if (CONFIG.HMAC_SECRET) {
+      const serverSignature = generateServerHMAC(payload);
+      // console.log("Request validation:", {
+      //   fingerprintPrefix: payload.fingerprint.substring(0, 8) + "...",
+      //   timestamp: payload.timestamp,
+      //   noncePrefix: payload.nonce.substring(0, 8) + "...",
+      //   serverSignature: serverSignature.substring(0, 16) + "...",
+      // });
+    }
     
     // Since client can't generate valid HMAC anymore, we just validate structure
     // The real security comes from rate limiting, nonce validation, and fingerprinting

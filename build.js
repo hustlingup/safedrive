@@ -114,7 +114,7 @@ function copyDir(srcDir, destDir, exclude = []) {
 
 // Main build
 function build() {
-    // console.log('?î® Building SafeDrive...\\n');
+    // console.log('?ÔøΩÔøΩ Building SafeDrive...\\n');
     
     const env = loadEnv();
     const distDir = 'dist';
@@ -126,12 +126,13 @@ function build() {
     ensureDir(distDir);
     
     // Process files with placeholders
-    // console.log('?ì¶ Processing files with credentials...');
+    // console.log('?ÔøΩÔøΩ Processing files with credentials...');
     const filesToProcess = [
         { src: 'script.js', dest: 'dist/script.js' },
         { src: 'subscription-manager.js', dest: 'dist/subscription-manager.js' },
         { src: 'firebase-config.js', dest: 'dist/firebase-config.js' },
         { src: 'sw.js', dest: 'dist/sw.js' },
+        { src: 'firebase-messaging-sw.js', dest: 'dist/firebase-messaging-sw.js' },
         { src: 'public/firebase-config.js', dest: 'dist/public/firebase-config.js' }
     ];
     
@@ -145,12 +146,12 @@ function build() {
     }
     
     // Copy other files
-    // console.log('\\n?ìÅ Copying other files...');
+    // console.log('\\n?ÔøΩÔøΩ Copying other files...');
     const filesToCopy = [
         'index.html', 'plate.html', 'contact.html', 'faq.html',
         'legal.html', 'terms.html', 'privacy.html', 'other.html',
         'referral.html', 'qr-generator.html', 'styles.css',
-        'security.js', 'manifest.json', 'favicon.ico',
+        'security.js', 'manifest.json', 'favicon.ico', 'ads.txt',
         'animated-qr.html', 'generate-favicon.html',
         'referral-design-options.html', 'referral-layout-options.html',
         'referral-stats.html', 'test-referral.html',
@@ -184,7 +185,7 @@ function build() {
     }
     
     // console.log('\\n??Build completed!');
-    // console.log('\\n?ìÇ Output: dist/');
+    // console.log('\\n?ÔøΩÔøΩ Output: dist/');
     // console.log('\\n?? Deploy: firebase deploy --only hosting');
 }
 

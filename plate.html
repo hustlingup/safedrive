@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TRTW3S54');</script>
+<!-- End Google Tag Manager -->
     <!-- Google tag (gtag.js) - with Cookie Consent -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9R8RZYZC7X"></script>
 <script>
@@ -18,6 +25,8 @@
   
   gtag('config', 'G-9R8RZYZC7X');
 </script>
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6791974364232767" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SAFE DRIVE 차량 안전 리포트 - 실시간 차량 안전 정보와 케어 인덱스를 확인하세요.">
@@ -430,6 +439,7 @@
             display: flex;
             gap: 8px;
             animation: fadeIn 0.5s ease 0.1s both;
+            align-items: center;
         }
 
         .pipc-link {
@@ -443,13 +453,11 @@
         
         .pro-search-input-wrapper {
             position: relative;
-            flex: 0 0 80%;
-            max-width: 80%;
+            flex: 1;
         }
         
         .pro-search-form .pro-btn-primary {
-            flex: 0 0 20%;
-            max-width: 20%;
+            flex: 0 0 auto;
         }
         
         .pro-search-input {
@@ -502,17 +510,40 @@
         /* Wide Screen Layout - Desktop */
         @media (min-width: 1024px) {
             .pro-search-form {
-                width: 30%;
+                width: 35%;
+                align-items: center;
+                gap: 12px;
             }
             
             .pro-search-input-wrapper {
-                flex: 0 0 80%;
-                max-width: 80%;
+                flex: 1;
+                max-width: none;
+            }
+            
+            .pro-search-input {
+                padding: 14px 56px 14px 20px;
+                font-size: 1rem;
+                height: 50px;
+            }
+            
+            .pro-search-input-wrapper .voice-mic-btn {
+                width: 36px;
+                height: 36px;
+                right: 8px;
+            }
+            
+            .pro-search-input-wrapper .voice-mic-btn svg {
+                width: 16px;
+                height: 16px;
             }
             
             .pro-search-form .pro-btn-primary {
-                flex: 0 0 20%;
-                max-width: 20%;
+                flex: 0 0 auto;
+                max-width: none;
+                padding: 14px 24px;
+                height: 50px;
+                font-size: 0.9rem;
+                white-space: nowrap;
             }
         }
         
@@ -1460,6 +1491,26 @@
             padding: 24px;
         }
         
+        .subscription-loading {
+            text-align: center;
+            color: #2563eb;
+            font-size: 0.875rem;
+            padding: 24px;
+            font-weight: 500;
+        }
+        
+        .subscription-loading::after {
+            content: '';
+            animation: loadingDots 1.5s infinite;
+        }
+        
+        @keyframes loadingDots {
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
+        }
+        
         .subscribed-item {
             display: flex;
             align-items: center;
@@ -2009,6 +2060,10 @@
     </style>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRTW3S54"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
@@ -3299,7 +3354,7 @@
                 if (plateEmojiElement && plateNumber) {
                     const emoji = getVehicleEmojiLocal(plateNumber);
                     plateEmojiElement.textContent = emoji;
-                    console.log('updatePlateDisplay: Set emoji', emoji, 'for plate', plateNumber);
+                    // console.log('updatePlateDisplay: Set emoji', emoji, 'for plate', plateNumber);
                 }
             },
             
@@ -3311,12 +3366,12 @@
                     // Hide car messages, show motorbike messages
                     carMessages.forEach(el => el.style.display = 'none');
                     motorbikeMessages.forEach(el => el.style.display = 'block');
-                    console.log('Showing motorbike messages');
+                    // console.log('Showing motorbike messages');
                 } else {
                     // Show car messages, hide motorbike messages
                     carMessages.forEach(el => el.style.display = 'block');
                     motorbikeMessages.forEach(el => el.style.display = 'none');
-                    console.log('Showing car messages');
+                    // console.log('Showing car messages');
                 }
             },
             
@@ -3604,7 +3659,7 @@
             
             async renderRatingBadges(plateNumber, plateData) {
                 if (!plateNumber || !plateData) {
-                    console.log('renderRatingBadges: Missing plateNumber or plateData');
+                    // console.log('renderRatingBadges: Missing plateNumber or plateData');
                     return;
                 }
                 
@@ -3614,7 +3669,7 @@
                     return;
                 }
                 
-                console.log('renderRatingBadges: Starting for plate', plateNumber);
+                // console.log('renderRatingBadges: Starting for plate', plateNumber);
                 
                 // Show loading indicator
                 container.textContent = '';
@@ -3628,8 +3683,8 @@
                     const startTime = performance.now();
                     const counters90d = await this.get90DayCounters(plateNumber);
                     const endTime = performance.now();
-                    console.log(`renderRatingBadges: Fetched 90-day data in ${Math.round(endTime - startTime)}ms`);
-                    console.log('renderRatingBadges: 90-day counters:', counters90d);
+                    // console.log(`renderRatingBadges: Fetched 90-day data in ${Math.round(endTime - startTime)}ms`);
+                    // console.log('renderRatingBadges: 90-day counters:', counters90d);
                     
                     let warningCount_90d = 0;
                     let conditionCount_90d = 0;
@@ -3698,15 +3753,15 @@
                     const interactionCount_90d = totalMessages_90d + likesCount_90d;
                     const views = plateData.views || 0;
                     
-                    console.log('renderRatingBadges: 90-day stats:', {
-                        warningCount_90d,
-                        conditionCount_90d,
-                        thanksCount_90d,
-                        likesCount_90d,
-                        totalMessages_90d,
-                        interactionCount_90d,
-                        views
-                    });
+                    // console.log('renderRatingBadges: 90-day stats:', {
+                    //     warningCount_90d,
+                    //     conditionCount_90d,
+                    //     thanksCount_90d,
+                    //     likesCount_90d,
+                    //     totalMessages_90d,
+                    //     interactionCount_90d,
+                    //     views
+                    // });
                     
                     const badges = [];
                     
@@ -3730,7 +3785,7 @@
                         badges.push('🔧 정비 알림이 여러 번 있었던 번호판');
                     }
                     
-                    console.log('renderRatingBadges: Badges earned:', badges);
+                    // console.log('renderRatingBadges: Badges earned:', badges);
                     
                     // Clear loading indicator
                     container.textContent = '';
@@ -3744,7 +3799,7 @@
                         message.style.fontStyle = 'italic';
                         message.textContent = '배지 획득을 위해서는 더 많은 메세지 수신이 필요해요.';
                         container.appendChild(message);
-                        console.log('renderRatingBadges: No badges earned (insufficient 90-day data)');
+                        // console.log('renderRatingBadges: No badges earned (insufficient 90-day data)');
                     } else {
                         badges.slice(0, 3).forEach(label => {
                             const span = document.createElement('span');
@@ -3752,7 +3807,7 @@
                             span.textContent = label;
                             container.appendChild(span);
                         });
-                        console.log(`renderRatingBadges: Successfully rendered ${badges.length} badge(s)`);
+                        // console.log(`renderRatingBadges: Successfully rendered ${badges.length} badge(s)`);
                     }
                 } catch (error) {
                     console.error('renderRatingBadges error:', error);
@@ -4048,11 +4103,11 @@
             <h3>번호판 구독 관리</h3>
             <p class="subscribe-popup-desc">구독하면 이 번호판에 새로운 메시지가 등록될 때 푸시 알림을 받을 수 있습니다.</p>
             
-            <button id="subscribeOnlyBtn" class="subscribe-install-btn subscribe-only-btn">
-                🔔 이 번호판 구독하기
-            </button>
             <button id="installPushBtn" class="subscribe-install-btn install-btn">
-                📱 바로가기 설치하고 푸시 알림 받기
+                📱 바로가기판 설치하고 푸시 알림 받기
+            </button>
+            <button id="subscribeOnlyBtn" class="subscribe-install-btn subscribe-only-btn">
+                🔔 이 번호판 구독만하기
             </button>
             
             <!-- Current plate number display -->

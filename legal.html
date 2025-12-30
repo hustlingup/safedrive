@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TRTW3S54');</script>
+<!-- End Google Tag Manager -->
     <!-- Google tag (gtag.js) - with Cookie Consent -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-9R8RZYZC7X"></script>
 <script>
@@ -195,40 +202,6 @@
             text-align: justify;
         }
 
-        .warning-box {
-            background: #fff3cd;
-            border: 2px solid #ffc107;
-            border-radius: 8px;
-            padding: 20px;
-            margin: 20px 0;
-        }
-
-        .warning-box h3 {
-            color: #856404;
-            font-size: 16px;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .warning-box p {
-            color: #856404;
-            line-height: 1.8;
-        }
-
-        .info-box {
-            background: #e7f3ff;
-            border-left: 4px solid #2193b0;
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 4px;
-        }
-
-        .info-box strong {
-            color: #2193b0;
-        }
-
         .footer {
             background: #f8f9fa;
             padding: 20px 30px;
@@ -334,9 +307,7 @@
             font-size: 19px;
         }
 
-        body.text-size-medium .section p,
-        body.text-size-medium .warning-box p,
-        body.text-size-medium .info-box {
+        body.text-size-medium .section p {
             font-size: 15px;
         }
 
@@ -348,9 +319,7 @@
             font-size: 21px;
         }
 
-        body.text-size-large .section p,
-        body.text-size-large .warning-box p,
-        body.text-size-large .info-box {
+        body.text-size-large .section p {
             font-size: 17px;
         }
 
@@ -390,6 +359,10 @@
     </style>
 </head>
 <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRTW3S54"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
     <!-- Navbar -->
     <nav class="navbar" role="navigation" aria-label="주 내비게이션">
         <div class="nav-container">
@@ -421,15 +394,16 @@
         </header>
 
         <article class="content">
-            <aside class="info-box" role="note">
+            <section class="section" aria-labelledby="legal-summary">
+                <h2 id="legal-summary">📌 핵심 요약</h2>
                 <p>
-                    <strong>📌 핵심 요약:</strong>
                     본 서비스는 차량 번호판 기반 템플릿 메시지 카운트 및 통계 제공을 위한 익명 플랫폼으로,
                     운영자는 최소한의 비식별 정보를 처리하며,
                     웹 분석 및 광고 제공 과정에서 Google Analytics·AdSense가 일부 온라인 식별 정보를 처리할 수 있습니다.
                     이용자의 부적절한 사용(외부 공유, 명예훼손, 광고 부정 클릭 등)으로 인한 모든 법적 책임은 이용자 본인에게 있습니다.
                 </p>
-            </div>
+            </section>
+
             <section class="section" aria-labelledby="legal-purpose">
                 <h2 id="legal-purpose">🎯 서비스 목적 및 성격</h2>
                 <p>
@@ -439,10 +413,10 @@
                     서비스 내에서 특정 차량 소유주를 직접 식별할 수 있는 이름, 연락처 등 개인정보는 저장·제공되지 않습니다.
                     제공되는 모든 정보는 이용자가 선택한 템플릿 메시지의 카운트 수치를 기반으로 한 제한적 기능에 한정됩니다.
                 </p>
-            </div>
+            </section>
 
-            <div class="section">
-                <h2>🏢 운영 주체 및 광고·분석 정책</h2>
+            <section class="section" aria-labelledby="legal-operator">
+                <h2 id="legal-operator">🏢 운영 주체 및 광고·분석 정책</h2>
                 <p>
                     본 서비스는 민간 사업자가 독립적으로 운영하는 플랫폼이며, 한국도로공사 등 어떠한 공공기관의 공식 서비스가 아닙니다.
                     서비스 운영 및 유지에 필요한 비용을 충당하기 위하여 Google AdSense 등 제3자의 광고 서비스가 노출될 수 있으며,
@@ -456,10 +430,10 @@
                     운영자는 차량 번호판, 템플릿 메시지 종류, 메시지 입력 시각, 구독 알림 제공을 위한 최소한의 기술적 식별자(예: FCM 토큰)만을
                     서비스 기능 범위 내에서 처리하며, 이를 특정 자연인의 실명·연락처 등과 결합하여 개인을 식별하지 않습니다.
                 </p>
-            </div>
+            </section>
 
-            <div class="warning-box">
-                <h3>⚠️ 중요: 이용자 책임 및 금지 행위</h3>
+            <section class="section" aria-labelledby="legal-responsibility">
+                <h2 id="legal-responsibility">⚠️ 이용자 책임 및 금지 행위</h2>
                 <p>
                     이용자는 본 플랫폼을 사용할 때 타인의 명예 또는 사생활을 침해하는 행위를 하여서는 아니 되며,
                     특히 타인의 번호판 정보가 포함된 내역을 캡처하여 SNS, 커뮤니티, 메신저 등 외부에 게시하거나 공유하는 경우,
@@ -467,10 +441,10 @@
                     명예훼손, 모욕, 개인정보보호 등 관련 법령에 따라 이용자 본인에게 법적 책임이 발생할 수 있습니다.
                     본 서비스는 이러한 외부 유포 행위를 허용하지 않으며, 이를 통해 발생한 모든 민·형사상 책임은 전적으로 이용자에게 있습니다.
                 </p>
-            </div>
+            </section>
 
-            <div class="section">
-                <h2>🚫 금지 행위 및 면책</h2>
+            <section class="section" aria-labelledby="legal-prohibited">
+                <h2 id="legal-prohibited">🚫 금지 행위 및 면책</h2>
                 <p>
                     사실과 다른 정보를 의도적으로 생성·입력하거나, 플랫폼을 비방·조롱·추적 등 부정한 목적으로 사용하는 행위는 금지됩니다.
                     서비스 기능은 교통안전 목적의 템플릿 메시지를 기반으로 한 카운트 증가 및 통계 제공 기능에만 한정되며,
@@ -481,10 +455,10 @@
                     제3자(예: Google)와의 약관 위반 및 부정이용에 해당할 수 있으며,
                     이로 인해 발생하는 제재·분쟁·손해에 대해서도 운영자는 책임을 지지 않습니다.
                 </p>
-            </div>
+            </section>
 
-            <div class="section">
-                <h2>📋 법령 준수 및 이용자 의무</h2>
+            <section class="section" aria-labelledby="legal-compliance">
+                <h2 id="legal-compliance">📋 법령 준수 및 이용자 의무</h2>
                 <p>
                     본 플랫폼은 「정보통신망법」, 「전기통신사업법」, 「개인정보 보호법」 등 관련 법령을 준수하여 운영됩니다.
                     이용자는 본 고지사항, 개인정보처리방침, 서비스 내 안내 문구를 숙지하고 준수하여야 하며,
