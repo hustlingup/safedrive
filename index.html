@@ -2189,6 +2189,33 @@
             </div>
         </section>
 
+        <!-- Intro Section -->
+        <section class="intro-section full-screen-section" style="background: white; padding: 80px 20px;">
+            <div class="content-wrapper" style="max-width: 900px; margin: 0 auto;">
+                
+                
+                <div style="margin-top: 60px;">
+                    <h2 style="font-size: 1.8rem; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; text-align: center;">SAFE DRIVE 소개</h2>
+                    <div style="text-align: center; margin-bottom: 40px;">
+                        <div style="font-size: 1.1rem; line-height: 1.8; color: #333; text-align: left; max-width: 700px; margin: 0 auto;">
+                            <p style="margin-bottom: 12px;">🚗 익명으로 나누는 차량 안전 신호</p>
+                            <p style="margin-bottom: 12px;">🔔 비방 없는 템플릿 기반 안전 공유</p>
+                            <p style="margin-bottom: 12px;">🔒 회원가입 없이, 개인정보 없이</p>
+                        </div>
+                    </div>
+                    <div style="font-size: 1rem; line-height: 1.8; color: #444; text-align: left; max-width: 800px; margin: 0 auto;">
+                        <p style="margin-bottom: 20px;">운전 중 마주치는 수많은 위험 요소는 대부분 고의가 아니라 인지하지 못한 상태에서 발생합니다. 전조등이나 후미등이 꺼진 채 달리는 차량, 방향지시등 없이 차선을 변경하는 순간, 피로로 인해 흔들리는 주행. 이런 장면을 본 사람은 위험을 느끼지만, 이를 안전하게 전달할 방법은 거의 없습니다. 이 플랫폼은 바로 그 지점에서 출발했습니다.</p>
+                        
+                        <p style="margin-bottom: 20px;">본 서비스는 차량 번호판을 개인정보가 아닌 단순 식별자로 사용하여, 운전자들 사이에서 익명으로 차량 안전 신호를 공유할 수 있도록 설계된 웹 기반 플랫폼입니다. 회원가입, 로그인, 본인인증 없이 누구나 이용할 수 있으며, 자유 텍스트 입력을 배제하고 운영자가 제공한 안전 템플릿만 사용함으로써 비방·욕설·개인 식별의 위험을 구조적으로 차단합니다.</p>
+                        
+                        <p style="margin-bottom: 20px;">여기서 제공되는 정보는 특정 운전자를 평가하거나 단정하기 위한 것이 아닙니다. 여러 사람이 느낀 안전 관련 신호가 카운트 형태로 누적된 통계 정보일 뿐이며, 개인의 신원·위치·행동 이력은 저장되지 않습니다. 이 서비스는 단속이나 신고를 대체하지 않으며, 오직 사고 예방과 인식 개선이라는 목적에만 집중합니다.</p>
+                        
+                        <p style="margin-bottom: 0;">익명성은 무책임함이 아니라, 오히려 솔직한 안전 공유를 가능하게 합니다. 이 플랫폼은 "지적"이 아닌 "신호"를 남기는 공간이며, 작은 관심이 큰 사고를 막을 수 있다는 믿음을 기술로 구현합니다. 도로 위에서 서로를 직접 알지 못해도, 우리는 안전을 공유할 수 있습니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- QR Generator Intro Section -->
         <section class="qr-generator-intro-section full-screen-section" id="qr-generator-intro">
             <div class="qr-intro-container">
@@ -3296,60 +3323,6 @@
             commentBox.classList.add('pulse');
         }
 
-        // Listen to Firebase for real-time updates
-        function initStressFirebase() {
-            const stressRef = firebase.database().ref('roadStress');
-            
-            stressRef.on('value', (snapshot) => {
-                const data = snapshot.val() || {
-                    emotionCounts: [0, 0, 0, 0, 0, 0, 0],
-                    totalCount: 0,
-                    lastResetDate: null
-                };
-                
-                updateStressDisplay(data.emotionCounts, data.totalCount);
-            });
-        }
-
-        // Check if it's midnight in Korean time and reset if needed
-        function checkAndResetStressAtMidnight() {
-            const now = new Date();
-            // Convert to Korean time (UTC+9)
-            const koreanTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
-            const koreanHour = koreanTime.getUTCHours();
-            const koreanMinute = koreanTime.getUTCMinutes();
-            
-            // Only reset if it's between 00:00 and 00:01 KST
-            if (koreanHour === 0 && koreanMinute === 0) {
-                const stressRef = firebase.database().ref('roadStress');
-                
-                stressRef.transaction((current) => {
-                    if (current === null) {
-                        return {
-                            emotionCounts: [0, 0, 0, 0, 0, 0, 0],
-                            totalCount: 0,
-                            lastResetDate: getKoreanDateString()
-                        };
-                    }
-                    
-                    const currentKoreanDate = getKoreanDateString();
-                    const lastResetDate = current.lastResetDate || null;
-                    
-                    // Only reset if we haven't already reset today
-                    if (lastResetDate !== currentKoreanDate) {
-                        return {
-                            emotionCounts: [0, 0, 0, 0, 0, 0, 0],
-                            totalCount: 0,
-                            lastResetDate: currentKoreanDate
-                        };
-                    }
-                    
-                    // No change needed
-                    return current;
-                });
-            }
-        }
-
         // Get current date in Korean timezone (YYYY-MM-DD format)
         function getKoreanDateString() {
             const now = new Date();
@@ -3361,10 +3334,80 @@
             return `${year}-${month}-${day}`;
         }
 
-        // Start periodic check for midnight reset (check every minute)
-        function startMidnightResetCheck() {
-            // Check every minute for midnight
-            setInterval(checkAndResetStressAtMidnight, 60000);
+        // Reset stress data if it's from a previous day (KST)
+        function resetStressIfNewDay() {
+            const stressRef = firebase.database().ref('roadStress');
+            const currentKoreanDate = getKoreanDateString();
+            
+            stressRef.transaction((current) => {
+                if (current === null) {
+                    return {
+                        emotionCounts: [0, 0, 0, 0, 0, 0, 0],
+                        totalCount: 0,
+                        lastResetDate: currentKoreanDate
+                    };
+                }
+                
+                const lastResetDate = current.lastResetDate || null;
+                
+                // Reset if lastResetDate is different from today (KST)
+                if (lastResetDate !== currentKoreanDate) {
+                    return {
+                        emotionCounts: [0, 0, 0, 0, 0, 0, 0],
+                        totalCount: 0,
+                        lastResetDate: currentKoreanDate
+                    };
+                }
+                
+                // No change needed - same day
+                return current;
+            });
+        }
+
+        // Listen to Firebase for real-time updates
+        function initStressFirebase() {
+            const stressRef = firebase.database().ref('roadStress');
+            
+            // Check and reset on initialization
+            resetStressIfNewDay();
+            
+            stressRef.on('value', (snapshot) => {
+                const data = snapshot.val() || {
+                    emotionCounts: [0, 0, 0, 0, 0, 0, 0],
+                    totalCount: 0,
+                    lastResetDate: null
+                };
+                
+                // Check if data is from a previous day and needs reset
+                const currentKoreanDate = getKoreanDateString();
+                if (data.lastResetDate && data.lastResetDate !== currentKoreanDate) {
+                    // Data is stale, trigger reset
+                    resetStressIfNewDay();
+                    return; // Will receive updated data via listener
+                }
+                
+                updateStressDisplay(data.emotionCounts, data.totalCount);
+            });
+        }
+
+        // Schedule reset at midnight KST
+        function scheduleMidnightReset() {
+            const now = new Date();
+            // Get current time in KST
+            const koreanTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
+            
+            // Calculate milliseconds until next midnight KST
+            const nextMidnight = new Date(koreanTime);
+            nextMidnight.setUTCHours(24, 0, 0, 0); // Next day 00:00:00
+            
+            const msUntilMidnight = nextMidnight.getTime() - koreanTime.getTime();
+            
+            // Schedule reset at midnight
+            setTimeout(() => {
+                resetStressIfNewDay();
+                // After first reset, schedule daily resets
+                setInterval(resetStressIfNewDay, 24 * 60 * 60 * 1000);
+            }, msUntilMidnight);
         }
 
         // Handle emotion button clicks
@@ -3408,12 +3451,12 @@
             // Wait for Firebase to be ready
             if (typeof firebase !== 'undefined') {
                 initStressFirebase();
-                startMidnightResetCheck();
+                scheduleMidnightReset();
             } else {
                 window.addEventListener('load', () => {
                     if (typeof firebase !== 'undefined') {
                         initStressFirebase();
-                        startMidnightResetCheck();
+                        scheduleMidnightReset();
                     }
                 });
             }
