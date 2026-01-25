@@ -1,8 +1,17 @@
 const functions = require("firebase-functions");
 const admin = require("firebase-admin");
-const { BetaAnalyticsDataClient } = require("@google-analytics/data");
 
 admin.initializeApp();
+
+// Lazy-load Google Analytics client to avoid deployment timeout
+let analyticsDataClient = null;
+function getAnalyticsClient() {
+  if (!analyticsDataClient) {
+    const { BetaAnalyticsDataClient } = require("@google-analytics/data");
+    analyticsDataClient = new BetaAnalyticsDataClient();
+  }
+  return analyticsDataClient;
+}
 
 // Import secure increment function
 const { secureIncrementCounter, cleanupSecurityData } = require("./secureIncrement");
@@ -63,9 +72,9 @@ exports.updateActiveUsers = functions.pubsub
       // console.log(`Starting updateActiveUsers with Property ID: ${GA4_PROPERTY_ID}`);
 
       try {
-        // Initialize the Analytics Data API client
+        // Get the Analytics Data API client (lazy-loaded)
         // Uses Application Default Credentials (ADC) from Firebase
-        const analyticsDataClient = new BetaAnalyticsDataClient();
+        const analyticsDataClient = getAnalyticsClient();
 
         // console.log("Calling GA4 runRealtimeReport...");
 
@@ -113,7 +122,7 @@ exports.triggerActiveUsersUpdate = functions.https.onRequest(async (req, res) =>
   // console.log(`Manual trigger: Starting updateActiveUsers with Property ID: ${GA4_PROPERTY_ID}`);
 
   try {
-    const analyticsDataClient = new BetaAnalyticsDataClient();
+    const analyticsDataClient = getAnalyticsClient();
 
     // console.log("Calling GA4 runRealtimeReport...");
 
@@ -175,7 +184,7 @@ exports.getActiveUsers = functions.https.onCall(async () => {
     }
 
     // If no cache, try to fetch from GA4 directly
-    const analyticsDataClient = new BetaAnalyticsDataClient();
+    const analyticsDataClient = getAnalyticsClient();
 
     const [response] = await analyticsDataClient.runRealtimeReport({
       property: `properties/${GA4_PROPERTY_ID}`,
