@@ -1,0 +1,227 @@
+{
+  "plates": {
+    "_EXAMPLE_PLATE_09루3363": {
+      "views": 0,
+      "counters": {
+        "speeding": 0,
+        "reckless_merge": 0,
+        "road_rage": 0,
+        "sudden_stop": 0,
+        "no_safe_distance": 0,
+        "not_watching_ahead": 0,
+        "halmanghaanj": 0,
+        "pedestrian_slow_down": 0,
+        "high_beam": 0,
+        "exit_cutting": 0,
+        "sudden_lane_change": 0,
+        "drowsy_driving": 0,
+        "no_blinker": 0,
+        "lane_violation": 0,
+        "habitual_brake": 0,
+        "slow_driving": 0,
+        "dont_park_here": 0,
+        "light_broken": 0,
+        "tire_issue": 0,
+        "wheel_balance": 0,
+        "exhaust_issue": 0,
+        "engine_smoke": 0,
+        "oil_leak": 0,
+        "trunk_open": 0,
+        "cargo_loose": 0,
+        "thank_you": 0,
+        "forgive": 0,
+        "pretty": 0,
+        "cool": 0,
+        "good_driver": 0,
+        "envy": 0,
+        "beginner_fighting": 0,
+        "likes": 0,
+        "mb_dangerous_moment": 0,
+        "mb_dangerous_parking": 0,
+        "mb_light_issue": 0,
+        "mb_brake_sound": 0,
+        "mb_tire_issue": 0,
+        "mb_chain_sound": 0,
+        "mb_delivery_box": 0,
+        "mb_signal_respect": 0,
+        "mb_stop_line": 0,
+        "mb_pedestrian_first": 0,
+        "mb_safety_gear": 0,
+        "mb_considerate_driving": 0,
+        "mb_lane_keeping": 0,
+        "mb_weather_support": 0,
+        "mb_slippery_warning": 0,
+        "mb_delivery_thanks": 0
+      },
+      "lastUpdated": 0,
+      "daily": {
+        "_YYYYMMDD": {
+          "speeding": 0,
+          "likes": 0
+        }
+      },
+      "monthly": {
+        "_YYYYMM": {
+          "speeding": 0,
+          "likes": 0
+        }
+      },
+      "monthlyIncrements": {
+        "_counterKey": {
+          "_YYYY-MM-DD": true
+        }
+      }
+    }
+  },
+  "plateSubscribers": {
+    "_EXAMPLE_PLATE_09루3363": {
+      "_FCM_TOKEN_EXAMPLE": {
+        "subscribedAt": 0
+      }
+    }
+  },
+  "subscriptions": {
+    "_FCM_TOKEN_EXAMPLE": {
+      "plates": ["_EXAMPLE_PLATE_09루3363"],
+      "updatedAt": 0
+    }
+  },
+  "global": {
+    "allTime": {
+      "totalViews": 0,
+      "speeding": 0,
+      "reckless_merge": 0,
+      "road_rage": 0,
+      "sudden_stop": 0,
+      "no_safe_distance": 0,
+      "not_watching_ahead": 0,
+      "halmanghaanj": 0,
+      "pedestrian_slow_down": 0,
+      "high_beam": 0,
+      "exit_cutting": 0,
+      "sudden_lane_change": 0,
+      "drowsy_driving": 0,
+      "no_blinker": 0,
+      "lane_violation": 0,
+      "habitual_brake": 0,
+      "slow_driving": 0,
+      "dont_park_here": 0,
+      "light_broken": 0,
+      "tire_issue": 0,
+      "wheel_balance": 0,
+      "exhaust_issue": 0,
+      "engine_smoke": 0,
+      "oil_leak": 0,
+      "trunk_open": 0,
+      "cargo_loose": 0,
+      "thank_you": 0,
+      "forgive": 0,
+      "pretty": 0,
+      "cool": 0,
+      "good_driver": 0,
+      "envy": 0,
+      "beginner_fighting": 0,
+      "likes": 0,
+      "mb_dangerous_moment": 0,
+      "mb_dangerous_parking": 0,
+      "mb_light_issue": 0,
+      "mb_brake_sound": 0,
+      "mb_tire_issue": 0,
+      "mb_chain_sound": 0,
+      "mb_delivery_box": 0,
+      "mb_signal_respect": 0,
+      "mb_stop_line": 0,
+      "mb_pedestrian_first": 0,
+      "mb_safety_gear": 0,
+      "mb_considerate_driving": 0,
+      "mb_lane_keeping": 0,
+      "mb_weather_support": 0,
+      "mb_slippery_warning": 0,
+      "mb_delivery_thanks": 0
+    },
+    "daily": {
+      "_YYYYMMDD": {}
+    },
+    "weekly": {
+      "_YYYY-WW": {}
+    },
+    "monthly": {
+      "_YYYYMM": {}
+    },
+    "yearly": {
+      "_YYYY": {}
+    }
+  },
+  "analytics": {
+    "realtime": {
+      "activeUsers": 0,
+      "lastUpdated": 0
+    }
+  },
+  "security": {
+    "nonces": {
+      "_NONCE_EXAMPLE": 0
+    },
+    "referralNonces": {
+      "_NONCE_EXAMPLE": 0
+    },
+    "daily": {
+      "_YYYYMMDD": {
+        "_FINGERPRINT_HASH": 0
+      }
+    }
+  },
+  "referrals": {
+    "users": {
+      "_REFERRER_ID_12CHAR": {
+        "createdAt": 0,
+        "total": 0,
+        "daily": {
+          "_YYYYMMDD": 0
+        }
+      }
+    },
+    "leaderboards": {
+      "daily": {
+        "_YYYYMMDD": {
+          "_REFERRER_ID": 0
+        }
+      }
+    },
+    "dailyWinners": {
+      "_YYYYMMDD": {
+        "_REFERRER_ID": {
+          "achievedAt": 0
+        }
+      }
+    }
+  },
+  "quizStats": {
+    "quiz1": {
+      "totalCompletions": 0,
+      "results": {
+        "SFE": 0,
+        "SFI": 0,
+        "SME": 0,
+        "SMI": 0,
+        "CFE": 0,
+        "CFI": 0,
+        "CME": 0,
+        "CMI": 0
+      }
+    },
+    "quiz2": {
+      "totalCompletions": 0,
+      "results": {
+        "A": 0,
+        "B": 0,
+        "C": 0,
+        "D": 0,
+        "AB": 0,
+        "BC": 0,
+        "AC": 0,
+        "DA": 0
+      }
+    }
+  }
+}

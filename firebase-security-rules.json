@@ -1,5 +1,21 @@
 {
   "rules": {
+    "quizStats": {
+      ".read": true,
+      ".write": false,
+      "$quizId": {
+        "totalCompletions": {
+          ".write": true,
+          ".validate": "newData.isNumber() && newData.val() >= 0 && ((!data.exists() && newData.val() == 1) || (data.exists() && newData.val() == data.val() + 1))"
+        },
+        "results": {
+          "$resultType": {
+            ".write": true,
+            ".validate": "newData.isNumber() && newData.val() >= 0 && ((!data.exists() && newData.val() == 1) || (data.exists() && newData.val() == data.val() + 1))"
+          }
+        }
+      }
+    },
     "plates": {
       "$plateNumber": {
         ".read": true,

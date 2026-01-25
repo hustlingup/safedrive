@@ -86,9 +86,38 @@ self.addEventListener('notificationclick', (event) => {
     );
 });
 
-const CACHE_VERSION = 'v2.1';
+const CACHE_VERSION = 'v2.2';
 const CACHE_NAME = `safedrive-${CACHE_VERSION}`;
-const urlsToCache = ['/', '/index.html', '/plate.html', '/styles.css', '/firebase-config.js', '/subscription-manager.js', '/script.js'];
+const urlsToCache = [
+    // Main site pages
+    '/',
+    '/index.html',
+    '/plate.html',
+    '/styles.css',
+    '/firebase-config.js',
+    '/subscription-manager.js',
+    '/script.js',
+    
+    // Shared quiz assets
+    '/quiz/quiz-styles.css',
+    '/quiz/quiz-counter.js',
+    '/quiz/quiz-engine.js',
+    '/quiz/quiz-animations.js',
+    
+    // Quiz 1 pages and assets
+    '/quiz/quiz1/quiz1.html',
+    '/quiz/quiz1/qna1.html',
+    '/quiz/quiz1/result1.html',
+    '/quiz/quiz1/quiz1.json',
+    '/quiz/quiz1/quiz1script.js',
+    
+    // Quiz 2 pages and assets
+    '/quiz/quiz2/quiz2.html',
+    '/quiz/quiz2/qna2.html',
+    '/quiz/quiz2/result2.html',
+    '/quiz/quiz2/quiz2.json',
+    '/quiz/quiz2/quiz2script.js'
+];
 
 self.addEventListener('install', (event) => {
     event.waitUntil(

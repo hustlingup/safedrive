@@ -1381,6 +1381,231 @@
         }
         
         /* ========================================
+           Quiz Section Styles
+           ======================================== */
+        .quiz-section {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quiz-section-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .quiz-section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            margin-bottom: 24px;
+            animation: quizBadgePulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes quizBadgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .quiz-badge-icon {
+            font-size: 20px;
+        }
+        
+        .quiz-badge-text {
+            color: white;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+        
+        .quiz-section-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .quiz-section-subtitle {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 50px;
+            line-height: 1.6;
+        }
+        
+        .quiz-cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .quiz-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quiz-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .quiz-card-2::before {
+            background: linear-gradient(90deg, #ff4757 0%, #ff6b81 100%);
+        }
+        
+        .quiz-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .quiz-card-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        
+        .quiz-card-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+        }
+        
+        .quiz-card-2 .quiz-card-badge {
+            background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+        }
+        
+        .quiz-card-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+        
+        .quiz-card-description {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .quiz-card-features {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+        
+        .quiz-feature {
+            font-size: 13px;
+            color: #888;
+            font-weight: 500;
+        }
+        
+        .quiz-card-cta {
+            display: inline-block;
+            padding: 14px 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .quiz-card-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+        
+        .quiz-card-cta-danger {
+            background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
+        }
+        
+        .quiz-card-cta-danger:hover {
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.5);
+        }
+        
+        .quiz-section-notice {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        @media (max-width: 768px) {
+            .quiz-section-title {
+                font-size: 32px;
+            }
+            
+            .quiz-section-subtitle {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+            
+            .quiz-cards-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .quiz-card {
+                padding: 30px 20px;
+            }
+            
+            .quiz-card-icon {
+                font-size: 50px;
+            }
+            
+            .quiz-card-title {
+                font-size: 20px;
+            }
+            
+            .quiz-card-description {
+                font-size: 14px;
+            }
+            
+            .quiz-card-cta {
+                padding: 12px 30px;
+                font-size: 15px;
+            }
+        }
+        
+        /* ========================================
            Referral Section - Golden Ticket Style
            ======================================== */
         .referral-section {
@@ -2004,6 +2229,7 @@
                 <li><a href="#home" class="nav-link">홈</a></li>
                 <li><a href="#qr-generator-intro" class="nav-link" id="qrNavLink">QR</a></li>
                 <li><a href="#referral" class="nav-link" id="eventNavLink">이벤트</a></li>
+                <li><a href="#quiz-section" class="nav-link">퀴즈</a></li>
                 <li><a href="#road-stress" class="nav-link">도로스트레스</a></li>
                 <li><a href="#mostLikedSection" class="nav-link">인기번호판</a></li>
                 <li><a href="#designated-lane" class="nav-link">지정차로</a></li>
@@ -2186,6 +2412,61 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="quiz-section full-screen-section" id="quiz-section">
+            <div class="quiz-section-container">
+                <div class="quiz-section-badge">
+                    <span class="quiz-badge-icon">🎯</span>
+                    <span class="quiz-badge-text">FUN QUIZ</span>
+                </div>
+                
+                <h2 class="quiz-section-title">나의 운전 성향은?</h2>
+                <p class="quiz-section-subtitle">재미있는 퀴즈로 알아보는 도로 위 나의 모습</p>
+                
+                <div class="quiz-cards-container">
+                    <!-- Quiz 1 Card -->
+                    <article class="quiz-card quiz-card-1" aria-label="운전성향 테스트">
+                        <div class="quiz-card-icon">🚗</div>
+                        <div class="quiz-card-badge">MBTI 스타일</div>
+                        <h3 class="quiz-card-title">운전성향 테스트</h3>
+                        <p class="quiz-card-description">
+                            18가지 질문으로 알아보는 나의 운전 성향!<br>
+                            도로 위 본캐를 찾아보세요.
+                        </p>
+                        <div class="quiz-card-features">
+                            <span class="quiz-feature">⏱️ 3분 소요</span>
+                            <span class="quiz-feature">📊 8가지 유형</span>
+                        </div>
+                        <a href="quiz/quiz1/quiz1.html" class="quiz-card-cta" aria-label="운전성향 테스트 시작하기">
+                            테스트 시작 →
+                        </a>
+                    </article>
+                    
+                    <!-- Quiz 2 Card -->
+                    <article class="quiz-card quiz-card-2" aria-label="극한의 시나리오 챌린지">
+                        <div class="quiz-card-icon">⚠️</div>
+                        <div class="quiz-card-badge">서바이벌</div>
+                        <h3 class="quiz-card-title">극한의 시나리오 챌린지</h3>
+                        <p class="quiz-card-description">
+                            도로 위 돌발 상황에서 당신의 선택은?<br>
+                            생존 본능을 테스트해보세요.
+                        </p>
+                        <div class="quiz-card-features">
+                            <span class="quiz-feature">⏱️ 3분 소요</span>
+                            <span class="quiz-feature">🔥 18가지 시나리오</span>
+                        </div>
+                        <a href="quiz/quiz2/quiz2.html" class="quiz-card-cta quiz-card-cta-danger" aria-label="극한의 시나리오 챌린지 시작하기">
+                            도전하기 →
+                        </a>
+                    </article>
+                </div>
+                
+                <p class="quiz-section-notice">
+                    💡 퀴즈 결과를 친구들과 공유하고 비교해보세요!
+                </p>
             </div>
         </section>
 

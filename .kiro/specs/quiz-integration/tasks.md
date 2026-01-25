@@ -1,0 +1,249 @@
+# Implementation Plan: Quiz Integration
+
+## Overview
+
+This implementation plan covers integrating two quiz features ("운전성향 테스트" and "극한의 시나리오 챌린지") into the safedrive.kr website. The tasks are organized to build shared infrastructure first, then implement each quiz's pages, and finally integrate with the main site.
+
+## Tasks
+
+- [x] 1. Create shared quiz infrastructure
+  - [x] 1.1 Create quiz/quiz-styles.css with shared styles
+    - Define CSS variables consistent with main site (colors, fonts, spacing)
+    - Create quiz container, progress bar, button, and card styles
+    - Add responsive breakpoints matching main site
+    - Include focus indicator styles for accessibility
+  - [x] 1.2 Create quiz/quiz-counter.js for Firebase statistics
+    - Implement init() function to connect to Firebase Realtime Database
+    - Implement subscribe() function with real-time listener
+    - Implement incrementTotal() and incrementResult() functions
+    - Implement getMostPopular() function
+    - Add offline handling with graceful fallback
+  - [x] 1.3 Create quiz/quiz-engine.js for quiz flow management
+    - Implement init() with questions data and config
+    - Implement getCurrentQuestion() and getProgress()
+    - Implement submitAnswer() with state management
+    - Implement goBack() and restart() functions
+    - Implement getResult() for final calculation
+    - Store state in sessionStorage for refresh recovery
+  - [x] 1.4 Create quiz/quiz-animations.js for hero animations
+    - Import anime.js library
+    - Implement initQuiz1Hero() with driving theme animations
+    - Implement initQuiz2Hero() with emergency theme animations
+    - Implement pause(), resume(), and destroy() functions
+    - Add performance optimization for mobile devices
+
+- [x] 2. Improve Quiz1 landing page (quiz1.html)
+  - [x] 2.1 Add semantic HTML structure and ARIA labels
+    - Add main, section, header, article tags
+    - Add ARIA labels to all interactive elements
+    - Add proper heading hierarchy (h1, h2, h3)
+    - Add lang="ko" attribute
+  - [x] 2.2 Add SEO meta tags and Open Graph tags
+    - Add meta description and keywords
+    - Add Open Graph tags (og:title, og:description, og:image, og:url)
+    - Add Twitter card tags
+    - Add canonical URL
+    - Add favicon and manifest links
+  - [x] 2.3 Integrate main site navbar and footer
+    - Copy navbar HTML structure from index.html
+    - Copy footer HTML structure from index.html
+    - Link to main site styles.css
+    - Add mobile menu toggle functionality
+  - [x] 2.4 Integrate cookie consent system
+    - Add cookie consent CSS link
+    - Add cookie consent JS script
+    - Initialize cookie consent on page load
+  - [x] 2.5 Create SVG hero animation for driving theme
+    - Create road scene SVG with lane markings
+    - Create car SVG element
+    - Create dashboard/speedometer SVG
+    - Create personality type icons SVG
+    - Initialize animations via quiz-animations.js
+  - [x] 2.6 Add real-time quiz counter display
+    - Add counter display element in hero section
+    - Initialize QuizCounter with quiz1
+    - Subscribe to real-time updates
+    - Display total completions and most popular result
+
+- [x] 3. Improve Quiz2 landing page (quiz2.html)
+  - [x] 3.1 Add semantic HTML structure and ARIA labels
+    - Add main, section, header, article tags
+    - Add ARIA labels to all interactive elements
+    - Add proper heading hierarchy (h1, h2, h3)
+    - Add lang="ko" attribute
+  - [x] 3.2 Add SEO meta tags and Open Graph tags
+    - Add meta description and keywords
+    - Add Open Graph tags (og:title, og:description, og:image, og:url)
+    - Add Twitter card tags
+    - Add canonical URL
+    - Add favicon and manifest links
+  - [x] 3.3 Integrate main site navbar and footer
+    - Copy navbar HTML structure from index.html
+    - Copy footer HTML structure from index.html
+    - Link to main site styles.css
+    - Add mobile menu toggle functionality
+  - [x] 3.4 Integrate cookie consent system
+    - Add cookie consent CSS link
+    - Add cookie consent JS script
+    - Initialize cookie consent on page load
+  - [x] 3.5 Create SVG hero animation for emergency theme
+    - Create warning triangle SVG
+    - Create emergency lights SVG elements
+    - Create dramatic road with obstacles SVG
+    - Create danger icons SVG
+    - Initialize animations via quiz-animations.js
+  - [x] 3.6 Add real-time quiz counter display
+    - Add counter display element in hero section
+    - Initialize QuizCounter with quiz2
+    - Subscribe to real-time updates
+    - Display total completions and most popular result
+
+- [x] 4. Create Quiz1 flow page (qna1.html)
+  - [x] 4.1 Create HTML structure with semantic tags
+    - Add main, section tags
+    - Add progress bar container
+    - Add question display area
+    - Add answer options container
+    - Add navigation buttons (back, restart)
+    - Add ARIA labels and roles
+  - [x] 4.2 Integrate navbar, footer, and cookie consent
+    - Copy navbar and footer from landing page
+    - Add cookie consent integration
+    - Link to shared styles
+  - [x] 4.3 Implement quiz flow with quiz-engine.js
+    - Load quiz1.json questions data
+    - Initialize QuizEngine with questions and quiz1script.js calculator
+    - Render current question and options
+    - Handle answer selection and progression
+    - Handle back and restart buttons
+    - Redirect to result1.html on completion
+  - [x] 4.4 Add SEO meta tags
+    - Add unique title and description
+    - Add canonical URL
+    - Add favicon links
+
+- [x] 5. Create Quiz2 flow page (qna2.html)
+  - [x] 5.1 Create HTML structure with semantic tags
+    - Add main, section tags
+    - Add progress bar container
+    - Add question display area
+    - Add answer options container
+    - Add navigation buttons (back, restart)
+    - Add ARIA labels and roles
+  - [x] 5.2 Integrate navbar, footer, and cookie consent
+    - Copy navbar and footer from landing page
+    - Add cookie consent integration
+    - Link to shared styles
+  - [x] 5.3 Implement quiz flow with quiz-engine.js
+    - Load quiz2.json questions data
+    - Initialize QuizEngine with questions and quiz2script.js calculator
+    - Render current question and options
+    - Handle answer selection and progression
+    - Handle back and restart buttons
+    - Redirect to result2.html on completion
+  - [x] 5.4 Add SEO meta tags
+    - Add unique title and description
+    - Add canonical URL
+    - Add favicon links
+
+- [x] 6. Create Quiz1 result page (result1.html)
+  - [x] 6.1 Create HTML structure with semantic tags
+    - Add main, section tags
+    - Add result display area (title, description, icon)
+    - Add share buttons container
+    - Add retake quiz button
+    - Add ARIA labels and roles
+  - [x] 6.2 Integrate navbar, footer, and cookie consent
+    - Copy navbar and footer from landing page
+    - Add cookie consent integration
+    - Link to shared styles
+  - [x] 6.3 Implement result display logic
+    - Read result type from URL parameter or sessionStorage
+    - Load result data from quiz1script.js
+    - Display result title, description, and visual
+    - Update page title dynamically
+  - [x] 6.4 Implement social sharing functionality
+    - Add Web Share API integration with fallback
+    - Generate share URL with result type parameter
+    - Add copy link button
+    - Add direct social media share buttons
+  - [x] 6.5 Add dynamic SEO meta tags
+    - Add server-side or client-side meta tag updates
+    - Include result type in Open Graph tags
+    - Add Twitter card tags with result info
+  - [x] 6.6 Integrate quiz counter for result tracking
+    - Call QuizCounter.incrementTotal() on result display
+    - Call QuizCounter.incrementResult() with result type
+
+- [x] 7. Create Quiz2 result page (result2.html)
+  - [x] 7.1 Create HTML structure with semantic tags
+    - Add main, section tags
+    - Add result display area (title, description, icon)
+    - Add share buttons container
+    - Add retake quiz button
+    - Add ARIA labels and roles
+  - [x] 7.2 Integrate navbar, footer, and cookie consent
+    - Copy navbar and footer from landing page
+    - Add cookie consent integration
+    - Link to shared styles
+  - [x] 7.3 Implement result display logic
+    - Read result type from URL parameter or sessionStorage
+    - Load result data from quiz2script.js
+    - Display result title, description, and visual
+    - Update page title dynamically
+  - [x] 7.4 Implement social sharing functionality
+    - Add Web Share API integration with fallback
+    - Generate share URL with result type parameter
+    - Add copy link button
+    - Add direct social media share buttons
+  - [x] 7.5 Add dynamic SEO meta tags
+    - Add server-side or client-side meta tag updates
+    - Include result type in Open Graph tags
+    - Add Twitter card tags with result info
+  - [x] 7.6 Integrate quiz counter for result tracking
+    - Call QuizCounter.incrementTotal() on result display
+    - Call QuizCounter.incrementResult() with result type
+
+- [x] 8. Integrate quizzes with main site
+  - [x] 8.1 Add quiz section to index.html
+    - Create quiz promotion section with cards for both quizzes
+    - Add engaging descriptions and preview images
+    - Add call-to-action buttons linking to quiz landing pages
+    - Ensure section is responsive
+  - [x] 8.2 Update main site navbar with quiz link
+    - Add "퀴즈" link to navbar menu
+    - Link to quiz section anchor or quiz landing page
+    - Update navbar in all main site pages
+  - [x] 8.3 Update service worker (sw.js) for quiz pages
+    - Add quiz pages to cache list
+    - Add quiz assets (CSS, JS, JSON) to cache
+    - Ensure offline support for quiz pages
+
+- [x] 9. Setup Firebase database structure
+  - [x] 9.1 Create Firebase Realtime Database rules
+    - Add quizStats node structure
+    - Set read permissions for public access
+    - Set write permissions for increment operations only
+    - Add validation rules for data integrity
+  - [x] 9.2 Initialize database with default values
+    - Create quiz1 and quiz2 nodes
+    - Set initial totalCompletions to 0
+    - Create results sub-nodes for each result type
+
+- [ ] 10. Accessibility and final testing
+  - [x] 10.1 Verify color contrast compliance
+    - Test all text elements for 4.5:1 contrast ratio
+    - Test large text for 3:1 contrast ratio
+    - Fix any contrast issues found
+  - [-] 10.2 Test keyboard navigation
+    - Verify all interactive elements are tab-accessible
+    - Verify Enter/Space activation works
+    - Test focus order is logical
+  - [ ] 10.3 Test screen reader compatibility
+    - Verify ARIA labels are announced correctly
+    - Test heading hierarchy navigation
+    - Verify form controls are properly labeled
+  - [ ] 10.4 Cross-browser testing
+    - Test on Chrome, Firefox, Safari, Edge
+    - Test on mobile browsers (iOS Safari, Chrome Android)
+    - Verify animations perform well on all browsers

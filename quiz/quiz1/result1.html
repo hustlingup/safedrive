@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TRTW3S54');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) - with Cookie Consent -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9R8RZYZC7X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      // Default consent to denied (will be updated by cookie consent manager)
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      
+      gtag('config', 'G-9R8RZYZC7X');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags (will be updated dynamically) -->
+    <title>운전성향 테스트 결과 | SAFE DRIVE</title>
+    <meta name="description" content="나의 운전 성향 테스트 결과를 확인하세요! 18가지 질문으로 알아보는 도로 위 본캐.">
+    <meta name="keywords" content="운전성향테스트, 운전MBTI, 드라이버유형, 운전스타일, 도로위본캐, 운전심리테스트, 세이프드라이브">
+    <meta name="author" content="SAFE DRIVE">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Korean">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://safedrive.kr/quiz/quiz1/result1.html">
+    
+    <!-- Open Graph / Facebook (will be updated dynamically) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" id="og-url" content="https://safedrive.kr/quiz/quiz1/result1.html">
+    <meta property="og:title" id="og-title" content="운전성향 테스트 결과 - SAFE DRIVE">
+    <meta property="og:description" id="og-description" content="나의 운전 성향 테스트 결과를 확인하세요!">
+    <meta property="og:image" content="https://safedrive.kr/assets/img/quiz1_thumbnail.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="SAFE DRIVE">
+    <meta property="og:locale" content="ko_KR">
+    
+    <!-- Twitter Card (will be updated dynamically) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" id="twitter-url" content="https://safedrive.kr/quiz/quiz1/result1.html">
+    <meta name="twitter:title" id="twitter-title" content="운전성향 테스트 결과 - SAFE DRIVE">
+    <meta name="twitter:description" id="twitter-description" content="나의 운전 성향 테스트 결과를 확인하세요!">
+    <meta name="twitter:image" content="https://safedrive.kr/assets/img/quiz1_thumbnail.webp">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#667eea">
+    
+    <!-- DNS Prefetch for performance -->
+    <link rel="dns-prefetch" href="https://www.gstatic.com">
+    <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com">
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/quiz/quiz-styles.css">
+    <link rel="stylesheet" href="/css/cookie-consent.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Page-specific styles -->
+    <style>
+        /* Result Page Specific Styles */
+        .result-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 20px 40px;
+        }
+        
+        .result-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        /* Loading State */
+        .result-loading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            color: white;
+        }
+        
+        .result-loading .quiz-spinner {
+            border-color: rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+        }
+        
+        .result-loading .quiz-loading-text {
+            color: white;
+            margin-top: 20px;
+            font-family: 'GmarketSans', sans-serif;
+        }
+        
+        /* Result Content */
+        .result-content {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Result Header */
+        .result-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .result-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .result-type-code {
+            font-family: 'GmarketSans', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #ffd700;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            margin: 0;
+            letter-spacing: 0.1em;
+        }
+        
+        /* Result Card */
+        .result-card {
+            background: white;
+            border-radius: 24px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+        
+        .result-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .result-title {
+            font-family: 'GmarketSans', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 0 0 20px 0;
+            line-height: 1.3;
+        }
+        
+        .result-description {
+            font-family: 'GmarketSans', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #4b5563;
+            line-height: 1.8;
+            margin: 0;
+        }
+        
+        /* Share Section */
+        .share-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .share-title {
+            font-family: 'GmarketSans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            text-align: center;
+            margin: 0 0 20px 0;
+        }
+        
+        .share-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .share-native {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .share-native:hover {
+            background: white;
+            color: #667eea;
+        }
+        
+        .quiz-share-btn.copy {
+            background: rgba(255, 255, 255, 0.9);
+            color: #1f2937;
+            border: none;
+        }
+        
+        .quiz-share-btn.copy:hover {
+            background: white;
+        }
+        
+        .copy-success {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            padding: 10px;
+            background: rgba(16, 185, 129, 0.2);
+            border-radius: 10px;
+            color: #10b981;
+            font-family: 'GmarketSans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Result Actions */
+        .result-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .result-actions .quiz-btn-primary {
+            background: white;
+            color: #667eea;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .result-actions .quiz-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .result-actions .quiz-btn-secondary {
+            background: transparent;
+            color: white;
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .result-actions .quiz-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+        
+        /* Error State */
+        .result-error {
+            text-align: center;
+            padding: 60px 20px;
+            color: white;
+        }
+        
+        .error-icon {
+            font-size: 4rem;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+        
+        .error-title {
+            font-family: 'GmarketSans', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+        }
+        
+        .error-description {
+            font-family: 'GmarketSans', sans-serif;
+            font-size: 1rem;
+            opacity: 0.9;
+            margin: 0 0 30px 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .result-page {
+                padding: 70px 15px 30px;
+            }
+            
+            .result-type-code {
+                font-size: 2.5rem;
+            }
+            
+            .result-card {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+            
+            .result-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 2rem;
+            }
+            
+            .result-title {
+                font-size: 1.5rem;
+            }
+            
+            .result-description {
+                font-size: 0.9rem;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+            }
+            
+            .quiz-share-btn {
+                width: 100%;
+            }
+        }
+        
+        /* Visually hidden class for screen readers */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRTW3S54"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="quiz-skip-link">본문으로 바로가기</a>
+    
+    <!-- Navigation -->
+    <nav class="navbar" id="mainNavbar" role="navigation" aria-label="메인 네비게이션">
+        <div class="nav-container">
+            <a href="/" class="nav-logo" id="navLogo" aria-label="SAFE DRIVE 홈으로 이동">
+                <img src="/assets/img/SAFEDRIVE_logo.svg" alt="SAFE DRIVE 로고">
+            </a>
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="/" class="nav-link" role="menuitem">홈</a></li>
+                <li role="none"><a href="/#qr-generator-intro" class="nav-link" role="menuitem">QR</a></li>
+                <li role="none"><a href="/#referral" class="nav-link" role="menuitem">이벤트</a></li>
+                <li role="none"><a href="/#road-stress" class="nav-link" role="menuitem">도로스트레스</a></li>
+                <li role="none"><a href="/#mostLikedSection" class="nav-link" role="menuitem">인기번호판</a></li>
+                <li role="none"><a href="/#designated-lane" class="nav-link" role="menuitem">지정차로</a></li>
+                <li role="none"><a href="/#legal-notice" class="nav-link" role="menuitem">안내</a></li>
+                <li role="none"><a href="/contact.html" class="nav-link" role="menuitem">문의</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <section class="result-page" aria-labelledby="result-heading">
+            <div class="result-container">
+                <!-- Loading State -->
+                <div class="result-loading" id="loadingState" role="status" aria-live="polite">
+                    <div class="quiz-spinner" aria-hidden="true"></div>
+                    <p class="quiz-loading-text">결과를 분석하고 있어요...</p>
+                </div>
+                
+                <!-- Result Content (hidden initially) -->
+                <article class="result-content" id="resultContent" style="display: none;" aria-labelledby="result-heading">
+                    <!-- Result Header -->
+                    <header class="result-header">
+                        <span class="result-tag" aria-label="결과 태그">#운전성향 #도로위본캐</span>
+                        <h1 id="result-heading" class="result-type-code" aria-live="polite">
+                            <span id="resultTypeCode">---</span>
+                        </h1>
+                    </header>
+                    
+                    <!-- Result Card -->
+                    <div class="result-card" role="region" aria-label="테스트 결과">
+                        <!-- Result Icon -->
+                        <div class="result-icon" id="resultIcon" aria-hidden="true">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        
+                        <!-- Result Title -->
+                        <h2 class="result-title" id="resultTitle">결과를 불러오는 중...</h2>
+                        
+                        <!-- Result Description -->
+                        <p class="result-description" id="resultDescription">
+                            잠시만 기다려주세요.
+                        </p>
+                    </div>
+                    
+                    <!-- Share Section -->
+                    <section class="share-section" aria-labelledby="share-heading">
+                        <h3 id="share-heading" class="share-title">친구에게 공유하기</h3>
+                        <div class="share-buttons" role="group" aria-label="공유 버튼">
+                            <!-- Web Share API Button (shown on supported devices) -->
+                            <button type="button" class="quiz-share-btn share-native" id="shareNativeBtn" aria-label="공유하기">
+                                <i class="fas fa-share-alt" aria-hidden="true"></i>
+                                <span>공유하기</span>
+                            </button>
+                            
+                            <!-- Copy Link Button -->
+                            <button type="button" class="quiz-share-btn copy" id="copyLinkBtn" aria-label="링크 복사하기">
+                                <i class="fas fa-link" aria-hidden="true"></i>
+                                <span>링크 복사</span>
+                            </button>
+                            
+                            <!-- Twitter Share -->
+                            <button type="button" class="quiz-share-btn twitter" id="shareTwitterBtn" aria-label="트위터에 공유하기">
+                                <i class="fab fa-twitter" aria-hidden="true"></i>
+                                <span>트위터</span>
+                            </button>
+                            
+                            <!-- Facebook Share -->
+                            <button type="button" class="quiz-share-btn facebook" id="shareFacebookBtn" aria-label="페이스북에 공유하기">
+                                <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                <span>페이스북</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Copy Success Message -->
+                        <div class="copy-success" id="copySuccess" role="status" aria-live="polite" style="display: none;">
+                            <i class="fas fa-check-circle" aria-hidden="true"></i>
+                            <span>링크가 복사되었습니다!</span>
+                        </div>
+                    </section>
+                    
+                    <!-- Action Buttons -->
+                    <div class="result-actions" role="group" aria-label="결과 페이지 액션">
+                        <a href="quiz1.html" class="quiz-btn quiz-btn-primary quiz-btn-lg quiz-btn-full" role="button" aria-label="테스트 다시 하기">
+                            <i class="fas fa-redo" aria-hidden="true"></i>
+                            테스트 다시 하기
+                        </a>
+                        <a href="/" class="quiz-btn quiz-btn-secondary quiz-btn-full" role="button" aria-label="홈으로 돌아가기">
+                            <i class="fas fa-home" aria-hidden="true"></i>
+                            홈으로 돌아가기
+                        </a>
+                    </div>
+                </article>
+                
+                <!-- Error State (hidden initially) -->
+                <div class="result-error" id="errorState" style="display: none;" role="alert" aria-live="assertive">
+                    <div class="error-icon" aria-hidden="true">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h2 class="error-title">결과를 불러올 수 없습니다</h2>
+                    <p class="error-description">테스트를 다시 진행해주세요.</p>
+                    <a href="quiz1.html" class="quiz-btn quiz-btn-primary quiz-btn-lg" role="button" aria-label="테스트 시작하기">
+                        테스트 시작하기
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-content">
+            <nav class="footer-links" aria-label="푸터 링크">
+                <a href="/terms.html">이용약관</a> | 
+                <a href="/privacy.html">개인정보처리방침</a> | 
+                <a href="/legal.html">법적 고지</a> | 
+                <a href="/faq.html">자주 묻는 질문</a>
+            </nav>
+            <a class="footer-contact-link" href="/contact.html">문의</a>
+            <p class="copyright">© 2025 Hustle Up. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <!-- Quiz modules -->
+    <script src="/quiz/quiz-counter.js"></script>
+    <script src="quiz1script.js"></script>
+    
+    <!-- Cookie Consent -->
+    <script src="/js/cookie-consent.js"></script>
+    
+    <!-- Page initialization -->
+    <script>
+        // Result data from quiz1.json (embedded for performance)
+        const quiz1Results = {
+            "SFE": { "title": "폭주하는 유니콘", "desc": "빠르고 규칙은 칼같이 지키지만, 화나면 무서운 스타일. '내가 가는 길이 곧 길이다.'", "icon": "fa-bolt" },
+            "SFI": { "title": "그림자 레이서", "desc": "빠르고 규칙도 잘 지키며, 조용히 목적지만 향해 쏘는 스타일. 존재감 없이 빠름.", "icon": "fa-ghost" },
+            "SME": { "title": "강남 슈마허", "desc": "빠르지만 융통성도 있고, 남 운전에 훈수 두기 좋아하는 스타일. 운전 부심 있음.", "icon": "fa-flag-checkered" },
+            "SMI": { "title": "AI 내비게이터", "desc": "감정 동요 없이 최적의 경로와 시간 단축에만 집착하는 효율주의자.", "icon": "fa-robot" },
+            "CFE": { "title": "동네 보안관", "desc": "천천히 가면서 신호 위반하는 차들 다 감시하고 잔소리하는 스타일.", "icon": "fa-shield-halved" },
+            "CFI": { "title": "도로 위 부처님", "desc": "규칙 준수, 정속 주행, 무감정. 도로 위에서 해탈의 경지에 오른 사람.", "icon": "fa-peace" },
+            "CME": { "title": "초보운전 교관", "desc": "여유롭고 융통성 있지만, 옆 사람에게 계속 말 거는 투머치 토커.", "icon": "fa-chalkboard-teacher" },
+            "CMI": { "title": "인간 CCTV", "desc": "방어운전 만렙. 무리하지 않고 조용히 상황을 지켜보며 안전하게 이동함.", "icon": "fa-video" }
+        };
+        
+        // Firebase configuration (same as main site)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            authDomain: "safedrive-kr.firebaseapp.com",
+            databaseURL: "https://safedrive-kr-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "safedrive-kr",
+            storageBucket: "safedrive-kr.appspot.com",
+            messagingSenderId: "xxxxxxxxxxxx",
+            appId: "1:xxxxxxxxxxxx:web:xxxxxxxxxxxxxxxx"
+        };
+        
+        // Initialize Firebase if not already initialized
+        if (typeof firebase !== 'undefined' && !firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        
+        // Global state
+        let currentResultType = null;
+        let hasTrackedResult = false;
+        
+        /**
+         * Get result type from URL parameter or sessionStorage
+         * @returns {string|null} Result type code
+         */
+        function getResultType() {
+            // First, check URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const typeFromUrl = urlParams.get('type');
+            
+            if (typeFromUrl && quiz1Results[typeFromUrl]) {
+                return typeFromUrl;
+            }
+            
+            // Second, check sessionStorage
+            const typeFromStorage = sessionStorage.getItem('quiz1_result');
+            if (typeFromStorage && quiz1Results[typeFromStorage]) {
+                return typeFromStorage;
+            }
+            
+            return null;
+        }
+        
+        /**
+         * Display result on the page
+         * @param {string} resultType - Result type code
+         */
+        function displayResult(resultType) {
+            const result = quiz1Results[resultType];
+            if (!result) {
+                showError();
+                return;
+            }
+            
+            currentResultType = resultType;
+            
+            // Update result type code
+            const resultTypeCodeEl = document.getElementById('resultTypeCode');
+            if (resultTypeCodeEl) {
+                resultTypeCodeEl.textContent = resultType;
+            }
+            
+            // Update result icon
+            const resultIconEl = document.getElementById('resultIcon');
+            if (resultIconEl) {
+                resultIconEl.innerHTML = `<i class="fas ${result.icon || 'fa-car'}"></i>`;
+            }
+            
+            // Update result title
+            const resultTitleEl = document.getElementById('resultTitle');
+            if (resultTitleEl) {
+                resultTitleEl.textContent = result.title;
+            }
+            
+            // Update result description
+            const resultDescEl = document.getElementById('resultDescription');
+            if (resultDescEl) {
+                resultDescEl.textContent = result.desc;
+            }
+            
+            // Update page title
+            document.title = `${result.title} - 운전성향 테스트 결과 | SAFE DRIVE`;
+            
+            // Update meta tags dynamically
+            updateMetaTags(resultType, result);
+            
+            // Show result content, hide loading
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('resultContent').style.display = 'block';
+            
+            // Track result in quiz counter (only once)
+            if (!hasTrackedResult) {
+                trackResult(resultType);
+                hasTrackedResult = true;
+            }
+        }
+        
+        /**
+         * Update meta tags with result information
+         * @param {string} resultType - Result type code
+         * @param {Object} result - Result data
+         */
+        function updateMetaTags(resultType, result) {
+            const shareUrl = `${window.location.origin}${window.location.pathname}?type=${resultType}`;
+            const title = `${result.title} - 운전성향 테스트 결과`;
+            const description = result.desc;
+            
+            // Update meta description
+            const metaDesc = document.querySelector('meta[name="description"]');
+            if (metaDesc) {
+                metaDesc.setAttribute('content', `나의 운전 성향은 "${result.title}"! ${description}`);
+            }
+            
+            // Update Open Graph tags
+            const ogUrl = document.getElementById('og-url');
+            const ogTitle = document.getElementById('og-title');
+            const ogDesc = document.getElementById('og-description');
+            
+            if (ogUrl) ogUrl.setAttribute('content', shareUrl);
+            if (ogTitle) ogTitle.setAttribute('content', title);
+            if (ogDesc) ogDesc.setAttribute('content', `나의 운전 성향은 "${result.title}"! ${description}`);
+            
+            // Update Twitter tags
+            const twitterUrl = document.getElementById('twitter-url');
+            const twitterTitle = document.getElementById('twitter-title');
+            const twitterDesc = document.getElementById('twitter-description');
+            
+            if (twitterUrl) twitterUrl.setAttribute('content', shareUrl);
+            if (twitterTitle) twitterTitle.setAttribute('content', title);
+            if (twitterDesc) twitterDesc.setAttribute('content', `나의 운전 성향은 "${result.title}"! ${description}`);
+            
+            // Update canonical URL
+            const canonical = document.querySelector('link[rel="canonical"]');
+            if (canonical) {
+                canonical.setAttribute('href', shareUrl);
+            }
+        }
+        
+        /**
+         * Track result in quiz counter
+         * @param {string} resultType - Result type code
+         */
+        async function trackResult(resultType) {
+            if (typeof QuizCounter !== 'undefined') {
+                try {
+                    await QuizCounter.init();
+                    await QuizCounter.incrementTotal('quiz1');
+                    await QuizCounter.incrementResult('quiz1', resultType);
+                } catch (error) {
+                    console.warn('Failed to track result:', error);
+                }
+            }
+        }
+        
+        /**
+         * Show error state
+         */
+        function showError() {
+            document.getElementById('loadingState').style.display = 'none';
+            document.getElementById('resultContent').style.display = 'none';
+            document.getElementById('errorState').style.display = 'block';
+        }
+        
+        /**
+         * Generate share URL with result type
+         * @returns {string} Share URL
+         */
+        function getShareUrl() {
+            if (currentResultType) {
+                return `${window.location.origin}${window.location.pathname}?type=${currentResultType}`;
+            }
+            return window.location.href;
+        }
+        
+        /**
+         * Get share data for Web Share API
+         * @returns {Object} Share data
+         */
+        function getShareData() {
+            const result = quiz1Results[currentResultType];
+            return {
+                title: `${result ? result.title : '운전성향 테스트'} - SAFE DRIVE`,
+                text: result ? `내 운전 본캐는 "${result.title}"! 너도 한번 해봐!` : '내 운전 본캐는 뭘까? 너도 한번 해봐!',
+                url: getShareUrl()
+            };
+        }
+        
+        /**
+         * Handle native share (Web Share API)
+         */
+        async function handleNativeShare() {
+            const shareData = getShareData();
+            
+            if (navigator.share) {
+                try {
+                    await navigator.share(shareData);
+                } catch (error) {
+                    if (error.name !== 'AbortError') {
+                        console.log('Share failed:', error);
+                        // Fallback to copy
+                        handleCopyLink();
+                    }
+                }
+            } else {
+                // Fallback to copy
+                handleCopyLink();
+            }
+        }
+        
+        /**
+         * Handle copy link
+         */
+        async function handleCopyLink() {
+            const shareUrl = getShareUrl();
+            
+            try {
+                await navigator.clipboard.writeText(shareUrl);
+                showCopySuccess();
+            } catch (error) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = shareUrl;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-9999px';
+                document.body.appendChild(textArea);
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    showCopySuccess();
+                } catch (e) {
+                    alert('URL: ' + shareUrl);
+                }
+                
+                document.body.removeChild(textArea);
+            }
+        }
+        
+        /**
+         * Show copy success message
+         */
+        function showCopySuccess() {
+            const successEl = document.getElementById('copySuccess');
+            if (successEl) {
+                successEl.style.display = 'flex';
+                setTimeout(() => {
+                    successEl.style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        /**
+         * Handle Twitter share
+         */
+        function handleTwitterShare() {
+            const shareData = getShareData();
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareData.text)}&url=${encodeURIComponent(shareData.url)}`;
+            window.open(twitterUrl, '_blank', 'width=550,height=420');
+        }
+        
+        /**
+         * Handle Facebook share
+         */
+        function handleFacebookShare() {
+            const shareUrl = getShareUrl();
+            const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+            window.open(facebookUrl, '_blank', 'width=550,height=420');
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize mobile menu toggle
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                    navToggle.setAttribute('aria-expanded', !isExpanded);
+                    navMenu.classList.toggle('active');
+                    navToggle.setAttribute('aria-label', isExpanded ? '메뉴 열기' : '메뉴 닫기');
+                });
+            }
+            
+            // Get and display result
+            const resultType = getResultType();
+            
+            if (resultType) {
+                // Small delay for loading animation
+                setTimeout(() => {
+                    displayResult(resultType);
+                }, 800);
+            } else {
+                // No result found, show error
+                setTimeout(() => {
+                    showError();
+                }, 500);
+            }
+            
+            // Set up share button handlers
+            const shareNativeBtn = document.getElementById('shareNativeBtn');
+            const copyLinkBtn = document.getElementById('copyLinkBtn');
+            const shareTwitterBtn = document.getElementById('shareTwitterBtn');
+            const shareFacebookBtn = document.getElementById('shareFacebookBtn');
+            
+            if (shareNativeBtn) {
+                // Hide native share button if Web Share API is not supported
+                if (!navigator.share) {
+                    shareNativeBtn.style.display = 'none';
+                }
+                shareNativeBtn.addEventListener('click', handleNativeShare);
+            }
+            
+            if (copyLinkBtn) {
+                copyLinkBtn.addEventListener('click', handleCopyLink);
+            }
+            
+            if (shareTwitterBtn) {
+                shareTwitterBtn.addEventListener('click', handleTwitterShare);
+            }
+            
+            if (shareFacebookBtn) {
+                shareFacebookBtn.addEventListener('click', handleFacebookShare);
+            }
+            
+            // Initialize cookie consent
+            if (typeof CookieConsent !== 'undefined') {
+                CookieConsent.init();
+            }
+            
+            // Keyboard accessibility: Enable Space key activation for links with role="button"
+            document.querySelectorAll('a[role="button"]').forEach(function(link) {
+                link.addEventListener('keydown', function(e) {
+                    if (e.key === ' ' || e.key === 'Spacebar') {
+                        e.preventDefault();
+                        link.click();
+                    }
+                });
+            });
+        });
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            if (typeof QuizCounter !== 'undefined') {
+                QuizCounter.destroy();
+            }
+        });
+    </script>
+</body>
+</html>

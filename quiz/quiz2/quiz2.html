@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TRTW3S54');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) - with Cookie Consent -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9R8RZYZC7X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      
+      // Default consent to denied (will be updated by cookie consent manager)
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      
+      gtag('config', 'G-9R8RZYZC7X');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>극한의 시나리오 챌린지 - 도로 위 생존 테스트 | SAFE DRIVE</title>
+    <meta name="description" content="도로 위 돌발 상황에서 당신의 선택은? 18가지 극한 시나리오로 테스트하는 생존 본능 챌린지. 지금 바로 도전하세요!">
+    <meta name="keywords" content="시나리오챌린지, 운전테스트, 생존테스트, 돌발상황, 도로안전, 운전심리테스트, 세이프드라이브">
+    <meta name="author" content="SAFE DRIVE">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Korean">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://safedrive.kr/quiz/quiz2/quiz2.html">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://safedrive.kr/quiz/quiz2/quiz2.html">
+    <meta property="og:title" content="극한의 시나리오 챌린지 - 도로 위 생존 테스트">
+    <meta property="og:description" content="도로 위 돌발 상황에서 당신의 선택은? 18가지 극한 시나리오로 테스트하는 생존 본능 챌린지.">
+    <meta property="og:image" content="https://safedrive.kr/assets/img/quiz2_thumbnail.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="SAFE DRIVE">
+    <meta property="og:locale" content="ko_KR">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://safedrive.kr/quiz/quiz2/quiz2.html">
+    <meta name="twitter:title" content="극한의 시나리오 챌린지 - 도로 위 생존 테스트">
+    <meta name="twitter:description" content="도로 위 돌발 상황에서 당신의 선택은? 18가지 극한 시나리오로 테스트하는 생존 본능 챌린지.">
+    <meta name="twitter:image" content="https://safedrive.kr/assets/img/quiz2_thumbnail.webp">
+    
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48x48.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#ff4757">
+    
+    <!-- DNS Prefetch for performance -->
+    <link rel="dns-prefetch" href="https://www.gstatic.com">
+    <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com">
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/quiz/quiz-styles.css">
+    <link rel="stylesheet" href="/css/cookie-consent.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Page-specific styles -->
+    <style>
+        /* Quiz2 Landing Page Specific Styles - Emergency Theme */
+        .quiz2-hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e272e 0%, #2d3436 50%, #1e272e 100%);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Warning tape effect at top */
+        .quiz2-warning-tape {
+            background: repeating-linear-gradient(
+                45deg,
+                #ffa502,
+                #ffa502 10px,
+                #000 10px,
+                #000 20px
+            );
+            height: 15px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 20;
+        }
+        
+        .quiz2-hero-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 20px 40px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .quiz2-tag {
+            display: inline-block;
+            border: 2px solid #ff4757;
+            color: #ff4757;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: tagPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes tagPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .quiz2-hero-animation {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            margin: 20px auto;
+            position: relative;
+        }
+        
+        .quiz2-hero-animation .quiz-hero-svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .quiz2-title {
+            font-family: 'GmarketSans', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 20px 0;
+            line-height: 1.3;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(255, 71, 87, 0.5);
+        }
+        
+        .quiz2-title .highlight {
+            color: #ff4757;
+            display: block;
+        }
+        
+        .quiz2-subtitle {
+            font-family: 'GmarketSans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        /* Stats Box - Emergency Theme */
+        .quiz2-stats-box {
+            background: rgba(255, 71, 87, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            max-width: 400px;
+            width: 100%;
+            border: 2px solid rgba(255, 71, 87, 0.3);
+            position: relative;
+        }
+        
+        .quiz2-stats-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 17px;
+            background: linear-gradient(45deg, #ff4757, transparent, #ff4757);
+            z-index: -1;
+            animation: borderGlow 3s ease-in-out infinite;
+            opacity: 0.5;
+        }
+        
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+        
+        .quiz2-stat-count {
+            font-family: 'GmarketSans', sans-serif;
+            font-size: 1rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .quiz2-stat-count .count-value {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #ff4757;
+        }
+        
+        .quiz2-popular-result {
+            font-family: 'GmarketSans', sans-serif;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-top: 10px;
+        }
+        
+        .quiz2-survival-rate {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .quiz2-survival-bar {
+            flex: 1;
+            max-width: 200px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .quiz2-survival-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff4757, #ffa502);
+            width: 65%;
+            border-radius: 5px;
+            animation: survivalPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes survivalPulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+        
+        .quiz2-survival-text {
+            font-family: 'GmarketSans', sans-serif;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .quiz2-preview-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .quiz2-preview-item {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 71, 87, 0.3);
+            border-radius: 12px;
+            padding: 12px 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz2-preview-item:hover {
+            background: rgba(255, 71, 87, 0.1);
+            border-color: rgba(255, 71, 87, 0.5);
+        }
+        
+        .quiz2-preview-item i {
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 5px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .quiz2-preview-item span {
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.85);
+        }
+        
+        /* CTA Buttons - Emergency Theme */
+        .quiz2-cta-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .quiz2-btn-start {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            font-family: 'GmarketSans', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(255, 71, 87, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quiz2-btn-start::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: sheen 2s infinite;
+        }
+        
+        @keyframes sheen {
+            100% { left: 100%; }
+        }
+        
+        .quiz2-btn-start:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 71, 87, 0.5);
+        }
+        
+        .quiz2-btn-start:focus {
+            outline: 3px solid #ffa502;
+            outline-offset: 3px;
+        }
+        
+        .quiz2-btn-share {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 12px 20px;
+            font-family: 'GmarketSans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quiz2-btn-share:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .quiz2-btn-share:focus {
+            outline: 3px solid #ffa502;
+            outline-offset: 3px;
+        }
+        
+        /* Offline indicator */
+        .quiz2-offline-indicator {
+            display: none;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.95);
+            margin-top: 10px;
+        }
+        
+        .quiz2-offline-indicator.visible {
+            display: flex;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .quiz2-title {
+                font-size: 2rem;
+            }
+            
+            .quiz2-subtitle {
+                font-size: 1rem;
+            }
+            
+            .quiz2-hero-animation {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .quiz2-hero-content {
+                padding: 100px 15px 30px;
+            }
+            
+            .quiz2-title {
+                font-size: 1.75rem;
+            }
+            
+            .quiz2-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .quiz2-btn-start {
+                font-size: 1rem;
+                padding: 15px 25px;
+            }
+            
+            .quiz2-preview-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRTW3S54"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="quiz-skip-link">본문으로 바로가기</a>
+    
+    <!-- Warning Tape -->
+    <div class="quiz2-warning-tape" aria-hidden="true"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar" id="mainNavbar" role="navigation" aria-label="메인 네비게이션">
+        <div class="nav-container">
+            <a href="/" class="nav-logo" id="navLogo" aria-label="SAFE DRIVE 홈으로 이동">
+                <img src="/assets/img/SAFEDRIVE_logo.svg" alt="SAFE DRIVE 로고">
+            </a>
+            <ul class="nav-menu" id="navMenu" role="menubar">
+                <li role="none"><a href="/" class="nav-link" role="menuitem">홈</a></li>
+                <li role="none"><a href="/#qr-generator-intro" class="nav-link" role="menuitem">QR</a></li>
+                <li role="none"><a href="/#referral" class="nav-link" role="menuitem">이벤트</a></li>
+                <li role="none"><a href="/#road-stress" class="nav-link" role="menuitem">도로스트레스</a></li>
+                <li role="none"><a href="/#mostLikedSection" class="nav-link" role="menuitem">인기번호판</a></li>
+                <li role="none"><a href="/#designated-lane" class="nav-link" role="menuitem">지정차로</a></li>
+                <li role="none"><a href="/#legal-notice" class="nav-link" role="menuitem">안내</a></li>
+                <li role="none"><a href="/contact.html" class="nav-link" role="menuitem">문의</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="navMenu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <article class="quiz2-hero">
+            <header class="quiz2-hero-content">
+                <!-- Tag -->
+                <span class="quiz2-tag" aria-label="퀴즈 태그">Survival Mode</span>
+                
+                <!-- Hero Animation Container -->
+                <div class="quiz2-hero-animation" id="heroAnimation" role="img" aria-label="긴급 상황 테마 애니메이션">
+                    <!-- SVG animation will be injected here by quiz-animations.js -->
+                </div>
+                
+                <!-- Title -->
+                <h1 class="quiz2-title">
+                    극한의
+                    <span class="highlight">시나리오 챌린지</span>
+                </h1>
+                
+                <!-- Subtitle -->
+                <p class="quiz2-subtitle">
+                    도로 위 돌발 상황, 당신의 선택은?<br>
+                    생존 본능을 테스트하세요.
+                </p>
+                
+                <!-- Stats Section -->
+                <section class="quiz2-stats-box" aria-labelledby="stats-heading">
+                    <h2 id="stats-heading" class="visually-hidden">퀴즈 참여 통계</h2>
+                    <p class="quiz2-stat-count" aria-live="polite">
+                        🚨 현재 <span class="count-value" id="totalCount">0</span>명이 도전했어요!
+                    </p>
+                    
+                    <div class="quiz2-survival-rate" aria-label="평균 생존율">
+                        <span class="quiz2-survival-text">평균 생존율</span>
+                        <div class="quiz2-survival-bar" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                            <div class="quiz2-survival-fill"></div>
+                        </div>
+                        <span class="quiz2-survival-text">65%</span>
+                    </div>
+                    
+                    <p class="quiz2-popular-result" id="popularResult" aria-live="polite">
+                        <!-- Popular result will be displayed here -->
+                    </p>
+                    
+                    <div class="quiz2-preview-grid" role="list" aria-label="결과 유형 미리보기">
+                        <div class="quiz2-preview-item" role="listitem">
+                            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                            <span>???</span>
+                        </div>
+                        <div class="quiz2-preview-item" role="listitem">
+                            <i class="fas fa-bolt" aria-hidden="true"></i>
+                            <span>???</span>
+                        </div>
+                        <div class="quiz2-preview-item" role="listitem">
+                            <i class="fas fa-brain" aria-hidden="true"></i>
+                            <span>???</span>
+                        </div>
+                        <div class="quiz2-preview-item" role="listitem">
+                            <i class="fas fa-heart" aria-hidden="true"></i>
+                            <span>???</span>
+                        </div>
+                    </div>
+                    
+                    <div class="quiz2-offline-indicator" id="offlineIndicator" role="status" aria-live="polite">
+                        <i class="fas fa-wifi-slash" aria-hidden="true"></i>
+                        <span>오프라인</span>
+                    </div>
+                </section>
+                
+                <!-- CTA Buttons -->
+                <div class="quiz2-cta-container">
+                    <a href="qna2.html" class="quiz2-btn-start" role="button" aria-label="시나리오 챌린지 시작하기">
+                        챌린지 시작하기 <i class="fas fa-play" aria-hidden="true"></i>
+                    </a>
+                    <button type="button" class="quiz2-btn-share" id="shareBtn" aria-label="친구에게 도전장 보내기">
+                        <i class="fas fa-share-alt" aria-hidden="true"></i> 친구에게 도전장 보내기
+                    </button>
+                </div>
+            </header>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="footer-content">
+            <nav class="footer-links" aria-label="푸터 링크">
+                <a href="/terms.html">이용약관</a> | 
+                <a href="/privacy.html">개인정보처리방침</a> | 
+                <a href="/legal.html">법적 고지</a> | 
+                <a href="/faq.html">자주 묻는 질문</a>
+            </nav>
+            <a class="footer-contact-link" href="/contact.html">문의</a>
+            <p class="copyright">© 2025 Hustle Up. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <!-- Anime.js for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- Quiz modules -->
+    <script src="/quiz/quiz-counter.js"></script>
+    <script src="/quiz/quiz-animations.js"></script>
+    
+    <!-- Cookie Consent -->
+    <script src="/js/cookie-consent.js"></script>
+    
+    <!-- Page initialization -->
+    <script>
+        // Firebase configuration (same as main site)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            authDomain: "safedrive-kr.firebaseapp.com",
+            databaseURL: "https://safedrive-kr-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "safedrive-kr",
+            storageBucket: "safedrive-kr.appspot.com",
+            messagingSenderId: "xxxxxxxxxxxx",
+            appId: "1:xxxxxxxxxxxx:web:xxxxxxxxxxxxxxxx"
+        };
+        
+        // Initialize Firebase if not already initialized
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize mobile menu toggle
+            const navToggle = document.getElementById('navToggle');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (navToggle && navMenu) {
+                navToggle.addEventListener('click', function() {
+                    const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                    navToggle.setAttribute('aria-expanded', !isExpanded);
+                    navMenu.classList.toggle('active');
+                    navToggle.setAttribute('aria-label', isExpanded ? '메뉴 열기' : '메뉴 닫기');
+                });
+            }
+            
+            // Initialize hero animation
+            const heroContainer = document.getElementById('heroAnimation');
+            if (heroContainer && typeof QuizAnimations !== 'undefined') {
+                QuizAnimations.initQuiz2Hero(heroContainer);
+            }
+            
+            // Initialize quiz counter
+            if (typeof QuizCounter !== 'undefined') {
+                QuizCounter.init().then(() => {
+                    // Subscribe to real-time updates
+                    const unsubscribe = QuizCounter.subscribe('quiz2', function(stats) {
+                        // Update total count
+                        const totalCountEl = document.getElementById('totalCount');
+                        if (totalCountEl) {
+                            totalCountEl.textContent = stats.totalCompletions.toLocaleString('ko-KR');
+                            totalCountEl.classList.add('animating');
+                            setTimeout(() => totalCountEl.classList.remove('animating'), 300);
+                        }
+                        
+                        // Show offline indicator if needed
+                        const offlineIndicator = document.getElementById('offlineIndicator');
+                        if (offlineIndicator) {
+                            offlineIndicator.classList.toggle('visible', stats.isOffline);
+                        }
+                    });
+                    
+                    // Get most popular result
+                    QuizCounter.getMostPopular('quiz2').then(function(popular) {
+                        const popularResultEl = document.getElementById('popularResult');
+                        if (popularResultEl && popular) {
+                            // Map result type codes to display names for Quiz2
+                            const resultNames = {
+                                'A': '냉철한 전략가',
+                                'B': '본능적 생존자',
+                                'C': '침착한 수호자',
+                                'D': '과감한 돌파자',
+                                'AB': '균형잡힌 대응자',
+                                'BC': '직관적 보호자',
+                                'AC': '분석적 방어자',
+                                'DA': '적극적 해결사'
+                            };
+                            const typeName = resultNames[popular.type] || popular.type;
+                            popularResultEl.textContent = `🏆 ${typeName} 유형이 가장 많아요!`;
+                        }
+                    });
+                });
+            }
+            
+            // Share functionality
+            const shareBtn = document.getElementById('shareBtn');
+            if (shareBtn) {
+                shareBtn.addEventListener('click', function() {
+                    const shareData = {
+                        title: '극한의 시나리오 챌린지 - SAFE DRIVE',
+                        text: '도로 위 극한 상황, 넌 살아남을 수 있어? 도전해봐!',
+                        url: window.location.href
+                    };
+                    
+                    if (navigator.share) {
+                        navigator.share(shareData).catch(function(err) {
+                            console.log('Share cancelled or failed:', err);
+                        });
+                    } else {
+                        // Fallback: copy to clipboard
+                        navigator.clipboard.writeText(window.location.href).then(function() {
+                            alert('도전장 URL이 복사되었습니다!');
+                        }).catch(function() {
+                            alert('URL: ' + window.location.href);
+                        });
+                    }
+                });
+            }
+            
+            // Initialize cookie consent
+            if (typeof CookieConsent !== 'undefined') {
+                CookieConsent.init();
+            }
+            
+            // Keyboard accessibility: Enable Space key activation for links with role="button"
+            document.querySelectorAll('a[role="button"]').forEach(function(link) {
+                link.addEventListener('keydown', function(e) {
+                    if (e.key === ' ' || e.key === 'Spacebar') {
+                        e.preventDefault();
+                        link.click();
+                    }
+                });
+            });
+        });
+        
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            if (typeof QuizAnimations !== 'undefined') {
+                QuizAnimations.destroy();
+            }
+            if (typeof QuizCounter !== 'undefined') {
+                QuizCounter.destroy();
+            }
+        });
+    </script>
+    
+    <!-- Visually hidden class for screen readers -->
+    <style>
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+    </style>
+</body>
+</html>
