@@ -210,7 +210,7 @@
         .pro-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 80px 24px 60px;
+            padding: 110px 24px 60px;
         }
 
         /* Footer styles removed - using styles.css */
@@ -1278,9 +1278,7 @@
                 min-width: 120px;
             }
 
-            .nav-link {
-                display: none;
-            }
+            /* removed nav-link display none */
 
             .pro-quick-card {
                 padding: 20px;
@@ -2877,6 +2875,7 @@
         // SafeDrive Pro Dashboard - Page-Specific Script
         // Core modules defined inline to avoid conflicts with script.js
         // ============================================================================
+        (() => {
 
         // Initialize database reference (Firebase is initialized in firebase-config.js)
         const database = firebase.database();
@@ -3283,11 +3282,14 @@
                 const savedTheme = localStorage.getItem('safedrive-theme') || 'light';
                 this.setTheme(savedTheme);
 
-                document.getElementById('themeToggle').addEventListener('click', () => {
-                    const current = document.documentElement.getAttribute('data-theme') || 'light';
-                    const newTheme = current === 'dark' ? 'light' : 'dark';
-                    this.setTheme(newTheme);
-                });
+                const themeToggleEl = document.getElementById('themeToggle');
+                if (themeToggleEl) {
+                    themeToggleEl.addEventListener('click', () => {
+                        const current = document.documentElement.getAttribute('data-theme') || 'light';
+                        const newTheme = current === 'dark' ? 'light' : 'dark';
+                        this.setTheme(newTheme);
+                    });
+                }
             },
 
             setTheme(theme) {
@@ -4271,9 +4273,12 @@
 
         document.addEventListener('DOMContentLoaded', async () => {
             await init();
-            SubscriptionManager.init();
+            if (typeof SubscriptionManager !== 'undefined') {
+                SubscriptionManager.init();
+            }
             // injectPaperPlaneIcons is now called inside init() after data loads
         });
+        })(); // End of scoped inline script
     </script>
 
     <!-- Subscribe Popup -->
