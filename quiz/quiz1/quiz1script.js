@@ -35,19 +35,18 @@ function calculateQuiz1Result(userAnswers) {
     //   * -> ***해결책***: 코드를 단순화하기 위해 위 JSON의 `results` 키를
     //        직관적인 [S/C][F/Y][E/I] 조합(예: SFE, SFI, SYE, SYI...)으로 변경하거나,
     //        여기서 결과 코드를 강제로 매핑해야 함.
-    
+
     //   * 여기서는 JSON의 키(SFE, SFI 등)를 따르지 않고, 
     //     계산된 3자리 코드(예: SFE)를 그대로 리턴한다고 가정하고,
     //     JSON의 키를 이에 맞춰 수정하는 것이 가장 안전함.
     //     (위 JSON 데이터는 이미 SFE, SFI... 패턴으로 작성됨. 
     //      단, 'M'이 들어간 키(SME, CME)는 F/Y와 매칭이 안됨.)
-    
-    //   *** [중요] 로직 단순화를 위한 매핑 전략 ***
-    //   Rule축: F(FM/준수)가 높으면 -> 'M' (Master/FM)
-    //   Rule축: Y(Yield/양보)가 높으면 -> 'F' (Free/Flex)
-    //   이렇게 하면 결과 코드는 SME, SFE 등이 됨.
-    
-    const ruleType = scores.F >= scores.Y ? "M" : "F"; // F(준수) -> M, Y(융통) -> F
+
+    //   * [수정된 로직] 기획 데이터(SFE=FM, SME=Flexible)에 맞춤:
+    //   Rule축: F(FM/준수)가 높으면 -> 'F' (FM)
+    //   Rule축: Y(Yield/융통)가 높으면 -> 'M' (Mobile/Flexible?) -> 기획상 Flexible이 M임.
+
+    const ruleType = scores.F >= scores.Y ? "F" : "M"; // F(준수) -> F, Y(융통) -> M
     const emoType = scores.E >= scores.I ? "E" : "I";
 
     // 4. 최종 코드 조합 (예: SME)

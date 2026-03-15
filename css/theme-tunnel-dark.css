@@ -1,0 +1,233 @@
+/* ========================================
+   SAFE DRIVE - 터널 다크 테마
+   Tunnel Dark Theme
+   Primary: #1A1A1A | Secondary: #37474F
+   ======================================== */
+
+:root {
+    --theme-primary: #1A1A1A;
+    --theme-secondary: #37474F;
+    --theme-accent: #FF9800;
+    --theme-highlight: #FFFFFF;
+    --theme-dark: #000000;
+    --theme-light: #ECEFF1;
+    --theme-gradient: linear-gradient(135deg, #1A1A1A 0%, #37474F 100%);
+    --theme-gradient-reverse: linear-gradient(135deg, #37474F 0%, #1A1A1A 100%);
+}
+
+/* Hero Section */
+.video-overlay {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(55, 71, 79, 0.7) 100%) !important;
+}
+
+.hero .stat-value {
+    color: var(--theme-accent) !important;
+}
+
+.search-button {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%) !important;
+    color: #000 !important;
+}
+
+.search-button:hover {
+    background: linear-gradient(135deg, #F57C00 0%, #FF9800 100%) !important;
+}
+
+/* Navbar scrolled state */
+#mainNavbar.scrolled .nav-link:hover {
+    color: var(--theme-accent) !important;
+}
+
+/* Journey Section */
+.journey-section {
+    background: var(--theme-gradient) !important;
+}
+
+.step-number {
+    background: var(--theme-accent) !important;
+    color: var(--theme-dark) !important;
+}
+
+
+/* Road Stress Section */
+.road-stress-section {
+    background: linear-gradient(180deg, #000000 0%, #1A1A1A 100%) !important;
+}
+
+.stress-comment-box {
+    background: rgba(255, 152, 0, 0.15) !important;
+    border-color: rgba(255, 152, 0, 0.4) !important;
+}
+
+.stress-stat-value {
+    color: var(--theme-accent) !important;
+}
+
+.stress-emotion-btn:hover {
+    box-shadow: 0 10px 30px rgba(255, 152, 0, 0.5) !important;
+}
+
+/* Quiz Section */
+.quiz-section {
+    background: var(--theme-gradient) !important;
+}
+
+.quiz-card::before {
+    background: linear-gradient(90deg, #FF9800 0%, #F57C00 100%) !important;
+}
+
+.quiz-card-badge {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%) !important;
+    color: #000 !important;
+}
+
+.quiz-card-cta {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%) !important;
+    color: #000 !important;
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4) !important;
+}
+
+.quiz-card-cta:hover {
+    box-shadow: 0 8px 25px rgba(255, 152, 0, 0.5) !important;
+}
+
+/* QR Generator Section */
+.qr-generator-intro-section {
+    background: linear-gradient(135deg, #1A1A1A 0%, #37474F 100%) !important;
+}
+
+.qr-intro-title,
+.qr-intro-subtitle {
+    color: var(--theme-highlight) !important;
+}
+
+.qr-feature-item {
+    color: var(--theme-light) !important;
+}
+
+.qr-intro-badge {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%) !important;
+}
+
+.qr-badge-text {
+    color: #000 !important;
+}
+
+.qr-step-num {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%) !important;
+    color: #000 !important;
+}
+
+.qr-step-arrow {
+    color: var(--theme-accent) !important;
+}
+
+.qr-step-text {
+    color: var(--theme-light) !important;
+}
+
+.qr-intro-cta {
+    background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%) !important;
+    color: #000 !important;
+    box-shadow: 0 8px 24px rgba(255, 152, 0, 0.3) !important;
+}
+
+.qr-intro-cta:hover {
+    box-shadow: 0 12px 36px rgba(255, 152, 0, 0.4) !important;
+}
+
+.qr-intro-notice {
+    background: rgba(255, 152, 0, 0.1) !important;
+    border-left-color: var(--theme-accent) !important;
+    color: var(--theme-light) !important;
+}
+
+.qr-mockup-text {
+    color: var(--theme-accent) !important;
+}
+
+.qr-intro-example {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 152, 0, 0.2);
+}
+
+/* Footer */
+.site-footer {
+    background: var(--theme-gradient) !important;
+}
+
+/* Leaderboard Tabs */
+#rankings .tabs .tab.active {
+    background-color: var(--theme-accent) !important;
+    border-color: var(--theme-accent) !important;
+    color: #000 !important;
+}
+
+/* Road line animation - orange emergency lights */
+.road-line {
+    background: var(--theme-accent) !important;
+    box-shadow: 0 0 20px rgba(255, 152, 0, 0.8);
+    animation: roadMove 2s linear infinite, tunnelGlow 1s ease-in-out infinite alternate !important;
+}
+
+@keyframes tunnelGlow {
+    0% { box-shadow: 0 0 10px rgba(255, 152, 0, 0.5); }
+    100% { box-shadow: 0 0 30px rgba(255, 152, 0, 1); }
+}
+
+/* Tunnel emergency light strip */
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--theme-accent) 0px,
+        var(--theme-accent) 20px,
+        var(--theme-dark) 20px,
+        var(--theme-dark) 40px
+    );
+    animation: emergencyStrip 0.5s linear infinite;
+    z-index: 5;
+}
+
+@keyframes emergencyStrip {
+    0% { background-position: 0 0; }
+    100% { background-position: 40px 0; }
+}
+
+/* Lane Types Section */
+#lane-types {
+    background: linear-gradient(135deg, #1A1A1A 0%, #000000 100%) !important;
+}
+
+/* Tunnel ambient lighting effect */
+.journey-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center top, rgba(255, 152, 0, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.journey-section > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Intro section dark mode */
+.intro-section {
+    background: var(--theme-gradient) !important;
+}
+
+.intro-section h2,
+.intro-section p {
+    color: var(--theme-light) !important;
+}

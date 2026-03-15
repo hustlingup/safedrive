@@ -112,6 +112,27 @@ function copyDir(srcDir, destDir, exclude = []) {
     }
 }
 
+// Copy directory recursively, excluding specific files at any depth
+function copyDirWithExclusions(srcDir, destDir, excludeFiles = []) {
+    if (!fs.existsSync(srcDir)) return;
+    ensureDir(destDir);
+    
+    const entries = fs.readdirSync(srcDir, { withFileTypes: true });
+    for (const entry of entries) {
+        const srcPath = path.join(srcDir, entry.name);
+        const destPath = path.join(destDir, entry.name);
+        
+        if (entry.isDirectory()) {
+            copyDirWithExclusions(srcPath, destPath, excludeFiles);
+        } else {
+            // Skip files in the exclusion list
+            if (!excludeFiles.includes(entry.name)) {
+                copyFile(srcPath, destPath);
+            }
+        }
+    }
+}
+
 // Main build
 function build() {
     // console.log('Building SafeDrive...\\n');
@@ -133,7 +154,9 @@ function build() {
         { src: 'firebase-config.js', dest: 'dist/firebase-config.js' },
         { src: 'sw.js', dest: 'dist/sw.js' },
         { src: 'firebase-messaging-sw.js', dest: 'dist/firebase-messaging-sw.js' },
-        { src: 'public/firebase-config.js', dest: 'dist/public/firebase-config.js' }
+        { src: 'public/firebase-config.js', dest: 'dist/public/firebase-config.js' },
+        { src: 'quiz/quiz1/quiz1.html', dest: 'dist/quiz/quiz1/quiz1.html' },
+        { src: 'quiz/quiz2/quiz2.html', dest: 'dist/quiz/quiz2/quiz2.html' }
     ];
     
     for (const file of filesToProcess) {
@@ -166,7 +189,10 @@ function build() {
     }
     
     // Copy directories
-    const dirsToCopy = ['assets', 'css', 'js', 'public'];
+    const dirsToCopy = ['assets', 'css', 'js', 'public', 'quiz'];
+    // Files that are processed separately (with env variable injection)
+    const processedFiles = ['quiz1.html', 'quiz2.html', 'firebase-config.js'];
+    
     for (const dir of dirsToCopy) {
         if (fs.existsSync(dir)) {
             // For public dir, skip firebase-config.js (already processed)
@@ -177,6 +203,9 @@ function build() {
                         copyFile(path.join(dir, file), path.join(distDir, dir, file));
                     }
                 }
+            } else if (dir === 'quiz') {
+                // For quiz dir, skip quiz1.html and quiz2.html (already processed)
+                copyDirWithExclusions(dir, path.join(distDir, dir), processedFiles);
             } else {
                 copyDir(dir, path.join(distDir, dir));
             }

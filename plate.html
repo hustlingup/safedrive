@@ -1,78 +1,83 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TRTW3S54');</script>
-<!-- End Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TRTW3S54');</script>
+    <!-- End Google Tag Manager -->
     <!-- Google tag (gtag.js) - with Cookie Consent -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-9R8RZYZC7X"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  
-  // Default consent to denied
-  gtag('consent', 'default', {
-    'analytics_storage': 'denied',
-    'ad_storage': 'denied',
-    'ad_user_data': 'denied',
-    'ad_personalization': 'denied'
-  });
-  
-  gtag('config', 'G-9R8RZYZC7X');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9R8RZYZC7X"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        // Default consent to denied
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied'
+        });
+
+        gtag('config', 'G-9R8RZYZC7X');
+    </script>
     <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6791974364232767" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6791974364232767"
+        crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SAFE DRIVE 차량 안전 리포트 - 실시간 차량 안전 정보와 케어 인덱스를 확인하세요.">
     <meta name="keywords" content="세이프드라이브, 차량리포트, 안전리포트, 케어인덱스, 번호판조회">
     <meta name="author" content="SAFE DRIVE">
     <title>안전 리포트 - SAFE DRIVE</title>
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://safedrive.kr/plate.html">
     <meta property="og:title" content="안전 리포트 - SAFE DRIVE">
     <meta property="og:description" content="SAFE DRIVE 차량 안전 리포트 - 실시간 차량 안전 정보와 케어 인덱스를 확인하세요.">
     <meta property="og:image" content="https://safedrive.kr/assets/img/safedrive_thumbnail.webp">
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://safedrive.kr/plate.html">
     <meta name="twitter:title" content="안전 리포트 - SAFE DRIVE">
     <meta name="twitter:description" content="SAFE DRIVE 차량 안전 리포트 - 실시간 차량 안전 정보와 케어 인덱스를 확인하세요.">
     <meta name="twitter:image" content="https://safedrive.kr/assets/img/safedrive_thumbnail.webp">
-    
+
     <!-- Additional SEO -->
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://safedrive.kr/plate.html">
-    
+
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48x48.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
-    
+
     <!-- PWA Manifest -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#2563eb">
     <link rel="apple-touch-icon" href="/assets/img/icon-192.png">
-    
+
     <!-- DNS Prefetch for performance -->
     <link rel="dns-prefetch" href="https://www.gstatic.com">
     <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
-    
+
     <!-- Scripts -->
     <!-- Anime.js for animations -->
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
     <script src="js/animation-utils.js"></script>
-    
+
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js"></script>
@@ -81,30 +86,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="firebase-config.js"></script>
     <script src="security.js"></script>
     <script src="js/xss-prevention.js"></script>
-    
+    <link rel="stylesheet" href="/styles.css">
+
     <style>
         /* =============================================
            SAFEDRIVE PRO DASHBOARD
            Data-Driven Professional Theme
            With Light/Dark Mode Support
            ============================================= */
-        
+
         @font-face {
             font-family: 'GmarketSans';
             font-weight: 300;
             src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
         }
+
         @font-face {
             font-family: 'GmarketSans';
             font-weight: 500;
             src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
         }
+
         @font-face {
             font-family: 'GmarketSans';
             font-weight: 700;
             src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
         }
-        
+
         /* CSS Variables - Dark Mode (Default) */
         :root {
             --pro-bg: #0d1117;
@@ -123,7 +131,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             --navbar-bg: #161b22;
             --chart-grid: #21262d;
         }
-        
+
         /* Light Mode Variables */
         [data-theme="light"] {
             --pro-bg: #f6f8fa;
@@ -143,8 +151,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             --chart-grid: #eaeef2;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             background: var(--pro-bg);
             color: var(--pro-text);
@@ -152,133 +164,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             min-height: 100vh;
             transition: background 0.3s ease, color 0.3s ease;
         }
-        
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 60px;
-            background: var(--navbar-bg);
-            border-bottom: 1px solid var(--pro-border);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            padding: 0 24px;
-            transition: background 0.3s ease, border-color 0.3s ease;
-        }
-        
-        .nav-container {
-            max-width: 1400px;
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .nav-logo img {
-            height: 28px;
-            filter: var(--logo-filter, none);
-        }
-        
-        [data-theme="light"] .nav-logo img {
-            filter: none;
-        }
-        
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 24px;
-            margin: 0;
-            padding: 0;
-        }
-        
-        .nav-link {
-            color: var(--pro-text-dim);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        
-        .nav-link:hover, .nav-link.active {
-            color: var(--pro-accent);
-        }
-        
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-        
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 4px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 8px;
-        }
-        .hamburger-line {
-            width: 24px;
-            height: 2px;
-            background: var(--pro-text);
-            transition: all 0.3s;
-        }
-        
-        /* Hamburger animation when menu is active */
-        .nav-toggle.active .hamburger-line:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-        .nav-toggle.active .hamburger-line:nth-child(2) {
-            opacity: 0;
-        }
-        .nav-toggle.active .hamburger-line:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -6px);
-        }
 
-        @media (max-width: 768px) {
-            .nav-menu {
-                position: fixed;
-                top: 60px;
-                left: -100%;
-                width: 100%;
-                background: var(--navbar-bg);
-                flex-direction: column;
-                padding: 20px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                transition: left 0.3s;
-                z-index: 999;
-                list-style: none;
-                margin: 0;
-                gap: 0;
-            }
-            .nav-menu li {
-                width: 100%;
-                margin: 0;
-                padding: 0;
-            }
-            .nav-menu .nav-link {
-                display: block;
-                padding: 12px 16px;
-                width: 100%;
-                border-radius: 8px;
-                transition: all 0.2s;
-            }
-            .nav-menu .nav-link:hover {
-                background: var(--pro-card);
-            }
-            .nav-menu.active {
-                left: 0;
-            }
-            .nav-toggle {
-                display: flex;
-            }
-        }
-        
+        /* Navbar styles removed - using styles.css */
+
         /* Theme Toggle */
         .theme-toggle {
             width: 44px;
@@ -293,21 +181,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-size: 1.2rem;
             transition: all 0.3s ease;
         }
-        
+
         .theme-toggle:hover {
             background: var(--pro-card);
             border-color: var(--pro-accent);
             transform: rotate(15deg);
         }
-        
-        .theme-toggle .icon-sun { display: none; }
-        .theme-toggle .icon-moon { display: block; }
-        
-        [data-theme="light"] .theme-toggle .icon-sun { display: block; }
-        [data-theme="light"] .theme-toggle .icon-moon { display: none; }
-        
 
-        
+        .theme-toggle .icon-sun {
+            display: none;
+        }
+
+        .theme-toggle .icon-moon {
+            display: block;
+        }
+
+        [data-theme="light"] .theme-toggle .icon-sun {
+            display: block;
+        }
+
+        [data-theme="light"] .theme-toggle .icon-moon {
+            display: none;
+        }
+
+
+
         /* Container */
         .pro-container {
             max-width: 1400px;
@@ -315,47 +213,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             padding: 80px 24px 60px;
         }
 
-        /* Footer */
-        .site-footer {
-            background: var(--pro-surface);
-            border-top: 1px solid var(--pro-border);
-            padding: 40px 20px;
-            margin-top: 60px;
-        }
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .footer-links {
-            margin-bottom: 16px;
-        }
-        .footer-links a {
-            color: var(--pro-text-dim);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.2s;
-        }
-        .footer-links a:hover {
-            color: var(--pro-accent);
-        }
-        .footer-contact-link {
-            display: inline-block;
-            color: var(--pro-accent);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .footer-contact-link:hover {
-            text-decoration: underline;
-        }
-        .copyright {
-            color: var(--pro-text-dim);
-            font-size: 0.75rem;
-            margin: 0;
-        }
-        
+        /* Footer styles removed - using styles.css */
+
         /* Top Bar */
         .pro-topbar {
             display: flex;
@@ -367,18 +226,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             gap: 16px;
             animation: fadeInDown 0.5s ease;
         }
-        
+
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         .pro-plate-info {
             display: flex;
             align-items: center;
             gap: 20px;
         }
-        
+
         .pro-plate-emoji {
             font-size: 2.4rem;
             line-height: 1;
@@ -386,7 +252,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             display: inline-flex;
             align-items: center;
         }
-        
+
         .pro-plate-number {
             font-size: 2.5rem;
             font-weight: 700;
@@ -394,7 +260,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             letter-spacing: 3px;
             transition: color 0.3s ease;
         }
-        
+
         .pro-status {
             display: flex;
             align-items: center;
@@ -406,7 +272,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-size: 0.75rem;
             font-weight: 600;
         }
-        
+
         .pro-status-dot {
             width: 8px;
             height: 8px;
@@ -414,17 +280,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border-radius: 50%;
             animation: blink 2s infinite;
         }
-        
+
         @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
         }
-        
+
         .pro-actions {
             display: flex;
             gap: 12px;
         }
-        
+
         .pro-btn {
             display: flex;
             align-items: center;
@@ -439,30 +312,30 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             background: var(--pro-surface);
             color: var(--pro-text);
         }
-        
+
         .pro-btn:hover {
             background: var(--pro-card);
             border-color: var(--pro-accent);
             transform: translateY(-2px);
         }
-        
+
         .pro-btn:active {
             transform: translateY(0);
         }
-        
+
         .pro-btn-primary {
             background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             border-color: #3b82f6;
             color: #fff;
             box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
-        
+
         .pro-btn-primary:hover {
             background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             filter: brightness(1.15);
             box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
         }
-        
+
         /* Search Form */
         .pro-search-form {
             display: flex;
@@ -474,21 +347,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         .pipc-link {
             font-size: 0.8rem;
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
-        
+
         .pro-search-input-wrapper {
             position: relative;
             flex: 1;
         }
-        
+
         .pro-search-form .pro-btn-primary {
             flex: 0 0 auto;
         }
-        
+
         .pro-search-input {
             width: 100%;
             padding: 12px 60px 12px 20px;
@@ -499,17 +377,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-size: 1rem;
             transition: all 0.2s ease;
         }
-        
+
         .pro-search-input:focus {
             outline: none;
         }
-        
+
         /* Validation states are applied via JavaScript with !important */
-        
+
         .pro-search-input::placeholder {
             color: var(--pro-text-dim);
         }
-        
+
         .pro-search-input-wrapper .voice-mic-btn {
             position: absolute;
             right: 10px;
@@ -526,16 +404,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             justify-content: center;
             transition: all 0.3s ease;
         }
-        
+
         .pro-search-input-wrapper .voice-mic-btn:hover {
             background: #2563eb;
             transform: translateY(-50%) scale(1.05);
         }
-        
+
         .pro-search-input-wrapper .voice-mic-btn svg {
             color: white;
         }
-        
+
         /* Wide Screen Layout - Desktop */
         @media (min-width: 1024px) {
             .pro-search-form {
@@ -543,29 +421,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 align-items: center;
                 gap: 12px;
             }
-            
+
             .pro-search-input-wrapper {
                 flex: 1;
                 max-width: none;
             }
-            
+
             .pro-search-input {
                 padding: 14px 56px 14px 20px;
                 font-size: 1rem;
                 height: 50px;
             }
-            
+
             .pro-search-input-wrapper .voice-mic-btn {
                 width: 36px;
                 height: 36px;
                 right: 8px;
             }
-            
+
             .pro-search-input-wrapper .voice-mic-btn svg {
                 width: 16px;
                 height: 16px;
             }
-            
+
             .pro-search-form .pro-btn-primary {
                 flex: 0 0 auto;
                 max-width: none;
@@ -575,7 +453,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 white-space: nowrap;
             }
         }
-        
+
         /* Stats Overview */
         .pro-stats-overview {
             display: grid;
@@ -583,7 +461,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             gap: 16px;
             margin-bottom: 16px;
         }
-        
+
         .pro-stat-card {
             background: var(--pro-surface);
             border: 1px solid var(--pro-border);
@@ -592,35 +470,53 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             transition: all 0.3s ease;
             animation: fadeInUp 0.5s ease both;
         }
-        
-        .pro-stat-card:nth-child(1) { animation-delay: 0.1s; }
-        .pro-stat-card:nth-child(2) { animation-delay: 0.15s; }
-        .pro-stat-card:nth-child(3) { animation-delay: 0.2s; }
-        .pro-stat-card:nth-child(4) { animation-delay: 0.25s; }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .pro-stat-card:nth-child(1) {
+            animation-delay: 0.1s;
         }
-        
+
+        .pro-stat-card:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .pro-stat-card:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .pro-stat-card:nth-child(4) {
+            animation-delay: 0.25s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .pro-stat-card:hover {
             border-color: var(--pro-accent);
             transform: translateY(-3px);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
         }
-        
+
         .pro-stat-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 12px;
         }
-        
+
         .pro-stat-label {
             font-size: 0.8rem;
             color: var(--pro-text-dim);
         }
-        
+
         .pro-stat-icon {
             width: 36px;
             height: 36px;
@@ -630,7 +526,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             justify-content: center;
             font-size: 1.1rem;
         }
-        
+
         .pro-stat-value {
             font-size: 2rem;
             font-weight: 700;
@@ -638,43 +534,59 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             margin-bottom: 8px;
             transition: color 0.3s ease;
         }
-        
+
         .pro-stat-change {
             font-size: 0.75rem;
             display: flex;
             align-items: center;
             gap: 4px;
         }
-        
-        .pro-stat-change.up { color: var(--pro-success); }
-        .pro-stat-change.down { color: var(--pro-danger); }
-        
-        .pro-stat-card.views .pro-stat-icon { background: rgba(59, 130, 246, 0.2); }
-        .pro-stat-card.messages .pro-stat-icon { background: rgba(168, 85, 247, 0.2); }
-        .pro-stat-card.likes .pro-stat-icon { background: rgba(236, 72, 153, 0.2); }
-        .pro-stat-card.score .pro-stat-icon { background: rgba(34, 197, 94, 0.2); }
-        
+
+        .pro-stat-change.up {
+            color: var(--pro-success);
+        }
+
+        .pro-stat-change.down {
+            color: var(--pro-danger);
+        }
+
+        .pro-stat-card.views .pro-stat-icon {
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .pro-stat-card.messages .pro-stat-icon {
+            background: rgba(168, 85, 247, 0.2);
+        }
+
+        .pro-stat-card.likes .pro-stat-icon {
+            background: rgba(236, 72, 153, 0.2);
+        }
+
+        .pro-stat-card.score .pro-stat-icon {
+            background: rgba(34, 197, 94, 0.2);
+        }
+
         /* Badge Section */
         .pro-badge-section {
             margin-top: 16px;
             margin-bottom: 16px;
             animation: fadeInUp 0.5s ease 0.3s both;
         }
-        
+
         .pro-badge-title {
             font-size: 0.9rem;
             color: var(--pro-text-dim);
             margin-bottom: 8px;
             font-weight: 500;
         }
-        
+
         .pro-badge-list {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             min-height: 32px;
         }
-        
+
         .pro-badge-pill {
             font-size: 0.8rem;
             padding: 6px 12px;
@@ -686,12 +598,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             transition: all 0.2s ease;
             animation: fadeIn 0.3s ease;
         }
-        
+
         .pro-badge-pill:hover {
             border-color: var(--pro-accent);
             transform: translateY(-2px);
         }
-        
+
         [data-theme="light"] .pro-badge-pill {
             background: #f8fafc;
             border-color: #cbd5e1;
@@ -704,7 +616,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             gap: 24px;
             margin-bottom: 24px;
         }
-        
+
         .pro-card {
             background: var(--pro-surface);
             border: 1px solid var(--pro-border);
@@ -713,11 +625,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             transition: all 0.3s ease;
             animation: fadeInUp 0.5s ease 0.3s both;
         }
-        
+
         .pro-card:hover {
             border-color: var(--pro-accent);
         }
-        
+
         .pro-card-header {
             display: flex;
             justify-content: space-between;
@@ -726,13 +638,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             padding-bottom: 16px;
             border-bottom: 1px solid var(--pro-border);
         }
-        
+
         .pro-card-title {
             font-size: 1rem;
             font-weight: 600;
             color: var(--pro-text-bright);
         }
-        
+
         .pro-card-tabs {
             display: flex;
             gap: 4px;
@@ -740,7 +652,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             padding: 4px;
             border-radius: 8px;
         }
-        
+
         .pro-tab {
             padding: 6px 14px;
             border-radius: 6px;
@@ -752,26 +664,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border: none;
             transition: all 0.2s;
         }
-        
-        .pro-tab:hover { color: var(--pro-text); }
+
+        .pro-tab:hover {
+            color: var(--pro-text);
+        }
+
         .pro-tab.active {
             background: var(--pro-card);
             color: var(--pro-text-bright);
         }
-        
+
         /* Chart Container */
         .pro-chart-container {
             height: 280px;
             position: relative;
         }
-        
+
         /* Category Breakdown */
         .pro-breakdown {
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
-        
+
         .pro-breakdown-item {
             display: flex;
             align-items: center;
@@ -782,12 +697,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        
+
         .pro-breakdown-item:hover {
             background: var(--pro-card);
             transform: translateX(4px);
         }
-        
+
         .pro-breakdown-icon {
             width: 44px;
             height: 44px;
@@ -798,31 +713,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             font-size: 1.3rem;
             flex-shrink: 0;
         }
-        
+
         .pro-breakdown-info {
             flex: 1;
             min-width: 0;
         }
-        
+
         .pro-breakdown-label {
             font-size: 0.85rem;
             color: var(--pro-text);
             margin-bottom: 6px;
         }
-        
+
         .pro-breakdown-bar {
             height: 8px;
             background: var(--pro-border);
             border-radius: 4px;
             overflow: hidden;
         }
-        
+
         .pro-breakdown-fill {
             height: 100%;
             border-radius: 4px;
             transition: width 0.8s ease;
         }
-        
+
         .pro-breakdown-value {
             font-size: 1.2rem;
             font-weight: 700;
@@ -830,27 +745,50 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             min-width: 50px;
             text-align: right;
         }
-        
-        .pro-breakdown-item.danger .pro-breakdown-icon { background: rgba(239, 68, 68, 0.2); }
-        .pro-breakdown-item.danger .pro-breakdown-fill { background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%); }
-        .pro-breakdown-item.warning .pro-breakdown-icon { background: rgba(245, 158, 11, 0.2); }
-        .pro-breakdown-item.warning .pro-breakdown-fill { background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%); }
-        .pro-breakdown-item.info .pro-breakdown-icon { background: rgba(59, 130, 246, 0.2); }
-        .pro-breakdown-item.info .pro-breakdown-fill { background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%); }
-        .pro-breakdown-item.success .pro-breakdown-icon { background: rgba(34, 197, 94, 0.2); }
-        .pro-breakdown-item.success .pro-breakdown-fill { background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%); }
-        
+
+        .pro-breakdown-item.danger .pro-breakdown-icon {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .pro-breakdown-item.danger .pro-breakdown-fill {
+            background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+        }
+
+        .pro-breakdown-item.warning .pro-breakdown-icon {
+            background: rgba(245, 158, 11, 0.2);
+        }
+
+        .pro-breakdown-item.warning .pro-breakdown-fill {
+            background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .pro-breakdown-item.info .pro-breakdown-icon {
+            background: rgba(59, 130, 246, 0.2);
+        }
+
+        .pro-breakdown-item.info .pro-breakdown-fill {
+            background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%);
+        }
+
+        .pro-breakdown-item.success .pro-breakdown-icon {
+            background: rgba(34, 197, 94, 0.2);
+        }
+
+        .pro-breakdown-item.success .pro-breakdown-fill {
+            background: linear-gradient(90deg, #22c55e 0%, #16a34a 100%);
+        }
+
         /* Quick Actions */
         .pro-quick-section {
             margin-bottom: 24px;
         }
-        
+
         .pro-quick-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 16px;
         }
-        
+
         .pro-quick-card {
             border-radius: 16px;
             padding: 24px;
@@ -864,7 +802,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             overflow: hidden;
             border: 1px solid transparent;
         }
-        
+
         /* Glassy shine animation - continuous */
         .pro-quick-card::before {
             content: '';
@@ -873,68 +811,68 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 30%,
-                rgba(255, 255, 255, 0.4) 50%,
-                transparent 70%
-            );
+            background: linear-gradient(45deg,
+                    transparent 30%,
+                    rgba(255, 255, 255, 0.4) 50%,
+                    transparent 70%);
             animation: glassyShine 3s ease-in-out infinite;
         }
-        
+
         @keyframes glassyShine {
             0% {
                 transform: translateX(-100%) translateY(-100%) rotate(45deg);
             }
+
             50% {
                 transform: translateX(100%) translateY(100%) rotate(45deg);
             }
+
             100% {
                 transform: translateX(-100%) translateY(-100%) rotate(45deg);
             }
         }
-        
+
         .pro-quick-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
         }
-        
+
         .pro-quick-card.danger {
             background: linear-gradient(135deg, #ff6b6b 0%, #ff5252 100%);
             border-color: #ff5252;
             box-shadow: 0 4px 16px rgba(255, 82, 82, 0.4);
         }
-        
+
         [data-theme="light"] .pro-quick-card.danger {
             background: linear-gradient(135deg, #ff8787 0%, #ff6b6b 100%);
             border-color: #ff6b6b;
             box-shadow: 0 4px 16px rgba(255, 107, 107, 0.3);
         }
-        
+
         .pro-quick-card.warning {
             background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
             border-color: #f59e0b;
             box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
         }
-        
+
         [data-theme="light"] .pro-quick-card.warning {
             background: linear-gradient(135deg, #fcd34d 0%, #fbbf24 100%);
             border-color: #fbbf24;
             box-shadow: 0 4px 16px rgba(251, 191, 36, 0.3);
         }
-        
+
         .pro-quick-card.success {
             background: linear-gradient(135deg, #51cf66 0%, #37b24d 100%);
             border-color: #37b24d;
             box-shadow: 0 4px 16px rgba(55, 178, 77, 0.4);
         }
-        
+
         [data-theme="light"] .pro-quick-card.success {
             background: linear-gradient(135deg, #69db7c 0%, #51cf66 100%);
             border-color: #51cf66;
             box-shadow: 0 4px 16px rgba(81, 207, 102, 0.3);
         }
-        
+
         .pro-quick-icon {
             width: 56px;
             height: 56px;
@@ -947,7 +885,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             background: rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(10px);
         }
-        
+
         .pro-quick-text h4 {
             font-size: 1rem;
             font-weight: 600;
@@ -955,26 +893,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             margin-bottom: 4px;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
-        
+
         .pro-quick-text p {
             font-size: 0.8rem;
             color: rgba(255, 255, 255, 0.9);
             margin: 0;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
         }
-        
+
         .pro-quick-card.danger .pro-quick-icon,
         .pro-quick-card.warning .pro-quick-icon,
         .pro-quick-card.success .pro-quick-icon {
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(10px);
         }
-        
+
         /* Message Section */
         .pro-message-section {
             animation: fadeInUp 0.5s ease 0.5s both;
         }
-        
+
         .pro-section-title {
             font-size: 1.2rem;
             font-weight: 700;
@@ -984,13 +922,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             align-items: center;
             gap: 10px;
         }
-        
+
         .pro-message-groups {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
         }
-        
+
         .pro-msg-group {
             background: var(--pro-surface);
             border: 1px solid var(--pro-border);
@@ -998,11 +936,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             padding: 20px;
             transition: all 0.3s ease;
         }
-        
+
         .pro-msg-group:hover {
             border-color: var(--pro-accent);
         }
-        
+
         .pro-msg-group-header {
             display: flex;
             align-items: center;
@@ -1011,19 +949,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             padding-bottom: 12px;
             border-bottom: 1px solid var(--pro-border);
         }
-        
+
         .pro-msg-group-title {
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--pro-text-bright);
         }
-        
+
         .pro-msg-list {
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
-        
+
         .pro-msg-item {
             display: flex;
             align-items: center;
@@ -1035,37 +973,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             transition: all 0.2s ease;
             border: 1px solid transparent;
         }
-        
+
         .pro-msg-item:hover {
             background: var(--pro-card);
             border-color: var(--pro-border);
             transform: translateX(4px);
         }
-        
+
         .pro-msg-item:active {
             transform: scale(0.98);
         }
-        
+
         .pro-msg-item.sending {
             opacity: 0.6;
             pointer-events: none;
         }
-        
+
         .pro-msg-item-left {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        
+
         .pro-msg-item .emoji {
             font-size: 1.3rem;
         }
-        
+
         .pro-msg-item .text {
             font-size: 0.85rem;
             color: var(--pro-text);
         }
-        
+
         .pro-msg-item .count {
             font-size: 0.8rem;
             font-weight: 600;
@@ -1083,7 +1021,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             position: relative;
             overflow: hidden;
         }
-        
+
         /* Glassy shine animation - only for counts with paper plane */
         .pro-msg-item .count:has(.paper-plane-icon)::before {
             content: '';
@@ -1092,83 +1030,114 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 30%,
-                rgba(255, 255, 255, 0.4) 50%,
-                transparent 70%
-            );
+            background: linear-gradient(45deg,
+                    transparent 30%,
+                    rgba(255, 255, 255, 0.4) 50%,
+                    transparent 70%);
             animation: countGlassyShine 3s ease-in-out infinite;
             pointer-events: none;
         }
-        
+
         @keyframes countGlassyShine {
             0% {
                 transform: translateX(-100%) translateY(-100%) rotate(45deg);
             }
+
             50% {
                 transform: translateX(100%) translateY(100%) rotate(45deg);
             }
+
             100% {
                 transform: translateX(-100%) translateY(-100%) rotate(45deg);
             }
         }
-        
+
         .pro-msg-item .count .paper-plane-icon {
             width: 14px;
             height: 14px;
             color: #ffffff;
             animation: planeFloat 2.5s ease-in-out infinite;
         }
-        
+
         @keyframes planeFloat {
-            0% { 
+            0% {
                 transform: translateX(-8px);
                 opacity: 1;
             }
-            40% { 
+
+            40% {
                 transform: translateX(2px);
                 opacity: 1;
             }
+
             48% {
                 transform: translateX(-4px);
                 opacity: 1;
             }
+
             55% {
                 transform: translateX(-3px);
                 opacity: 1;
             }
+
             75% {
                 transform: translateX(-3px);
                 opacity: 1;
             }
-            75.01%, 100% { 
+
+            75.01%,
+            100% {
                 transform: translateX(-3px);
                 opacity: 0;
             }
         }
-        
+
         .pro-msg-item .count.updated {
             animation: countPulse 0.5s ease;
         }
-        
+
         .pro-msg-item .count.updated .paper-plane-icon {
             animation: planeFly 0.5s ease;
         }
-        
+
         @keyframes countPulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); background: var(--pro-accent); color: white; }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+                background: var(--pro-accent);
+                color: white;
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
-        
+
         @keyframes planeFly {
-            0% { transform: translateX(0) translateY(0); opacity: 1; }
-            50% { transform: translateX(20px) translateY(-10px); opacity: 0; }
-            51% { transform: translateX(-20px) translateY(10px); opacity: 0; }
-            100% { transform: translateX(0) translateY(0); opacity: 1; }
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
+
+            50% {
+                transform: translateX(20px) translateY(-10px);
+                opacity: 0;
+            }
+
+            51% {
+                transform: translateX(-20px) translateY(10px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0) translateY(0);
+                opacity: 1;
+            }
         }
-        
+
         /* Footer */
         .pro-footer {
             margin-top: 60px;
@@ -1178,18 +1147,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             padding: 20px;
             border-top: 1px solid var(--pro-border);
         }
-        
+
         .pro-footer a {
             color: var(--pro-text-dim);
             text-decoration: none;
             margin: 0 10px;
             transition: color 0.2s;
         }
-        
+
         .pro-footer a:hover {
             color: var(--pro-accent);
         }
-        
+
         /* Loading & Notification */
         .loading-overlay {
             position: fixed;
@@ -1206,12 +1175,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             visibility: hidden;
             transition: all 0.3s ease;
         }
-        
+
         .loading-overlay.active {
             opacity: 1;
             visibility: visible;
         }
-        
+
         .loading-spinner {
             width: 50px;
             height: 50px;
@@ -1220,11 +1189,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
-        
+
         @keyframes spin {
-            to { transform: rotate(360deg); }
+            to {
+                transform: rotate(360deg);
+            }
         }
-        
+
         .notification {
             position: fixed;
             top: 80px;
@@ -1243,49 +1214,92 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             visibility: hidden;
             pointer-events: none;
         }
-        
+
         .notification.show {
             transform: translateX(0);
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
         }
-        
-        .notification.success { border-left: 4px solid var(--pro-success); }
-        .notification.error { border-left: 4px solid var(--pro-danger); }
-        .notification.info { border-left: 4px solid var(--pro-accent); }
+
+        .notification.success {
+            border-left: 4px solid var(--pro-success);
+        }
+
+        .notification.error {
+            border-left: 4px solid var(--pro-danger);
+        }
+
+        .notification.info {
+            border-left: 4px solid var(--pro-accent);
+        }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .pro-stats-overview { grid-template-columns: repeat(2, 1fr); }
-            .pro-main-grid { grid-template-columns: 1fr; }
+            .pro-stats-overview {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pro-main-grid {
+                grid-template-columns: 1fr;
+            }
         }
-        
+
         @media (max-width: 768px) {
-            .pro-topbar { flex-direction: column; align-items: flex-start; }
-            .pro-plate-number { font-size: 2rem; }
-            .pro-stats-overview { grid-template-columns: 1fr 1fr; }
-            .pro-message-groups { grid-template-columns: 1fr; }
-            .pro-quick-grid { grid-template-columns: 1fr; }
-            .pro-actions { width: 100%; flex-wrap: wrap; }
-            .pro-btn { flex: 1; justify-content: center; min-width: 120px; }
-            .nav-link { display: none; }
-            .pro-quick-card { padding: 20px; }
-            
+            .pro-topbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .pro-plate-number {
+                font-size: 2rem;
+            }
+
+            .pro-stats-overview {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .pro-message-groups {
+                grid-template-columns: 1fr;
+            }
+
+            .pro-quick-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pro-actions {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .pro-btn {
+                flex: 1;
+                justify-content: center;
+                min-width: 120px;
+            }
+
+            .nav-link {
+                display: none;
+            }
+
+            .pro-quick-card {
+                padding: 20px;
+            }
+
             .pro-search-form {
                 gap: 6px;
             }
-            
+
             .pro-search-input-wrapper {
                 flex: 0 0 75%;
                 max-width: 75%;
             }
-            
+
             .pro-search-input {
                 padding: 10px 55px 10px 16px;
                 font-size: 0.9rem;
             }
-            
+
             .pro-search-form .pro-btn-primary {
                 flex: 0 0 25%;
                 max-width: 25%;
@@ -1294,39 +1308,51 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 min-width: auto;
                 white-space: nowrap;
             }
-            
+
             .pro-search-input-wrapper .voice-mic-btn {
                 width: 36px;
                 height: 36px;
                 right: 8px;
             }
-            
+
             .pro-search-input-wrapper .voice-mic-btn svg {
                 width: 16px;
                 height: 16px;
             }
         }
-        
+
         @media (max-width: 480px) {
-            .pro-container { padding: 70px 16px 40px; }
-            .pro-plate-number { font-size: 1.6rem; letter-spacing: 2px; }
-            .pro-stat-value { font-size: 1.5rem; }
-            .pro-stat-card { padding: 16px; }
-            
+            .pro-container {
+                padding: 70px 16px 40px;
+            }
+
+            .pro-plate-number {
+                font-size: 1.6rem;
+                letter-spacing: 2px;
+            }
+
+            .pro-stat-value {
+                font-size: 1.5rem;
+            }
+
+            .pro-stat-card {
+                padding: 16px;
+            }
+
             .pro-search-form {
                 gap: 4px;
             }
-            
+
             .pro-search-input-wrapper {
                 flex: 0 0 70%;
                 max-width: 70%;
             }
-            
+
             .pro-search-input {
                 padding: 10px 50px 10px 14px;
                 font-size: 0.85rem;
             }
-            
+
             .pro-search-form .pro-btn-primary {
                 flex: 0 0 30%;
                 max-width: 30%;
@@ -1334,19 +1360,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 font-size: 0.8rem;
                 min-width: auto;
             }
-            
+
             .pro-search-input-wrapper .voice-mic-btn {
                 width: 32px;
                 height: 32px;
                 right: 6px;
             }
-            
+
             .pro-search-input-wrapper .voice-mic-btn svg {
                 width: 14px;
                 height: 14px;
             }
         }
-        
+
         /* Subscribe Button & Popup Styles */
         .pro-btn-subscribe {
             background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
@@ -1354,13 +1380,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border-color: #3b82f6;
             box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
         }
-        
+
         .pro-btn-subscribe:hover {
             background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             transform: translateY(-2px) scale(1.05);
             box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
         }
-        
+
         .subscribe-popup {
             position: fixed;
             top: 0;
@@ -1373,7 +1399,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             justify-content: center;
             animation: fadeIn 0.3s ease;
         }
-        
+
         .subscribe-popup-overlay {
             position: absolute;
             top: 0;
@@ -1383,7 +1409,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(4px);
         }
-        
+
         .subscribe-popup-content {
             position: relative;
             background: white;
@@ -1397,12 +1423,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             animation: slideUp 0.3s ease;
             z-index: 3001;
         }
-        
+
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         .subscribe-popup-close {
             position: absolute;
             top: 16px;
@@ -1420,13 +1453,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             justify-content: center;
             transition: all 0.2s ease;
         }
-        
+
         .subscribe-popup-close:hover {
             background: #e5e7eb;
             color: #1f2937;
             transform: rotate(90deg);
         }
-        
+
         .subscribe-popup-content h3 {
             font-size: 1.5rem;
             font-weight: 700;
@@ -1434,7 +1467,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             margin-bottom: 12px;
             text-align: center;
         }
-        
+
         .subscribe-popup-desc {
             font-size: 0.875rem;
             color: #6b7280;
@@ -1442,7 +1475,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             margin-bottom: 24px;
             line-height: 1.6;
         }
-        
+
         .subscribe-install-btn {
             width: 100%;
             padding: 16px 24px;
@@ -1457,25 +1490,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
             margin-bottom: 12px;
         }
-        
+
         .subscribe-install-btn:hover {
             background: linear-gradient(135deg, #059669 0%, #047857 100%);
             transform: translateY(-2px);
         }
-        
+
         .subscribe-only-btn {
             background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
         }
-        
+
         .subscribe-only-btn:hover {
             background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
         }
-        
+
         .install-btn {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         }
-        
+
         .subscribe-consent {
             background: #fef3c7;
             border: 1px solid #fcd34d;
@@ -1483,43 +1516,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             padding: 12px;
             margin-bottom: 24px;
         }
-        
+
         .subscribe-consent small {
             font-size: 0.75rem;
             color: #92400e;
             line-height: 1.5;
             display: block;
         }
-        
+
         .subscribe-list-section {
             border-top: 2px solid #e5e7eb;
             padding-top: 20px;
         }
-        
+
         .subscribe-list-section h4 {
             font-size: 1rem;
             font-weight: 600;
             color: #1f2937;
             margin-bottom: 16px;
         }
-        
+
         .subscribe-list-section h4 span {
             color: #2563eb;
         }
-        
+
         .subscribed-list {
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
-        
+
         .no-subscriptions {
             text-align: center;
             color: #9ca3af;
             font-size: 0.875rem;
             padding: 24px;
         }
-        
+
         .subscription-loading {
             text-align: center;
             color: #2563eb;
@@ -1527,19 +1560,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             padding: 24px;
             font-weight: 500;
         }
-        
+
         .subscription-loading::after {
             content: '';
             animation: loadingDots 1.5s infinite;
         }
-        
+
         @keyframes loadingDots {
-            0%, 20% { content: ''; }
-            40% { content: '.'; }
-            60% { content: '..'; }
-            80%, 100% { content: '...'; }
+
+            0%,
+            20% {
+                content: '';
+            }
+
+            40% {
+                content: '.';
+            }
+
+            60% {
+                content: '..';
+            }
+
+            80%,
+            100% {
+                content: '...';
+            }
         }
-        
+
         .subscribed-item {
             display: flex;
             align-items: center;
@@ -1550,19 +1597,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border-radius: 8px;
             transition: all 0.2s ease;
         }
-        
+
         .subscribed-item:hover {
             background: #f3f4f6;
             border-color: #d1d5db;
         }
-        
+
         .subscribed-item-plate {
             font-size: 1rem;
             font-weight: 600;
             color: #1f2937;
             letter-spacing: 0.5px;
         }
-        
+
         .subscribed-item-cancel {
             padding: 6px 12px;
             font-size: 0.75rem;
@@ -1574,12 +1621,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             cursor: pointer;
             transition: all 0.2s ease;
         }
-        
+
         .subscribed-item-cancel:hover {
             background: #dc2626;
             transform: scale(1.05);
         }
-        
+
         /* Current plate display */
         .current-plate-section {
             display: flex;
@@ -1592,20 +1639,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border-radius: 12px;
             margin-bottom: 12px;
         }
-        
+
         .current-plate-label {
             font-size: 0.875rem;
             color: #1e40af;
             font-weight: 500;
         }
-        
+
         .current-plate-number {
             font-size: 1.25rem;
             font-weight: 700;
             color: #1e3a8a;
             letter-spacing: 1px;
         }
-        
+
         /* Notification toggle section */
         .notification-toggle-section {
             display: flex;
@@ -1617,13 +1664,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border-radius: 8px;
             margin-bottom: 16px;
         }
-        
+
         .notification-toggle-label {
             font-size: 0.875rem;
             font-weight: 500;
             color: #374151;
         }
-        
+
         .notification-toggle-btn {
             padding: 6px 16px;
             font-size: 0.75rem;
@@ -1634,41 +1681,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             transition: all 0.2s ease;
             min-width: 50px;
         }
-        
+
         .notification-toggle-btn.on {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
             color: white;
             box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
         }
-        
+
         .notification-toggle-btn.off {
             background: #d1d5db;
             color: #6b7280;
         }
-        
+
         .notification-toggle-btn:hover {
             transform: scale(1.05);
         }
-        
+
         /* Subscribed item with notification toggle */
         .subscribed-item-actions {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        
+
         .notification-toggle-wrapper {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        
+
         .notification-label {
             font-size: 0.75rem;
             color: #6b7280;
             font-weight: 500;
         }
-        
+
         /* Toggle Switch */
         .toggle-switch {
             position: relative;
@@ -1681,15 +1728,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             padding: 0;
             overflow: hidden;
         }
-        
+
         .toggle-switch.on {
             background: linear-gradient(135deg, #10b981 0%, #059669 100%);
         }
-        
+
         .toggle-switch.off {
             background: #d1d5db;
         }
-        
+
         .toggle-slider {
             position: absolute;
             top: 3px;
@@ -1700,15 +1747,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             transition: all 0.3s ease;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
-        
+
         .toggle-switch.on .toggle-slider {
             left: 29px;
         }
-        
+
         .toggle-switch.off .toggle-slider {
             left: 3px;
         }
-        
+
         .toggle-text {
             position: absolute;
             font-size: 0.65rem;
@@ -1718,23 +1765,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             transform: translateY(-50%);
             transition: all 0.3s ease;
         }
-        
+
         .toggle-switch.on .toggle-text {
             left: 6px;
         }
-        
+
         .toggle-switch.off .toggle-text {
             right: 5px;
         }
-        
+
         .toggle-switch:hover {
             transform: scale(1.05);
         }
-        
+
         .toggle-switch:active {
             transform: scale(0.98);
         }
-        
+
         /* Voice Input Modal - Hidden by default */
         .voice-modal {
             display: none !important;
@@ -1746,21 +1793,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             opacity: 0;
             pointer-events: none;
         }
-        
+
         .voice-modal.active {
             display: flex !important;
             visibility: visible;
             opacity: 1;
             pointer-events: auto;
         }
-        
+
         .voice-overlay {
             position: absolute;
             inset: 0;
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(4px);
         }
-        
+
         .voice-sheet {
             position: relative;
             width: 100%;
@@ -1772,12 +1819,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             text-align: center;
             animation: voiceSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+
         @keyframes voiceSlideUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
         }
-        
+
         .voice-handle {
             width: 40px;
             height: 4px;
@@ -1785,7 +1837,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             border-radius: 2px;
             margin: 0 auto 20px;
         }
-        
+
         .voice-text {
             font-size: 18px;
             font-weight: 500;
@@ -1793,7 +1845,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             margin-bottom: 24px;
             line-height: 1.5;
         }
-        
+
         #voiceListeningText {
             font-size: 20px;
             font-weight: 700;
@@ -1802,19 +1854,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             padding-top: 16px;
             border-top: 1px solid #e0e0e0;
         }
-        
+
         .animated-dots::after {
             content: '';
             animation: dots 1.5s steps(4) infinite;
         }
-        
+
         @keyframes dots {
-            0%, 20% { content: ''; }
-            40% { content: '.'; }
-            60% { content: '..'; }
-            80%, 100% { content: '...'; }
+
+            0%,
+            20% {
+                content: '';
+            }
+
+            40% {
+                content: '.';
+            }
+
+            60% {
+                content: '..';
+            }
+
+            80%,
+            100% {
+                content: '...';
+            }
         }
-        
+
         .voice-cancel-btn {
             margin-top: 32px;
             padding: 12px 32px;
@@ -1827,12 +1893,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .voice-cancel-btn:hover {
             background: #ef4444;
             color: white;
         }
-        
+
         .voice-candidates {
             display: flex;
             flex-direction: column;
@@ -1840,7 +1906,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             margin: 20px 0;
             padding: 0 20px;
         }
-        
+
         .voice-candidate {
             padding: 16px 20px;
             background: #f8fafc;
@@ -1853,55 +1919,56 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .voice-candidate:hover {
             background: #e0f2fe;
             border-color: #0ea5e9;
             transform: translateY(-2px);
         }
-        
+
         /* Dark mode voice modal */
         [data-theme="dark"] .voice-sheet {
             background: #161b22;
         }
-        
+
         [data-theme="dark"] .voice-text {
             color: #c9d1d9;
         }
-        
+
         [data-theme="dark"] .voice-handle {
             background: #30363d;
         }
-        
+
         [data-theme="dark"] #voiceListeningText {
             border-top-color: #30363d;
         }
-        
+
         [data-theme="dark"] .voice-candidate {
             background: #1e293b;
             border-color: #334155;
             color: #f1f5f9;
         }
-        
+
         [data-theme="dark"] .voice-candidate:hover {
             background: #334155;
             border-color: #60a5fa;
         }
-        
+
         [data-theme="dark"] .voice-cancel-btn {
             color: #f87171;
             border-color: #f87171;
         }
-        
+
         [data-theme="dark"] .voice-cancel-btn:hover {
             background: #f87171;
             color: #161b22;
         }
-        
+
         /* Text Size FAB Button */
         .text-size-fab {
             position: fixed;
-            bottom: 96px; /* Positioned above cookie button (20px + 56px + 20px spacing) */
+            bottom: 96px;
+            /* Positioned above cookie button (20px + 56px + 20px spacing) */
             right: 20px;
             width: 56px;
             height: 56px;
@@ -1915,67 +1982,69 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             justify-content: center;
             font-size: 1.5rem;
             color: white;
-            z-index: 9998; /* Below cookie button (9999) but above other content */
+            z-index: 9998;
+            /* Below cookie button (9999) but above other content */
             transition: all 0.3s ease;
             animation: fadeInUp 0.3s ease;
         }
-        
+
         .text-size-fab.visible {
             display: flex;
         }
-        
+
         .text-size-fab:hover {
             transform: translateY(-4px) scale(1.05);
             box-shadow: 0 8px 24px rgba(59, 130, 246, 0.5);
         }
-        
+
         .text-size-fab:active {
             transform: translateY(-2px) scale(1);
         }
-        
+
         /* Text size variations for pro-message-groups */
         .pro-message-groups.text-size-medium .pro-msg-item .text {
             font-size: 1rem;
         }
-        
+
         .pro-message-groups.text-size-medium .pro-msg-item .emoji {
             font-size: 1.5rem;
         }
-        
+
         .pro-message-groups.text-size-medium .pro-msg-group-title {
             font-size: 1.05rem;
         }
-        
+
         .pro-message-groups.text-size-large .pro-msg-item .text {
             font-size: 1.15rem;
         }
-        
+
         .pro-message-groups.text-size-large .pro-msg-item .emoji {
             font-size: 1.7rem;
         }
-        
+
         .pro-message-groups.text-size-large .pro-msg-group-title {
             font-size: 1.2rem;
         }
-        
+
         .pro-message-groups.text-size-large .pro-msg-item {
             padding: 14px;
         }
-        
+
         .pro-message-groups.text-size-medium .pro-msg-item {
             padding: 13px;
         }
-        
+
         @media (max-width: 768px) {
             .text-size-fab {
-                bottom: 84px; /* Positioned above cookie button on mobile (16px + 48px + 20px spacing) */
+                bottom: 84px;
+                /* Positioned above cookie button on mobile (16px + 48px + 20px spacing) */
                 right: 16px;
                 width: 48px;
                 height: 48px;
                 font-size: 1.3rem;
             }
         }
-        
+
         /* Navigation Buttons Section */
         .pro-nav-buttons {
             display: flex;
@@ -1984,7 +2053,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             margin-bottom: 40px;
             animation: fadeInUp 0.5s ease 0.6s both;
         }
-        
+
         .pro-nav-btn {
             flex: 1;
             padding: 20px 32px;
@@ -2002,7 +2071,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             position: relative;
             overflow: hidden;
         }
-        
+
         .pro-nav-btn::before {
             content: '';
             position: absolute;
@@ -2015,26 +2084,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
-        
+
         .pro-nav-btn:hover::before {
             width: 300px;
             height: 300px;
         }
-        
+
         .pro-nav-btn span {
             position: relative;
             z-index: 1;
         }
-        
+
         .pro-nav-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
         }
-        
+
         .pro-nav-btn:active {
             transform: translateY(-1px);
         }
-        
+
         /* Back to Top Button */
         .pro-nav-btn.back-to-top {
             background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
@@ -2042,18 +2111,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: white;
             box-shadow: 0 4px 16px rgba(99, 102, 241, 0.4);
         }
-        
+
         .pro-nav-btn.back-to-top:hover {
             background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
             box-shadow: 0 8px 24px rgba(99, 102, 241, 0.5);
         }
-        
+
         [data-theme="light"] .pro-nav-btn.back-to-top {
             background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
             border-color: #6366f1;
             box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
         }
-        
+
         /* Other Content Button */
         .pro-nav-btn.other-content {
             background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
@@ -2061,18 +2130,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             color: white;
             box-shadow: 0 4px 16px rgba(236, 72, 153, 0.4);
         }
-        
+
         .pro-nav-btn.other-content:hover {
             background: linear-gradient(135deg, #db2777 0%, #be185d 100%);
             box-shadow: 0 8px 24px rgba(236, 72, 153, 0.5);
         }
-        
+
         [data-theme="light"] .pro-nav-btn.other-content {
             background: linear-gradient(135deg, #f472b6 0%, #ec4899 100%);
             border-color: #ec4899;
             box-shadow: 0 4px 16px rgba(236, 72, 153, 0.3);
         }
-        
+
         @media (max-width: 768px) {
             .pro-nav-buttons {
                 flex-direction: column;
@@ -2080,7 +2149,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 margin-top: 32px;
                 margin-bottom: 32px;
             }
-            
+
             .pro-nav-btn {
                 padding: 16px 24px;
                 font-size: 0.95rem;
@@ -2088,39 +2157,75 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         }
     </style>
 </head>
+
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRTW3S54"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRTW3S54" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Noscript fallback content for SEO -->
+    <noscript>
+        <div style="padding: 40px 20px; max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8;">
+            <h1 style="color: #3b82f6; margin-bottom: 20px;">📊 차량 안전 리포트 - SAFE DRIVE</h1>
+            <p style="margin-bottom: 15px;">실시간 차량 안전 정보와 케어 인덱스를 확인하세요.</p>
+
+            <h2 style="color: #333; margin: 30px 0 15px;">서비스 소개</h2>
+            <p style="margin-bottom: 15px;">SAFE DRIVE 차량 안전 리포트는 차량 번호판을 기반으로 익명의 안전 정보를 조회하고 공유할 수 있는 서비스입니다. 개인정보 없이
+                차량의 안전 상태에 대한 피드백을 주고받을 수 있습니다.</p>
+
+            <h2 style="color: #333; margin: 30px 0 15px;">주요 기능</h2>
+            <ul style="margin-bottom: 20px; padding-left: 20px;">
+                <li><strong>익명 안전 정보 조회</strong> - 차량 번호판으로 해당 차량에 대한 안전 피드백 확인</li>
+                <li><strong>케어 인덱스</strong> - 차량의 전반적인 안전 점수를 한눈에 확인</li>
+                <li><strong>템플릿 기반 메시지</strong> - 미리 정의된 안전 메시지로 빠르고 정확한 피드백</li>
+                <li><strong>통계 기반 분석</strong> - 조회수, 메시지 수, 좋아요 등 다양한 통계 제공</li>
+            </ul>
+
+            <h2 style="color: #333; margin: 30px 0 15px;">안전 메시지 카테고리</h2>
+            <ul style="margin-bottom: 20px; padding-left: 20px;">
+                <li>🚨 <strong>위험 알림</strong> - 라이트 이상, 타이어 상태 이상 등</li>
+                <li>⚠️ <strong>주의 필요</strong> - 운전 주의 필요, 주차 상태 확인 등</li>
+                <li>ℹ️ <strong>정보 공유</strong> - 일반적인 안전 정보 공유</li>
+                <li>💚 <strong>감사 인사</strong> - 양보, 배려에 대한 감사 표현</li>
+            </ul>
+
+            <h2 style="color: #333; margin: 30px 0 15px;">이용 시 주의사항</h2>
+            <ul style="margin-bottom: 20px; padding-left: 20px;">
+                <li>모든 정보는 익명으로 처리됩니다</li>
+                <li>개인정보는 수집하지 않습니다</li>
+                <li>악의적인 사용은 제한될 수 있습니다</li>
+                <li>안전 목적으로만 사용해주세요</li>
+            </ul>
+
+            <p style="color: #666; font-size: 0.9rem;">이 페이지를 이용하려면 JavaScript를 활성화해주세요.</p>
+            <p><a href="/" style="color: #3b82f6;">SAFE DRIVE 홈으로 돌아가기</a></p>
+        </div>
+    </noscript>
+
     <!-- Navbar -->
-    <nav class="navbar">
+    <nav class="navbar" id="mainNavbar">
         <div class="nav-container">
-            <a href="index.html#home" class="nav-logo">
-                <img src="assets/img/SAFEDRIVE_logo.svg" alt="SafeDrive Logo">
+            <a href="/index.html" class="nav-logo">
+                <img src="/assets/img/SAFEDRIVE_logo.svg" alt="SAFE DRIVE Logo">
             </a>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html#home" class="nav-link">홈</a></li>
-                <li><a href="qr-generator.html" class="nav-link">QR</a></li>
-                <li><a href="referral.html" class="nav-link">이벤트</a></li>
-                <li><a href="index.html#quiz-section" class="nav-link">퀴즈</a></li>
-                <li><a href="index.html#legal-notice" class="nav-link">안내</a></li>
-                <li><a href="contact.html" class="nav-link">문의</a></li>
+                <li><a href="/index.html" class="nav-link">홈</a></li>
+                <li><a href="/about.html" class="nav-link">소개</a></li>
+                <li><a href="/driving-guide.html" class="nav-link">안전가이드</a></li>
+                <li><a href="/index.html#quiz-section" class="nav-link">퀴즈</a></li>
+                <li><a href="/qr-generator.html" class="nav-link">QR</a></li>
+                <li><a href="/faq.html" class="nav-link">FAQ</a></li>
+                <li><a href="/contact.html" class="nav-link">문의</a></li>
             </ul>
-            <div class="nav-right">
-                <button class="theme-toggle" id="themeToggle" aria-label="테마 변경">
-                    <span class="icon-moon">🌙</span>
-                    <span class="icon-sun">☀️</span>
-                </button>
-                <button class="nav-toggle" id="navToggle">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                </button>
-            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
         </div>
     </nav>
-    
+
     <div class="pro-container">
         <!-- Search Form -->
         <form class="pro-search-form" id="searchForm">
@@ -2128,13 +2233,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <input type="text" class="pro-search-input" id="plateInput" placeholder="번호판 입력" autocomplete="off">
                 <button id="navbarMicBtn" class="voice-mic-btn dark" aria-label="음성 입력" type="button">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 18.75C15.3137 18.75 18 16.0637 18 12.75V11.25M12 18.75C8.68629 18.75 6 16.0637 6 12.75V11.25M12 18.75V22.5M8.25 22.5H15.75M12 15.75C10.3431 15.75 9 14.4069 9 12.75V4.5C9 2.84315 10.3431 1.5 12 1.5C13.6569 1.5 15 2.84315 15 4.5V12.75C15 14.4069 13.6569 15.75 12 15.75Z" stroke="currentColor" stroke-width="2"/>
+                        <path
+                            d="M12 18.75C15.3137 18.75 18 16.0637 18 12.75V11.25M12 18.75C8.68629 18.75 6 16.0637 6 12.75V11.25M12 18.75V22.5M8.25 22.5H15.75M12 15.75C10.3431 15.75 9 14.4069 9 12.75V4.5C9 2.84315 10.3431 1.5 12 1.5C13.6569 1.5 15 2.84315 15 4.5V12.75C15 14.4069 13.6569 15.75 12 15.75Z"
+                            stroke="currentColor" stroke-width="2" />
                     </svg>
                 </button>
             </div>
             <button type="submit" class="pro-btn pro-btn-primary">🔍 조회</button>
         </form>
-        <a class="pipc-link" href="https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do;jsessionid=lZssdI2kHCJSXl5sP7pcfCso.pips_home_jboss21?bbsId=BS292&mCode=I040010000&nttId=10666" target="_blank" rel="noopener">자동차등록번호는 개인정보일까?</a>
+        <a class="pipc-link"
+            href="https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do;jsessionid=lZssdI2kHCJSXl5sP7pcfCso.pips_home_jboss21?bbsId=BS292&mCode=I040010000&nttId=10666"
+            target="_blank" rel="noopener">자동차등록번호는 개인정보일까?</a>
         <!-- Top Bar -->
         <div class="pro-topbar">
             <div class="pro-plate-info">
@@ -2158,7 +2267,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </button>
             </div>
         </div>
-        
+
         <!-- Stats Overview -->
         <div class="pro-stats-overview">
             <div class="pro-stat-card views">
@@ -2194,13 +2303,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="pro-stat-change" id="careIndexMeta">아직 데이터가 부족합니다</div>
             </div>
         </div>
-        
+
         <!-- Badge Section -->
         <div class="pro-badge-section">
             <div class="pro-badge-title">이 번호판의 레이팅 배지 (최근 90일)</div>
             <div class="pro-badge-list" id="ratingBadges"></div>
         </div>
-        
+
         <!-- Quick Actions -->
         <div class="pro-quick-section">
             <div class="pro-quick-grid">
@@ -2227,7 +2336,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
         </div>
-        
+
         <!-- Main Grid -->
         <div class="pro-main-grid">
             <!-- Activity Chart -->
@@ -2243,7 +2352,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <canvas id="activityChart"></canvas>
                 </div>
             </div>
-            
+
             <!-- Category Breakdown -->
             <div class="pro-card">
                 <div class="pro-card-header">
@@ -2293,11 +2402,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
         </div>
-        
+
         <!-- Message Section -->
         <div class="pro-message-section" id="messageSection">
             <h2 class="pro-section-title">💬 메세지 전송</h2>
-            
+
             <div class="pro-message-groups">
                 <!-- A급 위험 (Car) -->
                 <div class="pro-msg-group car-messages">
@@ -2364,7 +2473,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- B급 주의 (Car) -->
                 <div class="pro-msg-group car-messages">
                     <div class="pro-msg-group-header" id="categoryBHeader">
@@ -2430,7 +2539,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- 차량 상태 (Car) -->
                 <div class="pro-msg-group car-messages">
                     <div class="pro-msg-group-header" id="categoryCHeader">
@@ -2496,7 +2605,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- 칭찬/감사 (Car) -->
                 <div class="pro-msg-group car-messages">
                     <div class="pro-msg-group-header" id="categoryDHeader">
@@ -2555,7 +2664,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- === MOTORBIKE MESSAGES === -->
                 <!-- 안전 메세지 (Motorbike) -->
                 <div class="pro-msg-group motorbike-messages" style="display: none;">
@@ -2580,7 +2689,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- 차량 상태 (Motorbike) -->
                 <div class="pro-msg-group motorbike-messages" style="display: none;">
                     <div class="pro-msg-group-header">
@@ -2625,7 +2734,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- 칭찬 (Motorbike) -->
                 <div class="pro-msg-group motorbike-messages" style="display: none;">
                     <div class="pro-msg-group-header">
@@ -2677,7 +2786,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- 응원 (Motorbike) -->
                 <div class="pro-msg-group motorbike-messages" style="display: none;">
                     <div class="pro-msg-group-header">
@@ -2710,7 +2819,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </div>
             </div>
         </div>
-        
+
         <!-- Navigation Buttons -->
         <div class="pro-nav-buttons">
             <button class="pro-nav-btn back-to-top" id="backToTopBtn">
@@ -2722,36 +2831,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <span>다른 콘텐츠 보기</span>
             </a>
         </div>
-        
+
         <!-- Main Body Text Section -->
         <div class="pro-card" style="margin-top: 24px; animation: fadeInUp 0.5s ease 0.5s both;">
             <div style="text-align: center; margin-bottom: 30px;">
-                <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--pro-text-bright); margin-bottom: 16px;">번호판 조회결과 설명</h2>
+                <h2 style="font-size: 1.5rem; font-weight: 700; color: var(--pro-text-bright); margin-bottom: 16px;">번호판
+                    조회결과 설명</h2>
                 <div style="font-size: 1rem; line-height: 1.8; color: var(--pro-text); text-align: left;">
                     <p style="margin-bottom: 10px;">📊 익명 안전 신호 누적 결과</p>
                     <p style="margin-bottom: 10px;">👀 평가가 아닌 참고용 통계</p>
                     <p style="margin-bottom: 10px;">🔐 개인 식별 없는 안전 정보</p>
                 </div>
             </div>
-            
+
             <div style="font-size: 0.95rem; line-height: 1.8; color: var(--pro-text); text-align: left;">
-                <p style="margin-bottom: 16px;">이 페이지에 표시되는 모든 정보는 특정 차량이나 운전자를 판단하기 위한 근거가 아닙니다. 여기의 수치는 여러 이용자가 동일한 안전 템플릿을 선택하며 누적된 결과이며, 개인의 의도나 실제 운전 능력을 평가하지 않습니다. 순간적인 환경, 도로 상황, 피로 등 다양한 요인이 반영된 집단적 인식의 흐름일 뿐입니다.</p>
-                
-                <p style="margin-bottom: 16px;">표시되는 카운트는 자유 의견이나 감정 표현이 아닌, 사전에 정의된 안전 신호입니다. 그렇기 때문에 이 페이지에는 비난이나 추측이 개입될 여지가 없습니다. 누군가를 드러내기 위한 기록이 아니라, 스스로 차량 상태를 점검하고 운전 습관을 돌아볼 수 있는 참고 지표로 활용되기를 바랍니다.</p>
-                
-                <p style="margin-bottom: 0;">이 플랫폼은 기록을 축적하는 곳이 아니라, 인지의 기회를 제공하는 공간입니다. 도로 위에서 직접 말을 걸 수 없어도, 우리는 익명성을 통해 안전을 전달할 수 있습니다. 이 페이지는 감시나 평가가 아닌, 사고를 줄이기 위한 사전 신호의 역할을 합니다. 익명성 위에서 성립하는 신뢰, 그것이 이 서비스가 지향하는 가치입니다.</p>
+                <p style="margin-bottom: 16px;">이 페이지에 표시되는 모든 정보는 특정 차량이나 운전자를 판단하기 위한 근거가 아닙니다. 여기의 수치는 여러 이용자가 동일한 안전
+                    템플릿을 선택하며 누적된 결과이며, 개인의 의도나 실제 운전 능력을 평가하지 않습니다. 순간적인 환경, 도로 상황, 피로 등 다양한 요인이 반영된 집단적 인식의 흐름일 뿐입니다.
+                </p>
+
+                <p style="margin-bottom: 16px;">표시되는 카운트는 자유 의견이나 감정 표현이 아닌, 사전에 정의된 안전 신호입니다. 그렇기 때문에 이 페이지에는 비난이나 추측이
+                    개입될 여지가 없습니다. 누군가를 드러내기 위한 기록이 아니라, 스스로 차량 상태를 점검하고 운전 습관을 돌아볼 수 있는 참고 지표로 활용되기를 바랍니다.</p>
+
+                <p style="margin-bottom: 0;">이 플랫폼은 기록을 축적하는 곳이 아니라, 인지의 기회를 제공하는 공간입니다. 도로 위에서 직접 말을 걸 수 없어도, 우리는 익명성을
+                    통해 안전을 전달할 수 있습니다. 이 페이지는 감시나 평가가 아닌, 사고를 줄이기 위한 사전 신호의 역할을 합니다. 익명성 위에서 성립하는 신뢰, 그것이 이 서비스가 지향하는
+                    가치입니다.</p>
             </div>
         </div>
     </div>
-    
+
     <!-- Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner"></div>
     </div>
-    
+
     <!-- Notification -->
     <div class="notification" id="notification"></div>
-    
+
     <!-- Text Size FAB Button -->
     <button class="text-size-fab" id="textSizeFab" aria-label="텍스트 크기 변경">
         Aa
@@ -2762,42 +2877,42 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         // SafeDrive Pro Dashboard - Page-Specific Script
         // Core modules defined inline to avoid conflicts with script.js
         // ============================================================================
-        
+
         // Initialize database reference (Firebase is initialized in firebase-config.js)
         const database = firebase.database();
-        
+
         // ============================================================================
         // Validator Module
         // ============================================================================
         const Validator = {
             normalizePlate(input) {
                 const clean = input.trim().replace(/\s+/g, '');
-                
+
                 // Construction machinery
                 const constructionPattern = /^(영[가-힣]{2}\d{2}[가-힣]\d{4})$/;
                 const matchConstruction = clean.match(constructionPattern);
                 if (matchConstruction) return { plate: matchConstruction[1], type: 'construction', unique: true };
-                
+
                 // Motorbike with region
                 const motorbikeRegionPattern = /^([가-힣]{3,7}\d{4})$/;
                 const matchMotorbikeRegion = clean.match(motorbikeRegionPattern);
                 if (matchMotorbikeRegion) return { plate: matchMotorbikeRegion[1], type: 'motorbike-region', unique: true };
-                
+
                 // Motorbike simple
                 const motorbikeSimplePattern = /^(\d[가-힣]\d{5})$/;
                 const matchMotorbikeSimple = clean.match(motorbikeSimplePattern);
                 if (matchMotorbikeSimple) return { plate: matchMotorbikeSimple[1], type: 'motorbike-simple', unique: true };
-                
+
                 // New format
                 const newPattern = /^(\d{2,3}[가-힣][가-힣]?\d{4})$/;
                 const matchNew = clean.match(newPattern);
                 if (matchNew) return { plate: matchNew[1], type: 'new', unique: true };
-                
+
                 // Business
                 const bizPattern = /^([7-9]\d[가-힣]\d{4})$/;
                 const matchBiz = clean.match(bizPattern);
                 if (matchBiz) return { plate: matchBiz[1], type: 'business', unique: true };
-                
+
                 // Old format
                 const oldPattern = /^(?:([가-힣]{1,2}) ?)?(\d{2,3}[가-힣]\d{4})$/;
                 const matchOld = clean.match(oldPattern);
@@ -2807,21 +2922,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     if (region) return { plate: `${region}${number}`, type: 'old', unique: true };
                     return { plate: number, type: 'old-ambiguous', unique: false };
                 }
-                
+
                 return null;
             },
-            
+
             validatePlateNumber(input) {
                 if (!input || typeof input !== 'string') return false;
                 return this.normalizePlate(input) !== null;
             },
-            
+
             sanitizePlateNumber(input) {
                 if (!input || typeof input !== 'string') return '';
                 return input.trim().replace(/\s+/g, '');
             }
         };
-        
+
         // ============================================================================
         // Router Module
         // ============================================================================
@@ -2830,28 +2945,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 const pathname = window.location.pathname;
                 const search = window.location.search;
                 const hash = window.location.hash;
-                
+
                 // Path format: /plate.html/09루3363
                 const pathMatch = pathname.match(/\/plate\.html\/([^\/]+)/);
                 if (pathMatch && pathMatch[1]) {
                     return Validator.sanitizePlateNumber(decodeURIComponent(pathMatch[1]));
                 }
-                
+
                 // Query string: ?plate=09루3363
                 if (search) {
                     const params = new URLSearchParams(search);
                     const plate = params.get('plate');
                     if (plate) return Validator.sanitizePlateNumber(plate);
                 }
-                
+
                 // Hash: #09루3363
                 if (hash && hash.length > 1) {
                     return Validator.sanitizePlateNumber(decodeURIComponent(hash.substring(1)));
                 }
-                
+
                 return null;
             },
-            
+
             navigateToPlate(plateNumber) {
                 if (!plateNumber) return;
                 const sanitized = Validator.sanitizePlateNumber(plateNumber);
@@ -2859,7 +2974,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 window.location.href = `/plate.html?plate=${encodeURIComponent(sanitized)}`;
             }
         };
-        
+
         // ============================================================================
         // Categories and Vehicle Type
         // ============================================================================
@@ -2874,7 +2989,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             mbPraise: { name: '칭찬', keys: ['mb_signal_respect', 'mb_stop_line', 'mb_pedestrian_first', 'mb_safety_gear', 'mb_considerate_driving', 'mb_lane_keeping'], vehicleType: 'motorbike' },
             mbSupport: { name: '응원', keys: ['mb_weather_support', 'mb_slippery_warning', 'mb_delivery_thanks'], vehicleType: 'motorbike' }
         };
-        
+
         function getVehicleType(plateNumber) {
             const normalized = Validator.normalizePlate(plateNumber);
             if (normalized && (normalized.type === 'motorbike-region' || normalized.type === 'motorbike-simple')) {
@@ -2882,7 +2997,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             }
             return 'car';
         }
-        
+
         // ============================================================================
         // Daily Limit Manager Module
         // ============================================================================
@@ -2892,14 +3007,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
                 return new Date(utcTime + (9 * 60 * 60 * 1000));
             },
-            
+
             formatDateKST(date) {
                 const year = date.getFullYear();
                 const month = String(date.getMonth() + 1).padStart(2, '0');
                 const day = String(date.getDate()).padStart(2, '0');
                 return `${year}${month}${day}`;
             },
-            
+
             isNewDay(timestamp) {
                 if (!timestamp || typeof timestamp !== 'number') return true;
                 const currentKSTDate = this.getKSTDate();
@@ -2908,13 +3023,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 const storedDateString = this.formatDateKST(storedKST);
                 return currentDateString !== storedDateString;
             },
-            
+
             generateKey(plateNumber, counterKey) {
                 const kstDate = this.getKSTDate();
                 const dateString = this.formatDateKST(kstDate);
                 return `safedrive_limit_${plateNumber}_${counterKey}_${dateString}`;
             },
-            
+
             canIncrement(plateNumber, counterKey) {
                 if (!plateNumber || !counterKey) return false;
                 try {
@@ -2931,7 +3046,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     return true;
                 }
             },
-            
+
             recordIncrement(plateNumber, counterKey) {
                 if (!plateNumber || !counterKey) return false;
                 try {
@@ -2950,7 +3065,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     return false;
                 }
             },
-            
+
             clearOldEntries() {
                 try {
                     const sevenDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
@@ -2966,10 +3081,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         }
                     }
                     keysToRemove.forEach(key => localStorage.removeItem(key));
-                } catch (error) {}
+                } catch (error) { }
             }
         };
-        
+
         // ============================================================================
         // Counter Keys Mapping
         // ============================================================================
@@ -3004,7 +3119,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             '노면이 미끄러울 수 있어요, 항상 안전운행 하세요!': 'mb_slippery_warning',
             '항상 꼼꼼하게 배달해 주셔서 감사합니다!': 'mb_delivery_thanks'
         };
-        
+
         // ============================================================================
         // Firebase Client Module (Minimal for plate.html)
         // Uses Cloud Functions for secure writes
@@ -3012,42 +3127,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         const FirebaseClient = {
             plateDataCache: {},
             CACHE_TTL: 5 * 60 * 1000,
-            
+
             isPlateDataCached(plateNumber) {
                 const cached = this.plateDataCache[plateNumber];
                 if (!cached) return false;
                 return (Date.now() - cached.timestamp) < this.CACHE_TTL;
             },
-            
+
             getCachedPlateData(plateNumber) {
                 if (this.isPlateDataCached(plateNumber)) return this.plateDataCache[plateNumber].data;
                 return null;
             },
-            
+
             cachePlateData(plateNumber, data) {
                 this.plateDataCache[plateNumber] = { data: data, timestamp: Date.now() };
             },
-            
+
             invalidatePlateDataCache(plateNumber) {
                 if (this.plateDataCache[plateNumber]) delete this.plateDataCache[plateNumber];
             },
-            
+
             getZeroCounters() {
                 const zeroCounters = {};
                 Object.values(COUNTER_KEYS).forEach(key => { zeroCounters[key] = 0; });
                 return zeroCounters;
             },
-            
+
             async getPlateData(plateNumber, forceRefresh = false) {
                 if (!plateNumber) throw new Error('plateNumber is required');
-                // Note: View counting is disabled client-side due to security rules
-                // Views should be tracked server-side or via analytics
-                
+
+                // Increment view counters (fire and forget)
+                this.incrementViewCounters(plateNumber);
+
                 if (!forceRefresh) {
                     const cachedData = this.getCachedPlateData(plateNumber);
                     if (cachedData) return cachedData;
                 }
-                
+
                 try {
                     const snapshot = await database.ref(`plates/${plateNumber}`).once('value');
                     if (!snapshot.exists()) {
@@ -3069,7 +3185,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     throw new Error('데이터를 불러오는 중 오류가 발생했습니다');
                 }
             },
-            
+
+            // Increment view counters for plate and global stats
+            incrementViewCounters(plateNumber) {
+                // Increment plate-specific views counter
+                const viewsRef = database.ref(`plates/${plateNumber}/views`);
+                viewsRef.transaction((current) => (current || 0) + 1).catch(err => {
+                    console.warn('Failed to increment views:', err);
+                });
+
+                // Increment global view counter for all time
+                const globalViewsRef = database.ref('global/allTime/totalViews');
+                globalViewsRef.transaction((current) => (current || 0) + 1).catch(err => {
+                    console.warn('Failed to increment global views:', err);
+                });
+            },
+
             // Generate fingerprint for security module
             async generateFingerprint() {
                 if (typeof SecurityModule !== 'undefined' && SecurityModule.getFingerprint) {
@@ -3091,25 +3222,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 }
                 return Math.abs(hash).toString(16).padStart(64, '0');
             },
-            
+
             // Generate nonce for request
             generateNonce() {
                 const array = new Uint8Array(16);
                 crypto.getRandomValues(array);
                 return Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
             },
-            
+
             async incrementCounter(plateNumber, counterKey) {
                 if (!plateNumber || !counterKey) throw new Error('plateNumber and counterKey are required');
-                
+
                 try {
                     // Use Cloud Function for secure increment
                     const secureIncrement = firebase.functions().httpsCallable('secureIncrementCounter');
-                    
+
                     const fingerprint = await this.generateFingerprint();
                     const timestamp = Date.now();
                     const nonce = this.generateNonce();
-                    
+
                     const result = await secureIncrement({
                         plateNumber,
                         counterKey,
@@ -3117,7 +3248,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         timestamp,
                         nonce
                     });
-                    
+
                     if (result.data && result.data.success) {
                         this.invalidatePlateDataCache(plateNumber);
                         return result.data.newValue;
@@ -3137,13 +3268,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 }
             }
         };
-        
+
         // State
         let currentPlate = null;
         let plateData = null;
         let activityChart = null;
         let isLiked = false;
-        
+
         // ============================================================================
         // Theme Management
         // ============================================================================
@@ -3151,29 +3282,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             init() {
                 const savedTheme = localStorage.getItem('safedrive-theme') || 'light';
                 this.setTheme(savedTheme);
-                
+
                 document.getElementById('themeToggle').addEventListener('click', () => {
                     const current = document.documentElement.getAttribute('data-theme') || 'light';
                     const newTheme = current === 'dark' ? 'light' : 'dark';
                     this.setTheme(newTheme);
                 });
             },
-            
+
             setTheme(theme) {
                 document.documentElement.setAttribute('data-theme', theme);
                 localStorage.setItem('safedrive-theme', theme);
-                
+
                 // Update chart colors if chart exists
                 if (activityChart) {
                     this.updateChartTheme();
                 }
             },
-            
+
             updateChartTheme() {
                 const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
                 const textColor = isDark ? '#8b949e' : '#656d76';
                 const gridColor = isDark ? '#21262d' : '#eaeef2';
-                
+
                 activityChart.options.scales.x.ticks.color = textColor;
                 activityChart.options.scales.y.ticks.color = textColor;
                 activityChart.options.scales.x.grid.color = gridColor;
@@ -3181,7 +3312,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 activityChart.options.plugins.legend.labels.color = textColor;
                 activityChart.update();
             },
-            
+
             getChartColors() {
                 const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
                 return {
@@ -3190,24 +3321,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 };
             }
         };
-        
+
         // ============================================================================
         // UI Functions
         // ============================================================================
         function showLoading(show = true) {
             document.getElementById('loadingOverlay').classList.toggle('active', show);
         }
-        
+
         function showNotification(message, type = 'info') {
             const notification = document.getElementById('notification');
             notification.textContent = message;
             notification.className = `notification ${type} show`;
-            
+
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 3000);
         }
-        
+
         function animateValue(element, start, end, duration = 500) {
             const startTime = performance.now();
             const update = (currentTime) => {
@@ -3220,7 +3351,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             };
             requestAnimationFrame(update);
         }
-        
+
         // ============================================================================
         // Chart Manager
         // ============================================================================
@@ -3228,7 +3359,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             init() {
                 const ctx = document.getElementById('activityChart').getContext('2d');
                 const colors = ThemeManager.getChartColors();
-                
+
                 activityChart = new Chart(ctx, {
                     type: 'bar',
                     data: {
@@ -3278,31 +3409,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     }
                 });
             },
-            
+
             updateWithData(counters) {
                 // Generate mock weekly data based on total counts
                 const categoryA = this.sumCategory('categoryA', counters);
                 const categoryB = this.sumCategory('categoryB', counters);
                 const categoryD = this.sumCategory('categoryD', counters);
-                
+
                 // Distribute across days (mock distribution)
                 const distribute = (total) => {
                     const weights = [0.12, 0.14, 0.13, 0.15, 0.16, 0.18, 0.12];
                     return weights.map(w => Math.round(total * w));
                 };
-                
+
                 activityChart.data.datasets[0].data = distribute(categoryA);
                 activityChart.data.datasets[1].data = distribute(categoryB);
                 activityChart.data.datasets[2].data = distribute(categoryD);
                 activityChart.update();
             },
-            
+
             sumCategory(category, counters) {
                 return CATEGORIES[category].keys.reduce((sum, key) => sum + (counters[key] || 0), 0);
             }
         };
-        
-       // ============================================================================
+
+        // ============================================================================
         // Vehicle Emoji Helper (inline for plate.html)
         // ============================================================================
         // 승용차: 🚗
@@ -3312,7 +3443,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         // 긴급자동차: 🚨
         function getVehicleEmojiLocal(plateNumber) {
             if (!plateNumber) return '🚗';
-            
+
             try {
                 const clean = plateNumber.trim().replace(/\s+/g, '');
 
@@ -3390,7 +3521,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             }
         }
 
-        
+
         // ============================================================================
         // UI Controller
         // ============================================================================
@@ -3398,7 +3529,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             updatePlateDisplay(plateNumber) {
                 document.getElementById('plateNumber').textContent = plateNumber || '-';
                 document.title = `SafeDrive - ${plateNumber || '안전 리포트'}`;
-                
+
                 // Update vehicle emoji
                 const plateEmojiElement = document.getElementById('plateEmoji');
                 if (plateEmojiElement && plateNumber) {
@@ -3407,11 +3538,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     // console.log('updatePlateDisplay: Set emoji', emoji, 'for plate', plateNumber);
                 }
             },
-            
+
             showMessagesForVehicleType(vehicleType) {
                 const carMessages = document.querySelectorAll('.car-messages');
                 const motorbikeMessages = document.querySelectorAll('.motorbike-messages');
-                
+
                 if (vehicleType === 'motorbike') {
                     // Hide car messages, show motorbike messages
                     carMessages.forEach(el => el.style.display = 'none');
@@ -3424,23 +3555,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     // console.log('Showing car messages');
                 }
             },
-            
+
             updateStats(data) {
                 const counters = data.counters || {};
-                
+
                 // Calculate totals
                 const totalMessages = Object.keys(counters)
                     .filter(k => k !== 'likes')
                     .reduce((sum, k) => sum + (counters[k] || 0), 0);
-                
+
                 const likes = counters.likes || 0;
                 const views = data.views || 0;
-                
+
                 // Calculate Care Index (all-time engagement ratio)
                 const interactionCount = totalMessages + likes;
                 let careIndexValue = '-';
                 let careIndexMeta = '아직 데이터가 부족합니다';
-                
+
                 if (views >= 1 && interactionCount > 0) {
                     const ratio = interactionCount / views;
                     const percent = Math.round(ratio * 100);
@@ -3448,43 +3579,43 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     careIndexValue = `${capped}%`;
                     careIndexMeta = `조회 ${views}회 중 ${interactionCount}회 반응`;
                 }
-                
+
                 // Animate values
                 animateValue(document.getElementById('viewCount'), 0, views);
                 animateValue(document.getElementById('messageCount'), 0, totalMessages);
                 animateValue(document.getElementById('likeCount'), 0, likes);
-                
+
                 // Update Care Index
                 const careIndexValueEl = document.getElementById('careIndexValue');
                 const careIndexMetaEl = document.getElementById('careIndexMeta');
                 if (careIndexValueEl) careIndexValueEl.textContent = careIndexValue;
                 if (careIndexMetaEl) careIndexMetaEl.textContent = careIndexMeta;
-                
+
                 // Update change indicators (weekly growth estimates)
                 this.updateChangeIndicators(views, totalMessages, likes);
-                
+
                 // Update category breakdown
                 this.updateCategoryBreakdown(counters);
-                
+
                 // Update individual counters
                 this.updateCounterDisplays(counters);
-                
+
                 // Re-inject paper plane icons after updating counters
                 if (typeof injectPaperPlaneIcons === 'function') {
                     injectPaperPlaneIcons();
                 }
-                
+
                 // Update chart
                 ChartManager.updateWithData(counters);
             },
-            
+
             updateChangeIndicators(views, messages, likes) {
                 // Calculate estimated weekly growth based on current totals
                 // Assuming data accumulates over time, we estimate ~15-20% weekly growth
                 const viewChange = Math.max(1, Math.round(views * 0.18));
                 const messageChange = Math.max(1, Math.round(messages * 0.15));
                 const likeChange = Math.max(1, Math.round(likes * 0.12));
-                
+
                 // Update view change
                 const viewChangeEl = document.getElementById('viewChange');
                 if (viewChangeEl) {
@@ -3496,7 +3627,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         viewChangeEl.className = 'pro-stat-change';
                     }
                 }
-                
+
                 // Update message change
                 const messageChangeEl = document.getElementById('messageChange');
                 if (messageChangeEl) {
@@ -3508,7 +3639,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         messageChangeEl.className = 'pro-stat-change';
                     }
                 }
-                
+
                 // Update like change
                 const likeChangeEl = document.getElementById('likeChange');
                 if (likeChangeEl) {
@@ -3521,19 +3652,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     }
                 }
             },
-            
+
             updateCategoryBreakdown(counters) {
                 const categories = ['categoryA', 'categoryB', 'categoryC', 'categoryD'];
                 const totals = categories.map(cat => ChartManager.sumCategory(cat, counters));
                 const maxTotal = Math.max(...totals, 1);
-                
+
                 categories.forEach((cat, i) => {
                     const count = totals[i];
                     const percentage = (count / maxTotal) * 100;
-                    
+
                     const countEl = document.getElementById(`${cat}Count`);
                     const barEl = document.getElementById(`${cat}Bar`);
-                    
+
                     if (countEl) animateValue(countEl, 0, count);
                     if (barEl) {
                         setTimeout(() => {
@@ -3542,7 +3673,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     }
                 });
             },
-            
+
             updateCounterDisplays(counters) {
                 Object.keys(counters).forEach(key => {
                     const el = document.querySelector(`[data-counter="${key}"]`);
@@ -3550,7 +3681,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         // Check if there's a paper plane icon
                         const planeIcon = el.querySelector('.paper-plane-icon');
                         const textSpan = el.querySelector('span');
-                        
+
                         if (textSpan) {
                             // Update only the text span, preserve the SVG
                             textSpan.textContent = counters[key] || 0;
@@ -3561,24 +3692,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     }
                 });
             },
-            
+
             async handleMessageClick(item) {
                 const key = item.dataset.key;
                 if (!key || !currentPlate) return;
-                
+
                 // Check daily limit
                 if (!DailyLimitManager.canIncrement(currentPlate, key)) {
                     showNotification('오늘은 이미 이 메세지를 보냈습니다.', 'error');
                     return;
                 }
-                
+
                 // Add sending state
                 item.classList.add('sending');
-                
+
                 try {
                     const newValue = await FirebaseClient.incrementCounter(currentPlate, key);
                     DailyLimitManager.recordIncrement(currentPlate, key);
-                    
+
                     // Update display
                     const countEl = item.querySelector('.count');
                     if (countEl) {
@@ -3587,7 +3718,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         if (planeIcon) {
                             planeIcon.remove();
                         }
-                        
+
                         // Update the count text
                         const textSpan = countEl.querySelector('span');
                         if (textSpan) {
@@ -3595,20 +3726,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         } else {
                             countEl.textContent = newValue;
                         }
-                        
+
                         countEl.classList.add('updated');
                         setTimeout(() => countEl.classList.remove('updated'), 500);
                     }
-                    
+
                     // Refresh stats
                     const data = await FirebaseClient.getPlateData(currentPlate);
                     this.updateStats(data);
-                    
+
                     // Refresh badges (90-day data)
                     if (UIController.renderRatingBadges) {
                         UIController.renderRatingBadges(currentPlate, data);
                     }
-                    
+
                     showNotification('메세지가 전송되었습니다!', 'success');
                 } catch (error) {
                     console.error('Error sending message:', error);
@@ -3617,59 +3748,59 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     item.classList.remove('sending');
                 }
             },
-            
+
             async handleLikeClick() {
                 if (!currentPlate) return;
-                
+
                 if (!DailyLimitManager.canIncrement(currentPlate, 'likes')) {
                     showNotification('오늘은 이미 좋아요를 눌렀습니다.', 'error');
                     return;
                 }
-                
+
                 try {
                     const newValue = await FirebaseClient.incrementCounter(currentPlate, 'likes');
                     DailyLimitManager.recordIncrement(currentPlate, 'likes');
-                    
+
                     document.getElementById('likeIcon').textContent = '❤️';
                     animateValue(document.getElementById('likeCount'), parseInt(document.getElementById('likeCount').textContent) || 0, newValue);
-                    
+
                     // Refresh stats and badges
                     const data = await FirebaseClient.getPlateData(currentPlate, true);
                     this.updateStats(data);
                     if (UIController.renderRatingBadges) {
                         UIController.renderRatingBadges(currentPlate, data);
                     }
-                    
+
                     showNotification('좋아요를 눌렀습니다!', 'success');
                 } catch (error) {
                     console.error('Error liking:', error);
                     showNotification('실패. 다시 시도해주세요.', 'error');
                 }
             },
-            
+
             async get90DayCounters(plateNumber) {
                 if (!plateNumber) {
                     console.error('get90DayCounters: plateNumber is required');
                     return {};
                 }
-                
+
                 try {
                     const today = DailyLimitManager.getKSTDate();
                     const counters90d = {};
-                    
+
                     // Initialize all counter keys to 0
                     Object.values(COUNTER_KEYS).forEach(key => {
                         counters90d[key] = 0;
                     });
-                    
+
                     // Create array of promises for parallel fetching
                     const fetchPromises = [];
-                    
+
                     for (let i = 0; i < 90; i++) {
                         const date = new Date(today);
                         date.setDate(today.getDate() - i);
                         const dateStr = DailyLimitManager.formatDateKST(date);
-                        
+
                         // Create promise for this day's data
                         const promise = database.ref(`plates/${plateNumber}/daily/${dateStr}`)
                             .once('value')
@@ -3684,13 +3815,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                                 console.warn(`Failed to fetch data for ${dateStr}:`, error);
                                 return null;
                             });
-                        
+
                         fetchPromises.push(promise);
                     }
-                    
+
                     // Fetch all days in parallel
                     const results = await Promise.all(fetchPromises);
-                    
+
                     // Aggregate results
                     results.forEach(dailyData => {
                         if (dailyData) {
@@ -3699,28 +3830,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             });
                         }
                     });
-                    
+
                     return counters90d;
                 } catch (error) {
                     console.error('get90DayCounters error:', error);
                     return {};
                 }
             },
-            
+
             async renderRatingBadges(plateNumber, plateData) {
                 if (!plateNumber || !plateData) {
                     // console.log('renderRatingBadges: Missing plateNumber or plateData');
                     return;
                 }
-                
+
                 const container = document.getElementById('ratingBadges');
                 if (!container) {
                     console.warn('renderRatingBadges: Container #ratingBadges not found');
                     return;
                 }
-                
+
                 // console.log('renderRatingBadges: Starting for plate', plateNumber);
-                
+
                 // Show loading indicator
                 container.textContent = '';
                 const loadingSpan = document.createElement('span');
@@ -3728,20 +3859,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 loadingSpan.style.opacity = '0.6';
                 loadingSpan.textContent = '⏳ 배지 계산 중...';
                 container.appendChild(loadingSpan);
-                
+
                 try {
                     const startTime = performance.now();
                     const counters90d = await this.get90DayCounters(plateNumber);
                     const endTime = performance.now();
                     // console.log(`renderRatingBadges: Fetched 90-day data in ${Math.round(endTime - startTime)}ms`);
                     // console.log('renderRatingBadges: 90-day counters:', counters90d);
-                    
+
                     let warningCount_90d = 0;
                     let conditionCount_90d = 0;
                     let thanksCount_90d = 0;
                     let likesCount_90d = counters90d.likes || 0;
                     let totalMessages_90d = 0;
-                    
+
                     // Sum category A + B (warnings)
                     if (CATEGORIES.categoryA && CATEGORIES.categoryA.keys) {
                         CATEGORIES.categoryA.keys.forEach(key => {
@@ -3753,21 +3884,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             warningCount_90d += counters90d[key] || 0;
                         });
                     }
-                    
+
                     // Sum category C (condition)
                     if (CATEGORIES.categoryC && CATEGORIES.categoryC.keys) {
                         CATEGORIES.categoryC.keys.forEach(key => {
                             conditionCount_90d += counters90d[key] || 0;
                         });
                     }
-                    
+
                     // Sum category D (thanks)
                     if (CATEGORIES.categoryD && CATEGORIES.categoryD.keys) {
                         CATEGORIES.categoryD.keys.forEach(key => {
                             thanksCount_90d += counters90d[key] || 0;
                         });
                     }
-                    
+
                     // Add motorbike categories if applicable
                     const vehicleType = getVehicleType(plateNumber);
                     if (vehicleType === 'motorbike') {
@@ -3792,17 +3923,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             });
                         }
                     }
-                    
+
                     // Calculate total messages
                     Object.keys(counters90d).forEach(key => {
                         if (key !== 'likes') {
                             totalMessages_90d += counters90d[key] || 0;
                         }
                     });
-                    
+
                     const interactionCount_90d = totalMessages_90d + likesCount_90d;
                     const views = plateData.views || 0;
-                    
+
                     // console.log('renderRatingBadges: 90-day stats:', {
                     //     warningCount_90d,
                     //     conditionCount_90d,
@@ -3812,34 +3943,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     //     interactionCount_90d,
                     //     views
                     // });
-                    
+
                     const badges = [];
-                    
+
                     // Badge 1: High care index
                     if (views >= 10 && interactionCount_90d / views >= 0.2) {
                         badges.push('💖 많이 신경 써 준 번호판');
                     }
-                    
+
                     // Badge 2: Praise-heavy
                     if (thanksCount_90d >= 3 && thanksCount_90d >= warningCount_90d) {
                         badges.push('💚 칭찬이 많이 쌓인 번호판');
                     }
-                    
+
                     // Badge 3: Frequent warning
                     if (warningCount_90d >= 3) {
                         badges.push('⚠️ 여러 번 걱정된 번호판');
                     }
-                    
+
                     // Badge 4: Maintenance alert
                     if (conditionCount_90d >= 3) {
                         badges.push('🔧 정비 알림이 여러 번 있었던 번호판');
                     }
-                    
+
                     // console.log('renderRatingBadges: Badges earned:', badges);
-                    
+
                     // Clear loading indicator
                     container.textContent = '';
-                    
+
                     // Render badges (max 3)
                     if (badges.length === 0) {
                         // Show message when no badges are earned
@@ -3863,16 +3994,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     console.error('renderRatingBadges error:', error);
                 }
             },
-            
+
             handleShare() {
                 const url = window.location.href;
-                
+
                 if (navigator.share) {
                     navigator.share({
                         title: `SafeDrive - ${currentPlate}`,
                         text: `${currentPlate} 차량의 안전 리포트를 확인하세요!`,
                         url: url
-                    }).catch(() => {});
+                    }).catch(() => { });
                 } else if (navigator.clipboard) {
                     navigator.clipboard.writeText(url).then(() => {
                         showNotification('링크가 복사되었습니다!', 'success');
@@ -3880,41 +4011,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 }
             }
         };
-        
+
         // ============================================================================
         // Initialize
         // ============================================================================
         async function init() {
             // Initialize theme
             ThemeManager.init();
-            
+
             // Initialize chart
             ChartManager.init();
-            
+
             // Get plate from URL
             currentPlate = Router.parsePlateFromURL();
-            
+
             if (currentPlate) {
                 UIController.updatePlateDisplay(currentPlate);
-                
+
                 // Detect vehicle type and show appropriate messages
                 const vehicleType = getVehicleType(currentPlate);
                 UIController.showMessagesForVehicleType(vehicleType);
-                
+
                 showLoading(true);
-                
+
                 try {
                     plateData = await FirebaseClient.getPlateData(currentPlate);
                     UIController.updateStats(plateData);
-                    
+
                     // Render rating badges (90-day data)
                     if (UIController.renderRatingBadges) {
                         UIController.renderRatingBadges(currentPlate, plateData);
                     }
-                    
+
                     // Inject paper plane icons after data is loaded
                     injectPaperPlaneIcons();
-                    
+
                     // Referral 성공 처리 (번호판 유효성 통과 시)
                     if (typeof ReferralCore !== 'undefined') {
                         ReferralCore.initOnPlateLoad(currentPlate);
@@ -3928,7 +4059,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             } else {
                 UIController.updatePlateDisplay('-');
             }
-            
+
             // Event Listeners
             document.getElementById('searchForm').addEventListener('submit', (e) => {
                 e.preventDefault();
@@ -3937,7 +4068,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     Router.navigateToPlate(input);
                 }
             });
-            
+
             // Plate input validation with visual feedback
             let searchDebounceTimer = null;
             const plateInput = document.getElementById('plateInput');
@@ -3947,14 +4078,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     if (searchDebounceTimer) {
                         clearTimeout(searchDebounceTimer);
                     }
-                    
+
                     // Set new timer for validation feedback
                     searchDebounceTimer = setTimeout(() => {
                         const input = e.target.value;
                         if (input && input.trim() !== '') {
                             const sanitized = Validator.sanitizePlateNumber(input);
                             const isValid = Validator.validatePlateNumber(sanitized);
-                            
+
                             // Visual feedback for validation with outline effect
                             if (isValid) {
                                 e.target.style.setProperty('outline', '3px solid #10b981', 'important');
@@ -3976,7 +4107,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                         }
                     }, 300);
                 });
-                
+
                 // Reset outline and border color on blur
                 plateInput.addEventListener('blur', (e) => {
                     e.target.style.removeProperty('outline');
@@ -3985,22 +4116,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     e.target.style.removeProperty('box-shadow');
                 });
             }
-            
+
             document.getElementById('likeBtn').addEventListener('click', () => {
                 UIController.handleLikeClick();
             });
-            
+
             document.getElementById('shareBtn').addEventListener('click', () => {
                 UIController.handleShare();
             });
-            
+
             // Message item clicks
             document.querySelectorAll('.pro-msg-item').forEach(item => {
                 item.addEventListener('click', () => {
                     UIController.handleMessageClick(item);
                 });
             });
-            
+
             // Quick action buttons - scroll to message section headers
             document.getElementById('sendCarfixBtn').addEventListener('click', () => {
                 document.getElementById('categoryCHeader').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -4008,31 +4139,31 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             document.getElementById('sendWarningBtn').addEventListener('click', () => {
                 document.getElementById('messageSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
-            
+
             document.getElementById('sendPraiseBtn').addEventListener('click', () => {
                 document.getElementById('categoryDHeader').scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
-            
+
             // Text Size FAB Button Logic
             const textSizeFab = document.getElementById('textSizeFab');
             const messageGroups = document.querySelector('.pro-message-groups');
             const messageSection = document.getElementById('messageSection');
             let currentTextSize = 'small'; // small, medium, large
-            
+
             // Show/hide FAB based on scroll position
             function checkScrollPosition() {
                 if (!messageSection) return;
-                
+
                 const messageSectionRect = messageSection.getBoundingClientRect();
                 const isMessageSectionVisible = messageSectionRect.top < window.innerHeight && messageSectionRect.bottom > 0;
-                
+
                 if (isMessageSectionVisible) {
                     textSizeFab.classList.add('visible');
                 } else {
                     textSizeFab.classList.remove('visible');
                 }
             }
-            
+
             // Toggle text size
             textSizeFab.addEventListener('click', () => {
                 if (currentTextSize === 'small') {
@@ -4047,21 +4178,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     currentTextSize = 'small';
                     messageGroups.classList.remove('text-size-large', 'text-size-medium');
                 }
-                
+
                 // Add a subtle animation feedback
                 textSizeFab.style.transform = 'scale(0.9)';
                 setTimeout(() => {
                     textSizeFab.style.transform = '';
                 }, 150);
             });
-            
+
             // Listen to scroll events
             window.addEventListener('scroll', checkScrollPosition);
             window.addEventListener('resize', checkScrollPosition);
-            
+
             // Initial check
             checkScrollPosition();
-            
+
             // Back to Top Button
             document.getElementById('backToTopBtn').addEventListener('click', () => {
                 window.scrollTo({
@@ -4069,7 +4200,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     behavior: 'smooth'
                 });
             });
-            
+
             // Period tabs
             document.querySelectorAll('.pro-tab').forEach(tab => {
                 tab.addEventListener('click', () => {
@@ -4078,7 +4209,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     // Could implement different period views here
                 });
             });
-            
+
             // Category breakdown clicks - scroll to corresponding message group header
             document.querySelectorAll('.pro-breakdown-item').forEach(item => {
                 item.addEventListener('click', () => {
@@ -4091,11 +4222,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 });
             });
         }
-        
+
         // ============================================================================
         // SubscriptionManager is now loaded from script.js
         // ============================================================================
-        
+
         // Start app
         // Inject paper plane SVG into all count spans (except those sent today)
         function injectPaperPlaneIcons() {
@@ -4103,21 +4234,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             const svgHTML = `<svg class="paper-plane-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"/>
                 </svg>`;
-            
+
             countSpans.forEach(span => {
                 // Get the message key from the parent pro-msg-item
                 const msgItem = span.closest('.pro-msg-item');
                 if (!msgItem) return;
-                
+
                 const messageKey = msgItem.getAttribute('data-key');
                 if (!messageKey) return;
-                
+
                 // Check if this message was sent today (only if we have a plate)
                 let canSend = true;
                 if (currentPlate) {
                     canSend = DailyLimitManager.canIncrement(currentPlate, messageKey);
                 }
-                
+
                 // Only inject if not already injected AND can send (not sent today)
                 if (canSend && !span.querySelector('.paper-plane-icon')) {
                     const currentText = span.textContent.trim();
@@ -4137,14 +4268,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 }
             });
         }
-        
+
         document.addEventListener('DOMContentLoaded', async () => {
             await init();
             SubscriptionManager.init();
             // injectPaperPlaneIcons is now called inside init() after data loads
         });
     </script>
-    
+
     <!-- Subscribe Popup -->
     <div id="subscribePopup" class="subscribe-popup" style="display: none;">
         <div class="subscribe-popup-overlay"></div>
@@ -4152,32 +4283,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <button class="subscribe-popup-close" onclick="closeSubscribePopup()">✕</button>
             <h3>번호판 구독 관리</h3>
             <p class="subscribe-popup-desc">구독하면 이 번호판에 새로운 메시지가 등록될 때 푸시 알림을 받을 수 있습니다.</p>
-            
+
             <button id="installPushBtn" class="subscribe-install-btn install-btn">
                 📱 바로가기판 설치하고 푸시 알림 받기
             </button>
             <button id="subscribeOnlyBtn" class="subscribe-install-btn subscribe-only-btn">
                 🔔 이 번호판 구독만하기
             </button>
-            
+
             <!-- Current plate number display -->
             <div class="current-plate-section">
                 <span class="current-plate-label">현재 번호판:</span>
                 <span id="currentPlateDisplay" class="current-plate-number">-</span>
             </div>
-            
+
             <!-- Notification toggle for current plate -->
             <div id="currentPlateNotificationToggle" class="notification-toggle-section" style="display: none;">
                 <span class="notification-toggle-label">🔔 이 번호판 알림</span>
-                <button id="currentPlateNotificationBtn" class="notification-toggle-btn on" onclick="SubscriptionManager.toggleCurrentPlateNotification()">
+                <button id="currentPlateNotificationBtn" class="notification-toggle-btn on"
+                    onclick="SubscriptionManager.toggleCurrentPlateNotification()">
                     ON
                 </button>
             </div>
-            
+
             <div class="subscribe-consent">
                 <small>알림 수신에 동의하시면 개인정보는 수집되지 않으며, 기기의 토큰만 저장됩니다.</small>
             </div>
-            
+
             <div class="subscribe-list-section">
                 <h4>구독 중인 번호판 (<span id="subscribeCount">0</span>/10)</h4>
                 <div id="subscribedList" class="subscribed-list">
@@ -4186,57 +4318,60 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </div>
         </div>
     </div>
-    
+
     <!-- Load subscription manager for PWA push notifications -->
     <script src="subscription-manager.js"></script>
-    
+
     <!-- Referral System -->
     <script src="/js/referral-core.js"></script>
-    
+
     <!-- Note: script.js is NOT loaded here to avoid duplicate declarations -->
     <!-- Required modules are defined inline below -->
-    
+
     <!-- Voice Input Modal with Candidate Selection -->
     <div id="voiceInputModal" class="voice-modal">
         <div class="voice-overlay" onclick="VoiceInput.close()"></div>
         <div class="voice-sheet" id="voiceSheet">
             <div class="voice-handle"></div>
-            
+
             <!-- Step 1: Guide + Listening -->
             <div id="voiceStep1">
                 <p id="voiceGuideText" class="voice-text">
                     번호판을 말해주세요<br>
                     <small style="color:#8b949e">예: '<strong>영 구 루 삼 삼 육 삼</strong>' → 09루3363<br>천천히, 띄어 말해주세요</small>
                 </p>
-                
+
                 <p id="voiceListeningText" class="voice-text" style="display:none;">
                     듣는 중<span class="animated-dots"></span>
                 </p>
-                
-                <svg id="voiceMicIcon" width="72" height="72" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 18.75C15.3137 18.75 18 16.0637 18 12.75V11.25M12 18.75C8.68629 18.75 6 16.0637 6 12.75V11.25M12 18.75V22.5M8.25 22.5H15.75M12 15.75C10.3431 15.75 9 14.4069 9 12.75V4.5C9 2.84315 10.3431 1.5 12 1.5C13.6569 1.5 15 2.84315 15 4.5V12.75C15 14.4069 13.6569 15.75 12 15.75Z" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <svg id="voiceMicIcon" width="72" height="72" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 18.75C15.3137 18.75 18 16.0637 18 12.75V11.25M12 18.75C8.68629 18.75 6 16.0637 6 12.75V11.25M12 18.75V22.5M8.25 22.5H15.75M12 15.75C10.3431 15.75 9 14.4069 9 12.75V4.5C9 2.84315 10.3431 1.5 12 1.5C13.6569 1.5 15 2.84315 15 4.5V12.75C15 14.4069 13.6569 15.75 12 15.75Z"
+                        stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-                
+
                 <button class="voice-cancel-btn" id="voiceCancelStep1" onclick="VoiceInput.close()">취소</button>
             </div>
-            
+
             <!-- Step 2: Candidate Selection -->
             <div id="voiceStep2" style="display:none; text-align:center;">
                 <p class="voice-text" style="margin-bottom:16px; color:#22c55e; font-weight:700;">
                     ✓ 인식 완료! 선택해주세요
                 </p>
-                
+
                 <div id="voiceCandidates" class="voice-candidates">
                     <!-- Filled by JS -->
                 </div>
-                
+
                 <button class="voice-cancel-btn" style="margin-top:20px;" onclick="VoiceInput.restart()">
                     다시 말하기
                 </button>
             </div>
         </div>
     </div>
-    
+
     <!-- ===== In-app browser escape bar (Chrome/Safari) ===== -->
     <div id="openInBrowserBar" class="oib-hidden" role="dialog" aria-live="polite" aria-label="브라우저에서 열기 안내">
         <div class="oib-card">
@@ -4244,72 +4379,108 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <div class="oib-title">앱 내 브라우저에서는 기능이 제한될 수 있어요</div>
                 <button type="button" class="oib-close" id="oibCloseBtn" aria-label="닫기">×</button>
             </div>
-            <div class="oib-desc">음성 인식/알림 등 일부 기능이 앱 내 브라우저(카카오톡/라인/왓츠앱 등)에서 불안정할 수 있습니다. 아래 버튼으로 외부 브라우저에서 열어주세요.</div>
+            <div class="oib-desc">음성 인식/알림 등 일부 기능이 앱 내 브라우저(카카오톡/라인/왓츠앱 등)에서 불안정할 수 있습니다. 아래 버튼으로 외부 브라우저에서 열어주세요.
+            </div>
             <div class="oib-actions" id="oibActions">
                 <!-- Buttons injected by JS depending on platform -->
             </div>
             <div class="oib-hint" id="oibHint" style="display:none;"></div>
         </div>
     </div>
-    
+
     <style>
-        #openInBrowserBar.oib-hidden { display:none; }
+        #openInBrowserBar.oib-hidden {
+            display: none;
+        }
+
         #openInBrowserBar {
-            position: fixed; left: 0; right: 0; bottom: 0;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
             z-index: 99999;
             padding: 12px;
-            background: rgba(0,0,0,0.35);
+            background: rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(2px);
         }
+
         .oib-card {
             max-width: 720px;
             margin: 0 auto;
             border-radius: 14px;
             background: #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.20);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.20);
             padding: 12px 12px 10px 12px;
             font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
         }
+
         .oib-header {
-            display:flex; align-items:center; justify-content:space-between;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 10px;
             margin-bottom: 6px;
         }
-        .oib-title { font-size: 14px; font-weight: 700; line-height: 1.2; }
+
+        .oib-title {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
         .oib-close {
-            border: 0; background: transparent; font-size: 22px; cursor: pointer;
-            padding: 2px 8px; line-height: 1;
+            border: 0;
+            background: transparent;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 2px 8px;
+            line-height: 1;
             color: #444;
         }
+
         .oib-desc {
             font-size: 12px;
             color: #444;
             line-height: 1.4;
             margin-bottom: 10px;
         }
+
         .oib-actions {
-            display:flex; flex-wrap: wrap; gap: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
+
         .oib-btn {
-            display:inline-flex; align-items:center; gap: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             border-radius: 12px;
             padding: 10px 12px;
             border: 1px solid #ddd;
             background: #fff;
-            cursor:pointer;
+            cursor: pointer;
             font-size: 13px;
             font-weight: 700;
             color: #111;
             text-decoration: none;
             user-select: none;
         }
-        .oib-btn:active { transform: translateY(1px); }
+
+        .oib-btn:active {
+            transform: translateY(1px);
+        }
+
         .oib-btn.primary {
             border-color: #111;
         }
+
         .oib-icon {
-            width: 18px; height: 18px; display:inline-block;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
         }
+
         .oib-hint {
             margin-top: 8px;
             font-size: 12px;
@@ -4322,14 +4493,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             white-space: pre-line;
         }
     </style>
-    
+
     <script>
         (function () {
             // ---- Basic detection (in-app browsers are best-effort heuristics) ----
             const ua = navigator.userAgent || navigator.vendor || window.opera;
             const isAndroid = /Android/i.test(ua);
             const isIOS = /iPad|iPhone|iPod/i.test(ua);
-            
+
             // Common in-app browser markers (KakaoTalk, LINE, WhatsApp, Instagram, Facebook, etc.)
             const isInApp =
                 /KAKAOTALK|KakaoTalk/i.test(ua) ||
@@ -4338,25 +4509,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 /Instagram/i.test(ua) ||
                 /FBAN|FBAV|FBIOS|FB_IAB/i.test(ua) ||
                 /NAVER|Daum|KAKAOSTORY|KAKAOWEBVIEW/i.test(ua);
-            
+
             // If you want the bar only inside in-app browsers, keep this condition.
             if (!isInApp) return;
-            
+
             const bar = document.getElementById("openInBrowserBar");
             const actions = document.getElementById("oibActions");
             const hint = document.getElementById("oibHint");
             const closeBtn = document.getElementById("oibCloseBtn");
             const currentUrl = location.href;
-            
+
             // Browser icons from assets
             const chromeIcon = `<img src="/assets/img/chrome.png" class="oib-icon" alt="Chrome" />`;
             const safariIcon = `<img src="/assets/img/safari.png" class="oib-icon" alt="Safari" />`;
-            
+
             function showHint(text) {
                 hint.textContent = text;
                 hint.style.display = "block";
             }
-            
+
             function makeButton(label, iconSvg, onClick, primary) {
                 const btn = document.createElement("button");
                 btn.type = "button";
@@ -4370,14 +4541,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 btn.addEventListener("click", onClick, { passive: true });
                 return btn;
             }
-            
+
             // ---- Android: "Open in Chrome" (Intent). Must be user-tapped ----
             function openAndroidChromeIntent() {
                 // Convert https://example.com/path?x=1 to intent://example.com/path?x=1#Intent;scheme=https;package=com.android.chrome;end
                 const urlObj = new URL(currentUrl);
                 const hostAndPath = urlObj.host + urlObj.pathname + urlObj.search + urlObj.hash;
                 const intentUrl = "intent://" + hostAndPath + "#Intent;scheme=" + urlObj.protocol.replace(":", "") + ";package=com.android.chrome;end";
-                
+
                 // Try intent first; fallback to normal URL if blocked.
                 try {
                     location.href = intentUrl;
@@ -4386,24 +4557,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     location.href = currentUrl;
                 }
             }
-            
+
             // ---- iOS: "Open in Safari" cannot be forced; we provide instructions + copy link ----
             async function openIOSInSafariGuide() {
                 // Attempt to open a new tab (some in-app browsers then show "Open in Safari" UI)
-                try { window.open(currentUrl, "_blank"); } catch (e) {}
-                
+                try { window.open(currentUrl, "_blank"); } catch (e) { }
+
                 // Provide copy-to-clipboard + clear instructions
                 let copied = false;
                 try {
                     await navigator.clipboard.writeText(currentUrl);
                     copied = true;
-                } catch (e) {}
-                
+                } catch (e) { }
+
                 showHint((copied ? "현재 링크를 복사했어요.\n" : "") +
                     "iPhone에서는 웹사이트가 Safari를 강제로 열 수 없습니다.\n" +
                     "앱 오른쪽 상단 '…' 또는 공유 버튼 → 'Safari에서 열기'를 선택해 주세요.");
             }
-            
+
             // ---- iOS: "Open in Chrome(최적화)" via googlechrome:// scheme (if installed) ----
             function openIOSInChromeScheme() {
                 // Only works if Chrome is installed. Must be user-tapped. Provide fallback.
@@ -4411,10 +4582,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 const chromeScheme = (urlObj.protocol === "https:") ? "googlechromes:" : "googlechrome:";
                 const chromeUrl = chromeScheme + "//" + urlObj.host + urlObj.pathname + urlObj.search + urlObj.hash;
                 const start = Date.now();
-                
+
                 // Try to navigate to Chrome
                 location.href = chromeUrl;
-                
+
                 // If Chrome not installed, user stays here; fallback after a moment.
                 setTimeout(() => {
                     // If we are still on the page after ~900ms, show guidance
@@ -4424,7 +4595,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     }
                 }, 900);
             }
-            
+
             // ---- Render buttons by platform ----
             actions.textContent = "";
             if (isAndroid) {
@@ -4436,13 +4607,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 // Other platforms: just offer a normal "Open in default browser" pattern
                 actions.appendChild(makeButton("새 탭에서 열기", chromeIcon, () => window.open(currentUrl, "_blank"), true));
             }
-            
+
             // Close behavior + session persistence (avoid showing repeatedly in same session)
             const key = "oibDismissed";
             if (sessionStorage.getItem(key) === "1") return;
-            
+
             bar.classList.remove("oib-hidden");
-            
+
             closeBtn.addEventListener("click", () => {
                 sessionStorage.setItem(key, "1");
                 bar.classList.add("oib-hidden");
@@ -4451,13 +4622,73 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </script>
     <!-- ===== End: In-app browser escape bar ===== -->
 
+    <!-- 정적 콘텐츠: 서비스 안내 -->
+    <section style="background: var(--pro-surface); border-top: 1px solid var(--pro-border); padding: 60px 24px;">
+        <div style="max-width: 1000px; margin: 0 auto;">
+            <h2
+                style="font-size: 1.5rem; font-weight: 700; color: var(--pro-text-bright); margin-bottom: 30px; text-align: center;">
+                📊 차량 안전 리포트란?</h2>
+
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-bottom: 40px;">
+                <div
+                    style="background: var(--pro-card); border: 1px solid var(--pro-border); border-radius: 16px; padding: 25px;">
+                    <div style="font-size: 2rem; margin-bottom: 15px;">🔍</div>
+                    <h3
+                        style="font-size: 1.1rem; font-weight: 700; color: var(--pro-text-bright); margin-bottom: 10px;">
+                        익명 안전 정보 조회</h3>
+                    <p style="color: var(--pro-text-dim); font-size: 0.9rem; line-height: 1.7;">차량 번호판을 통해 다른 운전자들이 남긴
+                        안전 관련 메시지를 확인할 수 있습니다. 개인정보 없이 순수하게 차량 안전 정보만 공유됩니다.</p>
+                </div>
+
+                <div
+                    style="background: var(--pro-card); border: 1px solid var(--pro-border); border-radius: 16px; padding: 25px;">
+                    <div style="font-size: 2rem; margin-bottom: 15px;">📝</div>
+                    <h3
+                        style="font-size: 1.1rem; font-weight: 700; color: var(--pro-text-bright); margin-bottom: 10px;">
+                        템플릿 기반 메시지</h3>
+                    <p style="color: var(--pro-text-dim); font-size: 0.9rem; line-height: 1.7;">비방이나 욕설을 방지하기 위해 운영자가
+                        제공하는 안전 템플릿만 사용할 수 있습니다. 브레이크등 고장, 타이어 점검 필요 등 객관적인 안전 정보만 전달됩니다.</p>
+                </div>
+
+                <div
+                    style="background: var(--pro-card); border: 1px solid var(--pro-border); border-radius: 16px; padding: 25px;">
+                    <div style="font-size: 2rem; margin-bottom: 15px;">📈</div>
+                    <h3
+                        style="font-size: 1.1rem; font-weight: 700; color: var(--pro-text-bright); margin-bottom: 10px;">
+                        통계 기반 분석</h3>
+                    <p style="color: var(--pro-text-dim); font-size: 0.9rem; line-height: 1.7;">여러 사람이 남긴 메시지가 카운트 형태로
+                        누적되어 통계로 표시됩니다. 이 정보는 참고용이며, 실제 차량 상태를 보증하지 않습니다.</p>
+                </div>
+            </div>
+
+            <div
+                style="background: var(--pro-card); border: 1px solid var(--pro-border); border-radius: 16px; padding: 25px;">
+                <h3 style="font-size: 1.1rem; font-weight: 700; color: var(--pro-text-bright); margin-bottom: 15px;">⚠️
+                    이용 시 주의사항</h3>
+                <ul
+                    style="color: var(--pro-text-dim); font-size: 0.9rem; line-height: 2; padding-left: 20px; margin: 0;">
+                    <li>제공되는 정보는 이용자들이 남긴 <strong style="color: var(--pro-text);">익명 통계 정보</strong>이며, 실제 차량 상태를 보증하지
+                        않습니다.</li>
+                    <li>본 서비스는 <strong style="color: var(--pro-text);">개인정보를 수집하지 않으며</strong>, 차량 소유주를 특정할 수 없습니다.</li>
+                    <li>화면 캡처 후 SNS 등에 공유하면 <strong style="color: var(--pro-text);">법적 책임</strong>이 발생할 수 있습니다.</li>
+                    <li>비방, 조롱, 추적 등 <strong style="color: var(--pro-text);">악의적 목적의 사용은 금지</strong>됩니다.</li>
+                    <li>운전 중에는 절대 사용하지 마시고, <strong style="color: var(--pro-text);">안전한 곳에 정차 후</strong> 이용해 주세요.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-content">
             <nav class="footer-links">
-                <a href="terms.html">이용약관</a> | <a href="privacy.html">개인정보처리방침</a> | <a href="legal.html">법적 고지</a> | <a href="faq.html">자주 묻는 질문</a>
+                <a href="/terms.html">이용약관</a> |
+                <a href="/privacy.html">개인정보처리방침</a> |
+                <a href="/legal.html">법적 고지</a> |
+                <a href="/faq.html">자주 묻는 질문</a>
             </nav>
-            <a class="footer-contact-link" href="contact.html">문의</a>
+            <a class="footer-contact-link" href="/contact.html">문의</a>
             <p class="copyright">© 2025 Hustle Up. All rights reserved.</p>
         </div>
     </footer>
@@ -4466,7 +4697,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         // Mobile menu toggle
         const navToggle = document.getElementById('navToggle');
         const navMenu = document.getElementById('navMenu');
-        
+
         if (navToggle && navMenu) {
             // Toggle menu on button click
             navToggle.addEventListener('click', (e) => {
@@ -4474,17 +4705,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 navMenu.classList.toggle('active');
                 navToggle.classList.toggle('active');
             });
-            
+
             // Close menu when clicking outside
             document.addEventListener('click', (e) => {
-                if (navMenu.classList.contains('active') && 
-                    !navMenu.contains(e.target) && 
+                if (navMenu.classList.contains('active') &&
+                    !navMenu.contains(e.target) &&
                     !navToggle.contains(e.target)) {
                     navMenu.classList.remove('active');
                     navToggle.classList.remove('active');
                 }
             });
-            
+
             // Close menu when clicking a nav link
             const navLinks = navMenu.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
@@ -4495,17 +4726,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             });
         }
     </script>
-<!-- Cookie Consent System -->
-<link rel="stylesheet" href="/css/cookie-consent.css">
-<script src="/js/cookie-consent.js"></script>
+    <!-- Cookie Consent System -->
+    <link rel="stylesheet" href="/css/cookie-consent.css">
+    <script src="/js/cookie-consent.js"></script>
 
-<!-- Cookie Settings Floating Button -->
-<button 
-    class="cookie-settings-trigger" 
-    onclick="openCookieSettings()" 
-    title="쿠키 설정 관리"
-    aria-label="쿠키 설정 관리">
-    🍪
-</button>
+    <!-- Cookie Settings Floating Button -->
+    <button class="cookie-settings-trigger" onclick="openCookieSettings()" title="쿠키 설정 관리" aria-label="쿠키 설정 관리">
+        🍪
+    </button>
+    <script src="/script.js"></script>
 </body>
+
 </html>

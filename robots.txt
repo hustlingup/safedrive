@@ -1,0 +1,28 @@
+# SAFE DRIVE robots.txt
+# https://safedrive.kr
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://safedrive.kr/sitemap.xml
+
+# Disallow admin/config files
+Disallow: /.firebase/
+Disallow: /.git/
+Disallow: /.kiro/
+Disallow: /.vscode/
+Disallow: /functions/
+Disallow: /scripts/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /*.js$
+Disallow: /build.js
+Disallow: /minify.js
+
+# Allow important JS files for rendering
+Allow: /js/
+Allow: /quiz/
+
+# Crawl delay for politeness
+Crawl-delay: 1

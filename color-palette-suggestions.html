@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAFE DRIVE - 색상 팔레트 제안</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'GmarketSans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f5f5f5;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 20px; color: #333; }
+        .current-colors {
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+        .palette-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+        .palette-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .palette-header { padding: 30px; color: white; text-align: center; }
+        .palette-header h2 { font-size: 24px; margin-bottom: 10px; }
+        .palette-header p { opacity: 0.9; font-size: 14px; }
+        .color-swatches { display: flex; height: 60px; }
+        .swatch { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; }
+        .palette-body { padding: 25px; }
+        .sample-button {
+            display: block; width: 100%; padding: 15px; border: none; border-radius: 50px;
+            color: white; font-size: 16px; font-weight: 700; cursor: pointer; margin-bottom: 15px;
+        }
+        .sample-stat { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #eee; }
+        .stat-label { color: #666; }
+        .css-code { background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 15px; font-family: monospace; font-size: 12px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🎨 SAFE DRIVE 색상 팔레트 제안</h1>
+    <div class="current-colors">
+        <h3>현재 색상: #667eea → #764ba2 (보라/바이올렛)</h3>
+        <p>아래에서 새로운 색상 조합을 선택하세요</p>
+    </div>
+    <div class="palette-grid"></div>
+</div>
+</body>
+</html>
+
+<script>
+const palettes = [
+    {
+        name: "오션 블루",
+        nameEn: "Ocean Blue",
+        description: "신뢰감과 안정감을 주는 깊은 바다색",
+        primary: "#0077B6",
+        secondary: "#00B4D8",
+        gradient: "linear-gradient(135deg, #0077B6 0%, #00B4D8 100%)",
+        accent: "#90E0EF",
+        dark: "#023E8A",
+        light: "#CAF0F8"
+    },
+    {
+        name: "에메랄드 그린",
+        nameEn: "Emerald Green",
+        description: "자연과 안전을 상징하는 청록색",
+        primary: "#059669",
+        secondary: "#10B981",
+        gradient: "linear-gradient(135deg, #059669 0%, #10B981 100%)",
+        accent: "#34D399",
+        dark: "#047857",
+        light: "#D1FAE5"
+    },
+    {
+        name: "선셋 오렌지",
+        nameEn: "Sunset Orange",
+        description: "에너지와 활력을 주는 따뜻한 색상",
+        primary: "#EA580C",
+        secondary: "#F97316",
+        gradient: "linear-gradient(135deg, #EA580C 0%, #F97316 100%)",
+        accent: "#FB923C",
+        dark: "#C2410C",
+        light: "#FED7AA"
+    },
+    {
+        name: "미드나잇 블루",
+        nameEn: "Midnight Blue",
+        description: "고급스럽고 전문적인 느낌의 네이비",
+        primary: "#1E3A5F",
+        secondary: "#3B82F6",
+        gradient: "linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%)",
+        accent: "#60A5FA",
+        dark: "#1E293B",
+        light: "#DBEAFE"
+    },
+    {
+        name: "로즈 핑크",
+        nameEn: "Rose Pink",
+        description: "부드럽고 친근한 느낌의 핑크",
+        primary: "#DB2777",
+        secondary: "#EC4899",
+        gradient: "linear-gradient(135deg, #DB2777 0%, #EC4899 100%)",
+        accent: "#F472B6",
+        dark: "#9D174D",
+        light: "#FCE7F3"
+    },
+    {
+        name: "포레스트 그린",
+        nameEn: "Forest Green",
+        description: "자연친화적이고 안정적인 숲의 색상",
+        primary: "#166534",
+        secondary: "#22C55E",
+        gradient: "linear-gradient(135deg, #166534 0%, #22C55E 100%)",
+        accent: "#4ADE80",
+        dark: "#14532D",
+        light: "#DCFCE7"
+    },
+    {
+        name: "코랄 레드",
+        nameEn: "Coral Red",
+        description: "주의를 끄는 생동감 있는 산호색",
+        primary: "#DC2626",
+        secondary: "#F87171",
+        gradient: "linear-gradient(135deg, #DC2626 0%, #F87171 100%)",
+        accent: "#FCA5A5",
+        dark: "#991B1B",
+        light: "#FEE2E2"
+    },
+    {
+        name: "스카이 블루",
+        nameEn: "Sky Blue",
+        description: "맑고 청량한 하늘색",
+        primary: "#0284C7",
+        secondary: "#38BDF8",
+        gradient: "linear-gradient(135deg, #0284C7 0%, #38BDF8 100%)",
+        accent: "#7DD3FC",
+        dark: "#075985",
+        light: "#E0F2FE"
+    }
+];
+</script>
+
+<script>
+const grid = document.querySelector('.palette-grid');
+
+palettes.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'palette-card';
+    card.innerHTML = `
+        <div class="palette-header" style="background: ${p.gradient}">
+            <h2>${p.name}</h2>
+            <p>${p.description}</p>
+        </div>
+        <div class="color-swatches">
+            <div class="swatch" style="background: ${p.dark}; color: white;">${p.dark}</div>
+            <div class="swatch" style="background: ${p.primary}; color: white;">${p.primary}</div>
+            <div class="swatch" style="background: ${p.secondary}; color: white;">${p.secondary}</div>
+            <div class="swatch" style="background: ${p.accent}; color: #333;">${p.accent}</div>
+            <div class="swatch" style="background: ${p.light}; color: #333;">${p.light}</div>
+        </div>
+        <div class="palette-body">
+            <button class="sample-button" style="background: ${p.gradient}">검색하기</button>
+            <div class="sample-stat">
+                <span class="stat-label">총 조회수</span>
+                <span style="color: ${p.primary}; font-weight: 700;">12,345</span>
+            </div>
+            <div class="sample-stat">
+                <span class="stat-label">오늘 등록</span>
+                <span style="color: ${p.secondary}; font-weight: 700;">567</span>
+            </div>
+            <div class="css-code">
+/* ${p.nameEn} Theme */
+--primary: ${p.primary};
+--secondary: ${p.secondary};
+--gradient: ${p.gradient};
+--accent: ${p.accent};
+--dark: ${p.dark};
+--light: ${p.light};
+
+/* 기존 색상 교체 */
+#667eea → ${p.primary}
+#764ba2 → ${p.secondary}
+            </div>
+        </div>
+    `;
+    grid.appendChild(card);
+});
+</script>

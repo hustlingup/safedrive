@@ -53,7 +53,7 @@ const COUNTER_KEYS = {
     '초보 화이팅!!!': 'beginner_fighting',
     // 좋아요
     '좋아요': 'likes',
-    
+
     // === MOTORBIKE MESSAGES ===
     // 안전 메세지 (Motorbike)
     '방금 위험한 순간이 있었어요. 조금만 더 조심해 주세요.': 'mb_dangerous_moment',
@@ -109,7 +109,7 @@ const CATEGORIES = {
         labels: ['좋아요'],
         vehicleType: 'both'
     },
-    
+
     // === MOTORBIKE CATEGORIES ===
     mbSafety: {
         name: '안전 메세지',
@@ -135,14 +135,14 @@ const CATEGORIES = {
         labels: ['날씨와 상관없이 늘 고생이 많으십니다!', '노면이 미끄러울 수 있어요, 항상 안전운행 하세요!', '항상 꼼꼼하게 배달해 주셔서 감사합니다!'],
         vehicleType: 'motorbike'
     },
-    
+
     // Grouped categories for leaderboard calculations
-    thanks: ['thank_you', 'forgive', 'pretty', 'cool', 'good_driver', 'envy', 'beginner_fighting', 
-             'mb_signal_respect', 'mb_stop_line', 'mb_pedestrian_first', 'mb_safety_gear', 'mb_considerate_driving', 'mb_lane_keeping',
-             'mb_weather_support', 'mb_slippery_warning', 'mb_delivery_thanks'],
+    thanks: ['thank_you', 'forgive', 'pretty', 'cool', 'good_driver', 'envy', 'beginner_fighting',
+        'mb_signal_respect', 'mb_stop_line', 'mb_pedestrian_first', 'mb_safety_gear', 'mb_considerate_driving', 'mb_lane_keeping',
+        'mb_weather_support', 'mb_slippery_warning', 'mb_delivery_thanks'],
     safety: ['speeding', 'reckless_merge', 'road_rage', 'sudden_stop', 'no_safe_distance', 'not_watching_ahead', 'halmanghaanj', 'pedestrian_slow_down', 'high_beam',
-             'exit_cutting', 'sudden_lane_change', 'drowsy_driving', 'no_blinker', 'lane_violation', 'habitual_brake', 'slow_driving', 'dont_park_here',
-             'mb_dangerous_moment', 'mb_dangerous_parking']
+        'exit_cutting', 'sudden_lane_change', 'drowsy_driving', 'no_blinker', 'lane_violation', 'habitual_brake', 'slow_driving', 'dont_park_here',
+        'mb_dangerous_moment', 'mb_dangerous_parking']
 };
 
 /**
@@ -176,18 +176,18 @@ function getCategoryForCounter(counterKey) {
     if (!counterKey) {
         return null;
     }
-    
+
     for (const [categoryId, categoryData] of Object.entries(CATEGORIES)) {
         // Skip grouped categories (thanks, safety) which are arrays
         if (Array.isArray(categoryData)) {
             continue;
         }
-        
+
         if (categoryData.keys && categoryData.keys.includes(counterKey)) {
             return categoryId;
         }
     }
-    
+
     return null;
 }
 
@@ -200,13 +200,13 @@ function getKoreanLabelForCounter(counterKey) {
     if (!counterKey) {
         return null;
     }
-    
+
     for (const [koreanLabel, key] of Object.entries(COUNTER_KEYS)) {
         if (key === counterKey) {
             return koreanLabel;
         }
     }
-    
+
     return null;
 }
 
@@ -216,7 +216,7 @@ function getKoreanLabelForCounter(counterKey) {
 const Validator = {
     // Korean plate number regex: 2-3 digits + Korean character + 4 digits
     PLATE_REGEX: /^(\d{2,3}[가-힣]\d{4})$/,
-    
+
     /**
      * SafeDrive 최종 번호판 정규화 함수 (2025년 최적화 버전)
      * Normalizes Korean plate numbers - handles new, old, and business plates
@@ -226,7 +226,7 @@ const Validator = {
      */
     normalizePlate(input) {
         const clean = input.trim().replace(/\s+/g, '');
-        
+
         // 1. 건설 기계용 번호판 - Construction machinery plates
         // Examples: 영경남01가1234, 영서울02나5678
         // Format: 영 + region (2 chars) + 2 digits + Korean char + 4 digits
@@ -235,7 +235,7 @@ const Validator = {
         if (matchConstruction) {
             return { plate: matchConstruction[1], type: 'construction', unique: true };
         }
-        
+
         // 2. 이륜차 번호판 (지역명 포함) - Motorbike plates with region
         // Examples: 부산남가1234, 경남창원가1234, 서울강남나5678, 서울동대문가1234
         // Format: region + city/district + Korean char + 4 digits (3-7 Korean chars total before digits)
@@ -244,7 +244,7 @@ const Validator = {
         if (matchMotorbikeRegion) {
             return { plate: matchMotorbikeRegion[1], type: 'motorbike-region', unique: true };
         }
-        
+
         // 3. 이륜차 번호판 (간단형) - Motorbike plates simple format
         // Examples: 1가21234, 2나34567
         // Format: 1 digit + Korean char + 5 digits
@@ -253,7 +253,7 @@ const Validator = {
         if (matchMotorbikeSimple) {
             return { plate: matchMotorbikeSimple[1], type: 'motorbike-simple', unique: true };
         }
-        
+
         // 4. 신형 번호판 (가장 많음) - New format plates
         // Examples: 09루3363, 123가1234
         const newPattern = /^(\d{2,3}[가-힣][가-힣]?\d{4})$/;
@@ -261,7 +261,7 @@ const Validator = {
         if (matchNew) {
             return { plate: matchNew[1], type: 'new', unique: true };
         }
-        
+
         // 5. 영업용 (노란색) - Business plates (yellow)
         // Examples: 70가1234, 89나5678 (starts with 7, 8, or 9)
         const bizPattern = /^([7-9]\d[가-힣]\d{4})$/;
@@ -269,7 +269,7 @@ const Validator = {
         if (matchBiz) {
             return { plate: matchBiz[1], type: 'business', unique: true };
         }
-        
+
         // 6. 구형 녹색 번호판 (지역명 생략된 경우) - Old green plates
         // Examples: 서울12가3456, 경기34나5678, or just 12가3456 (without region)
         const oldPattern = /^(?:([가-힣]{1,2}) ?)?(\d{2,3}[가-힣]\d{4})$/;
@@ -277,16 +277,16 @@ const Validator = {
         if (matchOld) {
             const region = matchOld[1] || null;  // 서울, 경기 등
             const number = matchOld[2];          // 12가3456
-            
+
             if (region) {
                 // 지역명 있으면 정확히 하나 - Region specified, unique plate
                 return { plate: `${region}${number}`, type: 'old', unique: true };
             } else {
                 // 지역명 없으면 → 모든 시도 버전 허용 - No region, ambiguous
-                return { 
-                    plate: number, 
-                    type: 'old-ambiguous', 
-                    unique: false, 
+                return {
+                    plate: number,
+                    type: 'old-ambiguous',
+                    unique: false,
                     possibleRegions: [
                         '서울', '부산', '대구', '인천', '광주', '대전', '울산', '세종',
                         '경기', '강원', '충북', '충남', '전북', '전남', '경북', '경남', '제주'
@@ -294,10 +294,10 @@ const Validator = {
                 };
             }
         }
-        
+
         return null;
     },
-    
+
     /**
      * Validates a plate number against Korean plate formats
      * Supports new, old, and business plate formats
@@ -311,7 +311,7 @@ const Validator = {
         const normalized = this.normalizePlate(input);
         return normalized !== null;
     },
-    
+
     /**
      * Sanitizes and normalizes plate number input
      * Removes whitespace and converts to consistent format
@@ -339,46 +339,46 @@ function getVehicleEmoji(plateNumber) {
     if (!plateNumber) {
         return '🚗'; // Default to car
     }
-    
+
     try {
         const clean = plateNumber.trim().replace(/\s+/g, '');
-        
+
         // Normalize the plate
         const normalized = Validator.normalizePlate(clean);
-        
+
         if (!normalized) {
             return '🚗'; // Default to car if normalization fails
         }
-        
+
         // console.log('getVehicleEmoji: plate=', clean, 'type=', normalized.type);
-        
+
         // 1. Check if it's a motorbike (highest priority for motorbike patterns)
         if (normalized.type === 'motorbike-region' || normalized.type === 'motorbike-simple') {
             return '🛵';
         }
-        
+
         // 2. Check if it's construction machinery
         if (normalized.type === 'construction') {
             return '🚚';
         }
-        
+
         // 3. For car plates, detect bus or truck based on Korean character and leading digits
         // Extract leading digits and middle Korean character
         // Patterns: 
         //   - New/Old: 2-3 digits + Korean char + 4 digits (e.g., 09루3363, 70가1234)
         //   - With region: region + 2-3 digits + Korean char + 4 digits (e.g., 서울12가3456)
-        
+
         // Try to extract the numeric prefix and Korean character
         // Handle both with and without region prefix
         const withRegionPattern = /^[가-힣]{1,2}(\d{2,3})([가-힣])\d{4}$/;
         const withoutRegionPattern = /^(\d{2,3})([가-힣])\d{4}$/;
-        
+
         let leadingDigits = null;
         let koreanChar = null;
-        
+
         const matchWithRegion = clean.match(withRegionPattern);
         const matchWithoutRegion = clean.match(withoutRegionPattern);
-        
+
         if (matchWithRegion) {
             leadingDigits = parseInt(matchWithRegion[1], 10);
             koreanChar = matchWithRegion[2];
@@ -386,7 +386,7 @@ function getVehicleEmoji(plateNumber) {
             leadingDigits = parseInt(matchWithoutRegion[1], 10);
             koreanChar = matchWithoutRegion[2];
         }
-        
+
         if (leadingDigits !== null && koreanChar !== null) {
             // Bus detection: Korean characters commonly used for buses
             // 바, 사, 아, 자 are typical bus plate characters in Korea
@@ -394,17 +394,17 @@ function getVehicleEmoji(plateNumber) {
             if (busChars.includes(koreanChar)) {
                 return '🚌';
             }
-            
+
             // Truck/cargo/business detection: 
             // Leading digits 70-99 are typically for larger/commercial vehicles
             if (leadingDigits >= 70 && leadingDigits <= 99) {
                 return '🚚';
             }
         }
-        
+
         // Default to passenger car
         return '🚗';
-        
+
     } catch (error) {
         console.error('getVehicleEmoji error:', error);
         return '🚗'; // Default to car on error
@@ -428,14 +428,14 @@ const Router = {
         const pathname = window.location.pathname;
         const search = window.location.search;
         const hash = window.location.hash;
-        
+
         // Try path format: /plate.html/09루3363
         const pathMatch = pathname.match(/\/plate\.html\/([^\/]+)/);
         if (pathMatch && pathMatch[1]) {
             const plate = decodeURIComponent(pathMatch[1]);
             return Validator.sanitizePlateNumber(plate);
         }
-        
+
         // Try query string format: ?plate=09루3363
         if (search) {
             const params = new URLSearchParams(search);
@@ -444,16 +444,16 @@ const Router = {
                 return Validator.sanitizePlateNumber(plate);
             }
         }
-        
+
         // Try hash format: #09루3363 (fallback for older browsers)
         if (hash && hash.length > 1) {
             const plate = decodeURIComponent(hash.substring(1)); // Remove the # symbol and decode
             return Validator.sanitizePlateNumber(plate);
         }
-        
+
         return null;
     },
-    
+
     /**
      * Navigates to a plate detail page with clean URL
      * Uses History API if available, falls back to hash-based navigation
@@ -464,15 +464,15 @@ const Router = {
             console.error('Router.navigateToPlate: plateNumber is required');
             return;
         }
-        
+
         const sanitized = Validator.sanitizePlateNumber(plateNumber);
-        
+
         // Validate plate number before navigation
         if (!Validator.validatePlateNumber(sanitized)) {
             console.error('Router.navigateToPlate: Invalid plate number format');
             return;
         }
-        
+
         // Check if we're already on the plate page
         const pathname = window.location.pathname;
         if (pathname.includes('plate.html')) {
@@ -480,7 +480,7 @@ const Router = {
             if (window.history && window.history.pushState) {
                 const cleanURL = `/plate.html?plate=${encodeURIComponent(sanitized)}`;
                 window.history.pushState({ plate: sanitized }, '', cleanURL);
-                
+
                 // Trigger a custom event for the app to handle the navigation
                 window.dispatchEvent(new CustomEvent('routechange', { detail: { plate: sanitized } }));
             } else {
@@ -492,7 +492,7 @@ const Router = {
             window.location.href = `/plate.html?plate=${encodeURIComponent(sanitized)}`;
         }
     },
-    
+
     /**
      * Gets the current plate number from the URL
      * @returns {string|null} - Current plate number or null
@@ -500,7 +500,7 @@ const Router = {
     getCurrentPlate() {
         return this.parsePlateFromURL();
     },
-    
+
     /**
      * Initializes the router
      * Sets up event listeners for browser navigation (back/forward buttons)
@@ -514,7 +514,7 @@ const Router = {
                 window.dispatchEvent(new CustomEvent('routechange', { detail: { plate: plate } }));
             }
         });
-        
+
         // Handle hash changes (fallback for older browsers)
         window.addEventListener('hashchange', () => {
             const plate = this.parsePlateFromURL();
@@ -522,7 +522,7 @@ const Router = {
                 window.dispatchEvent(new CustomEvent('routechange', { detail: { plate: plate } }));
             }
         });
-        
+
         // console.log('Router initialized');
     }
 };
@@ -538,15 +538,15 @@ const DailyLimitManager = {
     getKSTDate() {
         // Get current UTC time
         const now = new Date();
-        
+
         // Convert to KST (UTC+9)
         // Get UTC time in milliseconds and add 9 hours
         const utcTime = now.getTime() + (now.getTimezoneOffset() * 60000);
         const kstTime = new Date(utcTime + (9 * 60 * 60 * 1000));
-        
+
         return kstTime;
     },
-    
+
     /**
      * Formats a date to YYYYMMDD string in KST
      * @param {Date} date - Date object to format
@@ -558,7 +558,7 @@ const DailyLimitManager = {
         const day = String(date.getDate()).padStart(2, '0');
         return `${year}${month}${day}`;
     },
-    
+
     /**
      * Checks if a stored timestamp is from a previous day (based on KST)
      * @param {number} timestamp - Timestamp in milliseconds to check
@@ -568,21 +568,21 @@ const DailyLimitManager = {
         if (!timestamp || typeof timestamp !== 'number') {
             return true; // If no valid timestamp, treat as new day
         }
-        
+
         // Get current date in KST
         const currentKSTDate = this.getKSTDate();
         const currentDateString = this.formatDateKST(currentKSTDate);
-        
+
         // Convert stored timestamp to KST date
         // timestamp is already in UTC milliseconds (from Date.now())
         // We need to add 9 hours to convert to KST
         const storedKST = new Date(timestamp + (9 * 60 * 60 * 1000));
         const storedDateString = this.formatDateKST(storedKST);
-        
+
         // Compare date strings
         return currentDateString !== storedDateString;
     },
-    
+
     /**
      * Generates LocalStorage key for daily limit tracking
      * @param {string} plateNumber - Plate number
@@ -594,7 +594,7 @@ const DailyLimitManager = {
         const dateString = this.formatDateKST(kstDate);
         return `safedrive_limit_${plateNumber}_${counterKey}_${dateString}`;
     },
-    
+
     /**
      * Checks if a counter increment is allowed today
      * @param {string} plateNumber - Plate number
@@ -606,22 +606,22 @@ const DailyLimitManager = {
             console.error('DailyLimitManager.canIncrement: plateNumber and counterKey are required');
             return false;
         }
-        
+
         try {
             // Generate the key for today
             const key = this.generateKey(plateNumber, counterKey);
-            
+
             // Check if there's a record in LocalStorage
             const storedTimestamp = localStorage.getItem(key);
-            
+
             // If no record exists, increment is allowed
             if (!storedTimestamp) {
                 return true;
             }
-            
+
             // Parse the stored timestamp
             const timestamp = parseInt(storedTimestamp, 10);
-            
+
             // Check if it's a new day
             if (this.isNewDay(timestamp)) {
                 // It's a new day, so increment is allowed
@@ -629,7 +629,7 @@ const DailyLimitManager = {
                 localStorage.removeItem(key);
                 return true;
             }
-            
+
             // Same day, increment not allowed
             return false;
         } catch (error) {
@@ -638,7 +638,7 @@ const DailyLimitManager = {
             return true;
         }
     },
-    
+
     /**
      * Records an increment in LocalStorage with current timestamp
      * @param {string} plateNumber - Plate number
@@ -650,22 +650,22 @@ const DailyLimitManager = {
             console.error('DailyLimitManager.recordIncrement: plateNumber and counterKey are required');
             return false;
         }
-        
+
         try {
             // Generate the key for today
             const key = this.generateKey(plateNumber, counterKey);
-            
+
             // Store current timestamp
             const timestamp = Date.now();
             localStorage.setItem(key, timestamp.toString());
-            
+
             return true;
         } catch (error) {
             // Handle LocalStorage quota exceeded
             if (error.name === 'QuotaExceededError') {
                 console.warn('LocalStorage quota exceeded, attempting to clear old entries');
                 this.clearOldEntries();
-                
+
                 // Try again after clearing
                 try {
                     const key = this.generateKey(plateNumber, counterKey);
@@ -677,12 +677,12 @@ const DailyLimitManager = {
                     return false;
                 }
             }
-            
+
             console.error('DailyLimitManager.recordIncrement error:', error);
             return false;
         }
     },
-    
+
     /**
      * Clears LocalStorage entries older than 7 days
      * Used to prevent quota issues
@@ -691,7 +691,7 @@ const DailyLimitManager = {
         try {
             const sevenDaysAgo = Date.now() - (7 * 24 * 60 * 60 * 1000);
             const keysToRemove = [];
-            
+
             // Find all safedrive_limit_ keys
             for (let i = 0; i < localStorage.length; i++) {
                 const key = localStorage.key(i);
@@ -705,10 +705,10 @@ const DailyLimitManager = {
                     }
                 }
             }
-            
+
             // Remove old entries
             keysToRemove.forEach(key => localStorage.removeItem(key));
-            
+
             // console.log(`DailyLimitManager: Cleared ${keysToRemove.length} old entries`);
         } catch (error) {
             console.error('DailyLimitManager.clearOldEntries error:', error);
@@ -723,10 +723,10 @@ const FirebaseClient = {
     // Session cache for plate data to avoid redundant fetches
     // Format: { 'plateNumber': { data: {...}, timestamp: 123456789 } }
     plateDataCache: {},
-    
+
     // Cache TTL in milliseconds (5 minutes)
     CACHE_TTL: 5 * 60 * 1000,
-    
+
     /**
      * Gets the database reference
      * @returns {firebase.database.Reference} - Firebase database reference
@@ -734,7 +734,7 @@ const FirebaseClient = {
     getDatabase() {
         return database;
     },
-    
+
     /**
      * Checks if plate data is cached and still valid
      * @param {string} plateNumber - The plate number
@@ -745,13 +745,13 @@ const FirebaseClient = {
         if (!cached) {
             return false;
         }
-        
+
         // Check if cache is still valid (within TTL)
         const now = Date.now();
         const age = now - cached.timestamp;
         return age < this.CACHE_TTL;
     },
-    
+
     /**
      * Gets cached plate data
      * @param {string} plateNumber - The plate number
@@ -764,7 +764,7 @@ const FirebaseClient = {
         }
         return null;
     },
-    
+
     /**
      * Stores plate data in cache
      * @param {string} plateNumber - The plate number
@@ -777,7 +777,7 @@ const FirebaseClient = {
         };
         // console.log(`FirebaseClient: Cached data for ${plateNumber}`);
     },
-    
+
     /**
      * Invalidates cached plate data
      * @param {string} plateNumber - The plate number
@@ -788,7 +788,7 @@ const FirebaseClient = {
             // console.log(`FirebaseClient: Invalidated cache for ${plateNumber}`);
         }
     },
-    
+
     /**
      * Increments view counters for a plate (fire and forget)
      * @param {string} plateNumber - The plate number
@@ -799,16 +799,16 @@ const FirebaseClient = {
         viewsRef.transaction((current) => (current || 0) + 1).catch(err => {
             console.warn('Failed to increment views:', err);
         });
-        
+
         // Increment global view counter for all time
         const globalViewsRef = database.ref('global/allTime/totalViews');
         globalViewsRef.transaction((current) => (current || 0) + 1).catch(err => {
             console.warn('Failed to increment global views:', err);
         });
-        
+
         // console.log(`FirebaseClient: Incremented view counters for ${plateNumber}`);
     },
-    
+
     /**
      * Clears all cached plate data
      */
@@ -816,7 +816,7 @@ const FirebaseClient = {
         this.plateDataCache = {};
         // console.log('FirebaseClient: Cleared all plate data cache');
     },
-    
+
     /**
      * Fetches all counter data for a specific plate number
      * @param {string} plateNumber - The plate number to fetch data for
@@ -829,11 +829,11 @@ const FirebaseClient = {
             console.error('FirebaseClient.getPlateData error:', error);
             throw error;
         }
-        
+
         // Always increment view counters (even if returning cached data)
         // Fire and forget - don't wait for these
         this.incrementViewCounters(plateNumber);
-        
+
         // Check cache first (unless force refresh is requested)
         if (!forceRefresh) {
             const cachedData = this.getCachedPlateData(plateNumber);
@@ -841,11 +841,11 @@ const FirebaseClient = {
                 return cachedData;
             }
         }
-        
+
         try {
             const plateRef = database.ref(`plates/${plateNumber}`);
             const snapshot = await plateRef.once('value');
-            
+
             if (!snapshot.exists()) {
                 // Return zero-state data for new plates
                 // console.log(`FirebaseClient.getPlateData: No data found for ${plateNumber}, returning zero-state`);
@@ -855,28 +855,28 @@ const FirebaseClient = {
                     lastUpdated: null,
                     views: 0
                 };
-                
+
                 // Cache zero-state data
                 this.cachePlateData(plateNumber, zeroData);
-                
+
                 return zeroData;
             }
-            
+
             const data = snapshot.val();
-            
+
             // Ensure all counters exist (fill in missing ones with 0)
             const counters = { ...this.getZeroCounters(), ...(data.counters || {}) };
-            
+
             const plateData = {
                 plateNumber: plateNumber,
                 counters: counters,
                 lastUpdated: data.lastUpdated || null,
                 views: data.views || 0
             };
-            
+
             // Cache the fetched data
             this.cachePlateData(plateNumber, plateData);
-            
+
             return plateData;
         } catch (error) {
             console.error('FirebaseClient.getPlateData error:', {
@@ -885,7 +885,7 @@ const FirebaseClient = {
                 code: error.code,
                 stack: error.stack
             });
-            
+
             // Check for specific error types
             if (error.code === 'PERMISSION_DENIED') {
                 throw new Error('데이터베이스 접근 권한이 없습니다');
@@ -896,22 +896,22 @@ const FirebaseClient = {
             }
         }
     },
-    
+
     /**
      * Returns an object with all counter keys initialized to 0
      * @returns {object} - Object with all counter keys set to 0
      */
     getZeroCounters() {
         const zeroCounters = {};
-        
+
         // Initialize all counter keys to 0
         Object.values(COUNTER_KEYS).forEach(key => {
             zeroCounters[key] = 0;
         });
-        
+
         return zeroCounters;
     },
-    
+
     /**
      * Increments a counter for a plate using Firebase transaction (atomic)
      * @param {string} plateNumber - The plate number
@@ -924,32 +924,32 @@ const FirebaseClient = {
             console.error('FirebaseClient.incrementCounter error:', error);
             throw error;
         }
-        
+
         const counterRef = database.ref(`plates/${plateNumber}/counters/${counterKey}`);
         const lastUpdatedRef = database.ref(`plates/${plateNumber}/lastUpdated`);
-        
+
         // Get today's date in KST format (YYYYMMDD)
         const todayStr = DailyLimitManager.formatDateKST(DailyLimitManager.getKSTDate());
         const dailyRef = database.ref(`plates/${plateNumber}/daily/${todayStr}/${counterKey}`);
-        
+
         let retries = 0;
         const maxRetries = 3;
-        
+
         while (retries < maxRetries) {
             try {
                 // console.log(`FirebaseClient.incrementCounter: Attempting increment for ${plateNumber}/${counterKey} (attempt ${retries + 1}/${maxRetries})`);
-                
+
                 // Use transaction for atomic increment of main counter
                 const result = await counterRef.transaction((currentValue) => {
                     // If null or undefined, initialize to 0 then increment
                     return (currentValue || 0) + 1;
                 });
-                
+
                 if (!result.committed) {
                     // Transaction was not committed (conflict detected)
                     retries++;
                     console.warn(`FirebaseClient.incrementCounter: Transaction conflict detected (attempt ${retries}/${maxRetries})`);
-                    
+
                     if (retries >= maxRetries) {
                         const error = new Error('트랜잭션 충돌로 인해 메세지 전송에 실패했습니다. 다시 시도해 주세요');
                         console.error('FirebaseClient.incrementCounter error:', {
@@ -960,19 +960,19 @@ const FirebaseClient = {
                         });
                         throw error;
                     }
-                    
+
                     // Wait a bit before retrying (exponential backoff)
                     await new Promise(resolve => setTimeout(resolve, 100 * retries));
                     continue;
                 }
-                
+
                 // console.log(`FirebaseClient.incrementCounter: Transaction committed successfully, new value: ${result.snapshot.val()}`);
-                
+
                 // Update daily counter using transaction
                 await dailyRef.transaction((currentValue) => {
                     return (currentValue || 0) + 1;
                 });
-                
+
                 // Update monthly counter using transaction (OPTIMIZATION: pre-aggregated monthly data)
                 const kstDate = DailyLimitManager.getKSTDate();
                 const monthStr = `${kstDate.getFullYear()}${String(kstDate.getMonth() + 1).padStart(2, '0')}`;
@@ -980,24 +980,24 @@ const FirebaseClient = {
                 await monthlyRef.transaction((currentValue) => {
                     return (currentValue || 0) + 1;
                 });
-                
+
                 // Update lastUpdated timestamp
                 const timestamp = Date.now();
                 await lastUpdatedRef.set(timestamp);
-                
+
                 // Update global statistics for all time periods
                 await this.updateGlobalStats(counterKey);
-                
+
                 // Invalidate cache for this plate since data changed
                 this.invalidatePlateDataCache(plateNumber);
-                
+
                 // Trigger cleanup occasionally (1% chance = ~once per 100 increments)
                 if (Math.random() < 0.01) {
-                    this.cleanupOldData(plateNumber).catch(err => 
+                    this.cleanupOldData(plateNumber).catch(err =>
                         console.warn('Background cleanup failed:', err)
                     );
                 }
-                
+
                 return result.snapshot.val();
             } catch (error) {
                 console.error(`FirebaseClient.incrementCounter error (attempt ${retries + 1}/${maxRetries}):`, {
@@ -1007,9 +1007,9 @@ const FirebaseClient = {
                     code: error.code,
                     stack: error.stack
                 });
-                
+
                 retries++;
-                
+
                 if (retries >= maxRetries) {
                     // Check for specific error types
                     if (error.code === 'PERMISSION_DENIED') {
@@ -1023,13 +1023,13 @@ const FirebaseClient = {
                         throw new Error('메세지 전송 중 오류가 발생했습니다. 다시 시도해 주세요');
                     }
                 }
-                
+
                 // Wait before retrying (exponential backoff)
                 await new Promise(resolve => setTimeout(resolve, 100 * retries));
             }
         }
     },
-    
+
     /**
      * Fetches global statistics for a specific time period
      * @param {string} period - Time period: 'daily', 'weekly', 'monthly', 'yearly', 'allTime'
@@ -1041,10 +1041,10 @@ const FirebaseClient = {
             console.error('FirebaseClient.getGlobalStats error:', error);
             throw error;
         }
-        
+
         try {
             let path;
-            
+
             if (period === 'allTime') {
                 path = 'global/allTime';
             } else {
@@ -1052,20 +1052,20 @@ const FirebaseClient = {
                 const periodKey = this.getCurrentPeriodKey(period);
                 path = `global/${period}/${periodKey}`;
             }
-            
+
             // console.log(`FirebaseClient.getGlobalStats: Fetching stats for period ${period} at path ${path}`);
-            
+
             const statsRef = database.ref(path);
             const snapshot = await statsRef.once('value');
-            
+
             if (!snapshot.exists()) {
                 // Return zero stats if no data exists
                 // console.log(`FirebaseClient.getGlobalStats: No data found for period ${period}, returning zero stats`);
                 return this.getZeroCounters();
             }
-            
+
             const stats = snapshot.val();
-            
+
             // Ensure all counters exist
             return { ...this.getZeroCounters(), ...stats };
         } catch (error) {
@@ -1075,7 +1075,7 @@ const FirebaseClient = {
                 code: error.code,
                 stack: error.stack
             });
-            
+
             // Check for specific error types
             if (error.code === 'PERMISSION_DENIED') {
                 throw new Error('데이터베이스 접근 권한이 없습니다');
@@ -1086,7 +1086,7 @@ const FirebaseClient = {
             }
         }
     },
-    
+
     /**
      * Updates global statistics by incrementing counters for all time periods
      * @param {string} counterKey - The counter key to increment
@@ -1098,25 +1098,25 @@ const FirebaseClient = {
             console.error('FirebaseClient.updateGlobalStats error:', error);
             throw error;
         }
-        
+
         try {
             // console.log(`FirebaseClient.updateGlobalStats: Updating global stats for ${counterKey}`);
-            
+
             const periods = ['daily', 'weekly', 'monthly', 'yearly', 'allTime'];
             const updatePromises = [];
-            
+
             for (const period of periods) {
                 let path;
-                
+
                 if (period === 'allTime') {
                     path = `global/allTime/${counterKey}`;
                 } else {
                     const periodKey = this.getCurrentPeriodKey(period);
                     path = `global/${period}/${periodKey}/${counterKey}`;
                 }
-                
+
                 const counterRef = database.ref(path);
-                
+
                 // Use transaction for atomic increment
                 const promise = counterRef.transaction((currentValue) => {
                     return (currentValue || 0) + 1;
@@ -1125,10 +1125,10 @@ const FirebaseClient = {
                     // Don't throw, just log - we want to continue with other periods
                     return null;
                 });
-                
+
                 updatePromises.push(promise);
             }
-            
+
             // Wait for all updates to complete
             await Promise.all(updatePromises);
             // console.log(`FirebaseClient.updateGlobalStats: Successfully updated global stats for ${counterKey}`);
@@ -1143,7 +1143,7 @@ const FirebaseClient = {
             console.warn('Global stats update failed, but counter increment succeeded');
         }
     },
-    
+
     /**
      * Fetches real-time active users from Firebase (updated by Cloud Function from GA4)
      * @returns {Promise<object>} - Promise resolving to { activeUsers: number, lastUpdated: timestamp }
@@ -1151,17 +1151,17 @@ const FirebaseClient = {
     async getActiveUsers() {
         try {
             // console.log('FirebaseClient.getActiveUsers: Fetching active users from Firebase');
-            
+
             const snapshot = await database.ref('analytics/realtime').once('value');
-            
+
             if (!snapshot.exists()) {
                 // console.log('FirebaseClient.getActiveUsers: No data found, returning default');
                 return { activeUsers: 0, lastUpdated: null };
             }
-            
+
             const data = snapshot.val();
             // console.log('FirebaseClient.getActiveUsers: Got data', data);
-            
+
             return {
                 activeUsers: data.activeUsers || 0,
                 lastUpdated: data.lastUpdated || null
@@ -1171,12 +1171,12 @@ const FirebaseClient = {
                 error: error.message,
                 code: error.code
             });
-            
+
             // Return default value on error
             return { activeUsers: 0, lastUpdated: null };
         }
     },
-    
+
     /**
      * Sets up a real-time listener for active users
      * @param {function} callback - Callback function to receive updates
@@ -1185,11 +1185,11 @@ const FirebaseClient = {
     subscribeToActiveUsers(callback) {
         if (typeof callback !== 'function') {
             console.error('FirebaseClient.subscribeToActiveUsers: callback must be a function');
-            return () => {};
+            return () => { };
         }
-        
+
         const ref = database.ref('analytics/realtime');
-        
+
         const listener = ref.on('value', (snapshot) => {
             if (snapshot.exists()) {
                 const data = snapshot.val();
@@ -1204,11 +1204,11 @@ const FirebaseClient = {
             console.error('FirebaseClient.subscribeToActiveUsers error:', error);
             callback({ activeUsers: 0, lastUpdated: null, error: error.message });
         });
-        
+
         // Return unsubscribe function
         return () => ref.off('value', listener);
     },
-    
+
     /**
      * Gets the current period key for a given period type (in KST)
      * @param {string} period - Period type: 'daily', 'weekly', 'monthly', 'yearly'
@@ -1219,27 +1219,27 @@ const FirebaseClient = {
         const year = kstDate.getFullYear();
         const month = String(kstDate.getMonth() + 1).padStart(2, '0');
         const day = String(kstDate.getDate()).padStart(2, '0');
-        
+
         switch (period) {
             case 'daily':
                 return `${year}${month}${day}`;
-            
+
             case 'weekly':
                 // Calculate week number (ISO week)
                 const weekNumber = this.getISOWeekNumber(kstDate);
                 return `${year}-${String(weekNumber).padStart(2, '0')}`;
-            
+
             case 'monthly':
                 return `${year}-${month}`;
-            
+
             case 'yearly':
                 return `${year}`;
-            
+
             default:
                 throw new Error(`Invalid period: ${period}`);
         }
     },
-    
+
     /**
      * Calculates ISO week number for a date
      * @param {Date} date - Date object
@@ -1256,7 +1256,7 @@ const FirebaseClient = {
         }
         return 1 + Math.ceil((firstThursday - target) / 604800000);
     },
-    
+
     /**
      * Fetches leaderboard data with period filtering
      * Delegates to LeaderboardDataManager for computation and caching
@@ -1271,10 +1271,10 @@ const FirebaseClient = {
             console.error('FirebaseClient.getLeaderboard error:', error);
             throw error;
         }
-        
+
         try {
             // console.log(`FirebaseClient.getLeaderboard: Delegating to LeaderboardDataManager for ${type}/${period}`);
-            
+
             // Delegate to LeaderboardDataManager which handles computation and caching
             return await LeaderboardDataManager.getLeaderboard(type, period, limit);
         } catch (error) {
@@ -1286,12 +1286,12 @@ const FirebaseClient = {
                 code: error.code,
                 stack: error.stack
             });
-            
+
             // Re-throw the error (LeaderboardDataManager already formats it)
             throw error;
         }
     },
-    
+
     /**
      * Gets the time bounds for a period (in KST)
      * @param {string} period - Period: 'today', 'thisWeek', 'thisMonth', 'thisYear', 'allTime'
@@ -1299,7 +1299,7 @@ const FirebaseClient = {
      */
     getPeriodBounds(period) {
         const kstDate = DailyLimitManager.getKSTDate();
-        
+
         switch (period) {
             case 'today': {
                 const startOfDay = new Date(kstDate);
@@ -1308,39 +1308,39 @@ const FirebaseClient = {
                 endOfDay.setHours(23, 59, 59, 999);
                 return { start: startOfDay.getTime(), end: endOfDay.getTime() };
             }
-            
+
             case 'thisWeek': {
                 const startOfWeek = new Date(kstDate);
                 const dayOfWeek = startOfWeek.getDay();
                 const diff = dayOfWeek === 0 ? -6 : 1 - dayOfWeek; // Monday as start of week
                 startOfWeek.setDate(startOfWeek.getDate() + diff);
                 startOfWeek.setHours(0, 0, 0, 0);
-                
+
                 const endOfWeek = new Date(startOfWeek);
                 endOfWeek.setDate(endOfWeek.getDate() + 6);
                 endOfWeek.setHours(23, 59, 59, 999);
-                
+
                 return { start: startOfWeek.getTime(), end: endOfWeek.getTime() };
             }
-            
+
             case 'thisMonth': {
                 const startOfMonth = new Date(kstDate.getFullYear(), kstDate.getMonth(), 1, 0, 0, 0, 0);
                 const endOfMonth = new Date(kstDate.getFullYear(), kstDate.getMonth() + 1, 0, 23, 59, 59, 999);
                 return { start: startOfMonth.getTime(), end: endOfMonth.getTime() };
             }
-            
+
             case 'thisYear': {
                 const startOfYear = new Date(kstDate.getFullYear(), 0, 1, 0, 0, 0, 0);
                 const endOfYear = new Date(kstDate.getFullYear(), 11, 31, 23, 59, 59, 999);
                 return { start: startOfYear.getTime(), end: endOfYear.getTime() };
             }
-            
+
             case 'allTime':
             default:
                 return { start: 0, end: Date.now() };
         }
     },
-    
+
     /**
      * Cleans up old data to prevent accumulation
      * Removes daily data older than 7 days and monthly data older than 12 months
@@ -1352,20 +1352,20 @@ const FirebaseClient = {
             console.warn('FirebaseClient.cleanupOldData: plateNumber is required');
             return;
         }
-        
+
         try {
             // console.log(`FirebaseClient.cleanupOldData: Starting cleanup for ${plateNumber}`);
             const kstDate = DailyLimitManager.getKSTDate();
-            
+
             // Clean daily data older than 7 days
             const sevenDaysAgo = new Date(kstDate);
             sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
             const cutoffDaily = DailyLimitManager.formatDateKST(sevenDaysAgo);
-            
+
             const dailyRef = database.ref(`plates/${plateNumber}/daily`);
             const dailySnapshot = await dailyRef.once('value');
             const dailyData = dailySnapshot.val() || {};
-            
+
             let dailyDeleted = 0;
             for (const dateStr of Object.keys(dailyData)) {
                 if (dateStr < cutoffDaily) {
@@ -1374,16 +1374,16 @@ const FirebaseClient = {
                     // console.log(`FirebaseClient.cleanupOldData: Removed daily data for ${dateStr}`);
                 }
             }
-            
+
             // Clean monthly data older than 12 months
             const twelveMonthsAgo = new Date(kstDate);
             twelveMonthsAgo.setMonth(twelveMonthsAgo.getMonth() - 12);
             const cutoffMonthly = `${twelveMonthsAgo.getFullYear()}${String(twelveMonthsAgo.getMonth() + 1).padStart(2, '0')}`;
-            
+
             const monthlyRef = database.ref(`plates/${plateNumber}/monthly`);
             const monthlySnapshot = await monthlyRef.once('value');
             const monthlyData = monthlySnapshot.val() || {};
-            
+
             let monthlyDeleted = 0;
             for (const monthStr of Object.keys(monthlyData)) {
                 if (monthStr < cutoffMonthly) {
@@ -1392,7 +1392,7 @@ const FirebaseClient = {
                     // console.log(`FirebaseClient.cleanupOldData: Removed monthly data for ${monthStr}`);
                 }
             }
-            
+
             // console.log(`FirebaseClient.cleanupOldData: Cleanup completed for ${plateNumber} - removed ${dailyDeleted} daily entries and ${monthlyDeleted} monthly entries`);
         } catch (error) {
             console.error('FirebaseClient.cleanupOldData error:', {
@@ -1419,23 +1419,23 @@ const LeaderboardCalculator = {
         if (!plateData || !plateData.counters) {
             return 0;
         }
-        
+
         const counters = plateData.counters;
-        
+
         // Sum all thanks category counters
         const thanksCount = CATEGORIES.thanks.reduce((sum, key) => {
             return sum + (counters[key] || 0);
         }, 0);
-        
+
         // Sum all safety category counters
         const safetyCount = CATEGORIES.safety.reduce((sum, key) => {
             return sum + (counters[key] || 0);
         }, 0);
-        
+
         // Best driver score = thanks - safety
         return thanksCount - safetyCount;
     },
-    
+
     /**
      * Calculates the most liked score for a plate (likes count)
      * @param {object} plateData - Plate data object with counters
@@ -1445,10 +1445,10 @@ const LeaderboardCalculator = {
         if (!plateData || !plateData.counters) {
             return 0;
         }
-        
+
         return plateData.counters.likes || 0;
     },
-    
+
     /**
      * Ranks plates by applying a score function and sorting
      * @param {array} plates - Array of plate data objects
@@ -1459,29 +1459,29 @@ const LeaderboardCalculator = {
         if (!plates || !Array.isArray(plates)) {
             return [];
         }
-        
+
         if (!scoreFunction || typeof scoreFunction !== 'function') {
             throw new Error('LeaderboardCalculator.rankPlates: scoreFunction must be a function');
         }
-        
+
         // Calculate scores for all plates
         const platesWithScores = plates.map(plate => ({
             ...plate,
             score: scoreFunction(plate)
         }));
-        
+
         // Sort by score in descending order
         platesWithScores.sort((a, b) => b.score - a.score);
-        
+
         // Assign rank numbers
         const rankedPlates = platesWithScores.map((plate, index) => ({
             ...plate,
             rank: index + 1
         }));
-        
+
         return rankedPlates;
     },
-    
+
     /**
      * Filters plates by time period using KST timezone boundaries
      * @param {array} plates - Array of plate data objects
@@ -1492,25 +1492,25 @@ const LeaderboardCalculator = {
         if (!plates || !Array.isArray(plates)) {
             return [];
         }
-        
+
         if (!period) {
             throw new Error('LeaderboardCalculator.filterByPeriod: period is required');
         }
-        
+
         // Get period boundaries
         const bounds = this.getPeriodBounds(period);
-        
+
         // Filter plates by lastUpdated timestamp
         return plates.filter(plate => {
             if (!plate.lastUpdated) {
                 // If no lastUpdated, exclude from time-based periods
                 return period === 'allTime';
             }
-            
+
             return plate.lastUpdated >= bounds.start && plate.lastUpdated <= bounds.end;
         });
     },
-    
+
     /**
      * Gets the time bounds for a period in KST timezone
      * @param {string} period - Period: 'today', 'thisWeek', 'thisMonth', 'thisYear', 'allTime'
@@ -1518,26 +1518,26 @@ const LeaderboardCalculator = {
      */
     getPeriodBounds(period) {
         const kstDate = DailyLimitManager.getKSTDate();
-        
+
         switch (period) {
             case 'today':
                 return this.getTodayBounds(kstDate);
-            
+
             case 'thisWeek':
                 return this.getThisWeekBounds(kstDate);
-            
+
             case 'thisMonth':
                 return this.getThisMonthBounds(kstDate);
-            
+
             case 'thisYear':
                 return this.getThisYearBounds(kstDate);
-            
+
             case 'allTime':
             default:
                 return { start: 0, end: Date.now() };
         }
     },
-    
+
     /**
      * Gets today's bounds (start and end of day in KST)
      * @param {Date} kstDate - Current date in KST
@@ -1546,16 +1546,16 @@ const LeaderboardCalculator = {
     getTodayBounds(kstDate) {
         const startOfDay = new Date(kstDate);
         startOfDay.setHours(0, 0, 0, 0);
-        
+
         const endOfDay = new Date(kstDate);
         endOfDay.setHours(23, 59, 59, 999);
-        
+
         return {
             start: startOfDay.getTime(),
             end: endOfDay.getTime()
         };
     },
-    
+
     /**
      * Gets this week's bounds (Monday to Sunday in KST)
      * @param {Date} kstDate - Current date in KST
@@ -1564,23 +1564,23 @@ const LeaderboardCalculator = {
     getThisWeekBounds(kstDate) {
         const startOfWeek = new Date(kstDate);
         const dayOfWeek = startOfWeek.getDay();
-        
+
         // Calculate days to subtract to get to Monday (day 1)
         // If Sunday (0), go back 6 days; otherwise go back (dayOfWeek - 1) days
         const daysToMonday = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
         startOfWeek.setDate(startOfWeek.getDate() - daysToMonday);
         startOfWeek.setHours(0, 0, 0, 0);
-        
+
         const endOfWeek = new Date(startOfWeek);
         endOfWeek.setDate(endOfWeek.getDate() + 6); // Add 6 days to get to Sunday
         endOfWeek.setHours(23, 59, 59, 999);
-        
+
         return {
             start: startOfWeek.getTime(),
             end: endOfWeek.getTime()
         };
     },
-    
+
     /**
      * Gets this month's bounds (first to last day in KST)
      * @param {Date} kstDate - Current date in KST
@@ -1589,13 +1589,13 @@ const LeaderboardCalculator = {
     getThisMonthBounds(kstDate) {
         const startOfMonth = new Date(kstDate.getFullYear(), kstDate.getMonth(), 1, 0, 0, 0, 0);
         const endOfMonth = new Date(kstDate.getFullYear(), kstDate.getMonth() + 1, 0, 23, 59, 59, 999);
-        
+
         return {
             start: startOfMonth.getTime(),
             end: endOfMonth.getTime()
         };
     },
-    
+
     /**
      * Gets this year's bounds (Jan 1 to Dec 31 in KST)
      * @param {Date} kstDate - Current date in KST
@@ -1604,7 +1604,7 @@ const LeaderboardCalculator = {
     getThisYearBounds(kstDate) {
         const startOfYear = new Date(kstDate.getFullYear(), 0, 1, 0, 0, 0, 0);
         const endOfYear = new Date(kstDate.getFullYear(), 11, 31, 23, 59, 59, 999);
-        
+
         return {
             start: startOfYear.getTime(),
             end: endOfYear.getTime()
@@ -1628,7 +1628,7 @@ const LeaderboardDataManager = {
     // Session cache for leaderboard data
     // Format: { 'bestDrivers-allTime': [...], 'mostLiked-today': [...], ... }
     cache: {},
-    
+
     /**
      * Generates cache key for a leaderboard
      * @param {string} type - Leaderboard type: 'bestDrivers' or 'mostLiked'
@@ -1638,7 +1638,7 @@ const LeaderboardDataManager = {
     getCacheKey(type, period) {
         return `${type}-${period}`;
     },
-    
+
     /**
      * Checks if leaderboard data is cached
      * @param {string} type - Leaderboard type
@@ -1649,7 +1649,7 @@ const LeaderboardDataManager = {
         const key = this.getCacheKey(type, period);
         return this.cache.hasOwnProperty(key);
     },
-    
+
     /**
      * Gets cached leaderboard data
      * @param {string} type - Leaderboard type
@@ -1660,7 +1660,7 @@ const LeaderboardDataManager = {
         const key = this.getCacheKey(type, period);
         return this.cache[key] || null;
     },
-    
+
     /**
      * Stores leaderboard data in cache
      * @param {string} type - Leaderboard type
@@ -1672,7 +1672,7 @@ const LeaderboardDataManager = {
         this.cache[key] = data;
         // console.log(`LeaderboardDataManager: Cached ${data.length} entries for ${key}`);
     },
-    
+
     /**
      * Clears all cached leaderboard data
      */
@@ -1680,7 +1680,7 @@ const LeaderboardDataManager = {
         this.cache = {};
         // console.log('LeaderboardDataManager: Cache cleared');
     },
-    
+
     /**
      * Fetches all plates data from Firebase
      * @returns {Promise<array>} - Promise resolving to array of plate objects
@@ -1688,18 +1688,18 @@ const LeaderboardDataManager = {
     async fetchAllPlates() {
         try {
             // console.log('LeaderboardDataManager: Fetching all plates data');
-            
+
             const platesRef = database.ref('plates');
             const snapshot = await platesRef.once('value');
-            
+
             if (!snapshot.exists()) {
                 // console.log('LeaderboardDataManager: No plates data found');
                 return [];
             }
-            
+
             const allPlatesData = snapshot.val();
             const plates = [];
-            
+
             // Convert object to array of plate objects
             for (const [plateNumber, plateData] of Object.entries(allPlatesData)) {
                 plates.push({
@@ -1708,7 +1708,7 @@ const LeaderboardDataManager = {
                     lastUpdated: plateData.lastUpdated || null
                 });
             }
-            
+
             // console.log(`LeaderboardDataManager: Fetched ${plates.length} plates`);
             return plates;
         } catch (error) {
@@ -1720,7 +1720,7 @@ const LeaderboardDataManager = {
             throw error;
         }
     },
-    
+
     /**
      * Computes best drivers leaderboard from all plates
      * Best driver score = sum of thanks category - sum of safety category
@@ -1733,30 +1733,30 @@ const LeaderboardDataManager = {
         if (!plates || !Array.isArray(plates)) {
             return [];
         }
-        
+
         // console.log(`LeaderboardDataManager: Computing best drivers leaderboard for period ${period}`);
-        
+
         // Filter plates by time period
         const filteredPlates = LeaderboardCalculator.filterByPeriod(plates, period);
         // console.log(`LeaderboardDataManager: Filtered to ${filteredPlates.length} plates for period ${period}`);
-        
+
         // Calculate scores for each plate
         const platesWithScores = filteredPlates.map(plate => {
             const counters = plate.counters || {};
-            
+
             // Sum thanks category counters
             const thanksCount = CATEGORIES.thanks.reduce((sum, key) => {
                 return sum + (counters[key] || 0);
             }, 0);
-            
+
             // Sum safety category counters
             const safetyCount = CATEGORIES.safety.reduce((sum, key) => {
                 return sum + (counters[key] || 0);
             }, 0);
-            
+
             // Calculate best driver score
             const score = thanksCount - safetyCount;
-            
+
             return {
                 plateNumber: plate.plateNumber,
                 score: score,
@@ -1765,20 +1765,20 @@ const LeaderboardDataManager = {
                 lastUpdated: plate.lastUpdated
             };
         });
-        
+
         // Sort by score in descending order
         platesWithScores.sort((a, b) => b.score - a.score);
-        
+
         // Limit results and assign ranks
         const rankedEntries = platesWithScores.slice(0, limit).map((entry, index) => ({
             rank: index + 1,
             ...entry
         }));
-        
+
         // console.log(`LeaderboardDataManager: Computed ${rankedEntries.length} best driver entries`);
         return rankedEntries;
     },
-    
+
     /**
      * Computes most liked leaderboard from all plates
      * Most liked score = likes count
@@ -1791,38 +1791,38 @@ const LeaderboardDataManager = {
         if (!plates || !Array.isArray(plates)) {
             return [];
         }
-        
+
         // console.log(`LeaderboardDataManager: Computing most liked leaderboard for period ${period}`);
-        
+
         // Filter plates by time period
         const filteredPlates = LeaderboardCalculator.filterByPeriod(plates, period);
         // console.log(`LeaderboardDataManager: Filtered to ${filteredPlates.length} plates for period ${period}`);
-        
+
         // Calculate likes count for each plate
         const platesWithLikes = filteredPlates.map(plate => {
             const counters = plate.counters || {};
             const likesCount = counters.likes || 0;
-            
+
             return {
                 plateNumber: plate.plateNumber,
                 likesCount: likesCount,
                 lastUpdated: plate.lastUpdated
             };
         });
-        
+
         // Sort by likes count in descending order
         platesWithLikes.sort((a, b) => b.likesCount - a.likesCount);
-        
+
         // Limit results and assign ranks
         const rankedEntries = platesWithLikes.slice(0, limit).map((entry, index) => ({
             rank: index + 1,
             ...entry
         }));
-        
+
         // console.log(`LeaderboardDataManager: Computed ${rankedEntries.length} most liked entries`);
         return rankedEntries;
     },
-    
+
     /**
      * Gets leaderboard data with caching and throttling
      * OPTIMIZED: Added throttling to prevent excessive fetches
@@ -1836,16 +1836,16 @@ const LeaderboardDataManager = {
         if (!type || !period) {
             throw new Error('LeaderboardDataManager.getLeaderboard: type and period are required');
         }
-        
+
         // console.log(`LeaderboardDataManager: Getting leaderboard for ${type}/${period}`);
-        
+
         // Check cache first
         if (this.isCached(type, period)) {
             // console.log(`LeaderboardDataManager: Returning cached data for ${type}/${period}`);
             const cached = this.getCached(type, period);
             return cached.slice(0, limit); // Return limited results
         }
-        
+
         // Check if we should throttle this fetch
         if (PerformanceOptimizer.shouldThrottleFetch()) {
             // Return empty array or cached data if available
@@ -1855,24 +1855,24 @@ const LeaderboardDataManager = {
             }
             return [];
         }
-        
+
         try {
             // Use Cloud Function to fetch leaderboard (secure - no direct /plates access)
             // console.log('LeaderboardDataManager: Calling Cloud Function getLeaderboardHttp');
-            
+
             const functionUrl = 'https://us-central1-safedrive-fa567.cloudfunctions.net/getLeaderboardHttp';
             const response = await fetch(`${functionUrl}?type=${type}&limit=${limit}`);
-            
+
             if (!response.ok) {
                 throw new Error(`HTTP error: ${response.status}`);
             }
-            
+
             const result = await response.json();
-            
+
             if (!result.success) {
                 throw new Error(result.error || 'Failed to fetch leaderboard');
             }
-            
+
             // Transform to expected format
             const leaderboardData = result.leaderboard.map(entry => ({
                 plateNumber: entry.plateNumber,
@@ -1880,10 +1880,10 @@ const LeaderboardDataManager = {
                 likes: entry.likes,
                 rank: entry.rank
             }));
-            
+
             // Store in cache
             this.setCached(type, period, leaderboardData);
-            
+
             // console.log(`LeaderboardDataManager: Received ${leaderboardData.length} entries from Cloud Function`);
             return leaderboardData;
         } catch (error) {
@@ -1895,7 +1895,7 @@ const LeaderboardDataManager = {
                 code: error.code,
                 stack: error.stack
             });
-            
+
             // Check for specific error types
             if (error.code === 'PERMISSION_DENIED') {
                 throw new Error('데이터베이스 접근 권한이 없습니다');
@@ -1919,7 +1919,7 @@ const PerformanceOptimizer = {
     lastUpdate: Date.now(),
     isVisible: true,
     globalRef: null,
-    
+
     /**
      * Throttles function calls to prevent excessive operations
      * @param {Function} func - Function to throttle
@@ -1928,7 +1928,7 @@ const PerformanceOptimizer = {
      */
     throttle(func, delay) {
         let lastCall = 0;
-        return function(...args) {
+        return function (...args) {
             const now = Date.now();
             if (now - lastCall >= delay) {
                 lastCall = now;
@@ -1936,7 +1936,7 @@ const PerformanceOptimizer = {
             }
         };
     },
-    
+
     /**
      * Debounces function calls
      * @param {Function} func - Function to debounce
@@ -1945,12 +1945,12 @@ const PerformanceOptimizer = {
      */
     debounce(func, delay) {
         let timeout;
-        return function(...args) {
+        return function (...args) {
             clearTimeout(timeout);
             timeout = setTimeout(() => func.apply(this, args), delay);
         };
     },
-    
+
     /**
      * Checks if leaderboard fetch should be throttled
      * @returns {boolean} - True if should throttle, false if allowed
@@ -1964,14 +1964,14 @@ const PerformanceOptimizer = {
         this.lastFetchTime = now;
         return false;
     },
-    
+
     /**
      * Initializes visibility change handler for performance optimization
      */
     initVisibilityHandler() {
         document.addEventListener('visibilitychange', () => {
             this.isVisible = !document.hidden;
-            
+
             if (this.isVisible) {
                 // Resume: Fetch fresh data if stale (30s threshold)
                 if (Date.now() - this.lastUpdate > 30000) {
@@ -1990,7 +1990,7 @@ const PerformanceOptimizer = {
                 }
             }
         });
-        
+
         // console.log('✅ Performance optimizer initialized');
     }
 };
@@ -2010,7 +2010,7 @@ const MonthlyTrendTracker = {
         const day = String(kstDate.getDate()).padStart(2, '0');
         return `${year}-${month}-${day}`;
     },
-    
+
     /**
      * Records a monthly increment by storing the date in Firebase
      * Stores date in YYYY-MM-DD format (no time data)
@@ -2024,19 +2024,19 @@ const MonthlyTrendTracker = {
             console.error('MonthlyTrendTracker.recordMonthlyIncrement error:', error);
             throw error;
         }
-        
+
         try {
             // Get current date in KST as YYYY-MM-DD
             const dateString = this.getKSTDateString();
-            
+
             // console.log(`MonthlyTrendTracker.recordMonthlyIncrement: Recording increment for ${plateNumber}/${counterKey} on ${dateString}`);
-            
+
             // Store date in Firebase under /plates/{plateNumber}/monthlyIncrements/{counterKey}/{YYYY-MM-DD}
             const incrementRef = database.ref(`plates/${plateNumber}/monthlyIncrements/${counterKey}/${dateString}`);
-            
+
             // Set to true (we just need to know the date exists)
             await incrementRef.set(true);
-            
+
             // console.log(`MonthlyTrendTracker.recordMonthlyIncrement: Successfully recorded increment`);
         } catch (error) {
             console.error('MonthlyTrendTracker.recordMonthlyIncrement error:', {
@@ -2046,12 +2046,12 @@ const MonthlyTrendTracker = {
                 code: error.code,
                 stack: error.stack
             });
-            
+
             // Don't throw - monthly tracking failure shouldn't block the main increment
             console.warn('Monthly increment tracking failed, but counter increment succeeded');
         }
     },
-    
+
     /**
      * Fetches all increment dates for a plate
      * @param {string} plateNumber - The plate number
@@ -2063,26 +2063,26 @@ const MonthlyTrendTracker = {
             console.error('MonthlyTrendTracker.getMonthlyTrends error:', error);
             throw error;
         }
-        
+
         try {
             // console.log(`MonthlyTrendTracker.getMonthlyTrends: Fetching monthly trends for ${plateNumber}`);
-            
+
             const incrementsRef = database.ref(`plates/${plateNumber}/monthlyIncrements`);
             const snapshot = await incrementsRef.once('value');
-            
+
             if (!snapshot.exists()) {
                 // console.log(`MonthlyTrendTracker.getMonthlyTrends: No monthly increment data found for ${plateNumber}`);
                 return {};
             }
-            
+
             const incrementsData = snapshot.val();
             const trends = {};
-            
+
             // Convert Firebase data structure to array of dates per counter
             for (const [counterKey, dates] of Object.entries(incrementsData)) {
                 trends[counterKey] = Object.keys(dates); // Get all date keys
             }
-            
+
             // console.log(`MonthlyTrendTracker.getMonthlyTrends: Fetched trends for ${Object.keys(trends).length} counters`);
             return trends;
         } catch (error) {
@@ -2092,7 +2092,7 @@ const MonthlyTrendTracker = {
                 code: error.code,
                 stack: error.stack
             });
-            
+
             // Check for specific error types
             if (error.code === 'PERMISSION_DENIED') {
                 throw new Error('데이터베이스 접근 권한이 없습니다');
@@ -2103,7 +2103,7 @@ const MonthlyTrendTracker = {
             }
         }
     },
-    
+
     /**
      * Aggregates increment dates by month and counts occurrences
      * @param {array} incrementDates - Array of date strings in YYYY-MM-DD format
@@ -2113,28 +2113,28 @@ const MonthlyTrendTracker = {
         if (!incrementDates || !Array.isArray(incrementDates)) {
             return {};
         }
-        
+
         const monthCounts = {};
-        
+
         // Group dates by YYYY-MM format
         for (const dateString of incrementDates) {
             if (!dateString || typeof dateString !== 'string') {
                 continue;
             }
-            
+
             // Extract YYYY-MM from YYYY-MM-DD
             const monthKey = dateString.substring(0, 7); // Get first 7 characters (YYYY-MM)
-            
+
             if (monthCounts[monthKey]) {
                 monthCounts[monthKey]++;
             } else {
                 monthCounts[monthKey] = 1;
             }
         }
-        
+
         return monthCounts;
     },
-    
+
     /**
      * Generates an array of the last 12 month labels in KST
      * Returns months in YYYY-MM format, from 11 months ago to current month
@@ -2143,22 +2143,22 @@ const MonthlyTrendTracker = {
     getLast12Months() {
         const months = [];
         const kstDate = DailyLimitManager.getKSTDate();
-        
+
         // Start from 11 months ago and go to current month (total 12 months)
         for (let i = 11; i >= 0; i--) {
             const date = new Date(kstDate);
             date.setMonth(date.getMonth() - i);
-            
+
             const year = date.getFullYear();
             const month = String(date.getMonth() + 1).padStart(2, '0');
             const monthKey = `${year}-${month}`;
-            
+
             months.push(monthKey);
         }
-        
+
         return months;
     },
-    
+
     /**
      * Gets aggregated monthly trend data for a plate
      * Returns counts for the last 12 months
@@ -2171,31 +2171,31 @@ const MonthlyTrendTracker = {
             console.error('MonthlyTrendTracker.getAggregatedMonthlyTrends error:', error);
             throw error;
         }
-        
+
         try {
             // console.log(`MonthlyTrendTracker.getAggregatedMonthlyTrends: Getting aggregated trends for ${plateNumber}`);
-            
+
             // Get all increment dates for this plate
             const trends = await this.getMonthlyTrends(plateNumber);
-            
+
             // Combine all dates from all counters
             const allDates = [];
             for (const dates of Object.values(trends)) {
                 allDates.push(...dates);
             }
-            
+
             // Aggregate by month
             const monthCounts = this.aggregateByMonth(allDates);
-            
+
             // Get last 12 months
             const last12Months = this.getLast12Months();
-            
+
             // Create result with zero values for months without data
             const result = {
                 months: last12Months,
                 counts: last12Months.map(month => monthCounts[month] || 0)
             };
-            
+
             // console.log(`MonthlyTrendTracker.getAggregatedMonthlyTrends: Aggregated data for ${last12Months.length} months`);
             return result;
         } catch (error) {
@@ -2205,16 +2205,16 @@ const MonthlyTrendTracker = {
                 code: error.code,
                 stack: error.stack
             });
-            
+
             // Re-throw if it's already a formatted error
             if (error.message && error.message.includes('데이터베이스')) {
                 throw error;
             }
-            
+
             throw new Error('월별 추세 데이터를 불러오는 중 오류가 발생했습니다');
         }
     },
-    
+
     /**
      * Gets aggregated monthly trend data for specific counter keys (category)
      * Returns counts for the last 12 months for only the specified counter keys
@@ -2228,28 +2228,28 @@ const MonthlyTrendTracker = {
             console.error('MonthlyTrendTracker.getAggregatedCategoryTrends error:', error);
             throw error;
         }
-        
+
         if (!counterKeys || !Array.isArray(counterKeys) || counterKeys.length === 0) {
             const error = new Error('MonthlyTrendTracker.getAggregatedCategoryTrends: counterKeys array is required');
             console.error('MonthlyTrendTracker.getAggregatedCategoryTrends error:', error);
             throw error;
         }
-        
+
         try {
             // console.log(`MonthlyTrendTracker.getAggregatedCategoryTrends: Getting category trends for ${plateNumber} with ${counterKeys.length} keys (OPTIMIZED)`);
-            
+
             // OPTIMIZATION: Read directly from pre-aggregated monthly data
             // Get last 12 months in YYYYMM format
             const last12Months = this.getLast12MonthsYYYYMM();
             const counts = [];
-            
+
             // Fetch monthly data for each month
             for (const monthStr of last12Months) {
                 try {
                     const monthRef = database.ref(`plates/${plateNumber}/monthly/${monthStr}`);
                     const snapshot = await monthRef.once('value');
                     const monthData = snapshot.val() || {};
-                    
+
                     // Sum only the counters for this category
                     let monthTotal = 0;
                     counterKeys.forEach(key => {
@@ -2261,15 +2261,15 @@ const MonthlyTrendTracker = {
                     counts.push(0);
                 }
             }
-            
+
             // Convert YYYYMM to YYYY-MM for display
-            const displayMonths = last12Months.map(m => `${m.slice(0,4)}-${m.slice(4)}`);
-            
+            const displayMonths = last12Months.map(m => `${m.slice(0, 4)}-${m.slice(4)}`);
+
             const result = {
                 months: displayMonths,
                 counts: counts
             };
-            
+
             // console.log(`MonthlyTrendTracker.getAggregatedCategoryTrends: Aggregated data for ${last12Months.length} months (${counts.reduce((a,b) => a+b, 0)} total)`);
             return result;
         } catch (error) {
@@ -2280,16 +2280,16 @@ const MonthlyTrendTracker = {
                 code: error.code,
                 stack: error.stack
             });
-            
+
             // Re-throw if it's already a formatted error
             if (error.message && error.message.includes('데이터베이스')) {
                 throw error;
             }
-            
+
             throw new Error('카테고리 월별 추세 데이터를 불러오는 중 오류가 발생했습니다');
         }
     },
-    
+
     /**
      * Gets last 12 months in YYYYMM format (for optimized monthly data structure)
      * @returns {array} - Array of month strings in YYYYMM format
@@ -2297,14 +2297,14 @@ const MonthlyTrendTracker = {
     getLast12MonthsYYYYMM() {
         const months = [];
         const kstDate = DailyLimitManager.getKSTDate();
-        
+
         for (let i = 11; i >= 0; i--) {
             const date = new Date(kstDate);
             date.setMonth(date.getMonth() - i);
             const monthStr = `${date.getFullYear()}${String(date.getMonth() + 1).padStart(2, '0')}`;
             months.push(monthStr);
         }
-        
+
         return months;
     }
 };
@@ -2322,14 +2322,14 @@ const ChartManager = {
         thanks: 'rgba(76, 175, 80, 0.8)',    // Green for thanks
         likes: 'rgba(33, 150, 243, 0.8)'     // Blue for likes
     },
-    
+
     CATEGORY_LABELS: {
         repair: '고장수리',
         safety: '안전운전',
         thanks: '감사',
         likes: '좋아요'
     },
-    
+
     /**
      * Transforms counter data into Chart.js dataset format
      * Groups counters by categories and creates datasets
@@ -2340,7 +2340,7 @@ const ChartManager = {
         if (!counters || typeof counters !== 'object') {
             counters = {};
         }
-        
+
         // Prepare data grouped by categories
         const categoryData = {
             repair: [],
@@ -2348,14 +2348,14 @@ const ChartManager = {
             thanks: [],
             likes: []
         };
-        
+
         const categoryLabels = {
             repair: [],
             safety: [],
             thanks: [],
             likes: []
         };
-        
+
         // Group counters by category
         // Map categoryC to 'repair', categoryA+B to 'safety', categoryD to 'thanks', likes to 'likes'
         const categoryMapping = {
@@ -2364,32 +2364,32 @@ const ChartManager = {
             thanks: CATEGORIES.thanks,
             likes: CATEGORIES.likes.keys
         };
-        
+
         for (const [category, keys] of Object.entries(categoryMapping)) {
             for (const key of keys) {
                 const value = counters[key] || 0;
                 const label = getKoreanLabelForCounter(key);
-                
+
                 if (label) {
                     categoryData[category].push(value);
                     categoryLabels[category].push(label);
                 }
             }
         }
-        
+
         // Create datasets for each category
         const datasets = [];
         const labels = [];
-        
+
         // Add each category's data
         for (const category of ['repair', 'safety', 'thanks', 'likes']) {
             if (categoryData[category].length > 0) {
                 // Add category label as a separator
                 labels.push(this.CATEGORY_LABELS[category]);
-                
+
                 // Add individual counter labels
                 labels.push(...categoryLabels[category]);
-                
+
                 // Create dataset with category color
                 const dataset = {
                     label: this.CATEGORY_LABELS[category],
@@ -2398,17 +2398,17 @@ const ChartManager = {
                     borderColor: this.CATEGORY_COLORS[category].replace('0.8', '1'),
                     borderWidth: 1
                 };
-                
+
                 datasets.push(dataset);
             }
         }
-        
+
         return {
             labels: labels,
             datasets: datasets
         };
     },
-    
+
     /**
      * Creates a new Chart.js horizontal bar chart
      * @param {HTMLCanvasElement} canvas - Canvas element to render chart on
@@ -2421,18 +2421,18 @@ const ChartManager = {
             console.error('ChartManager.createChart error:', error);
             throw error;
         }
-        
+
         if (typeof Chart === 'undefined') {
             const error = new Error('ChartManager.createChart: Chart.js library not loaded');
             console.error('ChartManager.createChart error:', error);
             throw error;
         }
-        
+
         try {
             // console.log('ChartManager.createChart: Creating chart with counters:', counters);
-            
+
             const chartData = this.formatChartData(counters);
-            
+
             const config = {
                 type: 'bar',
                 data: chartData,
@@ -2453,7 +2453,7 @@ const ChartManager = {
                             mode: 'nearest',
                             intersect: true,
                             callbacks: {
-                                label: function(context) {
+                                label: function (context) {
                                     const label = context.dataset.label || '';
                                     const value = context.parsed.x;
                                     return `${label}: ${value}회`;
@@ -2486,7 +2486,7 @@ const ChartManager = {
                     }
                 }
             };
-            
+
             const chart = new Chart(canvas, config);
             // console.log('ChartManager.createChart: Chart created successfully');
             return chart;
@@ -2499,7 +2499,7 @@ const ChartManager = {
             throw new Error('차트를 생성할 수 없습니다');
         }
     },
-    
+
     /**
      * Updates an existing chart with new data without recreating it
      * @param {Chart} chart - Existing Chart.js instance
@@ -2511,24 +2511,24 @@ const ChartManager = {
             console.error('ChartManager.updateChart error:', error);
             throw error;
         }
-        
+
         if (!counters || typeof counters !== 'object') {
             counters = {};
         }
-        
+
         try {
             // console.log('ChartManager.updateChart: Updating chart with new counters:', counters);
-            
+
             // Format new data
             const newData = this.formatChartData(counters);
-            
+
             // Update chart data
             chart.data.labels = newData.labels;
             chart.data.datasets = newData.datasets;
-            
+
             // Trigger chart update with reduced animation for better performance
             chart.update('none'); // Use 'none' mode for instant update without animation
-            
+
             // console.log('ChartManager.updateChart: Chart updated successfully');
         } catch (error) {
             console.error('ChartManager.updateChart error:', {
@@ -2539,7 +2539,7 @@ const ChartManager = {
             throw new Error('차트를 업데이트할 수 없습니다');
         }
     },
-    
+
     /**
      * Destroys a chart instance and cleans up resources
      * @param {Chart} chart - Chart.js instance to destroy
@@ -2549,14 +2549,14 @@ const ChartManager = {
             console.warn('ChartManager.destroyChart: no chart instance provided');
             return;
         }
-        
+
         try {
             chart.destroy();
         } catch (error) {
             console.error('ChartManager.destroyChart error:', error);
         }
     },
-    
+
     /**
      * Creates a new Chart.js vertical bar chart for monthly trend data
      * @param {HTMLCanvasElement} canvas - Canvas element to render chart on
@@ -2569,22 +2569,22 @@ const ChartManager = {
             console.error('ChartManager.createMonthlyTrendChart error:', error);
             throw error;
         }
-        
+
         if (typeof Chart === 'undefined') {
             const error = new Error('ChartManager.createMonthlyTrendChart: Chart.js library not loaded');
             console.error('ChartManager.createMonthlyTrendChart error:', error);
             throw error;
         }
-        
+
         if (!trendData || !trendData.months || !trendData.counts) {
             const error = new Error('ChartManager.createMonthlyTrendChart: trendData must contain months and counts arrays');
             console.error('ChartManager.createMonthlyTrendChart error:', error);
             throw error;
         }
-        
+
         try {
             // console.log('ChartManager.createMonthlyTrendChart: Creating monthly trend chart with data:', trendData);
-            
+
             const config = {
                 type: 'bar',
                 data: {
@@ -2613,7 +2613,7 @@ const ChartManager = {
                         tooltip: {
                             enabled: true,
                             callbacks: {
-                                label: function(context) {
+                                label: function (context) {
                                     const value = context.parsed.y;
                                     return `증가 횟수: ${value}회`;
                                 }
@@ -2645,7 +2645,7 @@ const ChartManager = {
                     }
                 }
             };
-            
+
             const chart = new Chart(canvas, config);
             // console.log('ChartManager.createMonthlyTrendChart: Monthly trend chart created successfully');
             return chart;
@@ -2658,7 +2658,7 @@ const ChartManager = {
             throw new Error('월별 추세 차트를 생성할 수 없습니다');
         }
     },
-    
+
     /**
      * Creates a line chart for category trend data (without legend)
      * @param {HTMLCanvasElement} canvas - Canvas element to render chart on
@@ -2672,22 +2672,22 @@ const ChartManager = {
             console.error('ChartManager.createCategoryTrendChart error:', error);
             throw error;
         }
-        
+
         if (typeof Chart === 'undefined') {
             const error = new Error('ChartManager.createCategoryTrendChart: Chart.js library not loaded');
             console.error('ChartManager.createCategoryTrendChart error:', error);
             throw error;
         }
-        
+
         if (!trendData || !trendData.months || !trendData.counts) {
             const error = new Error('ChartManager.createCategoryTrendChart: trendData must contain months and counts arrays');
             console.error('ChartManager.createCategoryTrendChart error:', error);
             throw error;
         }
-        
+
         try {
             // console.log(`ChartManager.createCategoryTrendChart: Creating ${categoryId} trend chart with data:`, trendData);
-            
+
             const config = {
                 type: 'line',
                 data: {
@@ -2720,7 +2720,7 @@ const ChartManager = {
                         tooltip: {
                             enabled: true,
                             callbacks: {
-                                label: function(context) {
+                                label: function (context) {
                                     const value = context.parsed.y;
                                     return `증가 횟수: ${value}회`;
                                 }
@@ -2762,7 +2762,7 @@ const ChartManager = {
                     }
                 }
             };
-            
+
             const chart = new Chart(canvas, config);
             // console.log(`ChartManager.createCategoryTrendChart: ${categoryId} trend chart created successfully`);
             return chart;
@@ -2788,23 +2788,23 @@ const ChartManager = {
             console.error('ChartManager.updateMonthlyTrendChart error:', error);
             throw error;
         }
-        
+
         if (!trendData || !trendData.months || !trendData.counts) {
             const error = new Error('ChartManager.updateMonthlyTrendChart: trendData must contain months and counts arrays');
             console.error('ChartManager.updateMonthlyTrendChart error:', error);
             throw error;
         }
-        
+
         try {
             // console.log('ChartManager.updateMonthlyTrendChart: Updating monthly trend chart with new data:', trendData);
-            
+
             // Update chart data
             chart.data.labels = trendData.months;
             chart.data.datasets[0].data = trendData.counts;
-            
+
             // Trigger chart update with animation
             chart.update();
-            
+
             // console.log('ChartManager.updateMonthlyTrendChart: Monthly trend chart updated successfully');
         } catch (error) {
             console.error('ChartManager.updateMonthlyTrendChart error:', {
@@ -2815,7 +2815,7 @@ const ChartManager = {
             throw new Error('월별 추세 차트를 업데이트할 수 없습니다');
         }
     },
-    
+
     /**
      * Creates a category-specific bar chart
      * @param {HTMLCanvasElement} canvas - Canvas element to render chart on
@@ -2828,18 +2828,18 @@ const ChartManager = {
         if (!canvas) {
             throw new Error('ChartManager.createCategoryChart: canvas element is required');
         }
-        
+
         if (!CATEGORIES[categoryId]) {
             throw new Error(`ChartManager.createCategoryChart: Invalid category ID: ${categoryId}`);
         }
-        
+
         const category = CATEGORIES[categoryId];
         const labels = category.labels;
         const keys = category.keys;
-        
+
         // Extract data for this category
         const data = keys.map(key => counters[key] || 0);
-        
+
         const config = {
             type: 'bar',
             data: {
@@ -2863,7 +2863,7 @@ const ChartManager = {
                     },
                     tooltip: {
                         callbacks: {
-                            label: function(context) {
+                            label: function (context) {
                                 return `${context.label}: ${context.parsed.x}회`;
                             }
                         }
@@ -2879,10 +2879,10 @@ const ChartManager = {
                 }
             }
         };
-        
+
         return new Chart(canvas, config);
     },
-    
+
     /**
      * Updates a category chart with new data
      * @param {Chart} chart - Existing Chart.js instance
@@ -2894,16 +2894,16 @@ const ChartManager = {
         if (!chart || !CATEGORIES[categoryId]) {
             return;
         }
-        
+
         const category = CATEGORIES[categoryId];
         const keys = category.keys;
         const data = keys.map(key => counters[key] || 0);
-        
+
         chart.data.datasets[0].data = data;
         chart.data.datasets[0].label = `${category.name} (${this.getPeriodLabel(period)})`;
         chart.update();
     },
-    
+
     /**
      * Gets Korean label for period
      * @param {string} period - Period identifier
@@ -2919,7 +2919,7 @@ const ChartManager = {
         };
         return labels[period] || '역대';
     },
-    
+
     /**
      * Creates a doughnut chart for category
      * @param {HTMLCanvasElement} canvas - Canvas element
@@ -2932,17 +2932,17 @@ const ChartManager = {
         if (!canvas || !CATEGORIES[categoryId]) {
             return null;
         }
-        
+
         const category = CATEGORIES[categoryId];
         const labels = category.labels;
         const keys = category.keys;
         const data = keys.map(key => counters[key] || 0);
-        
+
         const colors = [
-            '#3498db', '#2ecc71', '#e74c3c', '#f39c12', 
+            '#3498db', '#2ecc71', '#e74c3c', '#f39c12',
             '#9b59b6', '#1abc9c', '#34495e'
         ];
-        
+
         const config = {
             type: 'doughnut',
             data: {
@@ -2967,7 +2967,7 @@ const ChartManager = {
                         padding: 12,
                         cornerRadius: 8,
                         callbacks: {
-                            label: function(context) {
+                            label: function (context) {
                                 return `${context.label}: ${context.parsed}회`;
                             }
                         }
@@ -2976,10 +2976,10 @@ const ChartManager = {
                 cutout: '65%'
             }
         };
-        
+
         return new Chart(canvas, config);
     },
-    
+
     /**
      * Creates a Chart.js rounded horizontal bar chart
      * @param {HTMLCanvasElement} canvas - Canvas element
@@ -2993,24 +2993,24 @@ const ChartManager = {
             console.error('Canvas or category not found');
             return null;
         }
-        
+
         if (typeof Chart === 'undefined') {
             console.error('Chart.js library not loaded');
             return null;
         }
-        
+
         const category = CATEGORIES[categoryId];
         const labels = category.labels;
         const keys = category.keys;
         const data = keys.map(key => counters[key] || 0);
-        
+
         const colors = [
-            '#3498db', '#2ecc71', '#e74c3c', '#f39c12', 
+            '#3498db', '#2ecc71', '#e74c3c', '#f39c12',
             '#9b59b6', '#1abc9c', '#34495e'
         ];
-        
+
         const ctx = canvas.getContext('2d');
-        
+
         const chart = new Chart(ctx, {
             type: 'bar',
             data: {
@@ -3036,7 +3036,7 @@ const ChartManager = {
                     tooltip: {
                         enabled: true,
                         callbacks: {
-                            label: function(context) {
+                            label: function (context) {
                                 return context.parsed.x + '회';
                             }
                         }
@@ -3072,44 +3072,44 @@ const ChartManager = {
                 }
             }
         });
-        
+
         return chart;
     },
-    
+
     /**
      * Toggles between doughnut and bar chart for a category
      * @param {string} categoryId - Category ID
      */
     toggleChartType(categoryId) {
         // console.log('Toggling chart type for:', categoryId);
-        
+
         const canvas = document.getElementById(`${categoryId}Chart`);
-        
+
         if (!canvas) {
             console.error('Canvas not found');
             return;
         }
-        
+
         const chartKey = `${categoryId}ChartInstance`;
         const typeKey = `${categoryId}ChartType`;
-        
+
         // Get current chart type (default is 'doughnut')
         const currentType = window[typeKey] || 'doughnut';
         const newType = currentType === 'doughnut' ? 'bar' : 'doughnut';
-        
+
         // console.log('Current type:', currentType, 'New type:', newType);
-        
+
         // Get counters from cached data
         const counters = window.currentCounters || {};
-        
+
         // console.log('Using counters:', counters);
-        
+
         // Destroy existing Chart.js instance first
         if (window[chartKey]) {
             window[chartKey].destroy();
             window[chartKey] = null;
         }
-        
+
         if (newType === 'bar') {
             // Switch to Chart.js rounded horizontal bar
             // console.log('Switching to bar chart');
@@ -3119,7 +3119,7 @@ const ChartManager = {
             // console.log('Switching to doughnut chart');
             window[chartKey] = this.createDoughnutChart(canvas, categoryId, counters);
         }
-        
+
         // Store new chart type
         window[typeKey] = newType;
         // console.log('Chart toggle complete');
@@ -3135,7 +3135,7 @@ window.ChartManager = ChartManager;
 const UIController = {
     // Debounce timer for search input validation
     searchDebounceTimer: null,
-    
+
     /**
      * Shows the loading indicator
      */
@@ -3145,7 +3145,7 @@ const UIController = {
             loadingIndicator.style.display = 'flex';
         }
     },
-    
+
     /**
      * Hides the loading indicator
      */
@@ -3155,7 +3155,7 @@ const UIController = {
             loadingIndicator.style.display = 'none';
         }
     },
-    
+
     /**
      * Shows a toast notification to the user
      * @param {string} message - Message to display
@@ -3167,23 +3167,23 @@ const UIController = {
             console.warn('UIController.showNotification: notification element not found');
             return;
         }
-        
+
         // Set message
         notification.textContent = message;
-        
+
         // Set type class
         notification.className = 'notification';
         notification.classList.add(`notification-${type}`);
-        
+
         // Show notification
         notification.style.display = 'block';
-        
+
         // Auto-hide after 3 seconds
         setTimeout(() => {
             notification.style.display = 'none';
         }, 3000);
     },
-    
+
     /**
      * Renders plate results including chart and counter displays
      * @param {string} plateNumber - Plate number to display
@@ -3195,15 +3195,15 @@ const UIController = {
             console.error('UIController.renderPlateResults: plateNumber and plateData are required');
             return;
         }
-        
+
         // console.log('UIController.renderPlateResults: Rendering results for', plateNumber);
-        
+
         // Update plate number header
         const plateNumberElement = document.getElementById('plateNumber');
         if (plateNumberElement) {
             plateNumberElement.textContent = plateNumber;
         }
-        
+
         // Update vehicle emoji
         const plateEmojiElement = document.getElementById('plateEmoji');
         // console.log('UIController.renderPlateResults: plateEmojiElement found:', !!plateEmojiElement);
@@ -3220,23 +3220,23 @@ const UIController = {
         } else {
             console.warn('UIController.renderPlateResults: plateEmoji element not found');
         }
-        
+
         // Update stats row (likes, messages, views)
         this.updateStatsRow(plateData);
-        
+
         // Update Care Index (all-time)
         this.updateCareIndex(plateData);
-        
+
         // Render rating badges (90-day data)
         this.renderRatingBadges(plateNumber, plateData);
-        
+
         // Update weekly chart with date-based data
         this.updateWeeklyChart(plateNumber);
-        
+
         // Update all counter displays
         const counters = plateData.counters || {};
         this.updateAllCounterDisplays(counters);
-        
+
         // Create or update chart with graceful degradation
         const canvas = document.getElementById('plateChart');
         if (canvas) {
@@ -3255,18 +3255,18 @@ const UIController = {
                     stack: error.stack,
                     plateNumber: plateNumber
                 });
-                
+
                 // Graceful degradation - hide chart canvas and show only counter displays
                 canvas.style.display = 'none';
-                
+
                 // Show notification to user
                 this.showNotification('차트를 표시할 수 없습니다. 숫자 정보는 정상적으로 표시됩니다', 'info');
-                
+
                 // Ensure counter displays are visible and working
                 // console.log('UIController.renderPlateResults: Falling back to counter displays only');
             }
         }
-        
+
         // Create or update monthly trend chart with graceful degradation
         const monthlyCanvas = document.getElementById('monthlyTrendChart');
         if (monthlyCanvas && monthlyTrendData) {
@@ -3286,13 +3286,13 @@ const UIController = {
                     stack: error.stack,
                     plateNumber: plateNumber
                 });
-                
+
                 // Graceful degradation - hide monthly trend chart canvas
                 monthlyCanvas.style.display = 'none';
-                
+
                 // Show notification to user
                 this.showNotification('월별 추세 차트를 표시할 수 없습니다', 'info');
-                
+
                 // console.log('UIController.renderPlateResults: Falling back without monthly trend chart');
             }
         } else if (monthlyCanvas && !monthlyTrendData) {
@@ -3303,7 +3303,7 @@ const UIController = {
                     months: MonthlyTrendTracker.getLast12Months(),
                     counts: new Array(12).fill(0)
                 };
-                
+
                 if (window.monthlyTrendChartInstance) {
                     ChartManager.updateMonthlyTrendChart(window.monthlyTrendChartInstance, zeroMonthlyTrend);
                 } else {
@@ -3314,11 +3314,11 @@ const UIController = {
                 monthlyCanvas.style.display = 'none';
             }
         }
-        
+
         // Initialize category charts and trend charts
         this.initializeCategoryCharts(counters, plateNumber);
     },
-    
+
     /**
      * Initializes all category charts and trend charts
      * @param {object} counters - Counter data object
@@ -3326,25 +3326,25 @@ const UIController = {
      */
     async initializeCategoryCharts(counters, plateNumber) {
         const categories = ['categoryA', 'categoryB', 'categoryC', 'categoryD'];
-        
+
         // console.log('🎨 Initializing category charts for:', categories);
-        
+
         categories.forEach(categoryId => {
             const canvasId = `${categoryId}Chart`;
             const canvas = document.getElementById(canvasId);
-            
+
             // console.log(`Checking ${categoryId}: canvas exists =`, !!canvas);
-            
+
             if (canvas) {
                 try {
                     const chartKey = `${categoryId}ChartInstance`;
                     const typeKey = `${categoryId}ChartType`;
-                    
+
                     // Initialize with doughnut chart by default
                     if (!window[typeKey]) {
                         window[typeKey] = 'doughnut';
                     }
-                    
+
                     if (window[chartKey]) {
                         // Update existing chart
                         // console.log(`Updating existing ${categoryId} chart`);
@@ -3355,7 +3355,7 @@ const UIController = {
                         window[chartKey] = ChartManager.createDoughnutChart(canvas, categoryId, counters, 'total');
                         // console.log(`✅ ${chartKey} created:`, !!window[chartKey]);
                     }
-                    
+
                     // Store counters for chart toggle
                     window.currentCounters = counters;
                 } catch (error) {
@@ -3366,7 +3366,7 @@ const UIController = {
                 console.warn(`⚠️ Canvas not found for ${categoryId}`);
             }
         });
-        
+
         // Initialize category trend charts
         if (plateNumber) {
             await this.initializeCategoryTrendCharts(plateNumber);
@@ -3379,18 +3379,18 @@ const UIController = {
      */
     async initializeCategoryTrendCharts(plateNumber) {
         const categories = ['categoryA', 'categoryB', 'categoryC', 'categoryD'];
-        
+
         for (const categoryId of categories) {
             const trendCanvasId = `${categoryId}TrendChart`;
             const trendCanvas = document.getElementById(trendCanvasId);
-            
+
             if (trendCanvas) {
                 try {
                     // Fetch category-specific trend data
                     const trendData = await this.fetchCategoryTrendData(plateNumber, categoryId);
-                    
+
                     const trendChartKey = `${categoryId}TrendChartInstance`;
-                    
+
                     if (window[trendChartKey]) {
                         // Update existing chart
                         window[trendChartKey].data.labels = trendData.months;
@@ -3400,7 +3400,7 @@ const UIController = {
                         // Create new line chart without legend
                         window[trendChartKey] = ChartManager.createCategoryTrendChart(trendCanvas, categoryId, trendData);
                     }
-                    
+
                     // console.log(`${categoryId} trend chart initialized successfully`);
                 } catch (error) {
                     console.error(`Failed to render ${categoryId} trend chart:`, error);
@@ -3422,10 +3422,10 @@ const UIController = {
             if (!category || !category.keys) {
                 throw new Error(`Invalid category: ${categoryId}`);
             }
-            
+
             // Use MonthlyTrendTracker to get aggregated data for this category's counter keys
             const trendData = await MonthlyTrendTracker.getAggregatedCategoryTrends(plateNumber, category.keys);
-            
+
             return trendData;
         } catch (error) {
             console.error(`Failed to fetch category trend data for ${categoryId}:`, error);
@@ -3436,7 +3436,7 @@ const UIController = {
             };
         }
     },
-    
+
     /**
      * Updates a specific category chart based on period selection
      * @param {string} categoryId - Category ID (categoryA, categoryB, etc.)
@@ -3444,46 +3444,46 @@ const UIController = {
      */
     async updateCategoryChart(categoryId, period) {
         // console.log(`🔄 UIController.updateCategoryChart called: ${categoryId}, period: ${period}`);
-        
+
         const chartKey = `${categoryId}ChartInstance`;
         // console.log(`Looking for chart instance: ${chartKey}`);
         // console.log(`Chart instance exists:`, !!window[chartKey]);
-        
+
         if (!window[chartKey]) {
             console.error(`❌ Chart instance not found: ${chartKey}`);
             // console.log('Available window properties:', Object.keys(window).filter(k => k.includes('Chart')));
             return;
         }
-        
+
         // Get current plate number
         const plateNumber = Router.getCurrentPlate();
         if (!plateNumber) {
             console.error('❌ No plate number found');
             return;
         }
-        
+
         // console.log(`📍 Plate number: ${plateNumber}`);
-        
+
         try {
             // Fetch period-specific data
             // console.log(`📥 Fetching data for period: ${period}...`);
             const counters = await this.fetchPeriodData(plateNumber, period);
             // console.log(`📊 Fetched counters:`, counters);
-            
+
             // Update the chart with new data
             const chart = window[chartKey];
             const category = CATEGORIES[categoryId];
-            
+
             // console.log(`🎨 Updating chart with ChartManager...`);
             ChartManager.updateCategoryChart(chart, categoryId, counters, period);
-            
+
             // console.log(`✅ Chart updated successfully for ${categoryId} - ${period}`);
         } catch (error) {
             console.error(`❌ Error updating chart for ${categoryId}:`, error);
             console.error('Error stack:', error.stack);
         }
     },
-    
+
     /**
      * Fetches counter data for a specific period
      * @param {string} plateNumber - Plate number
@@ -3492,10 +3492,10 @@ const UIController = {
      */
     async fetchPeriodData(plateNumber, period) {
         // console.log(`Fetching period data for ${plateNumber}, period: ${period}`);
-        
+
         const kstNow = DailyLimitManager.getKSTDate();
         const counters = {};
-        
+
         // Get all counter keys from all categories
         const allCounterKeys = new Set();
         Object.values(CATEGORIES).forEach(category => {
@@ -3508,7 +3508,7 @@ const UIController = {
                 category.keys.forEach(key => allCounterKeys.add(key));
             }
         });
-        
+
         if (period === 'total') {
             // Fetch total counters
             const snapshot = await firebase.database().ref(`plates/${plateNumber}/counters`).once('value');
@@ -3556,11 +3556,11 @@ const UIController = {
                 });
             }
         }
-        
+
         // console.log(`Fetched counters for ${period}:`, counters);
         return counters;
     },
-    
+
     /**
      * Gets date string in YYYYMMDD format
      * @param {Date} date - Date object
@@ -3572,7 +3572,7 @@ const UIController = {
         const day = String(date.getDate()).padStart(2, '0');
         return `${year}${month}${day}`;
     },
-    
+
     /**
      * Gets month string in YYYYMM format
      * @param {Date} date - Date object
@@ -3583,23 +3583,23 @@ const UIController = {
         const month = String(date.getMonth() + 1).padStart(2, '0');
         return `${year}${month}`;
     },
-    
+
     /**
      * Updates stats-row-section values (likes, messages, views)
      * @param {object} plateData - Plate data object containing counters and stats
      */
     updateStatsRow(plateData) {
         if (!plateData) return;
-        
+
         const counters = plateData.counters || {};
-        
+
         // Update like count
         const likeCountElement = document.getElementById('likeCount');
         if (likeCountElement) {
             const likeCount = counters.likes || 0;
             likeCountElement.textContent = likeCount >= 1000 ? (likeCount / 1000).toFixed(1) + 'K' : likeCount;
         }
-        
+
         // Calculate total message count (all categories except likes)
         let totalMessages = 0;
         Object.keys(counters).forEach(key => {
@@ -3607,12 +3607,12 @@ const UIController = {
                 totalMessages += counters[key] || 0;
             }
         });
-        
+
         const messageCountElement = document.getElementById('messageCount');
         if (messageCountElement) {
             messageCountElement.textContent = totalMessages >= 1000 ? (totalMessages / 1000).toFixed(1) + 'K' : totalMessages;
         }
-        
+
         // Update view count (always use plateData.views)
         const viewCountElement = document.getElementById('viewCount');
         if (viewCountElement) {
@@ -3627,10 +3627,10 @@ const UIController = {
      */
     updateCareIndex(plateData) {
         if (!plateData) return;
-        
+
         const counters = plateData.counters || {};
         const views = plateData.views || 0;
-        
+
         // Calculate total messages (all categories except likes)
         let totalMessages = 0;
         Object.keys(counters).forEach(key => {
@@ -3638,14 +3638,14 @@ const UIController = {
                 totalMessages += counters[key] || 0;
             }
         });
-        
+
         const likes = counters.likes || 0;
         const interactionCount = totalMessages + likes;
-        
+
         // Update Care Index value
         const careIndexValueElement = document.getElementById('careIndexValue');
         const careIndexMetaElement = document.getElementById('careIndexMeta');
-        
+
         if (careIndexValueElement && careIndexMetaElement) {
             if (views < 1 || interactionCount === 0) {
                 // Not enough data
@@ -3655,7 +3655,7 @@ const UIController = {
                 const ratio = interactionCount / views;
                 const percent = Math.round(ratio * 100);
                 const capped = Math.min(percent, 100); // Cap at 100%
-                
+
                 careIndexValueElement.textContent = `${capped}%`;
                 careIndexMetaElement.textContent = `조회 ${views}회 중 ${interactionCount}회 반응`;
             }
@@ -3672,24 +3672,24 @@ const UIController = {
             console.error('UIController.get90DayCounters: plateNumber is required');
             return {};
         }
-        
+
         try {
             const today = DailyLimitManager.getKSTDate();
             const counters90d = {};
-            
+
             // Initialize all counter keys to 0
             Object.values(COUNTER_KEYS).forEach(key => {
                 counters90d[key] = 0;
             });
-            
+
             // Create array of promises for parallel fetching
             const fetchPromises = [];
-            
+
             for (let i = 0; i < 90; i++) {
                 const date = new Date(today);
                 date.setDate(today.getDate() - i);
                 const dateStr = DailyLimitManager.formatDateKST(date);
-                
+
                 // Create promise for this day's data
                 const promise = database.ref(`plates/${plateNumber}/daily/${dateStr}`)
                     .once('value')
@@ -3704,13 +3704,13 @@ const UIController = {
                         console.warn(`Failed to fetch data for ${dateStr}:`, error);
                         return null;
                     });
-                
+
                 fetchPromises.push(promise);
             }
-            
+
             // Fetch all days in parallel
             const results = await Promise.all(fetchPromises);
-            
+
             // Aggregate results
             results.forEach(dailyData => {
                 if (dailyData) {
@@ -3719,7 +3719,7 @@ const UIController = {
                     });
                 }
             });
-            
+
             return counters90d;
         } catch (error) {
             console.error('UIController.get90DayCounters error:', error);
@@ -3737,15 +3737,15 @@ const UIController = {
             // console.log('renderRatingBadges: Missing plateNumber or plateData');
             return;
         }
-        
+
         const container = document.getElementById('ratingBadges');
         if (!container) {
             console.warn('renderRatingBadges: Container #ratingBadges not found');
             return;
         }
-        
+
         // console.log('renderRatingBadges: Starting for plate', plateNumber);
-        
+
         // Show loading indicator
         container.textContent = '';
         const loadingSpan = document.createElement('span');
@@ -3753,7 +3753,7 @@ const UIController = {
         loadingSpan.style.opacity = '0.6';
         loadingSpan.textContent = '⏳ 배지 계산 중...';
         container.appendChild(loadingSpan);
-        
+
         try {
             // Get 90-day counters with performance timing
             const startTime = performance.now();
@@ -3761,14 +3761,14 @@ const UIController = {
             const endTime = performance.now();
             // console.log(`renderRatingBadges: Fetched 90-day data in ${Math.round(endTime - startTime)}ms`);
             // console.log('renderRatingBadges: 90-day counters:', counters90d);
-            
+
             // Calculate 90-day totals by category
             let warningCount_90d = 0;
             let conditionCount_90d = 0;
             let thanksCount_90d = 0;
             let likesCount_90d = counters90d.likes || 0;
             let totalMessages_90d = 0;
-            
+
             // Sum up category A + B (warnings)
             if (CATEGORIES.categoryA && CATEGORIES.categoryA.keys) {
                 CATEGORIES.categoryA.keys.forEach(key => {
@@ -3780,21 +3780,21 @@ const UIController = {
                     warningCount_90d += counters90d[key] || 0;
                 });
             }
-            
+
             // Sum up category C (condition)
             if (CATEGORIES.categoryC && CATEGORIES.categoryC.keys) {
                 CATEGORIES.categoryC.keys.forEach(key => {
                     conditionCount_90d += counters90d[key] || 0;
                 });
             }
-            
+
             // Sum up category D (thanks/praise)
             if (CATEGORIES.categoryD && CATEGORIES.categoryD.keys) {
                 CATEGORIES.categoryD.keys.forEach(key => {
                     thanksCount_90d += counters90d[key] || 0;
                 });
             }
-            
+
             // Add motorbike categories if applicable
             const vehicleType = getVehicleType(plateNumber);
             if (vehicleType === 'motorbike') {
@@ -3804,14 +3804,14 @@ const UIController = {
                         warningCount_90d += counters90d[key] || 0;
                     });
                 }
-                
+
                 // Add motorbike vehicle to condition
                 if (CATEGORIES.mbVehicle && CATEGORIES.mbVehicle.keys) {
                     CATEGORIES.mbVehicle.keys.forEach(key => {
                         conditionCount_90d += counters90d[key] || 0;
                     });
                 }
-                
+
                 // Add motorbike praise and support to thanks
                 if (CATEGORIES.mbPraise && CATEGORIES.mbPraise.keys) {
                     CATEGORIES.mbPraise.keys.forEach(key => {
@@ -3824,17 +3824,17 @@ const UIController = {
                     });
                 }
             }
-            
+
             // Calculate total messages (exclude likes)
             Object.keys(counters90d).forEach(key => {
                 if (key !== 'likes') {
                     totalMessages_90d += counters90d[key] || 0;
                 }
             });
-            
+
             const interactionCount_90d = totalMessages_90d + likesCount_90d;
             const views = plateData.views || 0; // Use all-time views
-            
+
             // console.log('renderRatingBadges: 90-day stats:', {
             //     warningCount_90d,
             //     conditionCount_90d,
@@ -3844,34 +3844,34 @@ const UIController = {
             //     interactionCount_90d,
             //     views
             // });
-            
+
             const badges = [];
-            
+
             // Badge 1: High care index (recent focus)
             if (views >= 10 && interactionCount_90d / views >= 0.2) {
                 badges.push('💖 많이 신경 써 준 번호판');
             }
-            
+
             // Badge 2: Praise-heavy
             if (thanksCount_90d >= 3 && thanksCount_90d >= warningCount_90d) {
                 badges.push('⭐ 칭찬이 많이 쌓인 번호판');
             }
-            
+
             // Badge 3: Frequent warning
             if (warningCount_90d >= 3) {
                 badges.push('⚠️ 여러 번 걱정된 번호판');
             }
-            
+
             // Badge 4: Maintenance alert
             if (conditionCount_90d >= 3) {
                 badges.push('🔧 정비 알림이 여러 번 있었던 번호판');
             }
-            
+
             // console.log('renderRatingBadges: Badges earned:', badges);
-            
+
             // Clear loading indicator
             container.textContent = '';
-            
+
             // Limit to 3 badges
             badges.slice(0, 3).forEach(label => {
                 const span = document.createElement('span');
@@ -3879,7 +3879,7 @@ const UIController = {
                 span.textContent = label;
                 container.appendChild(span);
             });
-            
+
             if (badges.length === 0) {
                 // console.log('renderRatingBadges: No badges earned (insufficient 90-day data)');
             } else {
@@ -3901,25 +3901,25 @@ const UIController = {
             const currentDay = today.getDay(); // 0=sun, 1=mon, ..., 6=sat
             const dayNames = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
             const weeklyCounts = new Array(7).fill(0);
-            
+
             // Fetch daily data for the last 7 days
             for (let i = 0; i < 7; i++) {
                 const date = new Date(today);
                 date.setDate(today.getDate() - i);
                 const dateStr = DailyLimitManager.formatDateKST(date); // YYYYMMDD format
-                
+
                 try {
                     const dailyRef = database.ref(`plates/${plateNumber}/daily/${dateStr}`);
                     const snapshot = await dailyRef.once('value');
                     const dailyData = snapshot.val();
-                    
+
                     if (dailyData) {
                         // Sum all counter values for this day
                         let dayTotal = 0;
                         Object.keys(dailyData).forEach(key => {
                             dayTotal += dailyData[key] || 0;
                         });
-                        
+
                         // Calculate the correct bar index (adjust to mon-sun order)
                         const barIndex = (currentDay - i + 7) % 7;
                         weeklyCounts[barIndex] = dayTotal;
@@ -3928,25 +3928,25 @@ const UIController = {
                     console.warn(`Failed to fetch data for ${dateStr}:`, error);
                 }
             }
-            
+
             // Update the chart bars
             const chartBars = document.getElementById('weeklyChartBars');
             if (chartBars) {
                 const maxValue = Math.max(...weeklyCounts, 1); // Avoid division by zero
-                
+
                 dayNames.forEach((day, index) => {
                     const bar = chartBars.querySelector(`.chart-bar[data-day="${day}"]`);
                     if (bar) {
                         const value = weeklyCounts[index];
                         const percentage = (value / maxValue) * 100;
-                        
+
                         // Update bar height
                         bar.style.height = `${percentage}%`;
                         bar.setAttribute('data-value', value);
-                        
+
                         // Update tooltip
                         bar.title = `${value}개 메시지`;
-                        
+
                         // Update value label if it exists
                         const valueLabel = bar.querySelector('.chart-bar-value');
                         if (valueLabel) {
@@ -3956,7 +3956,7 @@ const UIController = {
                     }
                 });
             }
-            
+
             // console.log('Weekly chart updated:', weeklyCounts);
         } catch (error) {
             console.error('Failed to update weekly chart:', error);
@@ -3971,10 +3971,10 @@ const UIController = {
         if (!counters || typeof counters !== 'object') {
             counters = {};
         }
-        
+
         // Find all counter buttons
         const counterButtons = document.querySelectorAll('.counter-btn');
-        
+
         counterButtons.forEach(button => {
             const counterKey = button.getAttribute('data-key');
             if (counterKey) {
@@ -3983,7 +3983,7 @@ const UIController = {
             }
         });
     },
-    
+
     /**
      * Updates a specific counter display value
      * @param {string} counterKey - Counter key to update
@@ -3994,14 +3994,14 @@ const UIController = {
             console.error('UIController.updateCounterDisplay: counterKey is required');
             return;
         }
-        
+
         // Find ALL buttons with this counter key (there may be multiple in different sections)
         const buttons = document.querySelectorAll(`.counter-btn[data-key="${counterKey}"]`);
         if (buttons.length === 0) {
             console.warn(`UIController.updateCounterDisplay: button not found for key ${counterKey}`);
             return;
         }
-        
+
         // Update the count span in all matching buttons
         buttons.forEach(button => {
             const countSpan = button.querySelector('.count');
@@ -4010,7 +4010,7 @@ const UIController = {
             }
         });
     },
-    
+
     /**
      * Renders a leaderboard table
      * @param {string} type - Leaderboard type: 'bestDrivers' or 'mostLiked'
@@ -4022,9 +4022,9 @@ const UIController = {
             console.error('UIController.renderLeaderboard: type is required');
             return;
         }
-        
+
         let tableBodyId;
-        
+
         if (type === 'bestDrivers') {
             tableBodyId = 'bestDriverTable';
         } else if (type === 'mostLiked') {
@@ -4033,16 +4033,16 @@ const UIController = {
             console.error('UIController.renderLeaderboard: invalid type', type);
             return;
         }
-        
+
         const tableBody = document.getElementById(tableBodyId);
         if (!tableBody) {
             console.warn(`UIController.renderLeaderboard: table body ${tableBodyId} not found`);
             return;
         }
-        
+
         // Clear existing rows
         tableBody.textContent = '';
-        
+
         // Check if data is empty
         if (!data || !Array.isArray(data) || data.length === 0) {
             const emptyRow = document.createElement('tr');
@@ -4054,32 +4054,32 @@ const UIController = {
             tableBody.appendChild(emptyRow);
             return;
         }
-        
+
         // Populate table with data
         data.forEach(entry => {
             const row = document.createElement('tr');
-            
+
             if (type === 'bestDrivers') {
                 // Best Drivers: rank, plate, score, thanks, safety
                 const rankCell = document.createElement('td');
                 rankCell.textContent = entry.rank;
-                
+
                 const plateCell = document.createElement('td');
                 const plateLink = document.createElement('a');
                 plateLink.href = `/plate.html/${encodeURIComponent(entry.plateNumber)}`;
                 plateLink.className = 'plate-link';
                 plateLink.textContent = entry.plateNumber;
                 plateCell.appendChild(plateLink);
-                
+
                 const scoreCell = document.createElement('td');
                 scoreCell.textContent = entry.score;
-                
+
                 const thanksCell = document.createElement('td');
                 thanksCell.textContent = entry.thanksCount;
-                
+
                 const safetyCell = document.createElement('td');
                 safetyCell.textContent = entry.safetyCount;
-                
+
                 row.appendChild(rankCell);
                 row.appendChild(plateCell);
                 row.appendChild(scoreCell);
@@ -4089,40 +4089,40 @@ const UIController = {
                 // Most Liked: rank, plate, likes
                 // Support both 'likes' (from Cloud Function) and 'likesCount' (legacy)
                 const likesValue = entry.likes !== undefined ? entry.likes : (entry.likesCount !== undefined ? entry.likesCount : entry.score);
-                
+
                 const rankCell = document.createElement('td');
                 rankCell.textContent = entry.rank;
-                
+
                 const plateCell = document.createElement('td');
                 const plateLink = document.createElement('a');
                 plateLink.href = `/plate.html/${encodeURIComponent(entry.plateNumber)}`;
                 plateLink.className = 'plate-link';
                 plateLink.textContent = entry.plateNumber;
                 plateCell.appendChild(plateLink);
-                
+
                 const likesCell = document.createElement('td');
                 likesCell.textContent = likesValue;
-                
+
                 row.appendChild(rankCell);
                 row.appendChild(plateCell);
                 row.appendChild(likesCell);
             }
-            
+
             tableBody.appendChild(row);
         });
-        
+
         // Apply Anime.js stagger wave animation with IntersectionObserver
         if (typeof anime !== 'undefined') {
             const rows = tableBody.querySelectorAll('tr');
             const leaderboardSection = tableBody.closest('.leaderboard-section');
-            
+
             if (rows.length > 0 && leaderboardSection) {
                 // Set initial state
                 rows.forEach(row => {
                     row.style.opacity = '0';
                     row.style.transform = 'translateY(20px)';
                 });
-                
+
                 // Create IntersectionObserver for scroll-triggered animation
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
@@ -4136,7 +4136,7 @@ const UIController = {
                                 delay: anime.stagger(80),
                                 easing: 'easeOutQuad'
                             });
-                            
+
                             // Disconnect observer after animation (once: true behavior)
                             observer.unobserve(entry.target);
                         }
@@ -4145,13 +4145,13 @@ const UIController = {
                     threshold: 0.2,  // Equivalent to 'start: top 80%'
                     rootMargin: '0px'
                 });
-                
+
                 // Observe the leaderboard section
                 observer.observe(leaderboardSection);
             }
         }
     },
-    
+
     /**
      * Renders global statistics cards
      * @param {object} stats - Global statistics object with counter keys and values
@@ -4161,24 +4161,24 @@ const UIController = {
         const totalPlateViewsElement = document.getElementById('totalPlateViews');
         const totalMessagesSentElement = document.getElementById('totalMessagesSent');
         const activeUsersElement = document.getElementById('activeUsers');
-        
+
         if (!totalPlateViewsElement || !totalMessagesSentElement) {
             console.warn('UIController.renderGlobalStats: stat box elements not found');
             return;
         }
-        
+
         if (!stats || typeof stats !== 'object') {
             console.warn('UIController.renderGlobalStats: invalid stats object', stats);
             stats = {};
         }
-        
+
         // Get values from the stats object
         const totalPlateViews = parseInt(stats.totalViews) || 0;
         const totalMessages = parseInt(stats.totalTodayMessages) || 0;
         const activeUsers = parseInt(stats.activeUsers) || 0;
-        
+
         // console.log('UIController.renderGlobalStats: totalPlateViews =', totalPlateViews, 'totalMessages =', totalMessages, 'activeUsers =', activeUsers);
-        
+
         // OPTIMIZED: Batch DOM updates with requestAnimationFrame
         requestAnimationFrame(() => {
             // Ensure elements have initial value before animating
@@ -4191,7 +4191,7 @@ const UIController = {
             if (activeUsersElement && (!activeUsersElement.textContent || activeUsersElement.textContent.trim() === '')) {
                 activeUsersElement.textContent = '0';
             }
-            
+
             // Small delay to ensure DOM is ready
             setTimeout(() => {
                 // Animate counters
@@ -4203,7 +4203,7 @@ const UIController = {
             }, 100);
         });
     },
-    
+
     /**
      * Animates a counter from current value to target value
      * OPTIMIZED: Uses requestAnimationFrame for batched DOM updates (30fps for better performance)
@@ -4216,7 +4216,7 @@ const UIController = {
             console.warn('animateCounter: element is null or undefined');
             return;
         }
-        
+
         // Validate target
         if (typeof target !== 'number' || isNaN(target)) {
             console.warn('animateCounter: invalid target value', target, 'for element', element.id);
@@ -4225,10 +4225,10 @@ const UIController = {
             });
             return;
         }
-        
+
         // Get current value, handling both plain numbers and formatted strings
         let currentText = (element.textContent || '0').replace(/,/g, '').trim();
-        
+
         // Handle NaN or invalid text
         if (currentText === 'NaN' || currentText === '' || currentText === 'undefined') {
             currentText = '0';
@@ -4236,11 +4236,11 @@ const UIController = {
                 element.textContent = '0';
             });
         }
-        
+
         const current = parseInt(currentText) || 0;
-        
+
         // console.log('animateCounter:', element.id, 'from', current, 'to', target);
-        
+
         // If target is same as current, no need to animate
         if (current === target) {
             requestAnimationFrame(() => {
@@ -4248,12 +4248,12 @@ const UIController = {
             });
             return;
         }
-        
+
         const duration = 2000;
         const frameTime = 33; // 30fps instead of 60fps for better performance
         const increment = (target - current) / (duration / frameTime);
         let count = current;
-        
+
         const timer = setInterval(() => {
             count += increment;
             if ((increment > 0 && count >= target) || (increment < 0 && count <= target)) {
@@ -4266,7 +4266,7 @@ const UIController = {
             });
         }, frameTime);
     },
-    
+
     /**
      * Formats a number with Korean notation (adds comma separators and optional suffix)
      * @param {number} num - Number to format
@@ -4277,14 +4277,14 @@ const UIController = {
         if (typeof num !== 'number') {
             num = parseInt(num, 10) || 0;
         }
-        
+
         // Add comma separators
         const formatted = num.toLocaleString('ko-KR');
-        
+
         // Add "회" (times) suffix if requested
         return addSuffix ? `${formatted}회` : formatted;
     },
-    
+
     /**
      * Attaches event listeners to all interactive elements
      * This should be called once when the page loads
@@ -4298,28 +4298,28 @@ const UIController = {
                 this.handleSearch();
             });
         }
-        
+
         // Debounced search input validation (300ms delay)
         // Note: index.html has its own inline validation, so skip if on index page
         const plateInput = document.getElementById('plateInput');
-        const isIndexPage = window.location.pathname === '/' || 
-                           window.location.pathname.endsWith('index.html') ||
-                           window.location.pathname === '';
-        
+        const isIndexPage = window.location.pathname === '/' ||
+            window.location.pathname.endsWith('index.html') ||
+            window.location.pathname === '';
+
         if (plateInput && !isIndexPage) {
             plateInput.addEventListener('input', (e) => {
                 // Clear previous timer
                 if (this.searchDebounceTimer) {
                     clearTimeout(this.searchDebounceTimer);
                 }
-                
+
                 // Set new timer for validation feedback
                 this.searchDebounceTimer = setTimeout(() => {
                     const input = e.target.value;
                     if (input && input.trim() !== '') {
                         const sanitized = Validator.sanitizePlateNumber(input);
                         const isValid = Validator.validatePlateNumber(sanitized);
-                        
+
                         // Visual feedback for validation with outline effect
                         if (isValid) {
                             e.target.style.setProperty('outline', '3px solid #10b981', 'important');
@@ -4341,7 +4341,7 @@ const UIController = {
                     }
                 }, 300);
             });
-            
+
             // Reset outline and border color on blur
             plateInput.addEventListener('blur', (e) => {
                 e.target.style.removeProperty('outline');
@@ -4350,7 +4350,7 @@ const UIController = {
                 e.target.style.removeProperty('box-shadow');
             });
         }
-        
+
         // Counter button clicks (event delegation)
         // Handle clicks in likes section
         const likesSection = document.querySelector('.likes-section');
@@ -4362,7 +4362,7 @@ const UIController = {
                 }
             });
         }
-        
+
         // Handle clicks in messages section (both old counter-btn and new send-btn)
         const messagesSection = document.querySelector('.messages-section');
         if (messagesSection) {
@@ -4373,7 +4373,7 @@ const UIController = {
                     this.handleCounterClick(counterBtn);
                     return;
                 }
-                
+
                 // Check for new send-btn structure
                 const sendBtn = e.target.closest('.send-btn');
                 if (sendBtn) {
@@ -4384,7 +4384,7 @@ const UIController = {
                 }
             });
         }
-        
+
         // Handle clicks in counters section (for backward compatibility)
         const countersSection = document.querySelector('.counters-section');
         if (countersSection) {
@@ -4395,7 +4395,7 @@ const UIController = {
                 }
             });
         }
-        
+
         // Best Drivers leaderboard tabs
         const bestDriverTabs = document.getElementById('bestDriverTabs');
         if (bestDriverTabs) {
@@ -4406,7 +4406,7 @@ const UIController = {
                 }
             });
         }
-        
+
         // Most Liked leaderboard tabs
         const mostLikedTabs = document.getElementById('mostLikedTabs');
         if (mostLikedTabs) {
@@ -4417,7 +4417,7 @@ const UIController = {
                 }
             });
         }
-        
+
         // Share buttons
         const shareButton = document.getElementById('shareButton');
         if (shareButton) {
@@ -4425,14 +4425,14 @@ const UIController = {
                 this.handleSiteShare();
             });
         }
-        
+
         const sharePlateButton = document.getElementById('sharePlateButton');
         if (sharePlateButton) {
             sharePlateButton.addEventListener('click', () => {
                 this.handlePlateShare();
             });
         }
-        
+
         // Good message button - scroll to 좋은 감정 메세지 section
         const goodMessageButton = document.getElementById('goodMessageButton');
         if (goodMessageButton) {
@@ -4443,7 +4443,7 @@ const UIController = {
                 }
             });
         }
-        
+
         // Plate links in leaderboards (event delegation)
         document.addEventListener('click', (e) => {
             const plateLink = e.target.closest('.plate-link');
@@ -4460,35 +4460,35 @@ const UIController = {
                 }
             }
         });
-        
+
         // console.log('UIController: Event listeners attached');
     },
-    
+
     /**
      * Handles search form submission
      */
     handleSearch() {
         const plateInput = document.getElementById('plateInput');
         const searchButton = document.querySelector('#searchForm button[type="submit"]');
-        
+
         if (!plateInput) {
             console.error('UIController.handleSearch: plateInput element not found');
             return;
         }
-        
+
         const input = plateInput.value;
         // console.log('UIController.handleSearch: Processing search for input:', input);
-        
+
         // Check for empty input
         if (!input || input.trim() === '') {
             // console.log('UIController.handleSearch: Empty input detected');
             this.showNotification('번호판을 입력해 주세요', 'error');
             return;
         }
-        
+
         const sanitized = Validator.sanitizePlateNumber(input);
         // console.log('UIController.handleSearch: Sanitized input:', sanitized);
-        
+
         // Validate and normalize plate number
         const normalized = Validator.normalizePlate(sanitized);
         if (!normalized) {
@@ -4496,26 +4496,26 @@ const UIController = {
             this.showNotification('올바른 번호판 형식이 아닙니다 (예: 09루3363, 서울12가3456)', 'error');
             return;
         }
-        
+
         // Show helpful message for old plates without region
         if (normalized.type === 'old-ambiguous') {
             // console.log('UIController.handleSearch: Old plate without region detected');
             this.showNotification('구형 번호판: 지역 없이도 검색 가능합니다', 'info');
         }
-        
+
         // Add spinner animation to button
         if (searchButton) {
             searchButton.classList.add('searching');
             const originalText = searchButton.textContent;
             searchButton.textContent = '검색 중...';
-            
+
             // Remove spinner after navigation (or timeout)
             setTimeout(() => {
                 searchButton.classList.remove('searching');
                 searchButton.textContent = originalText;
             }, 2000);
         }
-        
+
         // Navigate to plate page
         try {
             Router.navigateToPlate(sanitized);
@@ -4523,7 +4523,7 @@ const UIController = {
         } catch (error) {
             console.error('UIController.handleSearch: Navigation error:', error);
             this.showNotification('페이지 이동 중 오류가 발생했습니다', 'error');
-            
+
             // Remove spinner on error
             if (searchButton) {
                 searchButton.classList.remove('searching');
@@ -4531,7 +4531,7 @@ const UIController = {
             }
         }
     },
-    
+
     /**
      * Handles counter button click
      * Uses secure Cloud Function for bot prevention
@@ -4540,14 +4540,14 @@ const UIController = {
     async handleCounterClick(button) {
         const counterKey = button.getAttribute('data-key');
         const counterLabel = button.getAttribute('data-label');
-        
+
         if (!counterKey) {
             console.error('UIController.handleCounterClick: counterKey not found on button');
             return;
         }
-        
+
         // console.log(`UIController.handleCounterClick: Processing click for ${counterKey} (${counterLabel})`);
-        
+
         // Get current plate number
         const plateNumber = Router.getCurrentPlate();
         if (!plateNumber) {
@@ -4555,21 +4555,21 @@ const UIController = {
             this.showNotification('번호판 정보를 찾을 수 없습니다', 'error');
             return;
         }
-        
+
         // Check daily limit (client-side check for UX, server validates too)
         if (!DailyLimitManager.canIncrement(plateNumber, counterKey)) {
             // console.log(`UIController.handleCounterClick: Daily limit reached for ${plateNumber}/${counterKey}`);
             this.showNotification('오늘은 이미 이 항목에 메세지를 보냈습니다', 'info');
             return;
         }
-        
+
         // Disable button temporarily to prevent double-clicks
         button.disabled = true;
-        
+
         try {
             // Use secure increment via Cloud Function (with bot prevention)
             let newValue;
-            
+
             if (typeof SecurityModule !== 'undefined' && SecurityModule.secureIncrementCounter) {
                 // Use secure Cloud Function
                 // console.log('UIController.handleCounterClick: Using secure increment');
@@ -4579,17 +4579,17 @@ const UIController = {
                 console.warn('UIController.handleCounterClick: SecurityModule not available, using fallback');
                 newValue = await FirebaseClient.incrementCounter(plateNumber, counterKey);
             }
-            
+
             // console.log(`UIController.handleCounterClick: Counter incremented successfully, new value: ${newValue}`);
-            
+
             // Record monthly increment (date-only tracking for trend chart)
             // This is done after successful Firebase increment to ensure consistency
             await MonthlyTrendTracker.recordMonthlyIncrement(plateNumber, counterKey);
             // console.log(`UIController.handleCounterClick: Monthly increment recorded for ${plateNumber}/${counterKey}`);
-            
+
             // Update display
             this.updateCounterDisplay(counterKey, newValue);
-            
+
             // Update chart if it exists
             if (window.plateChartInstance) {
                 try {
@@ -4601,14 +4601,14 @@ const UIController = {
                     // Don't show error to user - counter update succeeded, chart is secondary
                 }
             }
-            
+
             // Update monthly trend chart if it exists
             if (window.monthlyTrendChartInstance) {
                 try {
                     // Fetch updated monthly trend data
                     const monthlyTrendData = await MonthlyTrendTracker.getAggregatedMonthlyTrends(plateNumber);
                     // console.log(`UIController.handleCounterClick: Fetched updated monthly trend data:`, monthlyTrendData);
-                    
+
                     // Update the monthly trend chart
                     ChartManager.updateMonthlyTrendChart(window.monthlyTrendChartInstance, monthlyTrendData);
                     // console.log(`UIController.handleCounterClick: Monthly trend chart updated successfully`);
@@ -4617,14 +4617,14 @@ const UIController = {
                     // Don't show error to user - counter update succeeded, trend chart is secondary
                 }
             }
-            
+
             // Record increment in LocalStorage
             const recorded = DailyLimitManager.recordIncrement(plateNumber, counterKey);
             if (!recorded) {
                 console.warn('UIController.handleCounterClick: Failed to record increment in LocalStorage');
                 // Continue anyway - the increment succeeded in Firebase
             }
-            
+
             // Show success message
             this.showNotification(`${counterLabel} 메세지를 보냈습니다!`, 'success');
         } catch (error) {
@@ -4635,7 +4635,7 @@ const UIController = {
                 error: error.message,
                 stack: error.stack
             });
-            
+
             // Use the error message if it's already in Korean, otherwise use default
             const errorMessage = error.message || '네트워크 오류가 발생했습니다. 다시 시도해 주세요';
             this.showNotification(errorMessage, 'error');
@@ -4644,7 +4644,7 @@ const UIController = {
             button.disabled = false;
         }
     },
-    
+
     /**
      * Handles message card click (new design)
      * @param {HTMLElement} messageCard - The clicked message card
@@ -4653,14 +4653,14 @@ const UIController = {
     async handleMessageCardClick(messageCard, sendBtn) {
         const counterKey = messageCard.getAttribute('data-key');
         const counterLabel = messageCard.getAttribute('data-label');
-        
+
         if (!counterKey) {
             console.error('UIController.handleMessageCardClick: counterKey not found on message card');
             return;
         }
-        
+
         // console.log(`UIController.handleMessageCardClick: Processing click for ${counterKey} (${counterLabel})`);
-        
+
         // Get current plate number
         const plateNumber = Router.getCurrentPlate();
         if (!plateNumber) {
@@ -4668,21 +4668,21 @@ const UIController = {
             this.showNotification('번호판 정보를 찾을 수 없습니다', 'error');
             return;
         }
-        
+
         // Check daily limit
         if (!DailyLimitManager.canIncrement(plateNumber, counterKey)) {
             // console.log(`UIController.handleMessageCardClick: Daily limit reached for ${plateNumber}/${counterKey}`);
             this.showNotification('오늘은 이미 이 항목에 메세지를 보냈습니다', 'info');
             return;
         }
-        
+
         // Disable button temporarily to prevent double-clicks
         sendBtn.disabled = true;
-        
+
         try {
             // Create flying envelope animation
             this.createFlyingEnvelope(sendBtn);
-            
+
             // Increment counter in Firebase using secure Cloud Function
             let newValue;
             if (typeof SecurityModule !== 'undefined' && SecurityModule.secureIncrementCounter) {
@@ -4692,20 +4692,20 @@ const UIController = {
                 newValue = await FirebaseClient.incrementCounter(plateNumber, counterKey);
             }
             // console.log(`UIController.handleMessageCardClick: Counter incremented successfully, new value: ${newValue}`);
-            
+
             // Record monthly increment
             await MonthlyTrendTracker.recordMonthlyIncrement(plateNumber, counterKey);
             // console.log(`UIController.handleMessageCardClick: Monthly increment recorded for ${plateNumber}/${counterKey}`);
-            
+
             // Update the count display in the message card
             const countElement = messageCard.querySelector('.send-count');
             if (countElement) {
                 countElement.textContent = `${newValue}회`;
             }
-            
+
             // Update other displays
             this.updateCounterDisplay(counterKey, newValue);
-            
+
             // Update chart if it exists
             if (window.plateChartInstance) {
                 try {
@@ -4715,7 +4715,7 @@ const UIController = {
                     console.error('UIController.handleMessageCardClick: Failed to update chart:', chartError);
                 }
             }
-            
+
             // Update monthly trend chart if it exists
             if (window.monthlyTrendChartInstance) {
                 try {
@@ -4725,10 +4725,10 @@ const UIController = {
                     console.error('UIController.handleMessageCardClick: Failed to update monthly trend chart:', trendError);
                 }
             }
-            
+
             // Record increment in LocalStorage
             DailyLimitManager.recordIncrement(plateNumber, counterKey);
-            
+
             // Show success message
             this.showNotification(`✓ "${counterLabel}" 메시지가 전송되었습니다`, 'success');
         } catch (error) {
@@ -4739,7 +4739,7 @@ const UIController = {
                 error: error.message,
                 stack: error.stack
             });
-            
+
             const errorMessage = error.message || '네트워크 오류가 발생했습니다. 다시 시도해 주세요';
             this.showNotification(errorMessage, 'error');
         } finally {
@@ -4747,7 +4747,7 @@ const UIController = {
             sendBtn.disabled = false;
         }
     },
-    
+
     /**
      * Creates flying envelope animation
      * @param {HTMLElement} button - The button element to animate from
@@ -4756,24 +4756,24 @@ const UIController = {
         const envelope = document.createElement('img');
         envelope.src = 'assets/img/envelope.png';
         envelope.className = 'envelope';
-        
+
         const rect = button.getBoundingClientRect();
         envelope.style.left = rect.left + rect.width / 2 + 'px';
         envelope.style.top = rect.top + rect.height / 2 + 'px';
-        
+
         document.body.appendChild(envelope);
-        
+
         // Trigger animation
         setTimeout(() => {
             envelope.classList.add('flying');
         }, 10);
-        
+
         // Remove after animation
         setTimeout(() => {
             envelope.remove();
         }, 1500);
     },
-    
+
     /**
      * Handles leaderboard tab change
      * @param {string} type - Leaderboard type: 'bestDrivers' or 'mostLiked'
@@ -4785,9 +4785,9 @@ const UIController = {
             console.error('UIController.handleLeaderboardTabChange: type and period are required');
             return;
         }
-        
+
         // console.log(`UIController.handleLeaderboardTabChange: Changing to ${type}/${period}`);
-        
+
         // Update active tab
         const tabs = tabContainer.querySelectorAll('.tab');
         tabs.forEach(tab => {
@@ -4797,7 +4797,7 @@ const UIController = {
                 tab.classList.remove('active');
             }
         });
-        
+
         // Map period to Firebase period format
         const periodMap = {
             'today': 'today',
@@ -4806,19 +4806,19 @@ const UIController = {
             'year': 'thisYear',
             'allTime': 'allTime'
         };
-        
+
         const firebasePeriod = periodMap[period] || 'allTime';
-        
+
         // Show loading
         this.showLoading();
-        
+
         try {
             // Fetch leaderboard data
             const data = await FirebaseClient.getLeaderboard(type, firebasePeriod, 10);
-            
+
             // Render leaderboard
             this.renderLeaderboard(type, firebasePeriod, data);
-            
+
             // console.log(`UIController.handleLeaderboardTabChange: Successfully loaded ${data.length} entries`);
         } catch (error) {
             console.error('UIController.handleLeaderboardTabChange error:', {
@@ -4828,28 +4828,28 @@ const UIController = {
                 error: error.message,
                 stack: error.stack
             });
-            
+
             // Use the error message if it's already in Korean, otherwise use default
             const errorMessage = error.message || '리더보드를 불러올 수 없습니다';
             this.showNotification(errorMessage, 'error');
-            
+
             // Render empty leaderboard to show user something went wrong
             this.renderLeaderboard(type, firebasePeriod, []);
         } finally {
             this.hideLoading();
         }
     },
-    
+
     /**
      * Handles site share button click
      */
     handleSiteShare() {
         const url = window.location.origin;
         const title = 'SafeDrive - 익명으로 차량 안전을 공유하세요';
-        
+
         this.shareURL(url, title);
     },
-    
+
     /**
      * Handles plate share button click
      */
@@ -4859,13 +4859,13 @@ const UIController = {
             this.showNotification('번호판 정보를 찾을 수 없습니다', 'error');
             return;
         }
-        
+
         const url = `${window.location.origin}/plate.html/${encodeURIComponent(plateNumber)}`;
         const title = `SafeDrive - ${plateNumber} 번호판 정보`;
-        
+
         this.shareURL(url, title);
     },
-    
+
     /**
      * Shares a URL using Web Share API or clipboard fallback
      * @param {string} url - URL to share
@@ -4893,7 +4893,7 @@ const UIController = {
             this.copyToClipboard(url);
         }
     },
-    
+
     /**
      * Copies text to clipboard
      * @param {string} text - Text to copy
@@ -4915,7 +4915,7 @@ const UIController = {
             textArea.style.left = '-999999px';
             document.body.appendChild(textArea);
             textArea.select();
-            
+
             try {
                 document.execCommand('copy');
                 this.showNotification('링크가 복사되었습니다', 'success');
@@ -4923,7 +4923,7 @@ const UIController = {
                 console.error('Clipboard fallback error:', error);
                 this.showNotification('링크 복사에 실패했습니다', 'error');
             }
-            
+
             document.body.removeChild(textArea);
         }
     }
@@ -4942,28 +4942,28 @@ window.UIController = UIController;
  */
 async function initLandingPage() {
     // console.log('initLandingPage: Starting landing page initialization');
-    
+
     try {
         // Show loading indicator
         UIController.showLoading();
-        
+
         // Update last update timestamp
         PerformanceOptimizer.lastUpdate = Date.now();
-        
+
         // Fetch and render global statistics
         try {
             // console.log('initLandingPage: Fetching global statistics');
-            
+
             // Fetch all stats in parallel for better performance
             const [allTimeStats, todayStats, activeUsersData] = await Promise.all([
                 FirebaseClient.getGlobalStats('allTime'),
                 FirebaseClient.getGlobalStats('daily'),
                 FirebaseClient.getActiveUsers()
             ]);
-            
+
             const totalViews = allTimeStats.totalViews || 0;
             const activeUsers = activeUsersData.activeUsers || 0;
-            
+
             // Calculate total messages for today (sum of all counters except totalViews)
             let totalTodayMessages = 0;
             for (const [key, value] of Object.entries(todayStats)) {
@@ -4971,16 +4971,16 @@ async function initLandingPage() {
                     totalTodayMessages += (parseInt(value) || 0);
                 }
             }
-            
+
             // console.log('initLandingPage: totalViews =', totalViews, 'totalTodayMessages =', totalTodayMessages, 'activeUsers =', activeUsers);
-            
+
             // Render stats with all values
             UIController.renderGlobalStats({
                 totalViews: totalViews,
                 totalTodayMessages: totalTodayMessages,
                 activeUsers: activeUsers
             });
-            
+
             // Set up real-time listener for active users updates
             FirebaseClient.subscribeToActiveUsers((data) => {
                 const activeUsersElement = document.getElementById('activeUsers');
@@ -4988,7 +4988,7 @@ async function initLandingPage() {
                     UIController.animateCounter(activeUsersElement, data.activeUsers);
                 }
             });
-            
+
             // console.log('initLandingPage: Global stats loaded successfully');
         } catch (error) {
             console.error('initLandingPage: Failed to load global stats:', {
@@ -4996,15 +4996,15 @@ async function initLandingPage() {
                 code: error.code,
                 stack: error.stack
             });
-            
+
             // Use the error message if it's already in Korean, otherwise use default
             const errorMessage = error.message || '통계를 불러올 수 없습니다';
             UIController.showNotification(errorMessage, 'error');
-            
+
             // Render empty stats to show something
             UIController.renderGlobalStats({});
         }
-        
+
         // Fetch and render most liked leaderboard (default to "역대" - allTime)
         try {
             // console.log('initLandingPage: Fetching most liked leaderboard');
@@ -5017,15 +5017,15 @@ async function initLandingPage() {
                 code: error.code,
                 stack: error.stack
             });
-            
+
             // Use the error message if it's already in Korean, otherwise use default
             const errorMessage = error.message || '인기 번호판 TOP 10을 불러올 수 없습니다';
             UIController.showNotification(errorMessage, 'error');
-            
+
             // Render empty leaderboard
             UIController.renderLeaderboard('mostLiked', 'allTime', []);
         }
-        
+
         // console.log('initLandingPage: Landing page initialization complete');
     } catch (error) {
         console.error('initLandingPage: Critical error during initialization:', {
@@ -5049,19 +5049,19 @@ async function initLandingPage() {
  */
 async function initPlatePage() {
     // console.log('initPlatePage: Starting plate page initialization');
-    
+
     // Initialize Router
     Router.initRouter();
-    
+
     // Parse plate number from URL
     const plateNumber = Router.parsePlateFromURL();
     // console.log('initPlatePage: Parsed plate number from URL:', plateNumber);
-    
+
     // Validate plate number
     if (!plateNumber || !Validator.validatePlateNumber(plateNumber)) {
         console.error('initPlatePage: Invalid plate number in URL:', plateNumber);
         UIController.showNotification('올바른 번호판 형식이 아닙니다', 'error');
-        
+
         // Redirect to landing page after 2 seconds
         setTimeout(() => {
             // console.log('initPlatePage: Redirecting to landing page due to invalid plate number');
@@ -5069,9 +5069,9 @@ async function initPlatePage() {
         }, 2000);
         return;
     }
-    
+
     // console.log('initPlatePage: Loading plate data for:', plateNumber);
-    
+
     // Set placeholder with current plate number
     const plateInput = document.getElementById('plateInput');
     if (plateInput) {
@@ -5079,24 +5079,24 @@ async function initPlatePage() {
     } else {
         console.warn('initPlatePage: plateInput element not found');
     }
-    
+
     // Show loading indicator
     UIController.showLoading();
-    
+
     try {
         // Fetch plate data from Firebase
         const plateData = await FirebaseClient.getPlateData(plateNumber);
-        
+
         // console.log('initPlatePage: Plate data loaded:', plateData);
-        
+
         // Fetch monthly trend data
         const monthlyTrendData = await MonthlyTrendTracker.getAggregatedMonthlyTrends(plateNumber);
-        
+
         // console.log('initPlatePage: Monthly trend data loaded:', monthlyTrendData);
-        
+
         // Render plate results (header, chart, counters)
         UIController.renderPlateResults(plateNumber, plateData, monthlyTrendData);
-        
+
         // console.log('initPlatePage: Plate page initialized successfully');
     } catch (error) {
         console.error('initPlatePage: Failed to load plate data:', {
@@ -5105,11 +5105,11 @@ async function initPlatePage() {
             code: error.code,
             stack: error.stack
         });
-        
+
         // Use the error message if it's already in Korean, otherwise use default
         const errorMessage = error.message || '데이터를 불러오는 중 오류가 발생했습니다';
         UIController.showNotification(errorMessage, 'error');
-        
+
         // Display zero-state on error so user can still interact with the page
         try {
             const zeroCounters = FirebaseClient.getZeroCounters();
@@ -5117,10 +5117,10 @@ async function initPlatePage() {
                 months: MonthlyTrendTracker.getLast12Months(),
                 counts: new Array(12).fill(0)
             };
-            UIController.renderPlateResults(plateNumber, { 
-                plateNumber: plateNumber, 
+            UIController.renderPlateResults(plateNumber, {
+                plateNumber: plateNumber,
                 counters: zeroCounters,
-                lastUpdated: null 
+                lastUpdated: null
             }, zeroMonthlyTrend);
             // console.log('initPlatePage: Rendered zero-state after error');
         } catch (renderError) {
@@ -5137,7 +5137,7 @@ async function initPlatePage() {
  */
 function initPage() {
     const pathname = window.location.pathname;
-    
+
     // Check if we're on the landing page (index.html or root)
     if (pathname === '/' || pathname === '/index.html' || pathname.endsWith('/')) {
         // Landing page
@@ -5154,10 +5154,10 @@ window.addEventListener('unhandledrejection', (event) => {
         reason: event.reason,
         promise: event.promise
     });
-    
+
     // Prevent default browser behavior
     event.preventDefault();
-    
+
     // Show user-friendly error message
     if (UIController && UIController.showNotification) {
         UIController.showNotification('예상치 못한 오류가 발생했습니다', 'error');
@@ -5173,7 +5173,7 @@ window.addEventListener('error', (event) => {
         colno: event.colno,
         error: event.error
     });
-    
+
     // Show user-friendly error message
     if (UIController && UIController.showNotification) {
         UIController.showNotification('예상치 못한 오류가 발생했습니다', 'error');
@@ -5184,17 +5184,17 @@ window.addEventListener('error', (event) => {
 document.addEventListener('DOMContentLoaded', () => {
     // console.log('SafeDrive initialized');
     // console.log('Firebase configured:', firebaseConfig.projectId);
-    
+
     try {
         // Initialize Performance Optimizer
         PerformanceOptimizer.initVisibilityHandler();
-        
+
         // Initialize Router
         Router.initRouter();
-        
+
         // Attach event listeners
         UIController.attachEventListeners();
-        
+
         // Initialize the appropriate page
         initPage();
     } catch (error) {
@@ -5202,23 +5202,23 @@ document.addEventListener('DOMContentLoaded', () => {
             error: error.message,
             stack: error.stack
         });
-        
+
         if (UIController && UIController.showNotification) {
             UIController.showNotification('앱 초기화 중 오류가 발생했습니다', 'error');
         }
     }
-    
+
     // Handle route changes (for plate page navigation without reload)
     window.addEventListener('routechange', async (event) => {
         const plateNumber = event.detail.plate;
-        
+
         if (!plateNumber) {
             console.error('routechange handler: Route change event missing plate number');
             return;
         }
-        
+
         // console.log('routechange handler: Route changed to plate:', plateNumber);
-        
+
         // Check if we're on the plate page
         const pathname = window.location.pathname;
         if (pathname.includes('plate.html')) {
@@ -5229,17 +5229,17 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 console.warn('routechange handler: plateInput element not found');
             }
-            
+
             // Show loading
             UIController.showLoading();
-            
+
             try {
                 // Fetch and render new plate data
                 const plateData = await FirebaseClient.getPlateData(plateNumber);
-                
+
                 // Fetch monthly trend data
                 const monthlyTrendData = await MonthlyTrendTracker.getAggregatedMonthlyTrends(plateNumber);
-                
+
                 UIController.renderPlateResults(plateNumber, plateData, monthlyTrendData);
                 // console.log('routechange handler: Successfully loaded and rendered plate data');
             } catch (error) {
@@ -5249,11 +5249,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     code: error.code,
                     stack: error.stack
                 });
-                
+
                 // Use the error message if it's already in Korean, otherwise use default
                 const errorMessage = error.message || '데이터를 불러오는 중 오류가 발생했습니다';
                 UIController.showNotification(errorMessage, 'error');
-                
+
                 // Display zero-state on error
                 try {
                     const zeroCounters = FirebaseClient.getZeroCounters();
@@ -5261,10 +5261,10 @@ document.addEventListener('DOMContentLoaded', () => {
                         months: MonthlyTrendTracker.getLast12Months(),
                         counts: new Array(12).fill(0)
                     };
-                    UIController.renderPlateResults(plateNumber, { 
-                        plateNumber: plateNumber, 
+                    UIController.renderPlateResults(plateNumber, {
+                        plateNumber: plateNumber,
                         counters: zeroCounters,
-                        lastUpdated: null 
+                        lastUpdated: null
                     }, zeroMonthlyTrend);
                 } catch (renderError) {
                     console.error('routechange handler: Failed to render zero-state:', renderError);
@@ -5299,13 +5299,13 @@ function initHeartButton() {
     const likeHeart = document.getElementById('likeHeart');
     const likeHeartWrapper = document.getElementById('likeHeartWrapper');
     const likeCountElement = document.getElementById('likeCount');
-    
+
     if (!likeHeart || !likeHeartWrapper || !likeCountElement) {
         return; // Not on plate page or elements not found
     }
-    
+
     let isLiked = false;
-    
+
     /**
      * Create particle burst effect
      */
@@ -5314,63 +5314,63 @@ function initHeartButton() {
         const rect = wrapper.getBoundingClientRect();
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
-        
+
         // Create 6 particles in different directions
         const angles = [0, 60, 120, 180, 240, 300];
         angles.forEach(angle => {
             const particle = document.createElement('div');
             particle.className = 'particle';
-            
+
             const radian = (angle * Math.PI) / 180;
             const distance = 40;
             const tx = Math.cos(radian) * distance;
             const ty = Math.sin(radian) * distance;
-            
+
             particle.style.setProperty('--tx', `${tx}px`);
             particle.style.setProperty('--ty', `${ty}px`);
             particle.style.left = `${centerX}px`;
             particle.style.top = `${centerY}px`;
-            
+
             wrapper.appendChild(particle);
-            
+
             // Trigger animation
             setTimeout(() => {
                 particle.classList.add('animate');
             }, 10);
-            
+
             // Remove particle after animation
             setTimeout(() => {
                 particle.remove();
             }, 600);
         });
     }
-    
+
     /**
      * Handle heart click
      */
-    likeHeart.addEventListener('click', async function() {
+    likeHeart.addEventListener('click', async function () {
         const plateNumber = document.getElementById('plateNumber')?.textContent;
-        
+
         if (!plateNumber || plateNumber === '-') {
             UIController.showNotification('번호판을 먼저 조회해주세요', 'error');
             return;
         }
-        
+
         if (!isLiked) {
             // Like action
             isLiked = true;
             this.classList.remove('inactive');
             this.classList.add('active');
-            
+
             // Add burst effect
             likeHeartWrapper.classList.add('burst');
             setTimeout(() => {
                 likeHeartWrapper.classList.remove('burst');
             }, 600);
-            
+
             // Create particle burst
             createParticles();
-            
+
             // Increment like in Firebase using secure Cloud Function
             try {
                 if (typeof SecurityModule !== 'undefined' && SecurityModule.secureIncrementCounter) {
@@ -5379,17 +5379,17 @@ function initHeartButton() {
                     console.warn('UIController.handleLikeClick: SecurityModule not available, using fallback');
                     await FirebaseClient.incrementCounter(plateNumber, 'likes');
                 }
-                
+
                 // Update the count display
                 const currentCount = parseInt(likeCountElement.textContent) || 0;
                 const newCount = currentCount + 1;
-                
+
                 if (newCount >= 1000) {
                     likeCountElement.textContent = (newCount / 1000).toFixed(1) + 'K';
                 } else {
                     likeCountElement.textContent = newCount;
                 }
-                
+
                 UIController.showNotification('좋아요!', 'success');
             } catch (error) {
                 console.error('Failed to increment like:', error);
@@ -5419,18 +5419,18 @@ window.addEventListener('routechange', (e) => {
 
 
 // Plate flip animation on hover
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const plateContainers = document.querySelectorAll('.plate-flip-container');
-    
+
     plateContainers.forEach(container => {
-        container.addEventListener('mouseenter', function() {
+        container.addEventListener('mouseenter', function () {
             const flipper = this.querySelector('.plate-flipper');
             if (flipper) {
                 flipper.style.transform = 'rotateY(180deg)';
             }
         });
-        
-        container.addEventListener('mouseleave', function() {
+
+        container.addEventListener('mouseleave', function () {
             const flipper = this.querySelector('.plate-flipper');
             if (flipper) {
                 flipper.style.transform = 'rotateY(0deg)';
@@ -5446,7 +5446,7 @@ const SubscriptionManager = {
     MAX_SUBSCRIPTIONS: 10,
     deferredPrompt: null,
     messaging: null,
-    
+
     /**
      * Initialize the subscription manager
      */
@@ -5456,7 +5456,7 @@ const SubscriptionManager = {
             navigator.serviceWorker.register('/sw.js')
                 .then((registration) => {
                     // console.log('Service Worker registered:', registration);
-                    
+
                     // Send Firebase config to service worker
                     if (registration.active && typeof firebaseConfig !== 'undefined') {
                         registration.active.postMessage({
@@ -5469,7 +5469,7 @@ const SubscriptionManager = {
                     console.error('Service Worker registration failed:', error);
                 });
         }
-        
+
         // Initialize Firebase Messaging
         try {
             this.messaging = firebase.messaging();
@@ -5477,18 +5477,18 @@ const SubscriptionManager = {
         } catch (error) {
             console.error('Firebase Messaging initialization failed:', error);
         }
-        
+
         // Capture beforeinstallprompt event
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             this.deferredPrompt = e;
             // console.log('beforeinstallprompt event captured');
         });
-        
+
         // Setup subscribe button
         this.setupSubscribeButton();
     },
-    
+
     /**
      * Setup subscribe button with hover animation
      */
@@ -5498,52 +5498,52 @@ const SubscriptionManager = {
             console.warn('Subscribe button not found');
             return;
         }
-        
+
         // console.log('Subscribe button found, setting up...');
-        
+
         // Update button text based on subscription status
         this.updateSubscribeButtonText();
-        
+
         // Anime.js hover animation
         subscribeBtn.addEventListener('mouseenter', () => {
-            anime({ 
+            anime({
                 targets: subscribeBtn,
-                duration: 300, 
-                scale: 1.1, 
-                easing: 'easeOutElastic(1, 0.3)' 
+                duration: 300,
+                scale: 1.1,
+                easing: 'easeOutElastic(1, 0.3)'
             });
         });
-        
+
         subscribeBtn.addEventListener('mouseleave', () => {
-            anime({ 
+            anime({
                 targets: subscribeBtn,
-                duration: 300, 
-                scale: 1, 
-                easing: 'easeOutQuad' 
+                duration: 300,
+                scale: 1,
+                easing: 'easeOutQuad'
             });
         });
-        
+
         // Click handler
         subscribeBtn.addEventListener('click', () => {
             // console.log('Subscribe button clicked');
             this.openSubscribePopup();
         });
     },
-    
+
     /**
      * Update subscribe button text based on subscription status
      */
     updateSubscribeButtonText() {
         const subscribeBtn = document.getElementById('subscribeBtn');
         const currentPlate = document.getElementById('plateNumber')?.textContent;
-        
+
         if (!subscribeBtn || !currentPlate || currentPlate === '-') {
             return;
         }
-        
+
         const subscribed = this.getSubscribedPlates();
         const isSubscribed = subscribed.includes(currentPlate);
-        
+
         if (isSubscribed) {
             subscribeBtn.textContent = '';
             const checkSpan = document.createElement('span');
@@ -5560,27 +5560,27 @@ const SubscriptionManager = {
             subscribeBtn.style.background = 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)';
         }
     },
-    
+
     /**
      * Open subscribe popup
      */
     openSubscribePopup() {
         const popup = document.getElementById('subscribePopup');
         if (!popup) return;
-        
+
         // Lock body scroll (important for mobile UX)
         document.body.style.overflow = 'hidden';
-        
+
         popup.style.display = 'flex';
         this.renderSubscribedList();
-        
+
         // Setup install button
         const installBtn = document.getElementById('installPushBtn');
         if (installBtn) {
             installBtn.onclick = () => this.handleInstallAndSubscribe();
         }
     },
-    
+
     /**
      * Close subscribe popup
      */
@@ -5589,11 +5589,11 @@ const SubscriptionManager = {
         if (popup) {
             popup.style.display = 'none';
         }
-        
+
         // Restore body scroll
         document.body.style.overflow = '';
     },
-    
+
     /**
      * Get subscribed plates from LocalStorage
      */
@@ -5606,7 +5606,7 @@ const SubscriptionManager = {
             return [];
         }
     },
-    
+
     /**
      * Save subscribed plates to LocalStorage
      */
@@ -5619,7 +5619,7 @@ const SubscriptionManager = {
             return false;
         }
     },
-    
+
     /**
      * Render subscribed plates list
      */
@@ -5627,17 +5627,17 @@ const SubscriptionManager = {
         const listEl = document.getElementById('subscribedList');
         const countEl = document.getElementById('subscribeCount');
         if (!listEl) return;
-        
+
         const subscribed = this.getSubscribedPlates();
-        
+
         // Update count
         if (countEl) {
             countEl.textContent = subscribed.length;
         }
-        
+
         // Clear list
         listEl.textContent = '';
-        
+
         if (subscribed.length === 0) {
             const noSubsMsg = document.createElement('p');
             noSubsMsg.className = 'no-subscriptions';
@@ -5646,40 +5646,40 @@ const SubscriptionManager = {
             this.updateSubscribeButtonText();
             return;
         }
-        
+
         // Render each subscribed plate
         subscribed.forEach(plate => {
             const item = document.createElement('div');
             item.className = 'subscribed-item';
-            
+
             const plateSpan = document.createElement('span');
             plateSpan.className = 'subscribed-item-plate';
             plateSpan.textContent = plate;
-            
+
             const cancelBtn = document.createElement('button');
             cancelBtn.className = 'subscribed-item-cancel';
             cancelBtn.textContent = '취소';
             cancelBtn.onclick = () => SubscriptionManager.cancelSubscription(plate);
-            
+
             item.appendChild(plateSpan);
             item.appendChild(cancelBtn);
             listEl.appendChild(item);
         });
-        
+
         // Update button text after rendering list
         this.updateSubscribeButtonText();
     },
-    
+
     /**
      * Cancel subscription for a plate
      */
     async cancelSubscription(plate) {
         let subscribed = this.getSubscribedPlates();
         subscribed = subscribed.filter(p => p !== plate);
-        
+
         if (this.saveSubscribedPlates(subscribed)) {
             this.renderSubscribedList();
-            
+
             // Update Firebase
             try {
                 const token = await this.getFCMToken();
@@ -5690,11 +5690,11 @@ const SubscriptionManager = {
             } catch (error) {
                 console.error('Error removing subscription from Firebase:', error);
             }
-            
+
             this.showToast('구독이 취소되었습니다', 'success');
         }
     },
-    
+
     /**
      * Handle PWA installation and push subscription
      */
@@ -5704,28 +5704,28 @@ const SubscriptionManager = {
             this.showToast('번호판 정보를 불러올 수 없습니다', 'error');
             return;
         }
-        
+
         // Check subscription limit
         let subscribed = this.getSubscribedPlates();
         if (subscribed.length >= this.MAX_SUBSCRIPTIONS && !subscribed.includes(currentPlate)) {
             this.showToast('최대 10개 번호판만 구독 가능합니다', 'error');
             return;
         }
-        
+
         // Add current plate to subscriptions if not already subscribed
         if (!subscribed.includes(currentPlate)) {
             subscribed.push(currentPlate);
             this.saveSubscribedPlates(subscribed);
             this.updateSubscribeButtonText();
         }
-        
+
         // Try PWA installation
         await this.installPWA();
-        
+
         // Request notification permission
         await this.requestNotificationPermission();
     },
-    
+
     /**
      * Install PWA
      */
@@ -5733,14 +5733,14 @@ const SubscriptionManager = {
         if (this.deferredPrompt) {
             this.deferredPrompt.prompt();
             const { outcome } = await this.deferredPrompt.userChoice;
-            
+
             if (outcome === 'accepted') {
                 // console.log('PWA installed');
                 this.showToast('앱이 설치되었습니다', 'success');
             } else {
                 // console.log('PWA installation declined');
             }
-            
+
             this.deferredPrompt = null;
         } else {
             // Check if already installed
@@ -5750,7 +5750,7 @@ const SubscriptionManager = {
                 // Show manual installation guide
                 const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
                 const isAndroid = /Android/.test(navigator.userAgent);
-                
+
                 if (isIOS) {
                     this.showToast('Safari에서 공유 버튼 → 홈 화면에 추가를 선택하세요', 'info');
                 } else if (isAndroid) {
@@ -5761,7 +5761,7 @@ const SubscriptionManager = {
             }
         }
     },
-    
+
     /**
      * Request notification permission and get FCM token
      */
@@ -5770,16 +5770,16 @@ const SubscriptionManager = {
             this.showToast('이 브라우저는 알림을 지원하지 않습니다', 'error');
             return;
         }
-        
+
         try {
             const permission = await Notification.requestPermission();
-            
+
             if (permission === 'granted') {
                 // console.log('Notification permission granted');
-                
+
                 // Get FCM token
                 const token = await this.getFCMToken();
-                
+
                 if (token) {
                     // Save subscriptions to Firebase
                     await this.syncSubscriptionsToFirebase(token);
@@ -5799,7 +5799,7 @@ const SubscriptionManager = {
             this.showToast('알림 설정 중 오류가 발생했습니다', 'error');
         }
     },
-    
+
     /**
      * Get FCM token
      */
@@ -5808,16 +5808,16 @@ const SubscriptionManager = {
             console.error('Firebase Messaging not initialized');
             return null;
         }
-        
+
         try {
             // VAPID key - injected during build from .env file
             const vapidKey = '__VAPID_KEY__';
-            
-            const token = await this.messaging.getToken({ 
+
+            const token = await this.messaging.getToken({
                 vapidKey: vapidKey,
                 serviceWorkerRegistration: await navigator.serviceWorker.ready
             });
-            
+
             if (token) {
                 // console.log('FCM Token:', token);
                 return token;
@@ -5827,35 +5827,35 @@ const SubscriptionManager = {
             }
         } catch (error) {
             console.error('Error getting FCM token:', error);
-            
+
             // If VAPID key is not set, show helpful message
             if (error.code === 'messaging/invalid-vapid-key') {
                 console.error('Please set your VAPID key in SubscriptionManager.getFCMToken()');
             }
-            
+
             return null;
         }
     },
-    
+
     /**
      * Sync subscriptions to Firebase
      */
     async syncSubscriptionsToFirebase(token) {
         const subscribed = this.getSubscribedPlates();
-        
+
         try {
             const subscriptionData = {
                 plates: subscribed,
                 updatedAt: firebase.database.ServerValue.TIMESTAMP
             };
-            
+
             await firebase.database().ref(`subscriptions/${token}`).set(subscriptionData);
             // console.log('Subscriptions synced to Firebase');
         } catch (error) {
             console.error('Error syncing subscriptions to Firebase:', error);
         }
     },
-    
+
     /**
      * Show toast notification
      */
@@ -5864,14 +5864,14 @@ const SubscriptionManager = {
         const toast = document.createElement('div');
         toast.className = `notification ${type}`;
         toast.textContent = message;
-        
+
         document.body.appendChild(toast);
-        
+
         // Trigger animation
         setTimeout(() => {
             toast.classList.add('show');
         }, 10);
-        
+
         // Remove after 3 seconds
         setTimeout(() => {
             toast.classList.remove('show');
@@ -5895,23 +5895,23 @@ function closeSubscribePopup() {
 // ============================================================================
 
 const AMBIGUOUS_HANGUL_TO_DIGIT = {
-    '일':'1','이':'2','삼':'3','사':'4','오':'5',
-    '육':'6','칠':'7','팔':'8','구':'9'
+    '일': '1', '이': '2', '삼': '3', '사': '4', '오': '5',
+    '육': '6', '칠': '7', '팔': '8', '구': '9'
 };
 
 const VALID_PLATE_CHARS = '가나다라마거너더러머버서어저고노도로모보소오조구누두루무부수우주아바사자하허호배'.split('');
 
 const SPOKEN_NUMBER_MAP = {
-    '영':'0','공':'0','제로':'0',
-    '일':'1','하나':'1','이':'2','둘':'2','삼':'3','셋':'3',
-    '사':'4','넷':'4','오':'5','다섯':'5',
-    '육':'6','륙':'6','여섯':'6','칠':'7','일곱':'7',
-    '팔':'8','여덟':'8','구':'9','아홉':'9',
-    '십':'10','십일':'11','십이':'12','십삼':'13','십사':'14',
-    '십오':'15','십육':'16','십칠':'17','십팔':'18','십구':'19'
+    '영': '0', '공': '0', '제로': '0',
+    '일': '1', '하나': '1', '이': '2', '둘': '2', '삼': '3', '셋': '3',
+    '사': '4', '넷': '4', '오': '5', '다섯': '5',
+    '육': '6', '륙': '6', '여섯': '6', '칠': '7', '일곱': '7',
+    '팔': '8', '여덟': '8', '구': '9', '아홉': '9',
+    '십': '10', '십일': '11', '십이': '12', '십삼': '13', '십사': '14',
+    '십오': '15', '십육': '16', '십칠': '17', '십팔': '18', '십구': '19'
 };
 
-const SPOKEN_KEYS = Object.keys(SPOKEN_NUMBER_MAP).sort((a,b)=>b.length-a.length);
+const SPOKEN_KEYS = Object.keys(SPOKEN_NUMBER_MAP).sort((a, b) => b.length - a.length);
 
 // Korean spoken number to digit mapping (for pre-plate-letter positions)
 const KOREAN_NUMBER_WORDS = {
@@ -5939,21 +5939,21 @@ const KOREAN_NUMBER_KEYS = Object.keys(KOREAN_NUMBER_WORDS).sort((a, b) => b.len
 function convertKoreanNumbersBeforePlateLetter(transcript) {
     // Find the position of the plate letter (가나다라마거너더러머버서어저구누두루무부수우주아바사자하허호배)
     const plateLetterMatch = transcript.match(/[가나다라마거너더러머버서어저구누두루무부수우주아바사자하허호배]/);
-    
+
     if (!plateLetterMatch) {
         return transcript; // No plate letter found, return as-is
     }
-    
+
     const plateLetterIndex = transcript.indexOf(plateLetterMatch[0]);
     const beforeLetter = transcript.substring(0, plateLetterIndex);
     const afterLetter = transcript.substring(plateLetterIndex);
-    
+
     // Convert Korean number words to digits in the part before the plate letter
     let converted = beforeLetter;
     for (const word of KOREAN_NUMBER_KEYS) {
         converted = converted.replace(new RegExp(word, 'g'), KOREAN_NUMBER_WORDS[word]);
     }
-    
+
     return converted + afterLetter;
 }
 
@@ -5966,21 +5966,21 @@ function convertKoreanNumbersBeforePlateLetter(transcript) {
 function convertKoreanNumbersAfterPlateLetter(transcript) {
     // Find the position of the plate letter
     const plateLetterMatch = transcript.match(/[가나다라마거너더러머버서어저구누두루무부수우주아바사자하허호배]/);
-    
+
     if (!plateLetterMatch) {
         return transcript;
     }
-    
+
     const plateLetterIndex = transcript.indexOf(plateLetterMatch[0]);
     const beforeAndLetter = transcript.substring(0, plateLetterIndex + 1);
     const afterLetter = transcript.substring(plateLetterIndex + 1);
-    
+
     // Convert Korean number words to digits in the part after the plate letter
     let converted = afterLetter;
     for (const word of KOREAN_NUMBER_KEYS) {
         converted = converted.replace(new RegExp(word, 'g'), KOREAN_NUMBER_WORDS[word]);
     }
-    
+
     return beforeAndLetter + converted;
 }
 
@@ -5988,15 +5988,15 @@ function convertKoreanNumbersAfterPlateLetter(transcript) {
 // → Keep Hangul as-is for ambiguity detection!
 function normalizeSpokenPlate(transcript) {
     transcript = transcript.trim().replace(/\s+/g, '');  // Keep spaces removed only
-    
+
     // Remove dashes only
     transcript = transcript.replace(/-/g, '');
-    
+
     // IMPORTANT: Convert Korean number words (공, 영, 구, etc.) to digits
     // This handles misrecognition like "공구루3363" → "09루3363"
     transcript = convertKoreanNumbersBeforePlateLetter(transcript);
     transcript = convertKoreanNumbersAfterPlateLetter(transcript);
-    
+
     // Critical misrecognition fixes (these are NOT ambiguous — always wrong)
     transcript = transcript
         .replace(/로/g, '루')
@@ -6006,7 +6006,7 @@ function normalizeSpokenPlate(transcript) {
         .replace(/고/g, '거')
         .replace(/노/g, '너')
         .replace(/모/g, '머');
-    
+
     // DO NOT TOUCH 일,이,삼,사,오,육,칠,팔,구 here anymore!
     return transcript; // ← Return raw Hangul version
 }
@@ -6015,7 +6015,7 @@ function normalizeSpokenPlate(transcript) {
 function generateVoiceCandidates(rawTranscript) {
     const raw = normalizeSpokenPlate(rawTranscript);  // ← now contains Hangul preserved
     const candidates = new Set();
-    
+
     // Always try the version with ALL ambiguous Hangul → digits
     let allDigits = raw;
     Object.entries(AMBIGUOUS_HANGUL_TO_DIGIT).forEach(([h, d]) => {
@@ -6023,21 +6023,21 @@ function generateVoiceCandidates(rawTranscript) {
     });
     const allDigitsNorm = Validator.normalizePlate(allDigits);
     if (allDigitsNorm?.plate) candidates.add(allDigitsNorm.plate);
-    
+
     // Always try keeping ALL ambiguous Hangul as letters
     const allHangulNorm = Validator.normalizePlate(raw);
     if (allHangulNorm?.plate) candidates.add(allHangulNorm.plate);
-    
+
     // Generate mixed variants (smart: only up to 3 ambiguities to avoid explosion)
     const positions = [];
     for (let i = 0; i < raw.length; i++) {
         const ch = raw[i];
         if (AMBIGUOUS_HANGUL_TO_DIGIT[ch]) {
-            positions.push({i, hangul: ch, digit: AMBIGUOUS_HANGUL_TO_DIGIT[ch]});
+            positions.push({ i, hangul: ch, digit: AMBIGUOUS_HANGUL_TO_DIGIT[ch] });
             if (positions.length >= 3) break; // limit for performance
         }
     }
-    
+
     const max = 1 << positions.length;
     for (let mask = 0; mask < max; mask++) {
         let variant = raw.split('');
@@ -6048,37 +6048,37 @@ function generateVoiceCandidates(rawTranscript) {
         const norm = Validator.normalizePlate(str);
         if (norm?.plate) candidates.add(norm.plate);
     }
-    
+
     // Final safety filters + smart Hangul fallback
     let list = Array.from(candidates);
-    
+
     // Must have at least one Hangul letter
     list = list.filter(p => /[가-힣]/.test(p));
-    
+
     // No dash allowed
     list = list.filter(p => !p.includes('-'));
-    
+
     // KEY FIX: If pure digits detected (no Hangul), generate candidates with common letter substitutions
     // Common misrecognitions: 5↔오, 4↔사 (these sound similar in Korean)
     if (list.length === 0) {
         const pureDigits = raw.replace(/[^0-9]/g, '');  // Extract only digits
         const cleanRaw = rawTranscript.trim().replace(/\s+/g, '').replace(/-/g, '');
-        
+
         // If input looks like pure digits, try substituting 5→오 and 4→사
         if (/^\d+$/.test(cleanRaw) || /^\d+$/.test(pureDigits)) {
             const digitStr = cleanRaw.replace(/[^0-9]/g, '') || pureDigits;
-            
+
             // Common digit→letter substitutions for Korean plates
-            const DIGIT_TO_HANGUL = {'5': '오', '4': '사', '0': '공'};
-            
+            const DIGIT_TO_HANGUL = { '5': '오', '4': '사', '0': '공' };
+
             // Find positions where substitution makes sense (5, 4, 0)
             const subPositions = [];
             for (let i = 0; i < digitStr.length; i++) {
                 if (DIGIT_TO_HANGUL[digitStr[i]]) {
-                    subPositions.push({i, digit: digitStr[i], hangul: DIGIT_TO_HANGUL[digitStr[i]]});
+                    subPositions.push({ i, digit: digitStr[i], hangul: DIGIT_TO_HANGUL[digitStr[i]] });
                 }
             }
-            
+
             // Generate variants with letter substitutions (limit to first 3 for performance)
             const limitedPos = subPositions.slice(0, 3);
             const maxSub = 1 << limitedPos.length;
@@ -6096,7 +6096,7 @@ function generateVoiceCandidates(rawTranscript) {
                 }
             }
         }
-        
+
         // If still no candidates, try original raw with misrecognition fixes
         if (list.length === 0) {
             const fallbackRaw = rawTranscript.trim().replace(/\s+/g, '')
@@ -6108,7 +6108,7 @@ function generateVoiceCandidates(rawTranscript) {
                 .replace(/고/g, '거')
                 .replace(/노/g, '너')
                 .replace(/모/g, '머');
-            
+
             const fallbackNorm = Validator.normalizePlate(fallbackRaw);
             if (fallbackNorm?.plate && /[가-힣]/.test(fallbackNorm.plate)) {
                 list = [fallbackNorm.plate];
@@ -6118,10 +6118,10 @@ function generateVoiceCandidates(rawTranscript) {
             }
         }
     }
-    
+
     // Dedupe and limit
     list = [...new Set(list)].slice(0, 5);
-    
+
     return list;
 }
 
@@ -6129,12 +6129,12 @@ function generateVoiceCandidates(rawTranscript) {
 const VoiceInput = {
     recognition: null,
     activeInput: null,
-    
+
     init() {
         document.getElementById('heroMicBtn')?.addEventListener('click', () => this.open(document.getElementById('plateInput')));
         document.getElementById('navbarMicBtn')?.addEventListener('click', () => this.open(document.getElementById('plateInput')));
     },
-    
+
     open(input) {
         this.activeInput = input;
         const modal = document.getElementById('voiceInputModal');
@@ -6145,26 +6145,26 @@ const VoiceInput = {
         document.getElementById('voiceListeningText').style.display = 'none';
         setTimeout(() => this.startRecognition(), 600);
     },
-    
+
     close() {
         const modal = document.getElementById('voiceInputModal');
         modal.classList.remove('active');
         if (this.recognition) this.recognition.stop();
     },
-    
+
     startRecognition() {
         const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!Recognition) return alert('브라우저가 음성 인식을 지원하지 않습니다');
-        
+
         this.recognition = new Recognition();
         this.recognition.lang = 'ko-KR';
         this.recognition.continuous = false;
         this.recognition.interimResults = true;
-        
+
         // Keep guide text visible, just show listening status below it
         document.getElementById('voiceGuideText').style.display = 'block';
         document.getElementById('voiceListeningText').style.display = 'block';
-        
+
         let transcript = '';
         this.recognition.onresult = e => {
             transcript = Array.from(e.results)
@@ -6172,23 +6172,23 @@ const VoiceInput = {
                 .map(r => r[0].transcript)
                 .join('');
         };
-        
+
         this.recognition.onend = () => {
             if (!transcript) return alert('음성이 감지되지 않았습니다'), this.close();
             const candidates = generateVoiceCandidates(transcript);
             this.showCandidates(candidates);
         };
-        
+
         this.recognition.onerror = () => this.close();
         this.recognition.start();
     },
-    
+
     showCandidates(candidates) {
         document.getElementById('voiceStep1').style.display = 'none';
         document.getElementById('voiceStep2').style.display = 'block';
         const container = document.getElementById('voiceCandidates');
         container.textContent = '';
-        
+
         candidates.forEach((plate, i) => {
             const el = document.createElement('div');
             el.className = 'voice-candidate';  // ← Removed ' best' entirely
@@ -6197,7 +6197,7 @@ const VoiceInput = {
             container.appendChild(el);
         });
     },
-    
+
     /**
      * Select a candidate and fill input
      * @param {string} plate - Selected plate number
@@ -6207,20 +6207,20 @@ const VoiceInput = {
             console.error('No active input element');
             return;
         }
-        
+
         // console.log('Selected candidate:', plate);
-        
+
         // Fill input with selected plate
         this.activeInput.value = plate;
-        
+
         // Trigger input event for validation
         const inputEvent = new Event('input', { bubbles: true });
         this.activeInput.dispatchEvent(inputEvent);
-        
+
         // Close modal
         this.close();
     },
-    
+
     /**
      * Restart voice recognition (go back to step 1)
      */
@@ -6229,26 +6229,26 @@ const VoiceInput = {
         const step2 = document.getElementById('voiceStep2');
         const guideText = document.getElementById('voiceGuideText');
         const listeningText = document.getElementById('voiceListeningText');
-        
+
         if (!step1 || !step2) {
             console.error('Voice step elements not found');
             return;
         }
-        
+
         // Reset to step 1
         step1.style.display = 'block';
         step2.style.display = 'none';
-        
+
         // Reset guide and listening text
         if (guideText) guideText.style.display = 'block';
         if (listeningText) listeningText.style.display = 'none';
-        
+
         // Clear candidates
         this.candidates = [];
-        
+
         // Restart recognition
         setTimeout(() => this.startRecognition(), 600);
-        
+
         // console.log('Voice recognition restarted');
     }
 };
@@ -6293,21 +6293,21 @@ const UpdateChecker = {
         try {
             // Add checking animation
             updateBtn.classList.add('checking');
-            
+
             // Clear all caches
             await this.clearAllCaches();
-            
+
             // Unregister service worker if exists
             await this.unregisterServiceWorker();
-            
+
             // Show success message
             this.showUpdateMessage('업데이트 완료! 페이지를 새로고침합니다...');
-            
+
             // Reload page after short delay
             setTimeout(() => {
                 window.location.reload(true);
             }, 1000);
-            
+
         } catch (error) {
             console.error('Update check failed:', error);
             updateBtn.classList.remove('checking');
@@ -6377,7 +6377,7 @@ const UpdateChecker = {
             animation: slideIn 0.3s ease;
         `;
         notification.textContent = message;
-        
+
         // Add animation
         const style = document.createElement('style');
         style.textContent = `
@@ -6393,9 +6393,9 @@ const UpdateChecker = {
             }
         `;
         document.head.appendChild(style);
-        
+
         document.body.appendChild(notification);
-        
+
         // Remove after 3 seconds
         setTimeout(() => {
             notification.style.animation = 'slideIn 0.3s ease reverse';
@@ -6412,3 +6412,87 @@ if (document.readyState === 'loading') {
 } else {
     UpdateChecker.init();
 }
+
+// ============================================================================
+// Global Navbar Logic (Unified)
+// ============================================================================
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Mobile Menu Toggle
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent click from bubbling to document
+            const isExpanded = navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', isExpanded);
+            navToggle.setAttribute('aria-label', isExpanded ? '메뉴 닫기' : '메뉴 열기');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (navMenu.classList.contains('active') &&
+                !navMenu.contains(e.target) &&
+                !navToggle.contains(e.target)) {
+
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close menu when a link is clicked
+        const navLinks = navMenu.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
+    // 2. Navbar Scroll Effect (for Transparent Navbar)
+    // Only applies if the navbar has 'navbar-transparent' class (like on index.html)
+    const navbar = document.getElementById('mainNavbar');
+    if (navbar && navbar.classList.contains('navbar-transparent')) {
+        const handleScroll = () => {
+            // Check multiple sources for scroll position to be safe
+            const scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+
+            if (scrollTop > 10) { // Lower threshold further
+                if (!navbar.classList.contains('scrolled')) {
+                    navbar.classList.add('scrolled');
+                }
+            } else {
+                if (navbar.classList.contains('scrolled')) {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+        };
+
+        // Add listener to window and body to catch all possible scroll events
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        document.body.addEventListener('scroll', handleScroll, { passive: true });
+
+        // Initial check
+        handleScroll();
+
+        // Backup: Polling to ensure state is correct even if events are missed
+        // This addresses potential issues with 'overflow' containers eating scroll events
+        setInterval(handleScroll, 200);
+    }
+
+    // 3. Logo Scroll to Top
+    const navLogo = document.querySelector('.nav-logo');
+    if (navLogo && (window.location.pathname === '/' || window.location.pathname.endsWith('index.html'))) {
+        navLogo.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
+});

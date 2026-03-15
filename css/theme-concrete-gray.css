@@ -1,0 +1,178 @@
+/* ========================================
+   SAFE DRIVE - 콘크리트 그레이 테마
+   Concrete Gray Theme
+   Primary: #6B6B6B | Secondary: #9E9E9E
+   ======================================== */
+
+:root {
+    --theme-primary: #6B6B6B;
+    --theme-secondary: #9E9E9E;
+    --theme-accent: #FFFFFF;
+    --theme-highlight: #FFD700;
+    --theme-dark: #424242;
+    --theme-light: #F5F5F5;
+    --theme-gradient: linear-gradient(135deg, #6B6B6B 0%, #9E9E9E 100%);
+    --theme-gradient-reverse: linear-gradient(135deg, #9E9E9E 0%, #6B6B6B 100%);
+}
+
+/* Hero Section */
+.video-overlay {
+    background: linear-gradient(135deg, rgba(66, 66, 66, 0.85) 0%, rgba(107, 107, 107, 0.6) 100%) !important;
+}
+
+.hero .stat-value {
+    color: var(--theme-highlight) !important;
+}
+
+.search-button {
+    background: var(--theme-gradient) !important;
+}
+
+.search-button:hover {
+    background: var(--theme-gradient-reverse) !important;
+}
+
+/* Navbar scrolled state */
+#mainNavbar.scrolled .nav-link:hover {
+    color: var(--theme-primary) !important;
+}
+
+/* Journey Section */
+.journey-section {
+    background: var(--theme-gradient) !important;
+}
+
+.step-number {
+    color: var(--theme-primary) !important;
+}
+
+
+/* Road Stress Section */
+.road-stress-section {
+    background: linear-gradient(180deg, #424242 0%, #6B6B6B 100%) !important;
+}
+
+.stress-comment-box {
+    background: rgba(158, 158, 158, 0.2) !important;
+    border-color: rgba(158, 158, 158, 0.4) !important;
+}
+
+.stress-stat-value {
+    color: var(--theme-highlight) !important;
+}
+
+.stress-emotion-btn:hover {
+    box-shadow: 0 10px 30px rgba(158, 158, 158, 0.5) !important;
+}
+
+/* Quiz Section */
+.quiz-section {
+    background: var(--theme-gradient) !important;
+}
+
+.quiz-card::before {
+    background: linear-gradient(90deg, #6B6B6B 0%, #9E9E9E 100%) !important;
+}
+
+.quiz-card-badge {
+    background: var(--theme-gradient) !important;
+}
+
+.quiz-card-cta {
+    background: var(--theme-gradient) !important;
+    box-shadow: 0 4px 15px rgba(107, 107, 107, 0.4) !important;
+}
+
+.quiz-card-cta:hover {
+    box-shadow: 0 8px 25px rgba(107, 107, 107, 0.5) !important;
+}
+
+/* QR Generator Section */
+.qr-intro-badge {
+    background: var(--theme-gradient) !important;
+}
+
+.qr-step-num {
+    background: var(--theme-gradient) !important;
+}
+
+.qr-step-arrow {
+    color: var(--theme-primary) !important;
+}
+
+.qr-intro-cta {
+    background: var(--theme-gradient) !important;
+    box-shadow: 0 8px 24px rgba(107, 107, 107, 0.3) !important;
+}
+
+.qr-intro-cta:hover {
+    box-shadow: 0 12px 36px rgba(107, 107, 107, 0.4) !important;
+}
+
+.qr-intro-notice {
+    border-left-color: var(--theme-primary) !important;
+}
+
+.qr-mockup-text {
+    color: var(--theme-primary) !important;
+}
+
+/* Footer */
+.site-footer {
+    background: var(--theme-gradient) !important;
+}
+
+/* Leaderboard Tabs */
+#rankings .tabs .tab.active {
+    background-color: var(--theme-primary) !important;
+    border-color: var(--theme-primary) !important;
+}
+
+/* Road line animation - yellow guardrail accent */
+.road-line {
+    background: var(--theme-highlight) !important;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+    width: 6px !important;
+}
+
+/* Decorative concrete texture overlay */
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, 
+        var(--theme-highlight) 0%, 
+        var(--theme-highlight) 3px, 
+        transparent 3px, 
+        transparent 6px,
+        var(--theme-highlight) 6px
+    );
+    background-size: 12px 100%;
+    z-index: 5;
+}
+
+/* Lane Types Section */
+#lane-types {
+    background: linear-gradient(135deg, #6B6B6B 0%, #424242 100%) !important;
+}
+
+/* Concrete texture effect on sections */
+.journey-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+}
+
+.journey-section > * {
+    position: relative;
+    z-index: 1;
+}

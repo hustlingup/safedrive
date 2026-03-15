@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAFE DRIVE - 도로 테마 색상 팔레트</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: #2d2d2d;
+            padding: 40px 20px;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { text-align: center; margin-bottom: 10px; color: #fff; font-size: 32px; }
+        .subtitle { text-align: center; color: #888; margin-bottom: 40px; }
+        .palette-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 30px; }
+        .palette-card { background: #1a1a1a; border-radius: 16px; overflow: hidden; border: 1px solid #333; }
+        .palette-header { padding: 30px; color: white; text-align: center; position: relative; overflow: hidden; }
+        .palette-header h2 { font-size: 22px; margin-bottom: 8px; position: relative; z-index: 2; }
+        .palette-header p { opacity: 0.9; font-size: 13px; position: relative; z-index: 2; }
+        .color-swatches { display: flex; height: 50px; }
+        .swatch { flex: 1; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; }
+        .palette-body { padding: 25px; background: #222; }
+        .sample-button { display: block; width: 100%; padding: 16px; border: none; border-radius: 8px; color: white; font-size: 16px; font-weight: 700; cursor: pointer; margin-bottom: 20px; transition: transform 0.2s; }
+        .sample-button:hover { transform: scale(1.02); }
+        .design-elements { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        .design-el { padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+        .sample-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+        .stat-box { padding: 15px; border-radius: 8px; text-align: center; }
+        .stat-box .value { font-size: 24px; font-weight: 900; }
+        .stat-box .label { font-size: 11px; opacity: 0.8; margin-top: 4px; }
+        .css-code { background: #111; padding: 15px; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 11px; color: #0f0; overflow-x: auto; white-space: pre-wrap; }
+        .road-pattern { position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.3; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🛣️ SAFE DRIVE 도로 테마 색상</h1>
+    <p class="subtitle">아스팔트, 차선, 도로 표지판에서 영감을 받은 색상 조합</p>
+    <div class="palette-grid" id="grid"></div>
+</div>
+</body>
+</html>
+
+<script>
+const roadPalettes = [
+    {
+        name: "아스팔트 & 화이트 라인",
+        description: "깔끔한 흰색 차선과 아스팔트의 조합",
+        primary: "#2D2D2D",
+        secondary: "#FFFFFF",
+        gradient: "linear-gradient(135deg, #2D2D2D 0%, #4A4A4A 100%)",
+        accent: "#F5F5F5",
+        highlight: "#FFD700",
+        dark: "#1A1A1A",
+        light: "#E8E8E8",
+        elements: ["흰색 실선", "점선 차선", "정지선"],
+        pattern: "dashed",
+        patternColor: "#fff"
+    },
+    {
+        name: "오렌지 공사 구간",
+        description: "공사 구간의 주황색 차선과 표지판",
+        primary: "#FF6B00",
+        secondary: "#FFB347",
+        gradient: "linear-gradient(135deg, #FF6B00 0%, #FFB347 100%)",
+        accent: "#2D2D2D",
+        highlight: "#FFFFFF",
+        dark: "#CC5500",
+        light: "#FFE4C4",
+        elements: ["주황 점선", "공사 표지판", "우회 안내"],
+        pattern: "solid",
+        patternColor: "#FF6B00"
+    },
+    {
+        name: "고속도로 그린 사인",
+        description: "고속도로 안내 표지판의 녹색",
+        primary: "#006B3F",
+        secondary: "#00A86B",
+        gradient: "linear-gradient(135deg, #006B3F 0%, #00A86B 100%)",
+        accent: "#FFFFFF",
+        highlight: "#FFD700",
+        dark: "#004D2C",
+        light: "#E8F5E9",
+        elements: ["방향 표지판", "출구 안내", "거리 표시"],
+        pattern: "solid",
+        patternColor: "#006B3F"
+    },
+    {
+        name: "정지 신호 레드",
+        description: "정지 표지판과 신호등의 빨간색",
+        primary: "#C41E3A",
+        secondary: "#FF4444",
+        gradient: "linear-gradient(135deg, #C41E3A 0%, #FF4444 100%)",
+        accent: "#FFFFFF",
+        highlight: "#2D2D2D",
+        dark: "#8B0000",
+        light: "#FFE4E1",
+        elements: ["정지 표지판", "빨간 신호", "금지 표시"],
+        pattern: "solid",
+        patternColor: "#C41E3A"
+    },
+    {
+        name: "콘크리트 그레이",
+        description: "콘크리트 도로와 가드레일의 회색",
+        primary: "#6B6B6B",
+        secondary: "#9E9E9E",
+        gradient: "linear-gradient(135deg, #6B6B6B 0%, #9E9E9E 100%)",
+        accent: "#FFFFFF",
+        highlight: "#FFD700",
+        dark: "#424242",
+        light: "#F5F5F5",
+        elements: ["콘크리트 도로", "가드레일", "중앙분리대"],
+        pattern: "double",
+        patternColor: "#FFD700"
+    },
+    {
+        name: "노란 중앙선",
+        description: "중앙선과 주의 표지판의 노란색",
+        primary: "#FFD700",
+        secondary: "#FFC107",
+        gradient: "linear-gradient(135deg, #FFD700 0%, #FFC107 100%)",
+        accent: "#2D2D2D",
+        highlight: "#FFFFFF",
+        dark: "#B8860B",
+        light: "#FFFDE7",
+        elements: ["중앙선", "주의 표지판", "속도 제한"],
+        pattern: "double",
+        patternColor: "#FFD700"
+    }
+];
+</script>
+
+<script>
+const roadPalettes2 = [
+    {
+        name: "야간 도로 블루",
+        description: "야간 도로 조명과 반사판의 파란색",
+        primary: "#1565C0",
+        secondary: "#42A5F5",
+        gradient: "linear-gradient(135deg, #1565C0 0%, #42A5F5 100%)",
+        accent: "#FFFFFF",
+        highlight: "#FFD700",
+        dark: "#0D47A1",
+        light: "#E3F2FD",
+        elements: ["안내 표지판", "반사판", "야간 조명"],
+        pattern: "dashed",
+        patternColor: "#42A5F5"
+    },
+    {
+        name: "우회 & 공사 오렌지",
+        description: "우회로 안내와 공사 구간 색상",
+        primary: "#E65100",
+        secondary: "#FF9800",
+        gradient: "linear-gradient(135deg, #E65100 0%, #FF9800 100%)",
+        accent: "#000000",
+        highlight: "#FFFFFF",
+        dark: "#BF360C",
+        light: "#FFF3E0",
+        elements: ["우회 표지판", "공사 콘", "임시 차선"],
+        pattern: "striped",
+        patternColor: "#FF9800"
+    },
+    {
+        name: "터널 다크",
+        description: "터널 내부의 어두운 분위기",
+        primary: "#1A1A1A",
+        secondary: "#37474F",
+        gradient: "linear-gradient(135deg, #1A1A1A 0%, #37474F 100%)",
+        accent: "#FF9800",
+        highlight: "#FFFFFF",
+        dark: "#000000",
+        light: "#ECEFF1",
+        elements: ["터널 조명", "비상등", "반사 테이프"],
+        pattern: "dashed",
+        patternColor: "#FF9800"
+    },
+    {
+        name: "신호등 그린",
+        description: "진행 신호와 안전 표시의 녹색",
+        primary: "#2E7D32",
+        secondary: "#4CAF50",
+        gradient: "linear-gradient(135deg, #2E7D32 0%, #4CAF50 100%)",
+        accent: "#FFFFFF",
+        highlight: "#FFD700",
+        dark: "#1B5E20",
+        light: "#E8F5E9",
+        elements: ["진행 신호", "안전 구역", "보행자 신호"],
+        pattern: "solid",
+        patternColor: "#4CAF50"
+    },
+    {
+        name: "아스팔트 & 옐로우",
+        description: "아스팔트와 노란 차선의 클래식 조합",
+        primary: "#3D3D3D",
+        secondary: "#FFC107",
+        gradient: "linear-gradient(135deg, #3D3D3D 0%, #5D5D5D 50%, #FFC107 100%)",
+        accent: "#FFFFFF",
+        highlight: "#FFC107",
+        dark: "#1A1A1A",
+        light: "#FFF8E1",
+        elements: ["노란 점선", "중앙선", "횡단보도"],
+        pattern: "dashed",
+        patternColor: "#FFC107"
+    },
+    {
+        name: "하이웨이 블루그린",
+        description: "고속도로 표지판의 청록색 조합",
+        primary: "#00695C",
+        secondary: "#26A69A",
+        gradient: "linear-gradient(135deg, #00695C 0%, #26A69A 100%)",
+        accent: "#FFFFFF",
+        highlight: "#FFD700",
+        dark: "#004D40",
+        light: "#E0F2F1",
+        elements: ["IC 안내", "휴게소 표지", "거리 안내"],
+        pattern: "solid",
+        patternColor: "#26A69A"
+    }
+];
+roadPalettes.push(...roadPalettes2);
+</script>
+
+<script>
+function createRoadPattern(type, color) {
+    if (type === 'dashed') {
+        return `<svg width="100%" height="100%" style="position:absolute;top:0;left:0;">
+            <defs><pattern id="dash-${color.replace('#','')}" patternUnits="userSpaceOnUse" width="40" height="100%">
+                <rect x="18" y="0" width="4" height="20" fill="${color}" opacity="0.4"/>
+                <rect x="18" y="30" width="4" height="20" fill="${color}" opacity="0.4"/>
+                <rect x="18" y="60" width="4" height="20" fill="${color}" opacity="0.4"/>
+                <rect x="18" y="90" width="4" height="20" fill="${color}" opacity="0.4"/>
+            </pattern></defs>
+            <rect width="100%" height="100%" fill="url(#dash-${color.replace('#','')})"/>
+        </svg>`;
+    } else if (type === 'double') {
+        return `<svg width="100%" height="100%" style="position:absolute;top:0;left:0;">
+            <line x1="45%" y1="0" x2="45%" y2="100%" stroke="${color}" stroke-width="3" opacity="0.5"/>
+            <line x1="55%" y1="0" x2="55%" y2="100%" stroke="${color}" stroke-width="3" opacity="0.5"/>
+        </svg>`;
+    } else if (type === 'striped') {
+        return `<svg width="100%" height="100%" style="position:absolute;top:0;left:0;">
+            <defs><pattern id="stripe-${color.replace('#','')}" patternUnits="userSpaceOnUse" width="20" height="20" patternTransform="rotate(45)">
+                <rect width="10" height="20" fill="${color}" opacity="0.3"/>
+            </pattern></defs>
+            <rect width="100%" height="100%" fill="url(#stripe-${color.replace('#','')})"/>
+        </svg>`;
+    }
+    return `<svg width="100%" height="100%" style="position:absolute;top:0;left:0;">
+        <line x1="50%" y1="0" x2="50%" y2="100%" stroke="${color}" stroke-width="4" opacity="0.5"/>
+    </svg>`;
+}
+
+const grid = document.getElementById('grid');
+roadPalettes.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'palette-card';
+    const textColor = ['노란 중앙선', '아스팔트 & 옐로우'].includes(p.name) ? '#2D2D2D' : '#FFFFFF';
+    card.innerHTML = `
+        <div class="palette-header" style="background: ${p.gradient}; min-height: 140px;">
+            ${createRoadPattern(p.pattern, p.patternColor)}
+            <h2 style="color: ${textColor}">${p.name}</h2>
+            <p style="color: ${textColor}">${p.description}</p>
+        </div>
+        <div class="color-swatches">
+            <div class="swatch" style="background: ${p.dark}; color: #fff;">${p.dark}</div>
+            <div class="swatch" style="background: ${p.primary}; color: #fff;">${p.primary}</div>
+            <div class="swatch" style="background: ${p.secondary}; color: ${p.name.includes('노란') ? '#333' : '#fff'};">${p.secondary}</div>
+            <div class="swatch" style="background: ${p.accent}; color: ${p.accent === '#FFFFFF' ? '#333' : '#fff'};">${p.accent}</div>
+            <div class="swatch" style="background: ${p.light}; color: #333;">${p.light}</div>
+        </div>
+        <div class="palette-body">
+            <button class="sample-button" style="background: ${p.gradient}; color: ${textColor};">🚗 차량 검색하기</button>
+            <div class="design-elements">
+                ${p.elements.map(el => `<span class="design-el" style="background: ${p.light}; color: ${p.dark};">${el}</span>`).join('')}
+            </div>
+            <div class="sample-stats">
+                <div class="stat-box" style="background: ${p.primary}; color: ${textColor};">
+                    <div class="value">12,345</div>
+                    <div class="label">총 조회수</div>
+                </div>
+                <div class="stat-box" style="background: ${p.secondary}; color: ${textColor};">
+                    <div class="value">567</div>
+                    <div class="label">오늘 등록</div>
+                </div>
+            </div>
+            <div class="css-code">/* ${p.name} */
+--primary: ${p.primary};
+--secondary: ${p.secondary};
+--gradient: ${p.gradient};
+--accent: ${p.accent};
+
+/* 교체: #667eea → ${p.primary} */
+/* 교체: #764ba2 → ${p.secondary} */</div>
+        </div>
+    `;
+    grid.appendChild(card);
+});
+</script>

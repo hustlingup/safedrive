@@ -22,39 +22,40 @@
         ".write": false,
         "counters": {
           "$counterKey": {
-            ".write": false,
-            ".validate": "newData.isNumber() && newData.val() >= 0"
+            ".write": true,
+            ".validate": "newData.isNumber() && newData.val() >= 0 && ((!data.exists() && newData.val() == 1) || (data.exists() && newData.val() == data.val() + 1))"
           }
         },
         "daily": {
           "$date": {
             "$counterKey": {
-              ".write": false,
-              ".validate": "newData.isNumber() && newData.val() >= 0"
+              ".write": true,
+              ".validate": "newData.isNumber() && newData.val() >= 0 && ((!data.exists() && newData.val() == 1) || (data.exists() && newData.val() == data.val() + 1))"
             }
           }
         },
         "monthly": {
           "$month": {
             "$counterKey": {
-              ".write": false,
-              ".validate": "newData.isNumber() && newData.val() >= 0"
+              ".write": true,
+              ".validate": "newData.isNumber() && newData.val() >= 0 && ((!data.exists() && newData.val() == 1) || (data.exists() && newData.val() == data.val() + 1))"
             }
           }
         },
         "monthlyIncrements": {
           "$counterKey": {
             "$date": {
-              ".write": false
+              ".write": true,
+              ".validate": "newData.isBoolean() && newData.val() == true"
             }
           }
         },
         "lastUpdated": {
-          ".write": false,
+          ".write": true,
           ".validate": "newData.isNumber()"
         },
         "views": {
-          ".write": false,
+          ".write": true,
           ".validate": "newData.isNumber() && newData.val() >= 0"
         }
       }
@@ -109,39 +110,43 @@
       ".write": false,
       "allTime": {
         "$counterKey": {
-          ".write": false,
+          ".write": true,
+          ".validate": "newData.isNumber() && newData.val() >= 0"
+        },
+        "totalViews": {
+          ".write": true,
           ".validate": "newData.isNumber() && newData.val() >= 0"
         }
       },
       "daily": {
         "$date": {
           "$counterKey": {
-            ".write": false,
-            ".validate": "newData.isNumber() && newData.val() >= 0"
+            ".write": true,
+            ".validate": "newData.isNumber() && newData.val() >= 0 && ((!data.exists() && newData.val() == 1) || (data.exists() && newData.val() == data.val() + 1))"
           }
         }
       },
       "weekly": {
         "$week": {
           "$counterKey": {
-            ".write": false,
-            ".validate": "newData.isNumber() && newData.val() >= 0"
+            ".write": true,
+            ".validate": "newData.isNumber() && newData.val() >= 0 && ((!data.exists() && newData.val() == 1) || (data.exists() && newData.val() == data.val() + 1))"
           }
         }
       },
       "monthly": {
         "$month": {
           "$counterKey": {
-            ".write": false,
-            ".validate": "newData.isNumber() && newData.val() >= 0"
+            ".write": true,
+            ".validate": "newData.isNumber() && newData.val() >= 0 && ((!data.exists() && newData.val() == 1) || (data.exists() && newData.val() == data.val() + 1))"
           }
         }
       },
       "yearly": {
         "$year": {
           "$counterKey": {
-            ".write": false,
-            ".validate": "newData.isNumber() && newData.val() >= 0"
+            ".write": true,
+            ".validate": "newData.isNumber() && newData.val() >= 0 && ((!data.exists() && newData.val() == 1) || (data.exists() && newData.val() == data.val() + 1))"
           }
         }
       }

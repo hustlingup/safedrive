@@ -1,0 +1,158 @@
+/* ========================================
+   SAFE DRIVE - 아스팔트 & 화이트 라인 테마
+   Asphalt & White Line Theme
+   Primary: #2D2D2D | Secondary: #FFFFFF
+   ======================================== */
+
+:root {
+    --theme-primary: #2D2D2D;
+    --theme-secondary: #FFFFFF;
+    --theme-accent: #F5F5F5;
+    --theme-highlight: #FFD700;
+    --theme-dark: #1A1A1A;
+    --theme-light: #E8E8E8;
+    --theme-gradient: linear-gradient(135deg, #2D2D2D 0%, #4A4A4A 100%);
+    --theme-gradient-reverse: linear-gradient(135deg, #4A4A4A 0%, #2D2D2D 100%);
+}
+
+/* Hero Section */
+.video-overlay {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(45, 45, 45, 0.6) 100%) !important;
+}
+
+.hero .stat-value {
+    color: var(--theme-secondary) !important;
+}
+
+.search-button {
+    background: var(--theme-gradient) !important;
+}
+
+.search-button:hover {
+    background: var(--theme-gradient-reverse) !important;
+}
+
+/* Navbar scrolled state */
+#mainNavbar.scrolled .nav-link:hover {
+    color: var(--theme-primary) !important;
+}
+
+/* Journey Section */
+.journey-section {
+    background: var(--theme-gradient) !important;
+}
+
+.step-number {
+    color: var(--theme-primary) !important;
+}
+
+
+/* Road Stress Section */
+.road-stress-section {
+    background: linear-gradient(180deg, #1A1A1A 0%, #3D3D3D 100%) !important;
+}
+
+.stress-comment-box {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+.stress-stat-value {
+    color: var(--theme-secondary) !important;
+}
+
+.stress-emotion-btn:hover {
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Quiz Section */
+.quiz-section {
+    background: var(--theme-gradient) !important;
+}
+
+.quiz-card::before {
+    background: linear-gradient(90deg, #2D2D2D 0%, #4A4A4A 100%) !important;
+}
+
+.quiz-card-badge {
+    background: var(--theme-gradient) !important;
+}
+
+.quiz-card-cta {
+    background: var(--theme-gradient) !important;
+    box-shadow: 0 4px 15px rgba(45, 45, 45, 0.4) !important;
+}
+
+.quiz-card-cta:hover {
+    box-shadow: 0 8px 25px rgba(45, 45, 45, 0.5) !important;
+}
+
+/* QR Generator Section */
+.qr-intro-badge {
+    background: var(--theme-gradient) !important;
+}
+
+.qr-step-num {
+    background: var(--theme-gradient) !important;
+}
+
+.qr-step-arrow {
+    color: var(--theme-primary) !important;
+}
+
+.qr-intro-cta {
+    background: var(--theme-gradient) !important;
+    box-shadow: 0 8px 24px rgba(45, 45, 45, 0.3) !important;
+}
+
+.qr-intro-cta:hover {
+    box-shadow: 0 12px 36px rgba(45, 45, 45, 0.4) !important;
+}
+
+.qr-intro-notice {
+    border-left-color: var(--theme-primary) !important;
+}
+
+.qr-mockup-text {
+    color: var(--theme-primary) !important;
+}
+
+/* Footer */
+.site-footer {
+    background: var(--theme-gradient) !important;
+}
+
+/* Leaderboard Tabs */
+#rankings .tabs .tab.active {
+    background-color: var(--theme-primary) !important;
+    border-color: var(--theme-primary) !important;
+}
+
+/* Road line animation - white dashed lines */
+.road-line {
+    background: var(--theme-secondary) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Decorative road pattern overlay */
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: repeating-linear-gradient(
+        90deg,
+        var(--theme-secondary) 0px,
+        var(--theme-secondary) 40px,
+        transparent 40px,
+        transparent 80px
+    );
+    z-index: 5;
+}
+
+/* Lane Types Section */
+#lane-types {
+    background: linear-gradient(135deg, #2D2D2D 0%, #1A1A1A 100%) !important;
+}

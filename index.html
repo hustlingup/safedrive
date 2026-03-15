@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TRTW3S54');</script>
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-TRTW3S54');</script>
     <!-- End Google Tag Manager -->
     <!-- Google tag (gtag.js) - with Cookie Consent -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-9R8RZYZC7X"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      
-      // Default consent to denied (will be updated by cookie consent manager)
-      gtag('consent', 'default', {
-        'analytics_storage': 'denied',
-        'ad_storage': 'denied',
-        'ad_user_data': 'denied',
-        'ad_personalization': 'denied'
-      });
-      
-      gtag('config', 'G-9R8RZYZC7X');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        // Default consent to denied (will be updated by cookie consent manager)
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied'
+        });
+
+        gtag('config', 'G-9R8RZYZC7X');
     </script>
     <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6791974364232767" crossorigin="anonymous"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6791974364232767"
+        crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SAFE DRIVE - 익명으로 차량 안전을 공유하세요. 실시간 차량 안전 정보, 케어 인덱스, 지정차로 안내를 확인하세요.">
     <meta name="keywords" content="세이프드라이브, 차량안전, 번호판조회, 케어인덱스, 지정차로, 도로안전, 익명공유">
     <meta name="author" content="SAFE DRIVE">
     <title>SAFE DRIVE - 익명 차량 안전 공유</title>
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://safedrive.kr/">
@@ -42,39 +47,39 @@
     <meta property="og:image" content="https://safedrive.kr/assets/img/safedrive_thumbnail.webp">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    
+
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://safedrive.kr/">
     <meta name="twitter:title" content="SAFE DRIVE - 익명 차량 안전 공유">
     <meta name="twitter:description" content="익명으로 차량 안전을 공유하세요. 실시간 차량 안전 정보, 케어 인덱스, 지정차로 안내를 확인하세요.">
     <meta name="twitter:image" content="https://safedrive.kr/assets/img/safedrive_thumbnail.webp">
-    
+
     <!-- Additional SEO -->
     <meta name="robots" content="index, follow">
     <meta name="language" content="Korean">
     <link rel="canonical" href="https://safedrive.kr/">
-    
+
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48x48.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
-    
+
     <!-- DNS Prefetch for performance -->
     <link rel="dns-prefetch" href="https://www.gstatic.com">
     <link rel="dns-prefetch" href="https://firebasestorage.googleapis.com">
     <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
-    
+
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- Full Screen Scroll Lock Styles -->
     <style>
         html {
             scroll-behavior: smooth;
         }
-        
+
         body {
             margin: 0;
             background: white;
@@ -82,14 +87,14 @@
             overflow-x: hidden;
             overflow-y: auto;
         }
-        
+
         .container {
             padding: 0 !important;
             margin: 0 !important;
             max-width: 100% !important;
             min-height: 100%;
         }
-        
+
         /* Content wrapper to constrain width on wide screens */
         .content-wrapper {
             max-width: 480px;
@@ -97,70 +102,35 @@
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         .full-screen-section {
             padding: 80px 0;
             margin: 0;
         }
-        
+
         /* Add top spacing for content */
         .full-screen-section .content-wrapper {
             padding-top: 20px;
             padding-bottom: 40px;
         }
-        
+
         .site-footer {
             position: relative;
             width: 100%;
             z-index: 999;
         }
 
-        /* Index.html specific navbar styles */
-        #mainNavbar {
-            background: transparent;
-            transition: background 0.3s ease, box-shadow 0.3s ease;
-        }
 
-        #mainNavbar .nav-container {
-            background: transparent;
-        }
-
-        #mainNavbar .nav-link {
-            color: white;
-        }
-
-        #mainNavbar .hamburger-line {
-            background: white;
-        }
-
-        /* Scrolled state - white background with gray text */
-        #mainNavbar.scrolled {
-            background: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        #mainNavbar.scrolled .nav-link {
-            color: #666;
-        }
-
-        #mainNavbar.scrolled .nav-link:hover {
-            color: #667eea;
-        }
-
-        #mainNavbar.scrolled .hamburger-line {
-            background: #333;
-        }
-        
         .hero.full-screen-section {
             background-color: white;
             padding-top: 100px;
         }
-        
+
         .hero.full-screen-section .content-wrapper {
             padding-top: 20px;
             padding-bottom: 40px;
         }
-        
+
         /* New Hero Styles */
         .hero {
             min-height: 100vh;
@@ -170,7 +140,7 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .video-background {
             position: absolute;
             top: 0;
@@ -179,16 +149,16 @@
             height: 100%;
             overflow: hidden;
         }
-        
+
         .video-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(102, 126, 234, 0.5) 100%);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(55, 71, 79, 0.5) 100%);
         }
-        
+
         .animated-road {
             position: absolute;
             width: 100%;
@@ -196,7 +166,7 @@
             background: #1a1a1a;
             overflow: hidden;
         }
-        
+
         .road-line {
             position: absolute;
             width: 10px;
@@ -206,24 +176,27 @@
             transform: translateX(-50%);
             animation: roadMove 2s linear infinite;
         }
-        
+
         @keyframes roadMove {
             0% {
                 top: -200px;
                 opacity: 0;
             }
+
             10% {
                 opacity: 1;
             }
+
             90% {
                 opacity: 1;
             }
+
             100% {
                 top: calc(100vh + 100px);
                 opacity: 0;
             }
         }
-        
+
         .hero-content {
             position: relative;
             z-index: 10;
@@ -232,7 +205,7 @@
             max-width: 900px;
             color: white;
         }
-        
+
         .hero-badge {
             display: inline-flex;
             align-items: center;
@@ -246,7 +219,7 @@
             font-weight: 600;
             margin-bottom: 30px;
         }
-        
+
         .live-dot {
             width: 10px;
             height: 10px;
@@ -254,16 +227,19 @@
             border-radius: 50%;
             animation: pulseDot 2s infinite;
         }
-        
+
         @keyframes pulseDot {
-            0%, 100% {
+
+            0%,
+            100% {
                 box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7);
             }
+
             50% {
                 box-shadow: 0 0 0 10px rgba(255, 107, 107, 0);
             }
         }
-        
+
         .hero-headline {
             font-size: 64px;
             font-weight: 900;
@@ -271,7 +247,7 @@
             line-height: 1.1;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
-        
+
         .hero-subheadline {
             font-size: 16px;
             color: rgba(255, 255, 255, 0.9);
@@ -279,13 +255,13 @@
             line-height: 1.6;
             text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
-        
+
         .search-box {
             max-width: 600px;
             margin: 0 auto 30px;
             position: relative;
         }
-        
+
         .search-input {
             width: 100%;
             padding: 22px 180px 22px 30px;
@@ -296,13 +272,13 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
         }
-        
+
         .search-input::placeholder {
             font-size: 16px;
         }
-        
+
         /* Focus outline is handled by JavaScript validation */
-        
+
         .search-button {
             position: absolute;
             right: 6px;
@@ -311,24 +287,24 @@
             padding: 14px 35px;
             font-size: 18px;
             font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: #ffd700;
+            color: #1a1a1a;
             border: none;
             border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .search-button:hover {
             transform: translateY(-50%) scale(1.05);
         }
-        
+
         .trust-indicators {
             display: flex;
             justify-content: space-evenly;
             flex-wrap: wrap;
         }
-        
+
         .trust-item {
             display: flex;
             align-items: center;
@@ -336,7 +312,7 @@
             font-size: 14px;
             color: rgba(255, 255, 255, 0.9);
         }
-        
+
         .hero .stats-row {
             display: flex;
             gap: 10px;
@@ -346,7 +322,7 @@
             flex-direction: row;
             align-content: center;
         }
-        
+
         .hero .stat-item {
             text-align: center;
             border: none;
@@ -354,17 +330,17 @@
             display: flex;
             flex-direction: column;
         }
-        
+
         .hero .stat-value {
             font-size: 48px;
             font-weight: 900;
-            color: #667eea;
+            color: #ffd700;
             margin-bottom: 5px;
             order: 1;
             border: none;
             text-decoration: none;
         }
-        
+
         .hero .stat-label {
             font-size: 14px;
             color: rgba(255, 255, 255, 0.6);
@@ -374,54 +350,54 @@
             border: none;
             text-decoration: none;
         }
-        
+
         @media (max-width: 768px) {
             .hero-headline {
                 font-size: 36px;
             }
-            
+
             .hero-subheadline {
                 font-size: 16px;
             }
-            
+
             .search-input {
                 padding: 18px 120px 18px 20px;
                 font-size: 16px;
             }
-            
+
             .search-button {
                 padding: 12px 25px;
                 font-size: 16px;
             }
-            
+
             .hero .stat-value {
                 font-size: 32px;
             }
-            
+
             .hero .stats-row {
                 gap: 10px;
             }
-            
+
             .impact-section {
                 flex-direction: column;
             }
-            
+
             .split-side {
                 min-height: 50vh;
             }
-            
+
             .side-icon {
                 font-size: 60px;
             }
-            
+
             .side-headline {
                 font-size: 28px;
             }
-            
+
             .side-text {
                 font-size: 16px;
             }
-            
+
             .divider {
                 left: 50%;
                 top: 50%;
@@ -429,16 +405,16 @@
                 height: 60px;
                 font-size: 24px;
             }
-            
+
             .journey-title {
                 font-size: 32px;
             }
-            
+
             .journey-steps {
                 grid-template-columns: 1fr;
             }
         }
-        
+
         /* Impact Comparison Section */
         .impact-section {
             min-height: 100vh;
@@ -446,7 +422,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .split-side {
             flex: 1;
             display: flex;
@@ -456,41 +432,44 @@
             position: relative;
             transition: flex 0.5s ease;
         }
-        
+
         .split-side:hover {
             flex: 1.1;
         }
-        
+
         .left-side {
             background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
             color: white;
         }
-        
+
         .right-side {
             background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
             color: white;
         }
-        
+
         .side-content {
             max-width: 500px;
             text-align: center;
         }
-        
+
         .side-icon {
             font-size: 100px;
             margin-bottom: 30px;
             animation: bounceIcon 2s ease-in-out infinite;
         }
-        
+
         @keyframes bounceIcon {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0);
             }
+
             50% {
                 transform: translateY(-20px);
             }
         }
-        
+
         .side-label {
             font-size: 16px;
             text-transform: uppercase;
@@ -498,21 +477,21 @@
             margin-bottom: 20px;
             opacity: 0.8;
         }
-        
+
         .side-headline {
             font-size: 42px;
             font-weight: 900;
             margin-bottom: 20px;
             line-height: 1.2;
         }
-        
+
         .side-text {
             font-size: 18px;
             line-height: 1.6;
             margin-bottom: 30px;
             opacity: 0.9;
         }
-        
+
         .side-cta {
             padding: 16px 40px;
             font-size: 18px;
@@ -524,12 +503,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
         }
-        
+
         .side-cta:hover {
             transform: scale(1.05);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
-        
+
         .divider {
             position: absolute;
             left: 50%;
@@ -548,22 +527,22 @@
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             z-index: 10;
         }
-        
+
         /* Journey Section */
         .journey-section {
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1A1A1A 0%, #37474F 100%);
             padding: 80px 20px 120px 20px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
+
         .journey-container {
             max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .journey-title {
             font-size: 48px;
             font-weight: 900;
@@ -571,14 +550,14 @@
             text-align: center;
             margin-bottom: 60px;
         }
-        
+
         .journey-steps {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             align-items: start;
         }
-        
+
         .journey-step {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -589,18 +568,18 @@
             transition: all 0.3s ease;
             height: auto;
         }
-        
+
         .journey-step:hover {
             transform: translateY(-10px);
             background: rgba(255, 255, 255, 0.15);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
-        
+
         .step-number {
             width: 60px;
             height: 60px;
             background: white;
-            color: #667eea;
+            color: #1a1a1a;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -609,26 +588,26 @@
             font-weight: 900;
             margin: 0 auto 20px;
         }
-        
+
         .step-icon {
             font-size: 60px;
             margin-bottom: 20px;
         }
-        
+
         .step-title {
             font-size: 24px;
             font-weight: 700;
             color: white;
             margin-bottom: 15px;
         }
-        
+
         .step-description {
             font-size: 16px;
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.6;
             margin-bottom: 15px;
         }
-        
+
         .step-notice {
             font-size: 12px;
             color: rgba(255, 255, 255, 0.7);
@@ -639,7 +618,7 @@
             border-radius: 8px;
             font-style: italic;
         }
-        
+
         .journey-step a {
             color: rgba(255, 255, 255, 0.9);
             text-decoration: underline;
@@ -647,11 +626,11 @@
             display: inline-block;
             margin-top: 10px;
         }
-        
+
         .journey-step a:hover {
             color: white;
         }
-        
+
         /* Flip Card Styles */
         .flip-card {
             perspective: 1000px;
@@ -660,13 +639,13 @@
             background: transparent;
             border: none;
         }
-        
+
         .flip-card:hover {
             transform: none;
             background: transparent;
             box-shadow: none;
         }
-        
+
         .flip-card-inner {
             position: relative;
             width: 100%;
@@ -675,11 +654,11 @@
             transition: transform 0.8s;
             transform-style: preserve-3d;
         }
-        
+
         .flip-card.flipped .flip-card-inner {
             transform: rotateY(180deg);
         }
-        
+
         .flip-card-front,
         .flip-card-back {
             position: absolute;
@@ -696,7 +675,7 @@
             transition: all 0.3s ease;
             overflow: hidden;
         }
-        
+
         .flip-card-front::before,
         .flip-card-back::before {
             content: '';
@@ -705,63 +684,70 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(
-                45deg,
-                transparent 30%,
-                rgba(255, 255, 255, 0.3) 50%,
-                transparent 70%
-            );
+            background: linear-gradient(45deg,
+                    transparent 30%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    transparent 70%);
             transform: translateX(-100%) translateY(-100%) rotate(45deg);
             animation: glassyShine 3s ease-in-out infinite;
         }
-        
+
         @keyframes glassyShine {
             0% {
                 transform: translateX(-100%) translateY(-100%) rotate(45deg);
             }
+
             50% {
                 transform: translateX(100%) translateY(100%) rotate(45deg);
             }
+
             100% {
                 transform: translateX(-100%) translateY(-100%) rotate(45deg);
             }
         }
-        
+
         .flip-card:hover .flip-card-front,
         .flip-card:hover .flip-card-back {
             background: rgba(255, 255, 255, 0.15);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
         }
-        
+
         .flip-card-front {
             position: absolute;
             top: 0;
             left: 0;
         }
-        
+
         .flip-card-back {
             position: absolute;
             top: 0;
             left: 0;
             transform: rotateY(180deg);
         }
-        
+
         .flip-hint {
             font-size: 14px;
             color: rgba(255, 255, 255, 0.7);
             margin-top: 15px;
             animation: pulse 2s infinite;
         }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
-        }
-        
-        /* Gradient backgrounds - DARKER for better text contrast */
-        
 
-        
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 0.7;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Gradient backgrounds - DARKER for better text contrast */
+
+
+
         /* Road Stress Section */
         .road-stress-section {
             background: linear-gradient(180deg, #000428 0%, #004e92 100%);
@@ -800,6 +786,7 @@
                 transform: translateY(0) rotate(0deg);
                 opacity: 1;
             }
+
             100% {
                 transform: translateY(600px) rotate(360deg);
                 opacity: 0;
@@ -812,17 +799,17 @@
             text-align: center;
             color: white;
             margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
             line-height: 1.3;
         }
 
         .stress-bar-chart-container {
             height: 220px;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 20px;
             padding: 20px;
             margin-bottom: 30px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .stress-comment-box {
@@ -847,10 +834,13 @@
         }
 
         @keyframes stressCommentPulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 border-color: rgba(102, 126, 234, 0.4);
                 background: rgba(102, 126, 234, 0.2);
             }
+
             50% {
                 border-color: rgba(102, 126, 234, 0.8);
                 background: rgba(102, 126, 234, 0.3);
@@ -861,12 +851,12 @@
             color: white;
             font-size: 18px;
             font-weight: 700;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
         .stress-emotion-cta {
             text-align: center;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
             font-size: 18px;
             font-weight: 700;
             margin-bottom: 20px;
@@ -882,9 +872,9 @@
 
         .stress-emotion-btn {
             aspect-ratio: 1;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.2);
+            border: 2px solid rgba(255, 255, 255, 0.2);
             border-radius: 15px;
             font-size: 28px;
             cursor: pointer;
@@ -903,7 +893,7 @@
             left: 50%;
             width: 0;
             height: 0;
-            background: rgba(255,255,255,0.3);
+            background: rgba(255, 255, 255, 0.3);
             border-radius: 50%;
             transform: translate(-50%, -50%);
             transition: width 0.6s ease, height 0.6s ease;
@@ -916,7 +906,7 @@
 
         .stress-emotion-btn:hover {
             transform: translateY(-5px) scale(1.05);
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
         }
 
@@ -935,7 +925,7 @@
         }
 
         .stress-quote-text {
-            color: rgba(255,255,255,0.9);
+            color: rgba(255, 255, 255, 0.9);
             font-size: 16px;
             font-weight: 500;
             line-height: 1.6;
@@ -955,8 +945,8 @@
 
         .stress-stat-box {
             flex: 1;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 20px 15px;
             text-align: center;
@@ -965,13 +955,13 @@
         .stress-stat-value {
             font-size: 28px;
             font-weight: 700;
-            color: #667eea;
+            color: #ffd700;
             margin-bottom: 8px;
         }
 
         .stress-stat-label {
             font-size: 12px;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255, 255, 255, 0.7);
             font-weight: 600;
         }
 
@@ -980,12 +970,12 @@
             background: white;
             padding: 80px 0;
         }
-        
+
         #designated-lane .content-wrapper {
             max-width: 100%;
             padding: 0;
         }
-        
+
         .horizontal-scroll-title {
             color: #1a1a1a;
             font-size: 36px;
@@ -1024,12 +1014,12 @@
             width: calc(100vw);
             margin-left: calc(-50vw + min(200px, 42.5vw));
         }
-        
+
         .horizontal-scroll-container:active {
             cursor: grabbing;
             scroll-behavior: auto;
         }
-        
+
         .horizontal-scroll-container.dragging {
             scroll-behavior: auto;
         }
@@ -1063,16 +1053,16 @@
             width: 100%;
             height: auto;
             border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
             transition: all 0.4s ease;
             pointer-events: none;
         }
 
         .horizontal-scroll-item:hover img {
             transform: scale(1.02);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.25);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
         }
-        
+
         .horizontal-scroll-container.dragging img {
             transition: none;
         }
@@ -1081,7 +1071,7 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
             color: white;
             padding: 8px 16px;
             border-radius: 20px;
@@ -1091,38 +1081,38 @@
         }
 
 
-        
+
         /* Lane types section - gradient background */
         #lane-types {
             background: linear-gradient(135deg, #1f9aa2 0%, #1f0642 100%);
             color: white;
         }
-        
+
         #lane-types .content-wrapper {
             max-width: 1200px !important;
         }
-        
+
         .legal-notice-section.full-screen-section {
             background: white;
             color: #1a1a1a;
         }
-        
+
         /* Override text colors for gradient sections */
         .leaderboard-section.full-screen-section h2 {
             color: white !important;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
-        
+
         .legal-notice-section.full-screen-section h3 {
             color: #1a1a1a;
         }
-        
+
         .legal-notice-section .legal-items {
             max-width: 600px;
             margin: 0 auto;
             padding-bottom: 40px;
         }
-        
+
         .legal-notice-section .legal-items p {
             margin-bottom: 12px;
             line-height: 1.6;
@@ -1130,7 +1120,7 @@
             padding-left: 8px;
             color: #999;
         }
-        
+
         /* ========================================
            QR Generator Intro Section
            ======================================== */
@@ -1142,40 +1132,47 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .qr-intro-container {
             max-width: 1000px;
             margin: 0 auto;
             text-align: center;
         }
-        
+
         .qr-intro-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
             padding: 10px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #ffd700;
             border-radius: 30px;
             margin-bottom: 24px;
             animation: badgePulse 2s ease-in-out infinite;
         }
-        
+
         @keyframes badgePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
-        
+
         .qr-badge-icon {
             font-size: 20px;
         }
-        
+
         .qr-badge-text {
             color: white;
             font-weight: 700;
             font-size: 12px;
             letter-spacing: 1px;
         }
-        
+
         .qr-intro-title {
             font-size: 48px;
             font-weight: 900;
@@ -1183,20 +1180,20 @@
             margin-bottom: 16px;
             line-height: 1.2;
         }
-        
+
         .qr-intro-subtitle {
             font-size: 18px;
             color: #666;
             line-height: 1.6;
         }
-        
+
         .qr-intro-features {
             display: flex;
             justify-content: space-evenly;
             flex-wrap: wrap;
             margin-bottom: 20px;
         }
-        
+
         .qr-feature-item {
             display: flex;
             align-items: center;
@@ -1205,7 +1202,7 @@
             color: #333;
             font-weight: 500;
         }
-        
+
         .qr-intro-example {
             background: white;
             border-radius: 24px;
@@ -1213,11 +1210,11 @@
             margin-bottom: 40px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
         }
-        
+
         .qr-example-preview {
             margin-bottom: 40px;
         }
-        
+
         .qr-example-mockup {
             display: inline-block;
             background: white;
@@ -1225,7 +1222,7 @@
             padding: 30px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
         }
-        
+
         .qr-mockup-code {
             width: 200px;
             height: 200px;
@@ -1236,13 +1233,13 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .qr-mockup-code svg {
             width: 100%;
             height: 100%;
-            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
         }
-        
+
         .qr-mockup-plate {
             font-size: 32px;
             font-weight: 900;
@@ -1250,13 +1247,13 @@
             margin-bottom: 12px;
             letter-spacing: 2px;
         }
-        
+
         .qr-mockup-text {
             font-size: 16px;
             font-weight: 600;
-            color: #667eea;
+            color: #000000;
         }
-        
+
         .qr-example-steps {
             display: flex;
             align-items: center;
@@ -1264,18 +1261,18 @@
             gap: 20px;
             flex-wrap: wrap;
         }
-        
+
         .qr-step-item {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 10px;
         }
-        
+
         .qr-step-num {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #ffd700;
             color: white;
             border-radius: 50%;
             display: flex;
@@ -1284,27 +1281,27 @@
             font-weight: 700;
             font-size: 18px;
         }
-        
+
         .qr-step-text {
             font-size: 14px;
             font-weight: 600;
             color: #666;
         }
-        
+
         .qr-step-arrow {
             font-size: 24px;
-            color: #667eea;
+            color: #ffd700;
             font-weight: 700;
         }
-        
+
         .qr-intro-cta {
             display: inline-flex;
             align-items: center;
             gap: 12px;
             padding: 20px 50px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            font-size: 20px;
+            background: #ffd700;
+            border-radius: 50px;
+            color: #1a1a1a;
             font-weight: 700;
             border-radius: 50px;
             text-decoration: none;
@@ -1312,21 +1309,21 @@
             box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
             margin-bottom: 30px;
         }
-        
+
         .qr-intro-cta:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 36px rgba(102, 126, 234, 0.4);
         }
-        
+
         .qr-cta-arrow {
             font-size: 24px;
             transition: transform 0.3s ease;
         }
-        
+
         .qr-intro-cta:hover .qr-cta-arrow {
             transform: translateX(5px);
         }
-        
+
         .qr-intro-notice {
             font-size: 14px;
             color: #666;
@@ -1334,70 +1331,71 @@
             max-width: 700px;
             margin: 0 auto;
             padding: 20px;
-            background: rgba(102, 126, 234, 0.05);
+            background: rgba(255, 215, 0, 0.05);
             border-radius: 12px;
-            border-left: 4px solid #667eea;
+            border-left: 4px solid #ffd700;
         }
-        
+
         @media (max-width: 768px) {
             .qr-intro-title {
                 font-size: 32px;
             }
-            
+
             .qr-intro-subtitle {
                 font-size: 16px;
             }
-            
+
             .qr-feature-item {
                 font-size: 13px;
             }
-            
+
             .qr-intro-example {
                 padding: 30px 20px;
             }
-            
+
             .qr-mockup-code {
                 width: 150px;
                 height: 150px;
             }
-            
+
             .qr-mockup-plate {
                 font-size: 24px;
             }
-            
+
             .qr-example-steps {
                 flex-direction: column;
                 gap: 15px;
             }
-            
+
             .qr-step-arrow {
                 transform: rotate(90deg);
             }
-            
+
             .qr-intro-cta {
                 padding: 16px 40px;
                 font-size: 18px;
             }
         }
-        
+
         /* ========================================
            Quiz Section Styles
            ======================================== */
         .quiz-section {
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1a1a1a 0%, #37474f 100%);
             padding: 80px 20px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        
+
         .quiz-section-container {
-            max-width: 900px;
+            max-width: 1400px;
             margin: 0 auto;
             text-align: center;
+            padding: 0 20px;
         }
-        
+
         .quiz-section-badge {
             display: inline-flex;
             align-items: center;
@@ -1410,23 +1408,30 @@
             margin-bottom: 24px;
             animation: quizBadgePulse 2s ease-in-out infinite;
         }
-        
+
         @keyframes quizBadgePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
-        
+
         .quiz-badge-icon {
             font-size: 20px;
         }
-        
+
         .quiz-badge-text {
             color: white;
             font-weight: 700;
             font-size: 12px;
             letter-spacing: 1px;
         }
-        
+
         .quiz-section-title {
             font-size: 48px;
             font-weight: 900;
@@ -1435,60 +1440,59 @@
             line-height: 1.2;
             text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
-        
+
         .quiz-section-subtitle {
             font-size: 18px;
             color: rgba(255, 255, 255, 0.9);
             margin-bottom: 50px;
             line-height: 1.6;
         }
-        
+
         .quiz-cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 30px;
             margin-bottom: 40px;
         }
-        
+
+        @media (max-width: 1200px) {
+            .quiz-cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         .quiz-card {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 24px;
-            padding: 40px 30px;
+            padding-bottom: 30px;
             text-align: center;
             transition: all 0.3s ease;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
         }
-        
-        .quiz-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 5px;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-        }
-        
-        .quiz-card-2::before {
-            background: linear-gradient(90deg, #ff4757 0%, #ff6b81 100%);
-        }
-        
+
         .quiz-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
         }
-        
-        .quiz-card-icon {
-            font-size: 60px;
-            margin-bottom: 15px;
+
+        .quiz-card-thumbnail {
+            width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
-        
+
+        .quiz-card:hover .quiz-card-thumbnail {
+            transform: scale(1.02);
+        }
+
         .quiz-card-badge {
             display: inline-block;
             padding: 6px 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #ffd700;
             color: white;
             font-size: 11px;
             font-weight: 700;
@@ -1496,25 +1500,33 @@
             margin-bottom: 15px;
             letter-spacing: 0.5px;
         }
-        
+
         .quiz-card-2 .quiz-card-badge {
             background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
         }
-        
+
+        .quiz-card-3 .quiz-card-badge {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+
+        .quiz-card-4 .quiz-card-badge {
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+        }
+
         .quiz-card-title {
             font-size: 24px;
             font-weight: 800;
             color: #1a1a1a;
             margin-bottom: 12px;
         }
-        
+
         .quiz-card-description {
             font-size: 15px;
             color: #666;
             line-height: 1.7;
             margin-bottom: 20px;
         }
-        
+
         .quiz-card-features {
             display: flex;
             justify-content: center;
@@ -1522,17 +1534,17 @@
             margin-bottom: 25px;
             flex-wrap: wrap;
         }
-        
+
         .quiz-feature {
             font-size: 13px;
             color: #888;
             font-weight: 500;
         }
-        
+
         .quiz-card-cta {
             display: inline-block;
             padding: 14px 35px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #ffd700;
             color: white;
             font-size: 16px;
             font-weight: 700;
@@ -1541,21 +1553,39 @@
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
-        
+
         .quiz-card-cta:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
         }
-        
+
         .quiz-card-cta-danger {
             background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%);
             box-shadow: 0 4px 15px rgba(255, 71, 87, 0.4);
         }
-        
+
         .quiz-card-cta-danger:hover {
             box-shadow: 0 8px 25px rgba(255, 71, 87, 0.5);
         }
-        
+
+        .quiz-card-cta-success {
+            background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+        }
+
+        .quiz-card-cta-success:hover {
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+        }
+
+        .quiz-card-cta-warning {
+            background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        .quiz-card-cta-warning:hover {
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.5);
+        }
+
         .quiz-section-notice {
             font-size: 14px;
             color: rgba(255, 255, 255, 0.8);
@@ -1567,44 +1597,44 @@
             border-radius: 12px;
             backdrop-filter: blur(10px);
         }
-        
+
         @media (max-width: 768px) {
             .quiz-section-title {
                 font-size: 32px;
             }
-            
+
             .quiz-section-subtitle {
                 font-size: 16px;
                 margin-bottom: 30px;
             }
-            
+
             .quiz-cards-container {
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
-            
+
             .quiz-card {
                 padding: 30px 20px;
             }
-            
+
             .quiz-card-icon {
                 font-size: 50px;
             }
-            
+
             .quiz-card-title {
                 font-size: 20px;
             }
-            
+
             .quiz-card-description {
                 font-size: 14px;
             }
-            
+
             .quiz-card-cta {
                 padding: 12px 30px;
                 font-size: 15px;
             }
         }
-        
+
         /* ========================================
            Referral Section - Golden Ticket Style
            ======================================== */
@@ -1616,12 +1646,12 @@
             align-items: center;
             justify-content: center;
         }
-        
+
         .referral-container {
             max-width: 500px;
             margin: 0 auto;
         }
-        
+
         .referral-ticket {
             background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
             border-radius: 20px;
@@ -1630,16 +1660,16 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease;
         }
-        
+
         .referral-ticket:hover {
             transform: translateY(-5px);
         }
-        
+
         .ticket-top {
             padding: 40px 30px 30px;
             text-align: center;
         }
-        
+
         .ticket-badge {
             display: inline-block;
             background: rgb(0, 0, 0);
@@ -1654,37 +1684,40 @@
         }
 
         .ticket-badge .emoji {
-            font-size: 25px;          /* increase emoji size */
-            margin-right: 6px;         /* spacing from text */
-            vertical-align: -5px;     /* fine vertical alignment */
+            font-size: 25px;
+            /* increase emoji size */
+            margin-right: 6px;
+            /* spacing from text */
+            vertical-align: -5px;
+            /* fine vertical alignment */
         }
-        
+
         .ticket-title {
             font-size: 32px;
             font-weight: 900;
             margin-bottom: 12px;
             line-height: 1.2;
         }
-        
+
         .ticket-desc {
             font-size: 15px;
             opacity: 0.85;
             line-height: 1.6;
             margin-bottom: 8px;
         }
-        
+
         .ticket-condition {
             font-size: 13px;
             opacity: 0.75;
             font-weight: 600;
         }
-        
+
         .ticket-divider {
             display: flex;
             align-items: center;
             padding: 0 20px;
         }
-        
+
         .ticket-hole {
             width: 24px;
             height: 24px;
@@ -1692,44 +1725,44 @@
             border-radius: 50%;
             flex-shrink: 0;
         }
-        
+
         .ticket-dashed {
             flex: 1;
-            border-top: 2px dashed rgba(0,0,0,0.2);
+            border-top: 2px dashed rgba(0, 0, 0, 0.2);
             margin: 0 10px;
         }
-        
+
         .ticket-rewards {
             padding: 24px 30px 30px;
         }
-        
+
         .ticket-reward-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 16px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
-        
+
         .ticket-reward-item:last-child {
             border-bottom: none;
         }
-        
+
         .ticket-reward-left {
             display: flex;
             align-items: center;
             gap: 14px;
         }
-        
+
         .ticket-reward-icon {
             font-size: 36px;
         }
-        
+
         .ticket-reward-text {
             font-size: 15px;
             font-weight: 700;
         }
-        
+
         .ticket-reward-text span {
             display: block;
             font-size: 11px;
@@ -1737,7 +1770,7 @@
             font-weight: 500;
             margin-top: 2px;
         }
-        
+
         .ticket-cta {
             background: #1a1a1a;
             color: #ffd700;
@@ -1749,24 +1782,24 @@
             transition: all 0.3s ease;
             white-space: nowrap;
         }
-        
+
         .ticket-cta:hover {
             transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
-        
+
         /* Disabled reward item */
         .ticket-reward-disabled {
             opacity: 0.5;
         }
-        
+
         .ticket-reward-disabled .ticket-reward-icon {
             filter: grayscale(1);
         }
-        
+
         .ticket-cta-disabled {
-            background: rgba(0,0,0,0.2);
-            color: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.2);
+            color: rgba(0, 0, 0, 0.5);
             padding: 12px 28px;
             border-radius: 25px;
             font-weight: 700;
@@ -1774,39 +1807,39 @@
             white-space: nowrap;
             cursor: not-allowed;
         }
-        
+
         @media (max-width: 768px) {
             .ticket-title {
                 font-size: 26px;
             }
-            
+
             .ticket-top {
                 padding: 30px 24px 24px;
             }
-            
+
             .ticket-rewards {
                 padding: 20px 24px 24px;
             }
-            
+
             .ticket-reward-icon {
                 font-size: 32px;
             }
-            
+
             .ticket-reward-text {
                 font-size: 14px;
             }
-            
+
             .ticket-cta {
                 padding: 10px 20px;
                 font-size: 13px;
             }
-            
+
             .ticket-cta-disabled {
                 padding: 10px 20px;
                 font-size: 13px;
             }
         }
-        
+
         /* Table styling for gradient backgrounds */
         .leaderboard-section.full-screen-section table {
             background: rgba(255, 255, 255, 0.95);
@@ -1816,35 +1849,35 @@
             width: 100%;
             visibility: visible !important;
         }
-        
+
         .leaderboard-section.full-screen-section tbody {
             display: table-row-group !important;
             visibility: visible !important;
         }
-        
+
         .leaderboard-section.full-screen-section tr {
             display: table-row !important;
             visibility: visible !important;
         }
-        
+
         .leaderboard-section.full-screen-section td,
         .leaderboard-section.full-screen-section th {
             display: table-cell !important;
             visibility: visible !important;
         }
-        
+
         /* Ensure leaderboard content is visible */
         .leaderboard-content {
             display: block !important;
             visibility: visible !important;
             opacity: 1 !important;
         }
-        
+
         #mostLikedTable {
             display: table-row-group !important;
             visibility: visible !important;
         }
-        
+
         /* Override animation inline styles that hide rows */
         #mostLikedTable tr {
             opacity: 1 !important;
@@ -1853,29 +1886,29 @@
             rotate: none !important;
             scale: none !important;
         }
-        
+
         #mostLikedTable td {
             opacity: 1 !important;
         }
-        
+
         .leaderboard-section.full-screen-section thead {
             background-color: rgba(0, 0, 0, 0.05);
         }
-        
+
         .leaderboard-section.full-screen-section th {
             color: #333;
         }
-        
+
         .leaderboard-section.full-screen-section tbody tr {
             background-color: white;
         }
-        
+
         .leaderboard-section.full-screen-section tbody tr:nth-child(even) {
             background-color: rgba(0, 0, 0, 0.02);
         }
-        
 
-        
+
+
         /* Tab styling for gradient backgrounds - all white text */
         .leaderboard-section.full-screen-section .tabs .tab {
             background-color: rgba(255, 255, 255, 0.25);
@@ -1883,32 +1916,32 @@
             color: white;
             font-weight: 600;
         }
-        
+
         .leaderboard-section.full-screen-section .tabs .tab:hover {
             background-color: rgba(255, 255, 255, 0.35);
         }
-        
+
         .leaderboard-section.full-screen-section .tabs .tab.active {
             background-color: white;
             color: #4a5bbd;
             border-color: white;
         }
-        
 
-        
+
+
         /* Blur & Focus Animation - DISABLED */
         /* All content is always visible for better UX */
-        .full-screen-section .content-wrapper > * {
+        .full-screen-section .content-wrapper>* {
             opacity: 1 !important;
             filter: none !important;
             transform: none !important;
         }
-        
+
         /* Keep hero plate animation working (it has its own animation) */
         .hero-animation {
             opacity: 1;
         }
-        
+
         /* Scroll Down Indicator */
         .scroll-indicator {
             position: absolute;
@@ -1919,13 +1952,13 @@
             cursor: pointer;
             z-index: 10;
         }
-        
+
         .scroll-indicator.hidden {
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
         }
-        
+
         .scroll-indicator-text {
             font-size: 14px;
             color: #666;
@@ -1933,47 +1966,47 @@
             font-weight: 500;
             letter-spacing: 1px;
         }
-        
+
         .scroll-arrow {
             font-size: 32px;
             color: #ffffff;
             animation: bounce 2s infinite;
             display: block;
         }
-        
+
         /* Hero section scroll indicator - white color */
         .hero .scroll-indicator-text {
             color: white !important;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
-        
+
         .hero .scroll-arrow {
             color: white !important;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
-        
+
         .hero .scroll-indicator .scroll-arrow {
             color: white !important;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
-        
+
         /* Scroll arrows for gradient sections - white color */
         .leaderboard-section .scroll-arrow {
             color: white;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
-        
+
         /* Scroll arrow for road stress section - white color */
         .road-stress-section .scroll-arrow {
             color: white;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
-        
+
         /* Scroll arrow for legal notice section - gray color */
         .legal-notice-section .scroll-arrow {
             color: #999;
         }
-        
+
         /* Scroll arrow for plate types section - positioned below grid */
         .plate-types-section .scroll-indicator {
             position: relative;
@@ -1986,108 +2019,116 @@
             justify-content: center;
             width: 100%;
         }
-        
+
         /* Remove bottom margin from construction plate */
         .plate-types-section .plate-flip-tall {
             margin-bottom: 0;
         }
-        
+
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
                 transform: translateY(0);
             }
+
             40% {
                 transform: translateY(-15px);
             }
+
             60% {
                 transform: translateY(-8px);
             }
         }
-        
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateX(-50%) translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateX(-50%) translateY(0);
             }
         }
-        
+
         /* Hide scroll indicator on scroll */
         .scroll-indicator.hidden {
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
         }
-        
+
         @media (max-width: 768px) {
             .full-screen-section {
                 padding: 60px 15px 30px;
             }
-            
+
             .scroll-indicator {
                 bottom: 20px;
             }
-            
+
             .scroll-indicator-text {
                 font-size: 12px;
             }
-            
+
             .scroll-arrow {
                 font-size: 28px;
             }
-            
+
             .horizontal-scroll-title {
                 font-size: 28px;
             }
-            
+
             .horizontal-scroll-subtitle {
                 font-size: 12px;
             }
         }
-        
-        /* ===== CUSTOM LEADERBOARD DESIGNS ===== */
-        
 
-        
+        /* ===== CUSTOM LEADERBOARD DESIGNS ===== */
+
+
+
         /* Fix: Make title and tabs darker for white background */
         #rankings h2 {
             color: #1f2937 !important;
             text-shadow: none !important;
         }
-        
+
         #rankings .tabs .tab {
             background-color: #f3f4f6 !important;
             border-color: #d1d5db !important;
             color: #374151 !important;
             font-weight: 600;
         }
-        
+
         #rankings .tabs .tab:hover {
             background-color: #e5e7eb !important;
         }
-        
+
         #rankings .tabs .tab.active {
             background-color: #4a5bbd !important;
             color: white !important;
             border-color: #4a5bbd !important;
         }
-        
+
         /* Fix: Make Most Liked section match bubble pop theme - Using ID for higher specificity */
         #mostLikedSection {
             background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 50%, #fd79a8 100%) !important;
             color: white !important;
         }
-        
+
         /* Most Liked title styling - Dark text for better visibility */
         #mostLikedSection h2 {
             color: #1f2937 !important;
             text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8) !important;
             font-weight: 700 !important;
         }
-        
+
         /* Most Liked tabs styling - Dark text on light background */
         #mostLikedSection .tabs .tab {
             background-color: rgba(255, 255, 255, 0.9) !important;
@@ -2096,42 +2137,42 @@
             font-weight: 700 !important;
             text-shadow: none !important;
         }
-        
+
         #mostLikedSection .tabs .tab:hover {
             background-color: rgba(255, 255, 255, 1) !important;
             transform: translateY(-2px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
         }
-        
+
         #mostLikedSection .tabs .tab.active {
             background-color: #e84393 !important;
             color: white !important;
             border-color: #e84393 !important;
             box-shadow: 0 4px 12px rgba(232, 67, 147, 0.4);
         }
-        
+
         /* Most Liked table background */
         #mostLikedSection table {
             background: transparent !important;
         }
-        
+
         /* Most Liked table header - Dark text */
         #mostLikedSection thead {
             background-color: transparent !important;
         }
-        
+
         #mostLikedSection th {
             color: #1f2937 !important;
             font-weight: 700 !important;
             text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8) !important;
         }
-        
+
         /* Most Liked scroll arrow */
         #mostLikedSection .scroll-arrow {
             color: #1f2937 !important;
             text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8) !important;
         }
-        
+
         /* Design 11: Bubble Pop - Applied to Most Liked leaderboard */
         #mostLikedTable tr {
             background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%) !important;
@@ -2139,47 +2180,47 @@
             box-shadow: 0 4px 15px rgba(253, 203, 110, 0.4);
             transition: all 0.3s ease;
         }
-        
+
         #mostLikedTable tr:nth-child(2) {
             background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%) !important;
         }
-        
+
         #mostLikedTable tr:nth-child(3) {
             background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%) !important;
         }
-        
+
         #mostLikedTable tr:nth-child(n+4) {
             background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%) !important;
         }
-        
+
         #mostLikedTable tr td {
             color: white !important;
             font-weight: 700 !important;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2) !important;
         }
-        
+
         #mostLikedTable tr td:first-child {
             font-size: 1.3rem !important;
         }
-        
+
         #mostLikedTable tr:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 25px rgba(253, 203, 110, 0.6);
         }
-        
+
         /* Ensure proper spacing for leaderboard */
         #mostLikedTable tr td:first-child {
             border-top-left-radius: 50px;
             border-bottom-left-radius: 50px;
             padding-left: 20px;
         }
-        
+
         #mostLikedTable tr td:last-child {
             border-top-right-radius: 50px;
             border-bottom-right-radius: 50px;
             padding-right: 20px;
         }
-        
+
         /* Remove blue link color from leaderboard */
         #mostLikedTable a,
         #mostLikedTable a:link,
@@ -2189,52 +2230,130 @@
             color: inherit !important;
             text-decoration: none !important;
         }
-        
+
         /* Add subtle hover effect for links */
         #mostLikedTable a:hover {
             opacity: 0.8;
         }
     </style>
-    
+
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
-    
+
     <!-- Anime.js for animations -->
     <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
     <script src="js/animation-utils.js"></script>
-    
+
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-functions-compat.js"></script>
-    
+
     <!-- Firebase Configuration -->
     <script src="firebase-config.js"></script>
     <script src="js/xss-prevention.js"></script>
 </head>
+
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRTW3S54"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TRTW3S54" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <nav class="navbar" id="mainNavbar">
-       
-        <!--  Navigation Menu -->
+
+    <!-- Noscript fallback content for SEO -->
+    <noscript>
+        <div style="padding: 40px 20px; max-width: 800px; margin: 0 auto; font-family: sans-serif; line-height: 1.8;">
+            <h1 style="color: #1a1a1a; margin-bottom: 20px;">SAFE DRIVE - 익명 차량 안전 공유</h1>
+            <p style="margin-bottom: 15px;">익명으로 차량 안전을 공유하세요. 실시간 차량 안전 정보, 케어 인덱스, 지정차로 안내를 확인하세요.</p>
+
+            <h2 style="color: #333; margin: 30px 0 15px;">SAFE DRIVE 소개</h2>
+            <p style="margin-bottom: 15px;">SAFE DRIVE는 운전자들이 익명으로 차량 안전 정보를 공유할 수 있는 플랫폼입니다. 차량 번호판을 통해 안전 메시지를 주고받고,
+                도로 위 안전 문화를 함께 만들어갑니다.</p>
+
+            <h2 style="color: #333; margin: 30px 0 15px;">주요 서비스</h2>
+            <ul style="margin-bottom: 20px; padding-left: 20px;">
+                <li><strong>차량 안전 리포트</strong> - 차량 번호판으로 안전 정보 조회 및 공유</li>
+                <li><strong>QR 코드 생성기</strong> - 차량용 QR 코드 생성 및 다운로드</li>
+                <li><strong>운전 성향 테스트</strong> - 나의 운전 스타일 분석</li>
+                <li><strong>도로 스트레스 지수</strong> - 실시간 도로 스트레스 현황</li>
+                <li><strong>지정차로 안내</strong> - 고속도로 지정차로 규정 안내</li>
+            </ul>
+
+            <h2 style="color: #333; margin: 30px 0 15px;">🚦 안전운전 가이드</h2>
+
+            <h3 style="color: #444; margin: 20px 0 10px;">안전운전 10계명</h3>
+            <ol style="margin-bottom: 20px; padding-left: 20px;">
+                <li>안전벨트는 생명벨트, 반드시 착용하세요</li>
+                <li>음주운전은 절대 금물입니다</li>
+                <li>졸음운전은 음주운전만큼 위험합니다</li>
+                <li>안전거리를 충분히 유지하세요</li>
+                <li>방어운전을 생활화하세요</li>
+                <li>교차로에서는 서행하고 좌우를 살피세요</li>
+                <li>보행자를 먼저 배려하세요</li>
+                <li>차선 변경 시 방향지시등을 켜세요</li>
+                <li>야간 운전 시 전조등을 적절히 사용하세요</li>
+                <li>정기적인 차량 점검을 실시하세요</li>
+            </ol>
+
+            <h3 style="color: #444; margin: 20px 0 10px;">우회전 일시정지 규정 (2023년 시행)</h3>
+            <ul style="margin-bottom: 20px; padding-left: 20px;">
+                <li>보행자 신호가 녹색일 때 우회전 차량은 반드시 일시정지</li>
+                <li>보행자가 없어도 일시정지 후 서행하며 진행</li>
+                <li>위반 시 범칙금 6만원, 벌점 10점</li>
+            </ul>
+
+            <h3 style="color: #444; margin: 20px 0 10px;">어린이보호구역 규정</h3>
+            <ul style="margin-bottom: 20px; padding-left: 20px;">
+                <li>제한속도: 시속 30km 이하</li>
+                <li>주정차 전면 금지</li>
+                <li>위반 시 일반 도로 대비 2배 가중 처벌</li>
+                <li>사고 발생 시 가중 처벌 (민식이법)</li>
+            </ul>
+
+            <h3 style="color: #444; margin: 20px 0 10px;">긴급차량 양보 의무</h3>
+            <ul style="margin-bottom: 20px; padding-left: 20px;">
+                <li>긴급차량 접근 시 도로 우측 가장자리로 피양</li>
+                <li>교차로에서는 교차로를 피해 일시정지</li>
+                <li>미양보 시 범칙금 및 벌점 부과</li>
+            </ul>
+
+            <h3 style="color: #444; margin: 20px 0 10px;">교통사고 대처법</h3>
+            <ol style="margin-bottom: 20px; padding-left: 20px;">
+                <li>비상등 켜고 안전한 곳으로 이동</li>
+                <li>부상자 확인 및 119 신고</li>
+                <li>경찰 신고 (112)</li>
+                <li>사고 현장 및 차량 손상 촬영</li>
+                <li>보험사 연락</li>
+                <li>상대방 정보 교환</li>
+            </ol>
+
+            <h3 style="color: #444; margin: 20px 0 10px;">긴급 연락처</h3>
+            <ul style="margin-bottom: 20px; padding-left: 20px;">
+                <li>경찰 신고: 112</li>
+                <li>소방/구급: 119</li>
+                <li>도로교통공단: 1588-2504</li>
+                <li>한국도로공사: 1588-2504</li>
+                <li>손해보험협회: 1566-8114</li>
+            </ul>
+
+            <p style="color: #666; font-size: 0.9rem;">이 페이지의 모든 기능을 이용하려면 JavaScript를 활성화해주세요.</p>
+        </div>
+    </noscript>
+
+    <nav class="navbar navbar-transparent" id="mainNavbar">
         <div class="nav-container">
-            <a href="#home" class="nav-logo" id="navLogo">
-                <img src="assets/img/SAFEDRIVE_logo.svg" alt="SAFE DRIVE Logo">
+            <a href="/index.html" class="nav-logo">
+                <img src="/assets/img/SAFEDRIVE_logo.svg" alt="SAFE DRIVE Logo">
             </a>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="#home" class="nav-link">홈</a></li>
-                <li><a href="#qr-generator-intro" class="nav-link" id="qrNavLink">QR</a></li>
-                <li><a href="#referral" class="nav-link" id="eventNavLink">이벤트</a></li>
-                <li><a href="#quiz-section" class="nav-link">퀴즈</a></li>
-                <li><a href="#road-stress" class="nav-link">도로스트레스</a></li>
-                <li><a href="#mostLikedSection" class="nav-link">인기번호판</a></li>
-                <li><a href="#designated-lane" class="nav-link">지정차로</a></li>
-                <li><a href="#legal-notice" class="nav-link">안내</a></li>
-                <li><a href="contact.html" class="nav-link">문의</a></li>
+                <li><a href="/index.html" class="nav-link">홈</a></li>
+                <li><a href="/about.html" class="nav-link">소개</a></li>
+                <li><a href="/driving-guide.html" class="nav-link">안전가이드</a></li>
+                <li><a href="/index.html#quiz-section" class="nav-link">퀴즈</a></li>
+                <li><a href="/qr-generator.html" class="nav-link">QR</a></li>
+                <li><a href="/faq.html" class="nav-link">FAQ</a></li>
+                <li><a href="/contact.html" class="nav-link">문의</a></li>
             </ul>
             <button class="nav-toggle" id="navToggle">
                 <span class="hamburger-line"></span>
@@ -2244,45 +2363,61 @@
         </div>
     </nav>
 
+    <!-- Inline Navbar Scroll Handler - Must be immediately after navbar -->
+    <script>
+        (function () {
+            var navbar = document.getElementById('mainNavbar');
+            if (navbar) {
+                function handleNavbarScroll() {
+                    var scrollTop = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || 0;
+                    if (scrollTop > 10) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                }
+                window.addEventListener('scroll', handleNavbarScroll, { passive: true });
+                document.addEventListener('scroll', handleNavbarScroll, { passive: true });
+                handleNavbarScroll(); // Initial check
+            }
+        })();
+    </script>
     <div class="container">
         <header class="hero full-screen-section active" id="home">
             <div class="video-background">
                 <div class="animated-road" id="road"></div>
                 <div class="video-overlay"></div>
             </div>
-            
+
             <div class="hero-content">
                 <div class="hero-badge">
                     <div class="live-dot"></div>
                     <span>LIVE · 실시간 도로 안전 네트워크</span>
                 </div>
-                
+
                 <h1 class="hero-headline">
                     도로 위 위험,<br>
                     익명으로 공유하세요
                 </h1>
-                
+
                 <p class="hero-subheadline">
                     브레이크등 고장부터 타이어 펑크까지.<br>
                     당신의 한마디가 누군가의 생명을 구합니다.
                 </p>
-                
+
                 <div class="search-box">
-                    <input 
-                        type="text" 
-                        id="plateInput" 
-                        class="search-input" 
-                        placeholder="번호판 입력(예:12가3456)"
-                        autocomplete="off"
-                    >
+                    <input type="text" id="plateInput" class="search-input" placeholder="번호판 입력(예:12가3456)"
+                        autocomplete="off">
                     <button id="heroMicBtn" class="voice-mic-btn" aria-label="음성 입력" type="button">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 18.75C15.3137 18.75 18 16.0637 18 12.75V11.25M12 18.75C8.68629 18.75 6 16.0637 6 12.75V11.25M12 18.75V22.5M8.25 22.5H15.75M12 15.75C10.3431 15.75 9 14.4069 9 12.75V4.5C9 2.84315 10.3431 1.5 12 1.5C13.6569 1.5 15 2.84315 15 4.5V12.75C15 14.4069 13.6569 15.75 12 15.75Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path
+                                d="M12 18.75C15.3137 18.75 18 16.0637 18 12.75V11.25M12 18.75C8.68629 18.75 6 16.0637 6 12.75V11.25M12 18.75V22.5M8.25 22.5H15.75M12 15.75C10.3431 15.75 9 14.4069 9 12.75V4.5C9 2.84315 10.3431 1.5 12 1.5C13.6569 1.5 15 2.84315 15 4.5V12.75C15 14.4069 13.6569 15.75 12 15.75Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </button>
                     <button type="button" class="search-button" id="heroSearchBtn">검색</button>
                 </div>
-                
+
                 <div class="trust-indicators">
                     <div class="trust-item">
                         <span>😎100% 익명</span>
@@ -2294,7 +2429,7 @@
                         <span>💰무료</span>
                     </div>
                 </div>
-                
+
                 <div class="stats-row">
                     <div class="stat-item">
                         <div class="stat-value" id="activeUsers">0</div>
@@ -2310,7 +2445,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Scroll Down Indicator -->
             <div class="scroll-indicator" id="scrollIndicator">
                 <div class="scroll-indicator-text">아래로 스크롤</div>
@@ -2332,7 +2467,7 @@
                     </p>
                 </div>
             </div>
-            
+
             <div class="split-side right-side">
                 <div class="side-content">
                     <div class="side-icon">🛡️</div>
@@ -2346,7 +2481,7 @@
                     <button class="side-cta" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">지금 참여하기</button>
                 </div>
             </div>
-            
+
             <div class="divider">VS</div>
         </section>
 
@@ -2354,33 +2489,34 @@
         <section class="journey-section">
             <div class="journey-container">
                 <h2 class="journey-title">SAFE DRIVE 사용법 - 3단계면 충분합니다</h2>
-                
+
                 <div class="journey-steps">
                     <div class="journey-step">
                         <div class="step-number">1</div>
                         <div class="step-icon">🔍</div>
                         <h3 class="step-title">번호판 입력 5초</h3>
                         <p class="step-description">
-                            주의가 필요한 차량의 번호판을 입력 후 검색하세요. 
+                            주의가 필요한 차량의 번호판을 입력 후 검색하세요.
                         </p>
                         <p class="step-description">
                             차량 소유주를 특정할 수 있는 정보는 수집되지 않습니다.
                         </p>
-                        <a href="https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS292&mCode=I040010000&nttId=10666" target="_blank" rel="noopener">자동차등록번호는 개인정보일까?</a>
+                        <a href="https://www.pipc.go.kr/np/cop/bbs/selectBoardArticle.do?bbsId=BS292&mCode=I040010000&nttId=10666"
+                            target="_blank" rel="noopener">자동차등록번호는 개인정보일까?</a>
                     </div>
-                    
+
                     <div class="journey-step">
                         <div class="step-number">2</div>
                         <div class="step-icon">📝</div>
                         <h3 class="step-title">원클릭 안전 메세지</h3>
                         <p class="step-description">
-                            브레이크등 고장, 타이어 문제, 양보 감사 등 안전 메세지 전송. 
+                            브레이크등 고장, 타이어 문제, 양보 감사 등 안전 메세지 전송.
                         </p>
                         <p class="step-description">
                             완전 익명으로 처리되며, 본 서비스는 개인식별 절차를 제공하지 않습니다.
                         </p>
                     </div>
-                    
+
                     <div class="journey-step flip-card">
                         <div class="flip-card-inner">
                             <!-- Front Side -->
@@ -2392,11 +2528,12 @@
                                     내 번호판을 조회하여 수신한 안전 메세지 통계를 확인하세요.
                                 </p>
                                 <p class="step-notice">
-                                    제공되는 정보는 이용자가 선택한 템플릿 메시지 기반의 익명·비식별 통계 정보일 뿐, 실제 차량 상태 또는 운전습관에 대한 판단 자료로 사용될 수 없습니다.
+                                    제공되는 정보는 이용자가 선택한 템플릿 메시지 기반의 익명·비식별 통계 정보일 뿐, 실제 차량 상태 또는 운전습관에 대한 판단 자료로 사용될 수
+                                    없습니다.
                                 </p>
                                 <div class="flip-hint">💡 카드를 클릭하세요</div>
                             </div>
-                            
+
                             <!-- Back Side -->
                             <div class="flip-card-back">
                                 <div class="step-number">+1</div>
@@ -2420,21 +2557,21 @@
             <div class="quiz-section-container">
                 <div class="quiz-section-badge">
                     <span class="quiz-badge-icon">🎯</span>
-                    <span class="quiz-badge-text">FUN QUIZ</span>
+                    <span class="quiz-badge-text">FUN TEST</span>
                 </div>
-                
+
                 <h2 class="quiz-section-title">나의 운전 성향은?</h2>
                 <p class="quiz-section-subtitle">재미있는 퀴즈로 알아보는 도로 위 나의 모습</p>
-                
+
                 <div class="quiz-cards-container">
                     <!-- Quiz 1 Card -->
                     <article class="quiz-card quiz-card-1" aria-label="운전성향 테스트">
-                        <div class="quiz-card-icon">🚗</div>
-                        <div class="quiz-card-badge">MBTI 스타일</div>
-                        <h3 class="quiz-card-title">운전성향 테스트</h3>
+                        <img src="assets/img/quiz1_main.webp" alt="운전성향 테스트" class="quiz-card-thumbnail">
+                        <div class="quiz-card-badge">DBTI</div>
+                        <h3 class="quiz-card-title">운전성향<br>테스트</h3>
                         <p class="quiz-card-description">
-                            18가지 질문으로 알아보는 나의 운전 성향!<br>
-                            도로 위 본캐를 찾아보세요.
+                            18가지 질문으로 알아보는<br>
+                            도로 위 내 본캐!
                         </p>
                         <div class="quiz-card-features">
                             <span class="quiz-feature">⏱️ 3분 소요</span>
@@ -2444,12 +2581,12 @@
                             테스트 시작 →
                         </a>
                     </article>
-                    
+
                     <!-- Quiz 2 Card -->
                     <article class="quiz-card quiz-card-2" aria-label="극한의 시나리오 챌린지">
-                        <div class="quiz-card-icon">⚠️</div>
+                        <img src="assets/img/quiz2_main.webp" alt="극한의 시나리오 챌린지" class="quiz-card-thumbnail">
                         <div class="quiz-card-badge">서바이벌</div>
-                        <h3 class="quiz-card-title">극한의 시나리오 챌린지</h3>
+                        <h3 class="quiz-card-title">극한의 시나리오<br>챌린지</h3>
                         <p class="quiz-card-description">
                             도로 위 돌발 상황에서 당신의 선택은?<br>
                             생존 본능을 테스트해보세요.
@@ -2458,12 +2595,51 @@
                             <span class="quiz-feature">⏱️ 3분 소요</span>
                             <span class="quiz-feature">🔥 18가지 시나리오</span>
                         </div>
-                        <a href="quiz/quiz2/quiz2.html" class="quiz-card-cta quiz-card-cta-danger" aria-label="극한의 시나리오 챌린지 시작하기">
+                        <a href="quiz/quiz2/quiz2.html" class="quiz-card-cta quiz-card-cta-danger"
+                            aria-label="극한의 시나리오 챌린지 시작하기">
                             도전하기 →
                         </a>
                     </article>
+
+                    <!-- Quiz 3 Card -->
+                    <article class="quiz-card quiz-card-3" aria-label="도로 주행 상식 테스트">
+                        <img src="assets/img/quiz3_main.webp" alt="도로 주행 상식 테스트" class="quiz-card-thumbnail">
+                        <div class="quiz-card-badge">도로 상식</div>
+                        <h3 class="quiz-card-title">도로 주행 상식<br>테스트</h3>
+                        <p class="quiz-card-description">
+                            우회전 일시정지? 비보호 좌회전?<br>
+                            헷갈리는 교통 법규를 완벽 정리!
+                        </p>
+                        <div class="quiz-card-features">
+                            <span class="quiz-feature">⏱️ 3분 소요</span>
+                            <span class="quiz-feature">📚 18가지 상황</span>
+                        </div>
+                        <a href="quiz/quiz3/quiz3.html" class="quiz-card-cta quiz-card-cta-success"
+                            aria-label="도로 주행 상식 테스트 시작하기">
+                            테스트 시작 →
+                        </a>
+                    </article>
+
+                    <!-- Quiz 4 Card -->
+                    <article class="quiz-card quiz-card-4" aria-label="교통사고 대처 능력 테스트">
+                        <img src="assets/img/quiz4_main.webp" alt="교통사고 대처 능력 테스트" class="quiz-card-thumbnail">
+                        <div class="quiz-card-badge">사고 대처</div>
+                        <h3 class="quiz-card-title">교통사고 대처 능력<br>테스트</h3>
+                        <p class="quiz-card-description">
+                            접촉 사고, 사설 렉카, 물피도주...<br>
+                            호구 잡히지 않는 대처법!
+                        </p>
+                        <div class="quiz-card-features">
+                            <span class="quiz-feature">⏱️ 3분 소요</span>
+                            <span class="quiz-feature">⚖️ 15가지 상황</span>
+                        </div>
+                        <a href="quiz/quiz4/quiz4.html" class="quiz-card-cta quiz-card-cta-warning"
+                            aria-label="교통사고 대처 능력 테스트 시작하기">
+                            테스트 시작 →
+                        </a>
+                    </article>
                 </div>
-                
+
                 <p class="quiz-section-notice">
                     💡 퀴즈 결과를 친구들과 공유하고 비교해보세요!
                 </p>
@@ -2473,25 +2649,36 @@
         <!-- Intro Section -->
         <section class="intro-section full-screen-section" style="background: white; padding: 80px 20px;">
             <div class="content-wrapper" style="max-width: 900px; margin: 0 auto;">
-                
-                
+
+
                 <div style="margin-top: 60px;">
-                    <h2 style="font-size: 1.8rem; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; text-align: center;">SAFE DRIVE 소개</h2>
+                    <h2
+                        style="font-size: 1.8rem; font-weight: 700; color: #1a1a1a; margin-bottom: 30px; text-align: center;">
+                        SAFE DRIVE 소개</h2>
                     <div style="text-align: center; margin-bottom: 40px;">
-                        <div style="font-size: 1.1rem; line-height: 1.8; color: #333; text-align: left; max-width: 700px; margin: 0 auto;">
+                        <div
+                            style="font-size: 1.1rem; line-height: 1.8; color: #333; text-align: left; max-width: 700px; margin: 0 auto;">
                             <p style="margin-bottom: 12px;">🚗 익명으로 나누는 차량 안전 신호</p>
                             <p style="margin-bottom: 12px;">🔔 비방 없는 템플릿 기반 안전 공유</p>
                             <p style="margin-bottom: 12px;">🔒 회원가입 없이, 개인정보 없이</p>
                         </div>
                     </div>
-                    <div style="font-size: 1rem; line-height: 1.8; color: #444; text-align: left; max-width: 800px; margin: 0 auto;">
-                        <p style="margin-bottom: 20px;">운전 중 마주치는 수많은 위험 요소는 대부분 고의가 아니라 인지하지 못한 상태에서 발생합니다. 전조등이나 후미등이 꺼진 채 달리는 차량, 방향지시등 없이 차선을 변경하는 순간, 피로로 인해 흔들리는 주행. 이런 장면을 본 사람은 위험을 느끼지만, 이를 안전하게 전달할 방법은 거의 없습니다. 이 플랫폼은 바로 그 지점에서 출발했습니다.</p>
-                        
-                        <p style="margin-bottom: 20px;">본 서비스는 차량 번호판을 개인정보가 아닌 단순 식별자로 사용하여, 운전자들 사이에서 익명으로 차량 안전 신호를 공유할 수 있도록 설계된 웹 기반 플랫폼입니다. 회원가입, 로그인, 본인인증 없이 누구나 이용할 수 있으며, 자유 텍스트 입력을 배제하고 운영자가 제공한 안전 템플릿만 사용함으로써 비방·욕설·개인 식별의 위험을 구조적으로 차단합니다.</p>
-                        
-                        <p style="margin-bottom: 20px;">여기서 제공되는 정보는 특정 운전자를 평가하거나 단정하기 위한 것이 아닙니다. 여러 사람이 느낀 안전 관련 신호가 카운트 형태로 누적된 통계 정보일 뿐이며, 개인의 신원·위치·행동 이력은 저장되지 않습니다. 이 서비스는 단속이나 신고를 대체하지 않으며, 오직 사고 예방과 인식 개선이라는 목적에만 집중합니다.</p>
-                        
-                        <p style="margin-bottom: 0;">익명성은 무책임함이 아니라, 오히려 솔직한 안전 공유를 가능하게 합니다. 이 플랫폼은 "지적"이 아닌 "신호"를 남기는 공간이며, 작은 관심이 큰 사고를 막을 수 있다는 믿음을 기술로 구현합니다. 도로 위에서 서로를 직접 알지 못해도, 우리는 안전을 공유할 수 있습니다.</p>
+                    <div
+                        style="font-size: 1rem; line-height: 1.8; color: #444; text-align: left; max-width: 800px; margin: 0 auto;">
+                        <p style="margin-bottom: 20px;">운전 중 마주치는 수많은 위험 요소는 대부분 고의가 아니라 인지하지 못한 상태에서 발생합니다. 전조등이나 후미등이
+                            꺼진 채 달리는 차량, 방향지시등 없이 차선을 변경하는 순간, 피로로 인해 흔들리는 주행. 이런 장면을 본 사람은 위험을 느끼지만, 이를 안전하게 전달할 방법은 거의
+                            없습니다. 이 플랫폼은 바로 그 지점에서 출발했습니다.</p>
+
+                        <p style="margin-bottom: 20px;">본 서비스는 차량 번호판을 개인정보가 아닌 단순 식별자로 사용하여, 운전자들 사이에서 익명으로 차량 안전 신호를
+                            공유할 수 있도록 설계된 웹 기반 플랫폼입니다. 회원가입, 로그인, 본인인증 없이 누구나 이용할 수 있으며, 자유 텍스트 입력을 배제하고 운영자가 제공한 안전
+                            템플릿만 사용함으로써 비방·욕설·개인 식별의 위험을 구조적으로 차단합니다.</p>
+
+                        <p style="margin-bottom: 20px;">여기서 제공되는 정보는 특정 운전자를 평가하거나 단정하기 위한 것이 아닙니다. 여러 사람이 느낀 안전 관련 신호가
+                            카운트 형태로 누적된 통계 정보일 뿐이며, 개인의 신원·위치·행동 이력은 저장되지 않습니다. 이 서비스는 단속이나 신고를 대체하지 않으며, 오직 사고 예방과 인식
+                            개선이라는 목적에만 집중합니다.</p>
+
+                        <p style="margin-bottom: 0;">익명성은 무책임함이 아니라, 오히려 솔직한 안전 공유를 가능하게 합니다. 이 플랫폼은 "지적"이 아닌 "신호"를 남기는
+                            공간이며, 작은 관심이 큰 사고를 막을 수 있다는 믿음을 기술로 구현합니다. 도로 위에서 서로를 직접 알지 못해도, 우리는 안전을 공유할 수 있습니다.</p>
                     </div>
                 </div>
             </div>
@@ -2504,10 +2691,10 @@
                     <span class="qr-badge-icon">📱</span>
                     <span class="qr-badge-text">NEW FEATURE</span>
                 </div>
-                
+
                 <h2 class="qr-intro-title">번호판 QR 코드 생성기</h2>
                 <p class="qr-intro-subtitle">내 번호판을 QR 코드로 만들어 차량에 부착하세요</p>
-                
+
                 <div class="qr-intro-features">
                     <div class="qr-feature-item">
                         <span>🎨 커스텀 디자인</span>
@@ -2519,28 +2706,69 @@
                         <span>💬 안전 메시지 수신</span>
                     </div>
                 </div>
-                
+
                 <div class="qr-intro-example">
                     <div class="qr-example-preview">
                         <div class="qr-example-mockup">
                             <div class="qr-mockup-code">
                                 <svg id="qr-art" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                                    <rect id="qr-frame" x="5" y="5" width="290" height="290" fill="white" rx="10"/>
-                                    <rect x="5" y="5" width="290" height="290" fill="none" stroke="#333" stroke-width="6" rx="10"/>
-                                    <g id="corner-tl"><rect x="20" y="20" width="60" height="60" fill="black"/><rect x="28" y="28" width="44" height="44" fill="white"/><rect x="36" y="36" width="28" height="28" fill="black"/></g>
-                                    <g id="corner-tr"><rect x="220" y="20" width="60" height="60" fill="black"/><rect x="228" y="28" width="44" height="44" fill="white"/><rect x="236" y="36" width="28" height="28" fill="black"/></g>
-                                    <g id="corner-bl"><rect x="20" y="220" width="60" height="60" fill="black"/><rect x="28" y="228" width="44" height="44" fill="white"/><rect x="36" y="236" width="28" height="28" fill="black"/></g>
+                                    <rect id="qr-frame" x="5" y="5" width="290" height="290" fill="white" rx="10" />
+                                    <rect x="5" y="5" width="290" height="290" fill="none" stroke="#333"
+                                        stroke-width="6" rx="10" />
+                                    <g id="corner-tl">
+                                        <rect x="20" y="20" width="60" height="60" fill="black" />
+                                        <rect x="28" y="28" width="44" height="44" fill="white" />
+                                        <rect x="36" y="36" width="28" height="28" fill="black" />
+                                    </g>
+                                    <g id="corner-tr">
+                                        <rect x="220" y="20" width="60" height="60" fill="black" />
+                                        <rect x="228" y="28" width="44" height="44" fill="white" />
+                                        <rect x="236" y="36" width="28" height="28" fill="black" />
+                                    </g>
+                                    <g id="corner-bl">
+                                        <rect x="20" y="220" width="60" height="60" fill="black" />
+                                        <rect x="28" y="228" width="44" height="44" fill="white" />
+                                        <rect x="36" y="236" width="28" height="28" fill="black" />
+                                    </g>
                                     <g id="puzzle-tiles">
-                                        <rect id="t1" x="100" y="20" width="25" height="25" fill="black"/><rect id="t2" x="130" y="20" width="25" height="25" fill="black"/><rect id="t3" x="160" y="20" width="25" height="25" fill="black"/><rect id="t4" x="190" y="20" width="25" height="25" fill="black"/>
-                                        <rect id="t5" x="100" y="50" width="25" height="25" fill="black"/><rect id="t6" x="130" y="50" width="55" height="25" fill="black"/><rect id="t7" x="190" y="50" width="25" height="25" fill="black"/>
-                                        <rect id="t8" x="100" y="80" width="25" height="25" fill="black"/><rect id="t9" x="160" y="80" width="25" height="25" fill="black"/><rect id="t10" x="190" y="80" width="25" height="25" fill="black"/>
-                                        <rect id="t11" x="100" y="120" width="25" height="25" fill="black"/><rect id="t12" x="130" y="120" width="25" height="25" fill="black"/><rect id="t13" x="160" y="120" width="25" height="55" fill="black"/><rect id="t14" x="190" y="120" width="25" height="25" fill="black"/>
-                                        <rect id="t15" x="100" y="150" width="55" height="25" fill="black"/><rect id="t16" x="190" y="150" width="25" height="25" fill="black"/>
-                                        <rect id="t17" x="100" y="190" width="25" height="25" fill="black"/><rect id="t18" x="130" y="190" width="25" height="25" fill="black"/><rect id="t19" x="160" y="190" width="25" height="25" fill="black"/><rect id="t20" x="190" y="190" width="25" height="25" fill="black"/>
-                                        <rect id="t21" x="100" y="220" width="25" height="55" fill="black"/><rect id="t22" x="130" y="220" width="25" height="25" fill="black"/><rect id="t23" x="160" y="220" width="55" height="25" fill="black"/>
-                                        <rect id="t24" x="130" y="250" width="25" height="25" fill="black"/><rect id="t25" x="190" y="250" width="25" height="25" fill="black"/>
-                                        <rect id="t26" x="20" y="100" width="25" height="25" fill="black"/><rect id="t27" x="50" y="100" width="25" height="55" fill="black"/><rect id="t28" x="20" y="130" width="25" height="25" fill="black"/><rect id="t29" x="20" y="160" width="55" height="25" fill="black"/><rect id="t30" x="20" y="190" width="25" height="25" fill="black"/><rect id="t31" x="50" y="190" width="25" height="25" fill="black"/>
-                                        <rect id="t32" x="255" y="100" width="25" height="25" fill="black"/><rect id="t33" x="255" y="130" width="25" height="55" fill="black"/><rect id="t34" x="220" y="130" width="25" height="25" fill="black"/><rect id="t35" x="220" y="160" width="25" height="25" fill="black"/><rect id="t36" x="255" y="190" width="25" height="25" fill="black"/><rect id="t37" x="220" y="190" width="25" height="55" fill="black"/><rect id="t38" x="255" y="220" width="25" height="55" fill="black"/>
+                                        <rect id="t1" x="100" y="20" width="25" height="25" fill="black" />
+                                        <rect id="t2" x="130" y="20" width="25" height="25" fill="black" />
+                                        <rect id="t3" x="160" y="20" width="25" height="25" fill="black" />
+                                        <rect id="t4" x="190" y="20" width="25" height="25" fill="black" />
+                                        <rect id="t5" x="100" y="50" width="25" height="25" fill="black" />
+                                        <rect id="t6" x="130" y="50" width="55" height="25" fill="black" />
+                                        <rect id="t7" x="190" y="50" width="25" height="25" fill="black" />
+                                        <rect id="t8" x="100" y="80" width="25" height="25" fill="black" />
+                                        <rect id="t9" x="160" y="80" width="25" height="25" fill="black" />
+                                        <rect id="t10" x="190" y="80" width="25" height="25" fill="black" />
+                                        <rect id="t11" x="100" y="120" width="25" height="25" fill="black" />
+                                        <rect id="t12" x="130" y="120" width="25" height="25" fill="black" />
+                                        <rect id="t13" x="160" y="120" width="25" height="55" fill="black" />
+                                        <rect id="t14" x="190" y="120" width="25" height="25" fill="black" />
+                                        <rect id="t15" x="100" y="150" width="55" height="25" fill="black" />
+                                        <rect id="t16" x="190" y="150" width="25" height="25" fill="black" />
+                                        <rect id="t17" x="100" y="190" width="25" height="25" fill="black" />
+                                        <rect id="t18" x="130" y="190" width="25" height="25" fill="black" />
+                                        <rect id="t19" x="160" y="190" width="25" height="25" fill="black" />
+                                        <rect id="t20" x="190" y="190" width="25" height="25" fill="black" />
+                                        <rect id="t21" x="100" y="220" width="25" height="55" fill="black" />
+                                        <rect id="t22" x="130" y="220" width="25" height="25" fill="black" />
+                                        <rect id="t23" x="160" y="220" width="55" height="25" fill="black" />
+                                        <rect id="t24" x="130" y="250" width="25" height="25" fill="black" />
+                                        <rect id="t25" x="190" y="250" width="25" height="25" fill="black" />
+                                        <rect id="t26" x="20" y="100" width="25" height="25" fill="black" />
+                                        <rect id="t27" x="50" y="100" width="25" height="55" fill="black" />
+                                        <rect id="t28" x="20" y="130" width="25" height="25" fill="black" />
+                                        <rect id="t29" x="20" y="160" width="55" height="25" fill="black" />
+                                        <rect id="t30" x="20" y="190" width="25" height="25" fill="black" />
+                                        <rect id="t31" x="50" y="190" width="25" height="25" fill="black" />
+                                        <rect id="t32" x="255" y="100" width="25" height="25" fill="black" />
+                                        <rect id="t33" x="255" y="130" width="25" height="55" fill="black" />
+                                        <rect id="t34" x="220" y="130" width="25" height="25" fill="black" />
+                                        <rect id="t35" x="220" y="160" width="25" height="25" fill="black" />
+                                        <rect id="t36" x="255" y="190" width="25" height="25" fill="black" />
+                                        <rect id="t37" x="220" y="190" width="25" height="55" fill="black" />
+                                        <rect id="t38" x="255" y="220" width="25" height="55" fill="black" />
                                     </g>
                                 </svg>
                             </div>
@@ -2565,19 +2793,19 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <a href="qr-generator.html" class="qr-intro-cta">
                     <span class="qr-cta-text">QR 코드 생성하러 가기</span>
                     <span class="qr-cta-arrow">→</span>
                 </a>
-                
+
                 <p class="qr-intro-notice">
                     💡 생성된 QR코드를 잘보이는 곳에 부착하면, SAFE DRIVE를 모르는 운전자도 쉽게 내 번호판으로 안전 메시지를 전달할 수 있습니다.
                 </p>
             </div>
         </section>
 
-        <!-- Referral Section - Golden Ticket -->
+        <!-- Referral Section - Golden Ticket (COMMENTED OUT FOR LATER USE)
         <section class="referral-section full-screen-section" id="referral">
             <div class="referral-container">
                 <div class="referral-ticket">
@@ -2630,13 +2858,14 @@
                 </div>
             </div>
         </section>
+        END Referral Section -->
 
         <!-- Road Stress Index Section -->
         <section class="road-stress-section full-screen-section scrollable" id="road-stress">
             <div class="stress-rain-canvas" id="stressRainCanvas"></div>
             <div class="content-wrapper">
                 <h2 class="stress-title">실시간 도로 감정상태</h2>
-                
+
                 <div class="stress-bar-chart-container">
                     <canvas id="stressBarChart"></canvas>
                 </div>
@@ -2674,7 +2903,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Scroll Arrow -->
             <div class="scroll-indicator">
                 <span class="scroll-arrow">↓</span>
@@ -2706,7 +2935,7 @@
                     </table>
                 </div>
             </div>
-            
+
             <!-- Scroll Arrow -->
             <div class="scroll-indicator">
                 <span class="scroll-arrow">↓</span>
@@ -2881,13 +3110,243 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- Scroll Arrow -->
             <div class="scroll-indicator">
                 <span class="scroll-arrow">↓</span>
             </div>
         </section>
 
+
+        <!-- 교통안전 교육 콘텐츠 섹션 -->
+        <section class="full-screen-section" id="safety-education"
+            style="background: linear-gradient(135deg, #1e3a5f 0%, #2d5a87 100%); padding: 80px 20px;">
+            <div class="content-wrapper" style="max-width: 1200px; margin: 0 auto;">
+                <h2
+                    style="font-size: 2.2rem; font-weight: 900; color: white; text-align: center; margin-bottom: 16px; text-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+                    🚦 안전운전 가이드</h2>
+                <p style="font-size: 1rem; color: rgba(255,255,255,0.9); text-align: center; margin-bottom: 50px;">도로 위
+                    안전을 위한 필수 상식을 알아보세요</p>
+
+                <!-- 안전운전 10계명 -->
+                <div
+                    style="background: rgba(255,255,255,0.95); border-radius: 20px; padding: 40px; margin-bottom: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+                    <h3
+                        style="font-size: 1.5rem; font-weight: 800; color: #1e3a5f; margin-bottom: 30px; text-align: center;">
+                        📋 안전운전 10계명</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+                        <div
+                            style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: #f8fafc; border-radius: 12px; border-left: 4px solid #3b82f6;">
+                            <span style="font-size: 1.5rem; flex-shrink: 0;">1️⃣</span>
+                            <div>
+                                <strong style="color: #1e3a5f; font-size: 1rem;">안전벨트 착용</strong>
+                                <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">운전자와 모든 탑승자는 반드시 안전벨트를 착용해야
+                                    합니다. 뒷좌석도 예외가 아닙니다.</p>
+                            </div>
+                        </div>
+                        <div
+                            style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: #f8fafc; border-radius: 12px; border-left: 4px solid #3b82f6;">
+                            <span style="font-size: 1.5rem; flex-shrink: 0;">2️⃣</span>
+                            <div>
+                                <strong style="color: #1e3a5f; font-size: 1rem;">제한속도 준수</strong>
+                                <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">도로별 제한속도를 준수하고, 특히
+                                    어린이보호구역(30km/h)에서는 서행하세요.</p>
+                            </div>
+                        </div>
+                        <div
+                            style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: #f8fafc; border-radius: 12px; border-left: 4px solid #3b82f6;">
+                            <span style="font-size: 1.5rem; flex-shrink: 0;">3️⃣</span>
+                            <div>
+                                <strong style="color: #1e3a5f; font-size: 1rem;">안전거리 확보</strong>
+                                <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">앞차와 충분한 안전거리를 유지하세요. 일반적으로
+                                    속도(km/h)를 미터로 환산한 거리가 적정합니다.</p>
+                            </div>
+                        </div>
+                        <div
+                            style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: #f8fafc; border-radius: 12px; border-left: 4px solid #3b82f6;">
+                            <span style="font-size: 1.5rem; flex-shrink: 0;">4️⃣</span>
+                            <div>
+                                <strong style="color: #1e3a5f; font-size: 1rem;">방향지시등 사용</strong>
+                                <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">차선 변경, 회전 시 반드시 방향지시등을 켜서 다른
+                                    운전자에게 의사를 전달하세요.</p>
+                            </div>
+                        </div>
+                        <div
+                            style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: #f8fafc; border-radius: 12px; border-left: 4px solid #ef4444;">
+                            <span style="font-size: 1.5rem; flex-shrink: 0;">5️⃣</span>
+                            <div>
+                                <strong style="color: #1e3a5f; font-size: 1rem;">음주운전 금지</strong>
+                                <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">음주 후에는 절대 운전하지 마세요. 혈중알코올농도
+                                    0.03% 이상은 면허취소 사유입니다.</p>
+                            </div>
+                        </div>
+                        <div
+                            style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: #f8fafc; border-radius: 12px; border-left: 4px solid #ef4444;">
+                            <span style="font-size: 1.5rem; flex-shrink: 0;">6️⃣</span>
+                            <div>
+                                <strong style="color: #1e3a5f; font-size: 1rem;">스마트폰 사용 금지</strong>
+                                <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">운전 중 스마트폰 사용은 사고 위험을 4배 이상
+                                    높입니다. 반드시 정차 후 사용하세요.</p>
+                            </div>
+                        </div>
+                        <div
+                            style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: #f8fafc; border-radius: 12px; border-left: 4px solid #f59e0b;">
+                            <span style="font-size: 1.5rem; flex-shrink: 0;">7️⃣</span>
+                            <div>
+                                <strong style="color: #1e3a5f; font-size: 1rem;">졸음운전 예방</strong>
+                                <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">피로할 때는 휴게소에서 충분히 휴식하세요.
+                                    2시간마다 15분 휴식이 권장됩니다.</p>
+                            </div>
+                        </div>
+                        <div
+                            style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: #f8fafc; border-radius: 12px; border-left: 4px solid #f59e0b;">
+                            <span style="font-size: 1.5rem; flex-shrink: 0;">8️⃣</span>
+                            <div>
+                                <strong style="color: #1e3a5f; font-size: 1rem;">차량 점검</strong>
+                                <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">출발 전 타이어 공기압, 브레이크, 등화장치를
+                                    점검하세요. 정기 점검도 필수입니다.</p>
+                            </div>
+                        </div>
+                        <div
+                            style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: #f8fafc; border-radius: 12px; border-left: 4px solid #22c55e;">
+                            <span style="font-size: 1.5rem; flex-shrink: 0;">9️⃣</span>
+                            <div>
+                                <strong style="color: #1e3a5f; font-size: 1rem;">양보 운전</strong>
+                                <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">급하지 않다면 양보하세요. 보행자, 자전거,
+                                    긴급차량에게는 반드시 양보해야 합니다.</p>
+                            </div>
+                        </div>
+                        <div
+                            style="display: flex; align-items: flex-start; gap: 15px; padding: 15px; background: #f8fafc; border-radius: 12px; border-left: 4px solid #22c55e;">
+                            <span style="font-size: 1.5rem; flex-shrink: 0;">🔟</span>
+                            <div>
+                                <strong style="color: #1e3a5f; font-size: 1rem;">방어운전</strong>
+                                <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">다른 운전자의 실수를 예측하고 대비하세요. 내가
+                                    맞아도 사고는 사고입니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 교통법규 핵심 정리 -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px;">
+                    <!-- 우회전 규정 -->
+                    <div
+                        style="background: rgba(255,255,255,0.95); border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                            <span style="font-size: 2rem;">🔄</span>
+                            <h4 style="font-size: 1.2rem; font-weight: 700; color: #1e3a5f; margin: 0;">우회전 시 일시정지 의무
+                            </h4>
+                        </div>
+                        <div style="background: #fef3c7; border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                            <p style="color: #92400e; font-size: 0.9rem; font-weight: 600; margin: 0;">⚠️ 2023년 1월 22일부터
+                                시행</p>
+                        </div>
+                        <ul style="color: #444; font-size: 0.95rem; line-height: 1.8; padding-left: 20px; margin: 0;">
+                            <li>신호등 있는 교차로에서 우회전 시 <strong>일시정지 후</strong> 보행자 확인</li>
+                            <li>보행자가 횡단 중이거나 횡단하려고 하면 <strong>반드시 정지</strong></li>
+                            <li>보행자 신호가 녹색일 때도 보행자 우선</li>
+                            <li>위반 시 범칙금 6만원, 벌점 10점</li>
+                        </ul>
+                    </div>
+
+                    <!-- 어린이보호구역 -->
+                    <div
+                        style="background: rgba(255,255,255,0.95); border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                            <span style="font-size: 2rem;">🏫</span>
+                            <h4 style="font-size: 1.2rem; font-weight: 700; color: #1e3a5f; margin: 0;">어린이보호구역(스쿨존) 규정
+                            </h4>
+                        </div>
+                        <div style="background: #fee2e2; border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                            <p style="color: #991b1b; font-size: 0.9rem; font-weight: 600; margin: 0;">🚨 민식이법 적용 구역</p>
+                        </div>
+                        <ul style="color: #444; font-size: 0.95rem; line-height: 1.8; padding-left: 20px; margin: 0;">
+                            <li>제한속도 <strong>30km/h 이하</strong> 준수</li>
+                            <li>주정차 전면 금지 (8시~20시)</li>
+                            <li>어린이 사망사고 시 <strong>3년 이상 징역</strong></li>
+                            <li>신호위반 범칙금 12만원, 벌점 30점</li>
+                        </ul>
+                    </div>
+
+                    <!-- 긴급차량 양보 -->
+                    <div
+                        style="background: rgba(255,255,255,0.95); border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                            <span style="font-size: 2rem;">🚑</span>
+                            <h4 style="font-size: 1.2rem; font-weight: 700; color: #1e3a5f; margin: 0;">긴급차량 양보 의무</h4>
+                        </div>
+                        <div style="background: #dbeafe; border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                            <p style="color: #1e40af; font-size: 0.9rem; font-weight: 600; margin: 0;">💡 생명을 살리는 양보</p>
+                        </div>
+                        <ul style="color: #444; font-size: 0.95rem; line-height: 1.8; padding-left: 20px; margin: 0;">
+                            <li>긴급차량 접근 시 <strong>도로 우측 가장자리</strong>로 피양</li>
+                            <li>교차로에서는 교차로를 피해 일시정지</li>
+                            <li>긴급차량 진로 방해 시 범칙금 <strong>20만원</strong></li>
+                            <li>소방차, 구급차, 경찰차 등 모두 해당</li>
+                        </ul>
+                    </div>
+
+                    <!-- 교통사고 대처 -->
+                    <div
+                        style="background: rgba(255,255,255,0.95); border-radius: 20px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);">
+                        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+                            <span style="font-size: 2rem;">🆘</span>
+                            <h4 style="font-size: 1.2rem; font-weight: 700; color: #1e3a5f; margin: 0;">교통사고 발생 시 대처법
+                            </h4>
+                        </div>
+                        <div style="background: #dcfce7; border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                            <p style="color: #166534; font-size: 0.9rem; font-weight: 600; margin: 0;">✅ 침착하게 순서대로 대응
+                            </p>
+                        </div>
+                        <ol style="color: #444; font-size: 0.95rem; line-height: 1.8; padding-left: 20px; margin: 0;">
+                            <li><strong>안전한 곳으로 이동</strong> 후 비상등 점등</li>
+                            <li>부상자 확인 및 <strong>119 신고</strong></li>
+                            <li><strong>112 신고</strong> 또는 보험사 연락</li>
+                            <li>현장 사진 촬영 (차량 위치, 파손 부위)</li>
+                            <li>목격자 연락처 확보</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- 유용한 연락처 -->
+                <div
+                    style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 16px; padding: 25px; margin-top: 30px; backdrop-filter: blur(10px);">
+                    <h4
+                        style="color: white; font-size: 1.1rem; font-weight: 700; margin-bottom: 20px; text-align: center;">
+                        📞 긴급 연락처</h4>
+                    <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 30px;">
+                        <div style="text-align: center;">
+                            <span style="font-size: 2rem; display: block; margin-bottom: 8px;">🚔</span>
+                            <p style="color: white; font-weight: 700; margin: 0;">경찰</p>
+                            <p style="color: #fbbf24; font-size: 1.3rem; font-weight: 900; margin: 5px 0 0 0;">112</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <span style="font-size: 2rem; display: block; margin-bottom: 8px;">🚑</span>
+                            <p style="color: white; font-weight: 700; margin: 0;">소방/구급</p>
+                            <p style="color: #fbbf24; font-size: 1.3rem; font-weight: 900; margin: 5px 0 0 0;">119</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <span style="font-size: 2rem; display: block; margin-bottom: 8px;">🛣️</span>
+                            <p style="color: white; font-weight: 700; margin: 0;">고속도로 긴급</p>
+                            <p style="color: #fbbf24; font-size: 1.3rem; font-weight: 900; margin: 5px 0 0 0;">1588-2504
+                            </p>
+                        </div>
+                        <div style="text-align: center;">
+                            <span style="font-size: 2rem; display: block; margin-bottom: 8px;">🚗</span>
+                            <p style="color: white; font-weight: 700; margin: 0;">보험개발원</p>
+                            <p style="color: #fbbf24; font-size: 1.3rem; font-weight: 900; margin: 5px 0 0 0;">1544-0049
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Arrow -->
+            <div class="scroll-indicator" style="margin-top: 30px;">
+                <span class="scroll-arrow" style="color: white;">↓</span>
+            </div>
+        </section>
 
         <section class="legal-notice-section full-screen-section" id="legal-notice">
             <div class="content-wrapper">
@@ -2916,9 +3375,12 @@
         <footer class="site-footer">
             <div class="footer-content">
                 <nav class="footer-links">
-                    <a href="terms.html">이용약관</a> | <a href="privacy.html">개인정보처리방침</a> | <a href="legal.html">법적 고지</a> | <a href="faq.html">자주 묻는 질문</a>
+                    <a href="/terms.html">이용약관</a> |
+                    <a href="/privacy.html">개인정보처리방침</a> |
+                    <a href="/legal.html">법적 고지</a> |
+                    <a href="/faq.html">자주 묻는 질문</a>
                 </nav>
-                <a class="footer-contact-link" href="contact.html">문의</a>
+                <a class="footer-contact-link" href="/contact.html">문의</a>
                 <p class="copyright">© 2025 Hustle Up. All rights reserved.</p>
             </div>
         </footer>
@@ -2944,71 +3406,71 @@
                 const tiles = document.querySelectorAll('#puzzle-tiles rect');
                 const frame = document.getElementById('qr-frame');
                 if (!tiles.length || !frame) return;
-                
+
                 // Convert duration from seconds to milliseconds
                 const d = 150; // 0.15s = 150ms
-                
+
                 // Create Anime.js timeline with infinite repeat
-                const tl = anime.timeline({ 
+                const tl = anime.timeline({
                     loop: true,
                     easing: 'easeInOutQuad' // power2.inOut equivalent
                 });
-                
+
                 // Build the timeline with Anime.js format
                 // Note: '-=0.05' means start 50ms before previous animation ends
                 // In Anime.js, we use '-=50' for the same effect
                 tl.add({ targets: '#t1', translateX: 30, duration: d })
-                  .add({ targets: '#t2', translateY: 30, duration: d }, '-=50')
-                  .add({ targets: '#t3', translateX: -30, duration: d }, '-=50')
-                  .add({ targets: '#t4', translateY: 30, duration: d }, '-=50')
-                  .add({ targets: '#t5', translateX: 30, duration: d }, '-=50')
-                  .add({ targets: '#t7', translateY: 30, duration: d }, '-=50')
-                  .add({ targets: '#t8', translateY: -30, duration: d }, '-=50')
-                  .add({ targets: '#t9', translateX: -30, duration: d }, '-=50')
-                  .add({ targets: '#t10', translateY: 30, duration: d }, '-=50')
-                  .add({ targets: '#t11', translateX: 30, duration: d })
-                  .add({ targets: '#t12', translateY: 30, duration: d }, '-=50')
-                  .add({ targets: '#t14', translateX: -30, duration: d }, '-=50')
-                  .add({ targets: '#t16', translateY: -30, duration: d }, '-=50')
-                  .add({ targets: '#t15', translateX: 30, duration: d }, '-=50')
-                  .add({ targets: '#t17', translateX: 30, duration: d })
-                  .add({ targets: '#t18', translateY: -30, duration: d }, '-=50')
-                  .add({ targets: '#t19', translateX: 30, duration: d }, '-=50')
-                  .add({ targets: '#t20', translateY: 30, duration: d }, '-=50')
-                  .add({ targets: '#t22', translateX: 30, duration: d }, '-=50')
-                  .add({ targets: '#t24', translateY: -30, duration: d }, '-=50')
-                  .add({ targets: '#t25', translateX: -30, duration: d }, '-=50')
-                  .add({ targets: ['#t1','#t5','#t11','#t15','#t17','#t19','#t22'], translateX: 0, duration: d })
-                  .add({ targets: ['#t2','#t4','#t7','#t10','#t12','#t20'], translateY: 0, duration: d }, '-=100')
-                  .add({ targets: ['#t3','#t9','#t14','#t25'], translateX: 0, duration: d }, '-=100')
-                  .add({ targets: ['#t8','#t16','#t18','#t24'], translateY: 0, duration: d }, '-=100')
-                  .add({ targets: '#t32', translateY: 30, duration: d })
-                  .add({ targets: '#t34', translateX: 30, duration: d }, '-=50')
-                  .add({ targets: '#t33', translateY: -30, duration: d }, '-=50')
-                  .add({ targets: '#t35', translateY: -30, duration: d }, '-=50')
-                  .add({ targets: '#t36', translateX: -30, duration: d }, '-=50')
-                  .add({ targets: '#t37', translateY: -30, duration: d }, '-=50')
-                  .add({ targets: '#t38', translateY: -30, duration: d }, '-=50')
-                  .add({ targets: ['#t32','#t33','#t35','#t37','#t38'], translateY: 0, duration: d })
-                  .add({ targets: ['#t34','#t36'], translateX: 0, duration: d }, '-=100')
-                  .add({ targets: '#t26', translateY: 30, duration: d })
-                  .add({ targets: '#t27', translateX: -25, duration: d }, '-=50')
-                  .add({ targets: '#t28', translateX: 30, duration: d }, '-=50')
-                  .add({ targets: '#t29', translateY: -30, duration: d }, '-=50')
-                  .add({ targets: '#t30', translateY: -30, duration: d }, '-=50')
-                  .add({ targets: '#t31', translateX: -30, duration: d }, '-=50')
-                  .add({ targets: ['#t26','#t29','#t30'], translateY: 0, duration: d })
-                  .add({ targets: ['#t27','#t28','#t31'], translateX: 0, duration: d }, '-=100')
-                  .add({ targets: '#t1, #t4, #t8, #t11, #t17, #t20', translateX: 25, duration: d })
-                  .add({ targets: '#t2, #t5, #t9, #t12, #t18, #t22', translateY: 25, duration: d }, '-=100')
-                  .add({ targets: '#t3, #t7, #t10, #t14, #t19, #t24', translateX: -25, duration: d }, '-=100')
-                  .add({ targets: '#t6, #t13, #t15, #t16, #t23, #t25', translateY: -25, duration: d }, '-=100')
-                  .add({ targets: '#puzzle-tiles rect', translateX: 0, translateY: 0, duration: 200 }); // 0.2s = 200ms
-                
+                    .add({ targets: '#t2', translateY: 30, duration: d }, '-=50')
+                    .add({ targets: '#t3', translateX: -30, duration: d }, '-=50')
+                    .add({ targets: '#t4', translateY: 30, duration: d }, '-=50')
+                    .add({ targets: '#t5', translateX: 30, duration: d }, '-=50')
+                    .add({ targets: '#t7', translateY: 30, duration: d }, '-=50')
+                    .add({ targets: '#t8', translateY: -30, duration: d }, '-=50')
+                    .add({ targets: '#t9', translateX: -30, duration: d }, '-=50')
+                    .add({ targets: '#t10', translateY: 30, duration: d }, '-=50')
+                    .add({ targets: '#t11', translateX: 30, duration: d })
+                    .add({ targets: '#t12', translateY: 30, duration: d }, '-=50')
+                    .add({ targets: '#t14', translateX: -30, duration: d }, '-=50')
+                    .add({ targets: '#t16', translateY: -30, duration: d }, '-=50')
+                    .add({ targets: '#t15', translateX: 30, duration: d }, '-=50')
+                    .add({ targets: '#t17', translateX: 30, duration: d })
+                    .add({ targets: '#t18', translateY: -30, duration: d }, '-=50')
+                    .add({ targets: '#t19', translateX: 30, duration: d }, '-=50')
+                    .add({ targets: '#t20', translateY: 30, duration: d }, '-=50')
+                    .add({ targets: '#t22', translateX: 30, duration: d }, '-=50')
+                    .add({ targets: '#t24', translateY: -30, duration: d }, '-=50')
+                    .add({ targets: '#t25', translateX: -30, duration: d }, '-=50')
+                    .add({ targets: ['#t1', '#t5', '#t11', '#t15', '#t17', '#t19', '#t22'], translateX: 0, duration: d })
+                    .add({ targets: ['#t2', '#t4', '#t7', '#t10', '#t12', '#t20'], translateY: 0, duration: d }, '-=100')
+                    .add({ targets: ['#t3', '#t9', '#t14', '#t25'], translateX: 0, duration: d }, '-=100')
+                    .add({ targets: ['#t8', '#t16', '#t18', '#t24'], translateY: 0, duration: d }, '-=100')
+                    .add({ targets: '#t32', translateY: 30, duration: d })
+                    .add({ targets: '#t34', translateX: 30, duration: d }, '-=50')
+                    .add({ targets: '#t33', translateY: -30, duration: d }, '-=50')
+                    .add({ targets: '#t35', translateY: -30, duration: d }, '-=50')
+                    .add({ targets: '#t36', translateX: -30, duration: d }, '-=50')
+                    .add({ targets: '#t37', translateY: -30, duration: d }, '-=50')
+                    .add({ targets: '#t38', translateY: -30, duration: d }, '-=50')
+                    .add({ targets: ['#t32', '#t33', '#t35', '#t37', '#t38'], translateY: 0, duration: d })
+                    .add({ targets: ['#t34', '#t36'], translateX: 0, duration: d }, '-=100')
+                    .add({ targets: '#t26', translateY: 30, duration: d })
+                    .add({ targets: '#t27', translateX: -25, duration: d }, '-=50')
+                    .add({ targets: '#t28', translateX: 30, duration: d }, '-=50')
+                    .add({ targets: '#t29', translateY: -30, duration: d }, '-=50')
+                    .add({ targets: '#t30', translateY: -30, duration: d }, '-=50')
+                    .add({ targets: '#t31', translateX: -30, duration: d }, '-=50')
+                    .add({ targets: ['#t26', '#t29', '#t30'], translateY: 0, duration: d })
+                    .add({ targets: ['#t27', '#t28', '#t31'], translateX: 0, duration: d }, '-=100')
+                    .add({ targets: '#t1, #t4, #t8, #t11, #t17, #t20', translateX: 25, duration: d })
+                    .add({ targets: '#t2, #t5, #t9, #t12, #t18, #t22', translateY: 25, duration: d }, '-=100')
+                    .add({ targets: '#t3, #t7, #t10, #t14, #t19, #t24', translateX: -25, duration: d }, '-=100')
+                    .add({ targets: '#t6, #t13, #t15, #t16, #t23, #t25', translateY: -25, duration: d }, '-=100')
+                    .add({ targets: '#puzzle-tiles rect', translateX: 0, translateY: 0, duration: 200 }); // 0.2s = 200ms
+
                 function cycleColors() {
                     colorIndex = (colorIndex + 1) % colors.length;
                     const scheme = colors[colorIndex];
-                    
+
                     // Color animations with Anime.js
                     // Duration: 0.4s = 400ms, stagger: 0.01s = 10ms
                     anime({
@@ -3018,21 +3480,21 @@
                         easing: 'easeInOutQuad',
                         delay: anime.stagger(10)
                     });
-                    
+
                     anime({
                         targets: '#corner-tl rect:first-child, #corner-tr rect:first-child, #corner-bl rect:first-child, #corner-tl rect:nth-child(3), #corner-tr rect:nth-child(3), #corner-bl rect:nth-child(3)',
                         fill: scheme.fg,
                         duration: 400,
                         easing: 'easeInOutQuad'
                     });
-                    
+
                     anime({
                         targets: frame,
                         fill: scheme.bg,
                         duration: 400,
                         easing: 'easeInOutQuad'
                     });
-                    
+
                     anime({
                         targets: '#corner-tl rect:nth-child(2), #corner-tr rect:nth-child(2), #corner-bl rect:nth-child(2)',
                         fill: scheme.bg,
@@ -3042,15 +3504,15 @@
                 }
                 setInterval(cycleColors, 1200);
             })();
-            
+
             // Flip Card Animation
             const flipCard = document.querySelector('.flip-card');
             if (flipCard) {
-                flipCard.addEventListener('click', function() {
+                flipCard.addEventListener('click', function () {
                     this.classList.toggle('flipped');
                 });
             }
-            
+
             // Animated Road Lines
             const road = document.getElementById('road');
             if (road) {
@@ -3058,7 +3520,7 @@
                 const gapHeight = 100;
                 const totalSegment = lineHeight + gapHeight;
                 const numLines = Math.ceil(window.innerHeight / totalSegment) + 2;
-                
+
                 for (let i = 0; i < numLines; i++) {
                     const line = document.createElement('div');
                     line.className = 'road-line';
@@ -3066,44 +3528,44 @@
                     road.appendChild(line);
                 }
             }
-            
+
             // Hero Search Button
             const heroSearchBtn = document.getElementById('heroSearchBtn');
             const plateInput = document.getElementById('plateInput');
             if (heroSearchBtn && plateInput) {
-                heroSearchBtn.addEventListener('click', function() {
+                heroSearchBtn.addEventListener('click', function () {
                     const plateNumber = plateInput.value.trim();
                     if (plateNumber) {
                         window.location.href = `plate.html?plate=${encodeURIComponent(plateNumber)}`;
                     }
                 });
-                
-                plateInput.addEventListener('keypress', function(e) {
+
+                plateInput.addEventListener('keypress', function (e) {
                     if (e.key === 'Enter') {
                         e.preventDefault();
                         heroSearchBtn.click();
                     }
                 });
-                
+
                 // Plate input validation with visual feedback
                 let validationTimer = null;
-                plateInput.addEventListener('input', function(e) {
+                plateInput.addEventListener('input', function (e) {
                     // Clear previous timer
                     if (validationTimer) {
                         clearTimeout(validationTimer);
                     }
-                    
+
                     // Set new timer for validation feedback (300ms debounce)
                     validationTimer = setTimeout(() => {
                         const input = e.target.value.trim().replace(/\s+/g, '');
                         if (input !== '') {
                             // Simple Korean plate validation patterns
                             const isValid = /^(\d{2,3}[가-힣][가-힣]?\d{4})$/.test(input) ||
-                                           /^([가-힣]{1,2}\d{2,3}[가-힣]\d{4})$/.test(input) ||
-                                           /^([가-힣]{3,7}\d{4})$/.test(input) ||
-                                           /^(\d[가-힣]\d{5})$/.test(input) ||
-                                           /^(영[가-힣]{2}\d{2}[가-힣]\d{4})$/.test(input);
-                            
+                                /^([가-힣]{1,2}\d{2,3}[가-힣]\d{4})$/.test(input) ||
+                                /^([가-힣]{3,7}\d{4})$/.test(input) ||
+                                /^(\d[가-힣]\d{5})$/.test(input) ||
+                                /^(영[가-힣]{2}\d{2}[가-힣]\d{4})$/.test(input);
+
                             // Visual feedback for validation with outline effect
                             if (isValid) {
                                 e.target.style.setProperty('outline', '3px solid #10b981', 'important');
@@ -3125,19 +3587,19 @@
                         }
                     }, 300);
                 });
-                
+
                 // Reset styles on blur
-                plateInput.addEventListener('blur', function(e) {
+                plateInput.addEventListener('blur', function (e) {
                     e.target.style.removeProperty('outline');
                     e.target.style.removeProperty('outline-offset');
                     e.target.style.removeProperty('border-color');
                     e.target.style.removeProperty('box-shadow');
                 });
             }
-            
+
             // Active Users Counter is now handled by initLandingPage() in script.js
             // which fetches real data from Firebase (updated by Cloud Function from GA4)
-            
+
             // Mouse drag scrolling for horizontal scroll containers
             function enableDragScroll(container) {
                 let isDown = false;
@@ -3173,94 +3635,16 @@
             // Enable drag scroll for both containers
             const horizontalScroll = document.getElementById('horizontalScroll');
             const laneTypeScroll = document.getElementById('laneTypeScroll');
-            
+
             if (horizontalScroll) enableDragScroll(horizontalScroll);
             if (laneTypeScroll) enableDragScroll(laneTypeScroll);
 
-            // Navbar smooth scroll and mobile toggle
-            const navToggle = document.getElementById('navToggle');
-            const navMenu = document.getElementById('navMenu');
-            const navLinks = document.querySelectorAll('.nav-link');
-            const mainNavbar = document.getElementById('mainNavbar');
-            const navLogo = document.getElementById('navLogo');
-
-            // Toggle mobile menu
-            if (navToggle) {
-                navToggle.addEventListener('click', function() {
-                    navMenu.classList.toggle('active');
-                    navToggle.classList.toggle('active');
-                });
-            }
-
-            // Logo click - scroll to top
-            if (navLogo) {
-                navLogo.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                    navMenu.classList.remove('active');
-                    navToggle.classList.remove('active');
-                });
-            }
-
-            // Smooth scroll for all nav links
-            navLinks.forEach(link => {
-                link.addEventListener('click', function(e) {
-                    const href = this.getAttribute('href');
-                    
-                    // Allow external links like contact.html to work normally
-                    if (href === 'contact.html' || !href.startsWith('#')) {
-                        return; // Let browser handle it
-                    }
-                    
-                    e.preventDefault();
-                    const targetId = href;
-                    const targetSection = document.querySelector(targetId);
-                    
-                    if (targetSection) {
-                        const navbarHeight = mainNavbar ? mainNavbar.offsetHeight : 60;
-                        const targetPosition = targetSection.offsetTop - navbarHeight;
-                        
-                        window.scrollTo({
-                            top: targetPosition,
-                            behavior: 'smooth'
-                        });
-                        
-                        // Close mobile menu after click
-                        navMenu.classList.remove('active');
-                        navToggle.classList.remove('active');
-                    }
-                });
-            });
-
             // Get elements
             const scrollIndicator = document.getElementById('scrollIndicator');
-            const footer = document.querySelector('.site-footer');
             let lastScrollTop = 0;
 
-            // Add shadow to navbar on scroll and change colors
-            window.addEventListener('scroll', function() {
-                const navbar = document.getElementById('mainNavbar');
-                if (!navbar) return;
-                
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                const scrollHeight = document.documentElement.scrollHeight;
-                const clientHeight = window.innerHeight;
-                
-                // Navbar color change on scroll
-                if (scrollTop > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
-                }
-                
-                lastScrollTop = scrollTop;
-            });
-
             // Hide hero scroll indicator on scroll
-            window.addEventListener('scroll', function() {
+            window.addEventListener('scroll', function () {
                 const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
                 if (scrollTop > 100) {
                     scrollIndicator.classList.add('hidden');
@@ -3268,45 +3652,45 @@
                     scrollIndicator.classList.remove('hidden');
                 }
             });
-            
+
             // Click handlers for all scroll indicators
             const allScrollIndicators = document.querySelectorAll('.scroll-indicator');
             allScrollIndicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', function() {
+                indicator.addEventListener('click', function () {
                     const currentSection = indicator.closest('.full-screen-section');
                     const allSections = document.querySelectorAll('.full-screen-section');
                     const currentIndex = Array.from(allSections).indexOf(currentSection);
-                    
+
                     // Scroll to next section if available
                     if (currentIndex < allSections.length - 1) {
                         allSections[currentIndex + 1].scrollIntoView({ behavior: 'smooth' });
                     }
                 });
             });
-            
+
             // Blur & Focus Animation - Detect active sections and update body background
             function updateActiveSections() {
                 const sections = document.querySelectorAll('.full-screen-section');
                 const windowHeight = window.innerHeight;
                 const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-                
+
                 let mostVisibleSection = null;
                 let maxVisibility = 0;
-                
+
                 sections.forEach((section) => {
                     const sectionTop = section.offsetTop;
                     const sectionHeight = section.offsetHeight;
-                    
+
                     // Calculate how much of the section is visible
                     const visibleTop = Math.max(scrollPosition, sectionTop);
                     const visibleBottom = Math.min(scrollPosition + windowHeight, sectionTop + sectionHeight);
                     const visibleHeight = Math.max(0, visibleBottom - visibleTop);
-                    
+
                     // Check if section is in viewport (with some threshold)
-                    if (scrollPosition >= sectionTop - windowHeight / 2 && 
+                    if (scrollPosition >= sectionTop - windowHeight / 2 &&
                         scrollPosition < sectionTop + sectionHeight - windowHeight / 2) {
                         section.classList.add('active');
-                        
+
                         // Track the most visible section
                         if (visibleHeight > maxVisibility) {
                             maxVisibility = visibleHeight;
@@ -3316,7 +3700,7 @@
                         section.classList.remove('active');
                     }
                 });
-                
+
                 // Update body background to match the most visible section
                 if (mostVisibleSection) {
                     const computedStyle = window.getComputedStyle(mostVisibleSection);
@@ -3324,13 +3708,13 @@
                     document.body.style.background = background;
                 }
             }
-            
+
             // Initialize on load
             updateActiveSections();
-            
+
             // Update on scroll - use window scroll
             window.addEventListener('scroll', updateActiveSections);
-            
+
             // Update on resize
             window.addEventListener('resize', updateActiveSections);
         });
@@ -3378,7 +3762,7 @@
             "아들 천천히 와❤️ 사랑해~",
             "딸 천천히 와❤️ 사랑해~"
         ];
-        
+
         const stressComments = [
             { max: 10, text: '😍 완벽해요! 도로가 천국이에요' },
             { max: 20, text: '😎 최고의 드라이빙 날씨네요' },
@@ -3458,25 +3842,25 @@
             do {
                 newIndex = Math.floor(Math.random() * stressQuotes.length);
             } while (newIndex === currentStressQuoteIndex && stressQuotes.length > 1);
-            
+
             currentStressQuoteIndex = newIndex;
             const quote = stressQuotes[currentStressQuoteIndex];
-            
+
             const quoteElement = document.getElementById('stressQuoteText');
             quoteElement.textContent = '';
-            
+
             const chars = quote.split('');
             const span = document.createElement('span');
-            
+
             chars.forEach((char) => {
                 const charSpan = document.createElement('span');
                 charSpan.textContent = char;
                 charSpan.style.opacity = '0';
                 span.appendChild(charSpan);
             });
-            
+
             quoteElement.appendChild(span);
-            
+
             anime({
                 targets: span.children,
                 opacity: 1,
@@ -3504,18 +3888,18 @@
             const start = parseInt(element.textContent.replace(/,/g, '')) || 0;
             const duration = 1000;
             const startTime = performance.now();
-            
+
             function update(currentTime) {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
                 const current = Math.floor(start + (target - start) * progress);
                 element.textContent = formatNumberWithCommas(current);
-                
+
                 if (progress < 1) {
                     requestAnimationFrame(update);
                 }
             }
-            
+
             requestAnimationFrame(update);
         }
 
@@ -3529,24 +3913,24 @@
         function createStressRainParticles(emoji) {
             const container = document.getElementById('stressRainCanvas');
             if (!container) return;
-            
+
             if (stressActiveParticles >= stressMaxParticles) return;
-            
+
             const particleCount = 2;
             for (let i = 0; i < particleCount; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'stress-rain-particle';
                 particle.textContent = emoji;
-                
+
                 particle.style.left = Math.random() * 100 + '%';
                 particle.style.top = '-50px';
-                
+
                 const duration = Math.random() * 0.4 + 0.8;
                 particle.style.animationDuration = duration + 's';
-                
+
                 container.appendChild(particle);
                 stressActiveParticles++;
-                
+
                 setTimeout(() => {
                     particle.remove();
                     stressActiveParticles--;
@@ -3557,16 +3941,16 @@
         // Calculate anger percentage
         function calculateStressAngerPercent(emotionCounts, totalCount) {
             if (totalCount === 0) return 0;
-            
+
             const negativeCount = emotionCounts[4] + emotionCounts[5] + emotionCounts[6];
             const positiveCount = emotionCounts[0] + emotionCounts[1] + emotionCounts[2];
-            
+
             const angerScore = (negativeCount / totalCount) * 100;
             const positiveScore = (positiveCount / totalCount) * 100;
-            
+
             let angerPercent = angerScore - (positiveScore * 0.5);
             angerPercent = Math.max(0, Math.min(100, angerPercent));
-            
+
             return Math.round(angerPercent);
         }
 
@@ -3619,7 +4003,7 @@
         function resetStressIfNewDay() {
             const stressRef = firebase.database().ref('roadStress');
             const currentKoreanDate = getKoreanDateString();
-            
+
             stressRef.transaction((current) => {
                 if (current === null) {
                     return {
@@ -3628,9 +4012,9 @@
                         lastResetDate: currentKoreanDate
                     };
                 }
-                
+
                 const lastResetDate = current.lastResetDate || null;
-                
+
                 // Reset if lastResetDate is different from today (KST)
                 if (lastResetDate !== currentKoreanDate) {
                     return {
@@ -3639,7 +4023,7 @@
                         lastResetDate: currentKoreanDate
                     };
                 }
-                
+
                 // No change needed - same day
                 return current;
             });
@@ -3648,17 +4032,17 @@
         // Listen to Firebase for real-time updates
         function initStressFirebase() {
             const stressRef = firebase.database().ref('roadStress');
-            
+
             // Check and reset on initialization
             resetStressIfNewDay();
-            
+
             stressRef.on('value', (snapshot) => {
                 const data = snapshot.val() || {
                     emotionCounts: [0, 0, 0, 0, 0, 0, 0],
                     totalCount: 0,
                     lastResetDate: null
                 };
-                
+
                 // Check if data is from a previous day and needs reset
                 const currentKoreanDate = getKoreanDateString();
                 if (data.lastResetDate && data.lastResetDate !== currentKoreanDate) {
@@ -3666,7 +4050,7 @@
                     resetStressIfNewDay();
                     return; // Will receive updated data via listener
                 }
-                
+
                 updateStressDisplay(data.emotionCounts, data.totalCount);
             });
         }
@@ -3676,13 +4060,13 @@
             const now = new Date();
             // Get current time in KST
             const koreanTime = new Date(now.getTime() + (9 * 60 * 60 * 1000));
-            
+
             // Calculate milliseconds until next midnight KST
             const nextMidnight = new Date(koreanTime);
             nextMidnight.setUTCHours(24, 0, 0, 0); // Next day 00:00:00
-            
+
             const msUntilMidnight = nextMidnight.getTime() - koreanTime.getTime();
-            
+
             // Schedule reset at midnight
             setTimeout(() => {
                 resetStressIfNewDay();
@@ -3694,20 +4078,20 @@
         // Handle emotion button clicks
         function handleStressEmotionClick(value, emoji) {
             const currentTime = Date.now();
-            
+
             // Throttle clicks
             if (currentTime - stressLastClickTime < stressClickCooldown) {
                 return;
             }
-            
+
             stressLastClickTime = currentTime;
-            
+
             // Create rain effect
             createStressRainParticles(emoji);
-            
+
             // Update Firebase
             const stressRef = firebase.database().ref('roadStress');
-            
+
             stressRef.transaction((current) => {
                 if (current === null) {
                     return {
@@ -3715,11 +4099,11 @@
                         totalCount: 0
                     };
                 }
-                
+
                 const index = parseInt(value) + 3;
                 current.emotionCounts[index] = (current.emotionCounts[index] || 0) + 1;
                 current.totalCount = (current.totalCount || 0) + 1;
-                
+
                 return current;
             });
         }
@@ -3728,7 +4112,7 @@
         if (document.getElementById('stressBarChart')) {
             initStressBarChart();
             startStressQuoteRotation();
-            
+
             // Wait for Firebase to be ready
             if (typeof firebase !== 'undefined') {
                 initStressFirebase();
@@ -3741,10 +4125,10 @@
                     }
                 });
             }
-            
+
             // Add click handlers to emotion buttons
             document.querySelectorAll('.stress-emotion-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     const value = this.getAttribute('data-value');
                     const emoji = this.textContent;
                     handleStressEmotionClick(value, emoji);
@@ -3752,49 +4136,52 @@
             });
         }
     </script>
-    <script src="script.js"></script>
-    
+
+
     <!-- Voice Input Modal with Candidate Selection -->
     <div id="voiceInputModal" class="voice-modal" aria-hidden="true">
         <div class="voice-overlay" onclick="VoiceInput.close()"></div>
         <div class="voice-sheet" id="voiceSheet">
             <div class="voice-handle"></div>
-            
+
             <!-- Step 1: Guide + Listening -->
             <div id="voiceStep1">
                 <p id="voiceGuideText" class="voice-text">
                     번호판을 말해주세요<br>
                     <small style="color:#8b949e">예: '<strong>영 구 루 삼 삼 육 삼</strong>' → 09루3363<br>천천히, 띄어 말해주세요</small>
                 </p>
-                
+
                 <p id="voiceListeningText" class="voice-text" style="display:none;">
                     듣는 중<span class="animated-dots"></span>
                 </p>
-                
-                <svg id="voiceMicIcon" width="72" height="72" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 18.75C15.3137 18.75 18 16.0637 18 12.75V11.25M12 18.75C8.68629 18.75 6 16.0637 6 12.75V11.25M12 18.75V22.5M8.25 22.5H15.75M12 15.75C10.3431 15.75 9 14.4069 9 12.75V4.5C9 2.84315 10.3431 1.5 12 1.5C13.6569 1.5 15 2.84315 15 4.5V12.75C15 14.4069 13.6569 15.75 12 15.75Z" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+                <svg id="voiceMicIcon" width="72" height="72" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M12 18.75C15.3137 18.75 18 16.0637 18 12.75V11.25M12 18.75C8.68629 18.75 6 16.0637 6 12.75V11.25M12 18.75V22.5M8.25 22.5H15.75M12 15.75C10.3431 15.75 9 14.4069 9 12.75V4.5C9 2.84315 10.3431 1.5 12 1.5C13.6569 1.5 15 2.84315 15 4.5V12.75C15 14.4069 13.6569 15.75 12 15.75Z"
+                        stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
                 </svg>
-                
+
                 <button class="voice-cancel-btn" id="voiceCancelStep1" onclick="VoiceInput.close()">취소</button>
             </div>
-            
+
             <!-- Step 2: Candidate Selection -->
             <div id="voiceStep2" style="display:none; text-align:center;">
                 <p class="voice-text" style="margin-bottom:16px; color:#22c55e; font-weight:700;">
                     ✓ 인식 완료! 선택해주세요
                 </p>
-                
+
                 <div id="voiceCandidates" class="voice-candidates">
                     <!-- Filled by JS -->
                 </div>
-                
+
                 <button class="voice-cancel-btn" style="margin-top:20px;" onclick="VoiceInput.restart()">
                     다시 말하기
                 </button>
             </div>
         </div>
     </div>
-    
+
     <!-- ===== In-app browser escape bar (Chrome/Safari) ===== -->
     <div id="openInBrowserBar" class="oib-hidden" role="dialog" aria-live="polite" aria-label="브라우저에서 열기 안내">
         <div class="oib-card">
@@ -3802,72 +4189,108 @@
                 <div class="oib-title">앱 내 브라우저에서는 기능이 제한될 수 있어요</div>
                 <button type="button" class="oib-close" id="oibCloseBtn" aria-label="닫기">×</button>
             </div>
-            <div class="oib-desc">추천 보상, 음성 인식/알림 등 일부 기능이 앱 내 브라우저(카카오톡/라인/왓츠앱 등)에서 불안정할 수 있습니다. 아래 버튼으로 외부 브라우저에서 열어주세요.</div>
+            <div class="oib-desc">추천 보상, 음성 인식/알림 등 일부 기능이 앱 내 브라우저(카카오톡/라인/왓츠앱 등)에서 불안정할 수 있습니다. 아래 버튼으로 외부 브라우저에서
+                열어주세요.</div>
             <div class="oib-actions" id="oibActions">
                 <!-- Buttons injected by JS depending on platform -->
             </div>
             <div class="oib-hint" id="oibHint" style="display:none;"></div>
         </div>
     </div>
-    
+
     <style>
-        #openInBrowserBar.oib-hidden { display:none; }
+        #openInBrowserBar.oib-hidden {
+            display: none;
+        }
+
         #openInBrowserBar {
-            position: fixed; left: 0; right: 0; bottom: 0;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
             z-index: 99999;
             padding: 12px;
-            background: rgba(0,0,0,0.35);
+            background: rgba(0, 0, 0, 0.35);
             backdrop-filter: blur(2px);
         }
+
         .oib-card {
             max-width: 720px;
             margin: 0 auto;
             border-radius: 14px;
             background: #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.20);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.20);
             padding: 12px 12px 10px 12px;
             font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
         }
+
         .oib-header {
-            display:flex; align-items:center; justify-content:space-between;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             gap: 10px;
             margin-bottom: 6px;
         }
-        .oib-title { font-size: 14px; font-weight: 700; line-height: 1.2; }
+
+        .oib-title {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
         .oib-close {
-            border: 0; background: transparent; font-size: 22px; cursor: pointer;
-            padding: 2px 8px; line-height: 1;
+            border: 0;
+            background: transparent;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 2px 8px;
+            line-height: 1;
             color: #444;
         }
+
         .oib-desc {
             font-size: 12px;
             color: #444;
             line-height: 1.4;
             margin-bottom: 10px;
         }
+
         .oib-actions {
-            display:flex; flex-wrap: wrap; gap: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
         }
+
         .oib-btn {
-            display:inline-flex; align-items:center; gap: 8px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             border-radius: 12px;
             padding: 10px 12px;
             border: 1px solid #ddd;
             background: #fff;
-            cursor:pointer;
+            cursor: pointer;
             font-size: 13px;
             font-weight: 700;
             color: #111;
             text-decoration: none;
             user-select: none;
         }
-        .oib-btn:active { transform: translateY(1px); }
+
+        .oib-btn:active {
+            transform: translateY(1px);
+        }
+
         .oib-btn.primary {
             border-color: #111;
         }
+
         .oib-icon {
-            width: 18px; height: 18px; display:inline-block;
+            width: 18px;
+            height: 18px;
+            display: inline-block;
         }
+
         .oib-hint {
             margin-top: 8px;
             font-size: 12px;
@@ -3880,14 +4303,14 @@
             white-space: pre-line;
         }
     </style>
-    
+
     <script>
         (function () {
             // ---- Basic detection (in-app browsers are best-effort heuristics) ----
             const ua = navigator.userAgent || navigator.vendor || window.opera;
             const isAndroid = /Android/i.test(ua);
             const isIOS = /iPad|iPhone|iPod/i.test(ua);
-            
+
             // Common in-app browser markers (KakaoTalk, LINE, WhatsApp, Instagram, Facebook, etc.)
             const isInApp =
                 /KAKAOTALK|KakaoTalk/i.test(ua) ||
@@ -3896,25 +4319,25 @@
                 /Instagram/i.test(ua) ||
                 /FBAN|FBAV|FBIOS|FB_IAB/i.test(ua) ||
                 /NAVER|Daum|KAKAOSTORY|KAKAOWEBVIEW/i.test(ua);
-            
+
             // If you want the bar only inside in-app browsers, keep this condition.
             if (!isInApp) return;
-            
+
             const bar = document.getElementById("openInBrowserBar");
             const actions = document.getElementById("oibActions");
             const hint = document.getElementById("oibHint");
             const closeBtn = document.getElementById("oibCloseBtn");
             const currentUrl = location.href;
-            
+
             // Browser icons from assets
             const chromeIcon = `<img src="/assets/img/chrome.png" class="oib-icon" alt="Chrome" />`;
             const safariIcon = `<img src="/assets/img/safari.png" class="oib-icon" alt="Safari" />`;
-            
+
             function showHint(text) {
                 hint.textContent = text;
                 hint.style.display = "block";
             }
-            
+
             function makeButton(label, iconSvg, onClick, primary) {
                 const btn = document.createElement("button");
                 btn.type = "button";
@@ -3928,14 +4351,14 @@
                 btn.addEventListener("click", onClick, { passive: true });
                 return btn;
             }
-            
+
             // ---- Android: "Open in Chrome" (Intent). Must be user-tapped ----
             function openAndroidChromeIntent() {
                 // Convert https://example.com/path?x=1 to intent://example.com/path?x=1#Intent;scheme=https;package=com.android.chrome;end
                 const urlObj = new URL(currentUrl);
                 const hostAndPath = urlObj.host + urlObj.pathname + urlObj.search + urlObj.hash;
                 const intentUrl = "intent://" + hostAndPath + "#Intent;scheme=" + urlObj.protocol.replace(":", "") + ";package=com.android.chrome;end";
-                
+
                 // Try intent first; fallback to normal URL if blocked.
                 try {
                     location.href = intentUrl;
@@ -3944,24 +4367,24 @@
                     location.href = currentUrl;
                 }
             }
-            
+
             // ---- iOS: "Open in Safari" cannot be forced; we provide instructions + copy link ----
             async function openIOSInSafariGuide() {
                 // Attempt to open a new tab (some in-app browsers then show "Open in Safari" UI)
-                try { window.open(currentUrl, "_blank"); } catch (e) {}
-                
+                try { window.open(currentUrl, "_blank"); } catch (e) { }
+
                 // Provide copy-to-clipboard + clear instructions
                 let copied = false;
                 try {
                     await navigator.clipboard.writeText(currentUrl);
                     copied = true;
-                } catch (e) {}
-                
+                } catch (e) { }
+
                 showHint((copied ? "현재 링크를 복사했어요.\n" : "") +
                     "iPhone에서는 웹사이트가 Safari를 강제로 열 수 없습니다.\n" +
                     "앱 오른쪽 상단 '…' 또는 공유 버튼 → 'Safari에서 열기'를 선택해 주세요.");
             }
-            
+
             // ---- iOS: "Open in Chrome(최적화)" via googlechrome:// scheme (if installed) ----
             function openIOSInChromeScheme() {
                 // Only works if Chrome is installed. Must be user-tapped. Provide fallback.
@@ -3969,10 +4392,10 @@
                 const chromeScheme = (urlObj.protocol === "https:") ? "googlechromes:" : "googlechrome:";
                 const chromeUrl = chromeScheme + "//" + urlObj.host + urlObj.pathname + urlObj.search + urlObj.hash;
                 const start = Date.now();
-                
+
                 // Try to navigate to Chrome
                 location.href = chromeUrl;
-                
+
                 // If Chrome not installed, user stays here; fallback after a moment.
                 setTimeout(() => {
                     // If we are still on the page after ~900ms, show guidance
@@ -3982,7 +4405,7 @@
                     }
                 }, 900);
             }
-            
+
             // ---- Render buttons by platform ----
             actions.textContent = "";
             if (isAndroid) {
@@ -3994,13 +4417,13 @@
                 // Other platforms: just offer a normal "Open in default browser" pattern
                 actions.appendChild(makeButton("새 탭에서 열기", chromeIcon, () => window.open(currentUrl, "_blank"), true));
             }
-            
+
             // Close behavior + session persistence (avoid showing repeatedly in same session)
             const key = "oibDismissed";
             if (sessionStorage.getItem(key) === "1") return;
-            
+
             bar.classList.remove("oib-hidden");
-            
+
             closeBtn.addEventListener("click", () => {
                 sessionStorage.setItem(key, "1");
                 bar.classList.add("oib-hidden");
@@ -4008,7 +4431,7 @@
         })();
     </script>
     <!-- ===== End: In-app browser escape bar ===== -->
-    
+
     <!-- Referral System -->
     <script src="/js/referral-core.js"></script>
     <script>
@@ -4021,14 +4444,11 @@
     <!-- Cookie Consent System -->
     <link rel="stylesheet" href="/css/cookie-consent.css">
     <script src="/js/cookie-consent.js"></script>
-    
-    <!-- Cookie Settings Floating Button -->
-    <button 
-        class="cookie-settings-trigger" 
-        onclick="openCookieSettings()" 
-        title="쿠키 설정 관리"
-        aria-label="쿠키 설정 관리">
+
+    <button class="cookie-settings-trigger" onclick="openCookieSettings()" title="쿠키 설정 관리" aria-label="쿠키 설정 관리">
         🍪
     </button>
+    <script src="/script.js"></script>
 </body>
+
 </html>

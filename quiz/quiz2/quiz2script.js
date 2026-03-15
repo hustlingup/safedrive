@@ -1,48 +1,98 @@
 /**
  * quiz2script.js
- * 퀴즈 결과 계산 로직 모듈
+ * 퀴즈 데이터 로드 및 점수 계산 로직
  */
 
-// -----------------------------------------------------------
-// [Quiz 2] 시나리오 챌린지 계산 로직 (조합형)
-// input: userAnswers (예: ["A", "B", "A", "C", ...])
-// output: 결과 타입 코드 (예: "A", "AB", "BC" 등)
-// -----------------------------------------------------------
-function calculateQuiz2Result(userAnswers) {
-    // 1. 점수판 초기화
-    let counts = { A: 0, B: 0, C: 0, D: 0 };
+const QUIZ_DATA_URL = 'quiz2.json';
 
-    // 2. 답변 집계
-    userAnswers.forEach(ans => {
-        if (counts.hasOwnProperty(ans)) counts[ans]++;
+// 캐시된 퀴즈 데이터
+let cachedQuizData = null;
+
+// 데이터 로드 함수
+async function fetchQuizData() {
+    if (cachedQuizData) return cachedQuizData;
+    
+    try {
+        const response = await fetch(QUIZ_DATA_URL);
+        cachedQuizData = await response.json();
+        return cachedQuizData;
+    } catch (error) {
+        console.error("데이터 로드 실패:", error);
+        return null;
+    }
+}
+
+/**
+ * QuizEngine용 결과 계산 함수
+ * userAnswers: [0, 1, 2, ...] (사용자가 선택한 옵션의 인덱스 배열)
+ * returns: 점수 기반 등급 코드 (예: "A", "B", "C", "D", "F")
+ */
+function calculateQuiz2Result(userAnswers) {
+    if (!cachedQuizData || !cachedQuizData.questions) {
+        console.error('Quiz data not loaded');
+        return 'C'; // 기본값
+    }
+    
+    let score = 0;
+    
+    cachedQuizData.questions.forEach((q, index) => {
+        const userChoiceIndex = userAnswers[index];
+        const userChoiceOption = q.options[userChoiceIndex];
+        
+        // 정답 여부 확인
+        const isCorrect = userChoiceOption ? userChoiceOption.isCorrect : false;
+        if (isCorrect) score++;
+    });
+    
+    // 점수에 따른 등급 결정
+    const resultType = cachedQuizData.results.find(r => score >= r.min && score <= r.max);
+    
+    // 등급 코드 반환 (result2.html에서 사용)
+    return resultType ? resultType.grade : 'C';
+}
+
+// 점수 계산 및 결과 도출 함수 (result2.html용 - 상세 결과)
+// userAnswers: [0, 1, 2, ...] (사용자가 선택한 옵션의 인덱스 배열)
+async function calculateResult(userAnswers) {
+    const data = await fetchQuizData();
+    if (!data) return null;
+
+    let score = 0;
+    const reviewData = []; // 오답 노트용 데이터
+
+    data.questions.forEach((q, index) => {
+        const userChoiceIndex = userAnswers[index];
+        const userChoiceOption = q.options[userChoiceIndex];
+        
+        // 정답 여부 확인
+        const isCorrect = userChoiceOption ? userChoiceOption.isCorrect : false;
+        if (isCorrect) score++;
+
+        // 정답 옵션 찾기
+        const correctOptionIndex = q.options.findIndex(opt => opt.isCorrect);
+        const correctOption = q.options[correctOptionIndex];
+
+        // 리뷰 데이터 생성
+        reviewData.push({
+            id: q.id,
+            question: q.q,
+            userChoiceText: userChoiceOption ? userChoiceOption.text : "선택 안함",
+            correctChoiceText: correctOption.text,
+            isCorrect: isCorrect,
+            explanation: correctOption.desc // 정답 옵션에 있는 설명 사용
+        });
     });
 
-    // 3. 점수 내림차순 정렬 ( [key, value] 배열로 변환 )
-    let sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
-    
-    // 1등과 2등 타입 추출
-    let first = sorted[0];  // ["A", 10]
-    let second = sorted[1]; // ["B", 5]
+    // 점수에 따른 등급(Result Type) 결정
+    // JSON의 results 배열에서 범위에 맞는 등급 찾기
+    const resultType = data.results.find(r => score >= r.min && score <= r.max);
 
-    // 4. 결과 도출 로직
-    // 4-1. 압도적인 1등인 경우 (1등 점수가 전체의 50% 초과거나, 2등과 3점 이상 차이)
-    //      여기서는 단순하게 "2등과 점수 차이가 3점 이상"이면 단일형으로 간주
-    if (first[1] - second[1] >= 3) {
-        return first[0]; // "A", "B", "C", "D"
-    }
-
-    // 4-2. 혼합형인 경우 (1등과 2등 조합)
-    //      키 순서를 알파벳 순으로 정렬하여 반환 (예: B+A -> "AB")
-    let combo = [first[0], second[0]].sort().join(""); // "AB", "BC", "AC"...
-
-    // 5. 예외 처리: 만약 생성된 조합이 JSON에 없는 경우 (예: "BD")
-    //    JSON에 정의된 키 목록: A, B, C, D, AB, BC, AC, DA
-    const validCombos = ["AB", "BC", "AC", "DA"]; 
-    
-    if (validCombos.includes(combo)) {
-        return combo;
-    } else {
-        // 정의되지 않은 조합(BD, CD 등)이 나오면 그냥 1등 타입을 리턴
-        return first[0];
-    }
+    return {
+        score: score,
+        total: data.questions.length,
+        grade: resultType.grade,
+        title: resultType.title,
+        desc: resultType.desc,
+        review: reviewData
+    };
 }
