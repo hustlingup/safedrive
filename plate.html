@@ -167,6 +167,12 @@
 
         /* Navbar styles removed - using styles.css */
 
+        /* Navbar explicit thematic fixes */
+        #mainNavbar { background: var(--pro-surface) !important; }
+        #mainNavbar .hamburger-line { background-color: var(--pro-text) !important; height: 2px !important; }
+        #mainNavbar .nav-link { color: var(--pro-text) !important; }
+        @media (max-width: 768px) { #mainNavbar .nav-menu { background: var(--pro-surface) !important; } }
+
         /* Theme Toggle */
         .theme-toggle {
             width: 44px;
@@ -1321,7 +1327,7 @@
 
         @media (max-width: 480px) {
             .pro-container {
-                padding: 70px 16px 40px;
+                padding: 110px 16px 40px;
             }
 
             .pro-plate-number {
