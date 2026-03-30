@@ -1644,8 +1644,8 @@ input:focus,
         right: 1rem;
         top: 50%;
         transform: translateY(-50%);
-        width: 22px !important;
-        height: 18px !important;
+        width: auto !important;
+        height: auto !important;
     }
 
     .hamburger-line {
