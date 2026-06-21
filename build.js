@@ -173,6 +173,9 @@ function build() {
     const filesToCopy = [
         'index.html', 'plate.html', 'contact.html', 'faq.html',
         'legal.html', 'terms.html', 'privacy.html', 'other.html',
+        'about.html', 'driving-guide.html', '404.html',
+        'google-analytics-consent-snippet.html',
+        'robots.txt', 'sitemap.xml',
         'referral.html', 'qr-generator.html', 'styles.css',
         'security.js', 'manifest.json', 'favicon.ico', 'ads.txt',
         'animated-qr.html', 'generate-favicon.html',

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 
 <head>
@@ -12,22 +12,17 @@
                     'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-TRTW3S54');</script>
     <!-- End Google Tag Manager -->
-    <!-- Google tag (gtag.js) - with Cookie Consent -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9R8RZYZC7X"></script>
+    <!-- Google Consent Mode (required before GTM) -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
 
-        // Default consent to denied (will be updated by cookie consent manager)
         gtag('consent', 'default', {
             'analytics_storage': 'denied',
             'ad_storage': 'denied',
             'ad_user_data': 'denied',
             'ad_personalization': 'denied'
         });
-
-        gtag('config', 'G-9R8RZYZC7X');
     </script>
     <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6791974364232767"
@@ -45,8 +40,6 @@
 
     <!-- Canonical URL -->
     <link rel="canonical" href="https://safedrive.kr/quiz/quiz1/result1.html">
-
-
 
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -767,7 +760,6 @@
                                 <span>링크 복사</span>
                             </button>
 
-
                         </div>
 
                         <!-- Copy Success Message -->
@@ -819,7 +811,7 @@
                 <a href="/faq.html">자주 묻는 질문</a>
             </nav>
             <a class="footer-contact-link" href="/contact.html">문의</a>
-            <p class="copyright">© 2025 Hustle Up. All rights reserved.</p>
+            <p class="copyright">© 2026 Hustle Up. All rights reserved.</p>
         </div>
     </footer>
 
@@ -1079,8 +1071,6 @@
                 metaDesc.setAttribute('content', `나의 운전 성향은 "${result.title}"! ${description}`);
             }
 
-
-
             // Update canonical URL
             const canonical = document.querySelector('link[rel="canonical"]');
             if (canonical) {
@@ -1201,8 +1191,6 @@
             }
         }
 
-
-
         // Initialize page
         document.addEventListener('DOMContentLoaded', function () {
             // Initialize mobile menu toggle
@@ -1237,7 +1225,6 @@
             const shareNativeBtn = document.getElementById('shareNativeBtn');
             const copyLinkBtn = document.getElementById('copyLinkBtn');
 
-
             if (shareNativeBtn) {
                 // Hide native share button if Web Share API is not supported
                 if (!navigator.share) {
@@ -1249,8 +1236,6 @@
             if (copyLinkBtn) {
                 copyLinkBtn.addEventListener('click', handleCopyLink);
             }
-
-
 
             // Cookie consent is auto-initialized by cookie-consent.js
             // No manual initialization needed
